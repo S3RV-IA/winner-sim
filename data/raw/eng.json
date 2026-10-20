@@ -1,0 +1,4190 @@
+{
+  "id": "eng",
+  "name": "Premier League",
+  "wiki": "Premier League",
+  "country": "Inglaterra",
+  "season": "2026–27",
+  "fetchedAt": "2026-10-20T21:38:21.608Z",
+  "teams": [
+    {
+      "code": "ARS",
+      "name": "Arsenal",
+      "wiki": "Arsenal F.C.",
+      "crest": "eng-ars.png",
+      "previousSeason": {
+        "pos": 1,
+        "played": 38,
+        "w": 26,
+        "d": 7,
+        "l": 5,
+        "gf": 71,
+        "ga": 27
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "ESP",
+          "name": "David Raya",
+          "wiki": "David Raya"
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "FRA",
+          "name": "William Saliba",
+          "wiki": "William Saliba"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Cristhian Mosquera",
+          "wiki": "Cristhian Mosquera"
+        },
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Ben White",
+          "wiki": "Ben White (footballer)"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "ECU",
+          "name": "Piero Hincapié",
+          "wiki": "Piero Hincapié"
+        },
+        {
+          "number": 6,
+          "pos": "DF",
+          "nat": "BRA",
+          "name": "Gabriel Magalhães",
+          "wiki": "Gabriel Magalhães"
+        },
+        {
+          "number": 7,
+          "pos": "FW",
+          "nat": "ENG",
+          "name": "Bukayo Saka",
+          "wiki": "Bukayo Saka"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "NOR",
+          "name": "Martin Ødegaard",
+          "wiki": "Martin Ødegaard"
+        },
+        {
+          "number": 10,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Eberechi Eze",
+          "wiki": "Eberechi Eze"
+        },
+        {
+          "number": 12,
+          "pos": "DF",
+          "nat": "NED",
+          "name": "Jurriën Timber",
+          "wiki": "Jurriën Timber"
+        },
+        {
+          "number": 13,
+          "pos": "GK",
+          "nat": "ESP",
+          "name": "Kepa Arrizabalaga",
+          "wiki": "Kepa Arrizabalaga"
+        },
+        {
+          "number": 14,
+          "pos": "FW",
+          "nat": "SWE",
+          "name": "Viktor Gyökeres",
+          "wiki": "Viktor Gyökeres"
+        },
+        {
+          "number": 15,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Ezri Konsa",
+          "wiki": "Ezri Konsa"
+        },
+        {
+          "number": 17,
+          "pos": "FW",
+          "nat": "GRE",
+          "name": "Christos Tzolis",
+          "wiki": "Christos Tzolis"
+        },
+        {
+          "number": 20,
+          "pos": "FW",
+          "nat": "ENG",
+          "name": "Noni Madueke",
+          "wiki": "Noni Madueke"
+        },
+        {
+          "number": 23,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Mikel Merino",
+          "wiki": "Mikel Merino"
+        },
+        {
+          "number": 29,
+          "pos": "FW",
+          "nat": "GER",
+          "name": "Kai Havertz",
+          "wiki": "Kai Havertz"
+        },
+        {
+          "number": 30,
+          "pos": "GK",
+          "nat": "FRA",
+          "name": "Illan Meslier",
+          "wiki": "Illan Meslier"
+        },
+        {
+          "number": 33,
+          "pos": "DF",
+          "nat": "ITA",
+          "name": "Riccardo Calafiori",
+          "wiki": "Riccardo Calafiori"
+        },
+        {
+          "number": 36,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Martín Zubimendi",
+          "wiki": "Martín Zubimendi"
+        },
+        {
+          "number": 39,
+          "pos": "MF",
+          "nat": "BRA",
+          "name": "Bruno Guimarães",
+          "wiki": "Bruno Guimarães"
+        },
+        {
+          "number": 41,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Declan Rice",
+          "wiki": "Declan Rice"
+        },
+        {
+          "number": 49,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Myles Lewis-Skelly",
+          "wiki": "Myles Lewis-Skelly"
+        }
+      ]
+    },
+    {
+      "code": "AVL",
+      "name": "Aston Villa",
+      "wiki": "Aston Villa F.C.",
+      "crest": "eng-avl.png",
+      "previousSeason": {
+        "pos": 4,
+        "played": 38,
+        "w": 19,
+        "d": 8,
+        "l": 11,
+        "gf": 56,
+        "ga": 49
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "JPN",
+          "name": "Zion Suzuki",
+          "wiki": "Zion Suzuki"
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "POL",
+          "name": "Matty Cash",
+          "wiki": "Matty Cash"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "SWE",
+          "name": "Victor Lindelöf",
+          "wiki": "Victor Lindelöf"
+        },
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Taylor Harwood-Bellis",
+          "wiki": "Taylor Harwood-Bellis"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Tyrone Mings",
+          "wiki": "Tyrone Mings"
+        },
+        {
+          "number": 6,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Ross Barkley",
+          "wiki": "Ross Barkley"
+        },
+        {
+          "number": 7,
+          "pos": "MF",
+          "nat": "SCO",
+          "name": "John McGinn",
+          "wiki": "John McGinn"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "FRA",
+          "name": "Boubacar Kamara",
+          "wiki": "Boubacar Kamara"
+        },
+        {
+          "number": 10,
+          "pos": "MF",
+          "nat": "ARG",
+          "name": "Emiliano Buendía",
+          "wiki": "Emiliano Buendía"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "SEN",
+          "name": "Nicolas Jackson",
+          "wiki": "Nicolas Jackson"
+        },
+        {
+          "number": 13,
+          "pos": "DF",
+          "nat": "ITA",
+          "name": "Matteo Ruggeri",
+          "wiki": "Matteo Ruggeri"
+        },
+        {
+          "number": 14,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Pau Torres",
+          "wiki": "Pau Torres"
+        },
+        {
+          "number": 17,
+          "pos": "FW",
+          "nat": "ARG",
+          "name": "Alejandro Garnacho",
+          "wiki": "Alejandro Garnacho"
+        },
+        {
+          "number": 18,
+          "pos": "FW",
+          "nat": "ENG",
+          "name": "Tammy Abraham",
+          "wiki": "Tammy Abraham"
+        },
+        {
+          "number": 19,
+          "pos": "FW",
+          "nat": "SEN",
+          "name": "Ibrahim Mbaye",
+          "wiki": "Ibrahim Mbaye"
+        },
+        {
+          "number": 22,
+          "pos": "DF",
+          "nat": "NED",
+          "name": "Ian Maatsen",
+          "wiki": "Ian Maatsen"
+        },
+        {
+          "number": 24,
+          "pos": "MF",
+          "nat": "BEL",
+          "name": "Amadou Onana",
+          "wiki": "Amadou Onana"
+        },
+        {
+          "number": 26,
+          "pos": "MF",
+          "nat": "NED",
+          "name": "Lamare Bogarde",
+          "wiki": "Lamare Bogarde"
+        },
+        {
+          "number": 27,
+          "pos": "MF",
+          "nat": "GER",
+          "name": "Leon Goretzka",
+          "wiki": "Leon Goretzka"
+        },
+        {
+          "number": 29,
+          "pos": "DF",
+          "nat": "COD",
+          "name": "Aaron Wan-Bissaka",
+          "wiki": "Aaron Wan-Bissaka"
+        },
+        {
+          "number": 35,
+          "pos": "MF",
+          "nat": "BRA",
+          "name": "João Gomes",
+          "wiki": "João Gomes (footballer, born 2001)"
+        },
+        {
+          "number": 39,
+          "pos": "FW",
+          "nat": "ENG",
+          "name": "Brian Madjo",
+          "wiki": "Brian Madjo"
+        },
+        {
+          "number": 40,
+          "pos": "GK",
+          "nat": "NED",
+          "name": "Marco Bizot",
+          "wiki": "Marco Bizot"
+        },
+        {
+          "number": 42,
+          "pos": "GK",
+          "nat": "ENG",
+          "name": "James Wright",
+          "wiki": "James Wright (footballer)"
+        },
+        {
+          "number": 44,
+          "pos": "MF",
+          "nat": "SUI",
+          "name": "Johan Manzambi",
+          "wiki": "Johan Manzambi"
+        },
+        {
+          "number": 47,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Alysson",
+          "wiki": "Alysson (footballer, born 2006)"
+        },
+        {
+          "number": 48,
+          "pos": "DF",
+          "nat": "SEN",
+          "name": "Modou Kéba Cissé",
+          "wiki": "Modou Kéba Cissé"
+        },
+        {
+          "number": 53,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "George Hemmings",
+          "wiki": "George Hemmings"
+        }
+      ]
+    },
+    {
+      "code": "BOU",
+      "name": "Bournemouth",
+      "wiki": "AFC Bournemouth",
+      "crest": "eng-bou.png",
+      "previousSeason": {
+        "pos": 6,
+        "played": 38,
+        "w": 13,
+        "d": 18,
+        "l": 7,
+        "gf": 58,
+        "ga": 54
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "SRB",
+          "name": "Đorđe Petrović",
+          "wiki": "Đorđe Petrović (footballer)"
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "MEX",
+          "name": "Julián Araujo",
+          "wiki": "Julián Araujo"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "FRA",
+          "name": "Adrien Truffert",
+          "wiki": "Adrien Truffert"
+        },
+        {
+          "number": 4,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Lewis Cook",
+          "wiki": "Lewis Cook (footballer, born 1997)"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "James Hill",
+          "wiki": "James Hill (footballer, born 2002)"
+        },
+        {
+          "number": 6,
+          "pos": "DF",
+          "nat": "ARG",
+          "name": "Julio Soler",
+          "wiki": "Julio Soler"
+        },
+        {
+          "number": 7,
+          "pos": "MF",
+          "nat": "WAL",
+          "name": "David Brooks",
+          "wiki": "David Brooks (footballer)"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Alex Scott",
+          "wiki": "Alex Scott (footballer, born 2003)"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Evanilson",
+          "wiki": "Evanilson (footballer, born 1999)"
+        },
+        {
+          "number": 10,
+          "pos": "MF",
+          "nat": "SCO",
+          "name": "Ryan Christie",
+          "wiki": "Ryan Christie"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "SCO",
+          "name": "Ben Gannon-Doak",
+          "wiki": "Ben Gannon-Doak"
+        },
+        {
+          "number": 12,
+          "pos": "MF",
+          "nat": "USA",
+          "name": "Tyler Adams",
+          "wiki": "Tyler Adams"
+        },
+        {
+          "number": 14,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "António Silva",
+          "wiki": "António Silva (footballer)"
+        },
+        {
+          "number": 15,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Adam Smith",
+          "wiki": "Adam Smith (footballer, born 1991)"
+        },
+        {
+          "number": 16,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Marcus Tavernier",
+          "wiki": "Marcus Tavernier"
+        },
+        {
+          "number": 17,
+          "pos": "GK",
+          "nat": "ENG",
+          "name": "Fraser Forster",
+          "wiki": "Fraser Forster"
+        },
+        {
+          "number": 18,
+          "pos": "DF",
+          "nat": "FRA",
+          "name": "Bafodé Diakité",
+          "wiki": "Bafodé Diakité"
+        },
+        {
+          "number": 19,
+          "pos": "FW",
+          "nat": "NED",
+          "name": "Justin Kluivert",
+          "wiki": "Justin Kluivert"
+        },
+        {
+          "number": 20,
+          "pos": "GK",
+          "nat": "ITA",
+          "name": "Michele Di Gregorio",
+          "wiki": "Michele Di Gregorio"
+        },
+        {
+          "number": 21,
+          "pos": "MF",
+          "nat": "MAR",
+          "name": "Amine Adli",
+          "wiki": "Amine Adli"
+        },
+        {
+          "number": 22,
+          "pos": "FW",
+          "nat": "FRA",
+          "name": "Eli Junior Kroupi",
+          "wiki": "Eli Junior Kroupi"
+        },
+        {
+          "number": 24,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Juanlu Sánchez",
+          "wiki": "Juanlu Sánchez"
+        },
+        {
+          "number": 27,
+          "pos": "MF",
+          "nat": "HUN",
+          "name": "Alex Tóth",
+          "wiki": "Alex Tóth"
+        },
+        {
+          "number": 28,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Max Aarons",
+          "wiki": "Max Aarons"
+        },
+        {
+          "number": 29,
+          "pos": "FW",
+          "nat": "CAN",
+          "name": "Daniel Jebbison",
+          "wiki": "Daniel Jebbison"
+        },
+        {
+          "number": 30,
+          "pos": "FW",
+          "nat": "URU",
+          "name": "Álvaro Rodríguez",
+          "wiki": "Álvaro Rodríguez (footballer, born 2004)"
+        },
+        {
+          "number": 37,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Rayan",
+          "wiki": "Rayan (footballer, born 2006)"
+        },
+        {
+          "number": 44,
+          "pos": "DF",
+          "nat": "SRB",
+          "name": "Veljko Milosavljević",
+          "wiki": "Veljko Milosavljević"
+        }
+      ]
+    },
+    {
+      "code": "BRE",
+      "name": "Brentford",
+      "wiki": "Brentford F.C.",
+      "crest": "eng-bre.png",
+      "previousSeason": {
+        "pos": 9,
+        "played": 38,
+        "w": 14,
+        "d": 11,
+        "l": 13,
+        "gf": 55,
+        "ga": 52
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "IRL",
+          "name": "Caoimhín Kelleher",
+          "wiki": "Caoimhín Kelleher"
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "SCO",
+          "name": "Aaron Hickey",
+          "wiki": "Aaron Hickey"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "JAM",
+          "name": "Rico Henry",
+          "wiki": "Rico Henry"
+        },
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "NED",
+          "name": "Sepp van den Berg",
+          "wiki": "Sepp van den Berg"
+        },
+        {
+          "number": 6,
+          "pos": "MF",
+          "nat": "UKR",
+          "name": "Yehor Yarmolyuk",
+          "wiki": "Yehor Yarmolyuk"
+        },
+        {
+          "number": 7,
+          "pos": "FW",
+          "nat": "GER",
+          "name": "Kevin Schade",
+          "wiki": "Kevin Schade"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "DEN",
+          "name": "Mathias Jensen",
+          "wiki": "Mathias Jensen"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Igor Thiago",
+          "wiki": "Igor Thiago"
+        },
+        {
+          "number": 10,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Josh Dasilva",
+          "wiki": "Josh Dasilva"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "BFA",
+          "name": "Dango Ouattara",
+          "wiki": "Dango Ouattara"
+        },
+        {
+          "number": 12,
+          "pos": "GK",
+          "nat": "ISL",
+          "name": "Hákon Valdimarsson",
+          "wiki": "Hákon Valdimarsson"
+        },
+        {
+          "number": 13,
+          "pos": "FW",
+          "nat": "ENG",
+          "name": "Callum Wilson",
+          "wiki": "Callum Wilson"
+        },
+        {
+          "number": 14,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Fábio Carvalho",
+          "wiki": "Fábio Carvalho (footballer, born 2002)"
+        },
+        {
+          "number": 17,
+          "pos": "MF",
+          "nat": "NED",
+          "name": "Antoni Milambo",
+          "wiki": "Antoni Milambo"
+        },
+        {
+          "number": 18,
+          "pos": "MF",
+          "nat": "MLI",
+          "name": "Mamadou Sangaré",
+          "wiki": "Mamadou Sangaré"
+        },
+        {
+          "number": 19,
+          "pos": "FW",
+          "nat": "ENG",
+          "name": "Jaidon Anthony",
+          "wiki": "Jaidon Anthony"
+        },
+        {
+          "number": 20,
+          "pos": "DF",
+          "nat": "NOR",
+          "name": "Kristoffer Ajer",
+          "wiki": "Kristoffer Ajer"
+        },
+        {
+          "number": 22,
+          "pos": "DF",
+          "nat": "IRL",
+          "name": "Nathan Collins",
+          "wiki": "Nathan Collins"
+        },
+        {
+          "number": 23,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Keane Lewis-Potter",
+          "wiki": "Keane Lewis-Potter"
+        },
+        {
+          "number": 24,
+          "pos": "MF",
+          "nat": "DEN",
+          "name": "Mikkel Damsgaard",
+          "wiki": "Mikkel Damsgaard"
+        },
+        {
+          "number": 25,
+          "pos": "DF",
+          "nat": "SEN",
+          "name": "El Hadji Malick Diouf",
+          "wiki": "El Hadji Malick Diouf"
+        },
+        {
+          "number": 27,
+          "pos": "MF",
+          "nat": "GER",
+          "name": "Vitaly Janelt",
+          "wiki": "Vitaly Janelt"
+        },
+        {
+          "number": 31,
+          "pos": "GK",
+          "nat": "ENG",
+          "name": "Ellery Balcombe",
+          "wiki": "Ellery Balcombe"
+        },
+        {
+          "number": 33,
+          "pos": "DF",
+          "nat": "ITA",
+          "name": "Michael Kayode",
+          "wiki": "Michael Kayode"
+        },
+        {
+          "number": 36,
+          "pos": "DF",
+          "nat": "KOR",
+          "name": "Kim Ji-soo",
+          "wiki": "Kim Ji-soo (footballer)"
+        },
+        {
+          "number": 39,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Gustavo Nunes",
+          "wiki": "Gustavo Nunes"
+        },
+        {
+          "number": 44,
+          "pos": "DF",
+          "nat": "AUT",
+          "name": "Jannik Schuster",
+          "wiki": "Jannik Schuster"
+        },
+        {
+          "number": 47,
+          "pos": "FW",
+          "nat": "BEL",
+          "name": "Kaye Furo",
+          "wiki": "Kaye Furo"
+        },
+        {
+          "number": 48,
+          "pos": "DF",
+          "nat": "NGA",
+          "name": "Benjamin Fredrick",
+          "wiki": "Benjamin Fredrick"
+        }
+      ]
+    },
+    {
+      "code": "BHA",
+      "name": "Brighton & Hove Albion",
+      "wiki": "Brighton & Hove Albion F.C.",
+      "crest": "eng-bha.png",
+      "previousSeason": {
+        "pos": 8,
+        "played": 38,
+        "w": 14,
+        "d": 11,
+        "l": 13,
+        "gf": 52,
+        "ga": 46
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "NED",
+          "name": "Bart Verbruggen",
+          "wiki": "Bart Verbruggen"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "ALG",
+          "name": "Jaouen Hadjam",
+          "wiki": "Jaouen Hadjam"
+        },
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "NED",
+          "name": "Pascal Struijk",
+          "wiki": "Pascal Struijk"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Lewis Dunk",
+          "wiki": "Lewis Dunk"
+        },
+        {
+          "number": 7,
+          "pos": "MF",
+          "nat": "JPN",
+          "name": "Kaoru Mitoma",
+          "wiki": "Kaoru Mitoma"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Jack Hinshelwood",
+          "wiki": "Jack Hinshelwood"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "GRE",
+          "name": "Stefanos Tzimas",
+          "wiki": "Stefanos Tzimas"
+        },
+        {
+          "number": 10,
+          "pos": "FW",
+          "nat": "FRA",
+          "name": "Georginio Rutter",
+          "wiki": "Georginio Rutter"
+        },
+        {
+          "number": 11,
+          "pos": "MF",
+          "nat": "GAM",
+          "name": "Yankuba Minteh",
+          "wiki": "Yankuba Minteh"
+        },
+        {
+          "number": 12,
+          "pos": "FW",
+          "nat": "CAN",
+          "name": "Promise David",
+          "wiki": "Promise David"
+        },
+        {
+          "number": 13,
+          "pos": "MF",
+          "nat": "GER",
+          "name": "Pascal Groß",
+          "wiki": "Pascal Groß"
+        },
+        {
+          "number": 14,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Chema Andrés",
+          "wiki": "Chema Andrés"
+        },
+        {
+          "number": 15,
+          "pos": "MF",
+          "nat": "GHA",
+          "name": "Ibrahim Osman",
+          "wiki": "Ibrahim Osman (footballer, born 2004)"
+        },
+        {
+          "number": 19,
+          "pos": "FW",
+          "nat": "GRE",
+          "name": "Charalampos Kostoulas",
+          "wiki": "Charalampos Kostoulas"
+        },
+        {
+          "number": 20,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Costinha",
+          "wiki": "Costinha (footballer, born 2000)"
+        },
+        {
+          "number": 21,
+          "pos": "DF",
+          "nat": "FRA",
+          "name": "Olivier Boscagli",
+          "wiki": "Olivier Boscagli"
+        },
+        {
+          "number": 23,
+          "pos": "GK",
+          "nat": "ENG",
+          "name": "Jason Steele",
+          "wiki": "Jason Steele (footballer)"
+        },
+        {
+          "number": 24,
+          "pos": "DF",
+          "nat": "TUR",
+          "name": "Ferdi Kadıoğlu",
+          "wiki": "Ferdi Kadıoğlu"
+        },
+        {
+          "number": 25,
+          "pos": "MF",
+          "nat": "PAR",
+          "name": "Diego Gómez",
+          "wiki": "Diego Gómez (Paraguayan footballer)"
+        },
+        {
+          "number": 26,
+          "pos": "MF",
+          "nat": "SWE",
+          "name": "Yasin Ayari",
+          "wiki": "Yasin Ayari"
+        },
+        {
+          "number": 27,
+          "pos": "DF",
+          "nat": "NED",
+          "name": "Mats Wieffer",
+          "wiki": "Mats Wieffer"
+        },
+        {
+          "number": 28,
+          "pos": "FW",
+          "nat": "IRL",
+          "name": "Evan Ferguson",
+          "wiki": "Evan Ferguson"
+        },
+        {
+          "number": 29,
+          "pos": "DF",
+          "nat": "BEL",
+          "name": "Maxim De Cuyper",
+          "wiki": "Maxim De Cuyper"
+        },
+        {
+          "number": 30,
+          "pos": "DF",
+          "nat": "AUT",
+          "name": "Michael Svoboda",
+          "wiki": "Michael Svoboda"
+        },
+        {
+          "number": 33,
+          "pos": "MF",
+          "nat": "DEN",
+          "name": "Matt O'Riley",
+          "wiki": "Matt O'Riley"
+        },
+        {
+          "number": 35,
+          "pos": "MF",
+          "nat": "CIV",
+          "name": "Malick Yalcouyé",
+          "wiki": "Malick Yalcouyé"
+        },
+        {
+          "number": 36,
+          "pos": "MF",
+          "nat": "NGA",
+          "name": "Zadok Yohanna",
+          "wiki": "Zadok Yohanna"
+        },
+        {
+          "number": 38,
+          "pos": "GK",
+          "nat": "CAN",
+          "name": "Tom McGill",
+          "wiki": "Tom McGill"
+        },
+        {
+          "number": 39,
+          "pos": "MF",
+          "nat": "NGA",
+          "name": "Femi Azeez",
+          "wiki": "Femi Azeez"
+        },
+        {
+          "number": 44,
+          "pos": "DF",
+          "nat": "CRO",
+          "name": "Luka Vušković",
+          "wiki": "Luka Vušković"
+        }
+      ]
+    },
+    {
+      "code": "CHE",
+      "name": "Chelsea",
+      "wiki": "Chelsea F.C.",
+      "crest": "eng-che.png",
+      "previousSeason": {
+        "pos": 10,
+        "played": 38,
+        "w": 14,
+        "d": 10,
+        "l": 14,
+        "gf": 58,
+        "ga": 52
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "ARG",
+          "name": "Emiliano Martínez",
+          "wiki": "Emiliano Martínez"
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "ITA",
+          "name": "Marco Palestra",
+          "wiki": "Marco Palestra"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "FRA",
+          "name": "Wesley Fofana",
+          "wiki": "Wesley Fofana (footballer)"
+        },
+        {
+          "number": 4,
+          "pos": "MF",
+          "nat": "ARG",
+          "name": "Valentín Barco",
+          "wiki": "Valentín Barco"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "FRA",
+          "name": "Maxence Lacroix",
+          "wiki": "Maxence Lacroix"
+        },
+        {
+          "number": 6,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Levi Colwill",
+          "wiki": "Levi Colwill"
+        },
+        {
+          "number": 7,
+          "pos": "FW",
+          "nat": "POR",
+          "name": "Pedro Neto",
+          "wiki": "Pedro Neto"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "João Pedro",
+          "wiki": "João Pedro (footballer, born 2001)"
+        },
+        {
+          "number": 10,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Cole Palmer",
+          "wiki": "Cole Palmer"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "ENG",
+          "name": "Jamie Gittens",
+          "wiki": "Jamie Gittens"
+        },
+        {
+          "number": 14,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Jordan Henderson",
+          "wiki": "Jordan Henderson"
+        },
+        {
+          "number": 17,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Morgan Rogers",
+          "wiki": "Morgan Rogers"
+        },
+        {
+          "number": 18,
+          "pos": "FW",
+          "nat": "ENG",
+          "name": "Danny Welbeck",
+          "wiki": "Danny Welbeck"
+        },
+        {
+          "number": 21,
+          "pos": "DF",
+          "nat": "NED",
+          "name": "Jorrel Hato",
+          "wiki": "Jorrel Hato"
+        },
+        {
+          "number": 22,
+          "pos": "FW",
+          "nat": "NED",
+          "name": "Emmanuel Emegha",
+          "wiki": "Emmanuel Emegha"
+        },
+        {
+          "number": 23,
+          "pos": "FW",
+          "nat": "POR",
+          "name": "Geovany Quenda",
+          "wiki": "Geovany Quenda"
+        },
+        {
+          "number": 24,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Reece James",
+          "wiki": "Reece James"
+        },
+        {
+          "number": 25,
+          "pos": "MF",
+          "nat": "ECU",
+          "name": "Moisés Caicedo",
+          "wiki": "Moisés Caicedo"
+        },
+        {
+          "number": 27,
+          "pos": "DF",
+          "nat": "FRA",
+          "name": "Malo Gusto",
+          "wiki": "Malo Gusto"
+        },
+        {
+          "number": 28,
+          "pos": "GK",
+          "nat": "ENG",
+          "name": "Teddy Sharman-Lowe",
+          "wiki": "Teddy Sharman-Lowe"
+        },
+        {
+          "number": 29,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Pep Chavarría",
+          "wiki": "Pep Chavarría"
+        },
+        {
+          "number": 30,
+          "pos": "DF",
+          "nat": "ARG",
+          "name": "Aarón Anselmino",
+          "wiki": "Aarón Anselmino"
+        },
+        {
+          "number": 31,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Reggie Watson",
+          "wiki": "Reggie Watson"
+        },
+        {
+          "number": 32,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Mahdi Nicoll-Jazuli",
+          "wiki": "Mahdi Nicoll-Jazuli"
+        },
+        {
+          "number": 34,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Josh Acheampong",
+          "wiki": "Josh Acheampong"
+        },
+        {
+          "number": 37,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Olutayo Subuloye",
+          "wiki": null
+        },
+        {
+          "number": 39,
+          "pos": "GK",
+          "nat": "BEL",
+          "name": "Mike Penders",
+          "wiki": "Mike Penders"
+        },
+        {
+          "number": 41,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Estêvão",
+          "wiki": "Estêvão Willian"
+        },
+        {
+          "number": 44,
+          "pos": "GK",
+          "nat": "USA",
+          "name": "Gabriel Slonina",
+          "wiki": "Gabriel Slonina"
+        },
+        {
+          "number": 45,
+          "pos": "MF",
+          "nat": "BEL",
+          "name": "Roméo Lavia",
+          "wiki": "Roméo Lavia"
+        }
+      ]
+    },
+    {
+      "code": "COV",
+      "name": "Coventry City",
+      "wiki": "Coventry City F.C.",
+      "crest": "eng-cov.png",
+      "previousSeason": null,
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "SWE",
+          "name": "Oliver Dovin",
+          "wiki": "Oliver Dovin"
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "JAM",
+          "name": "Ethan Pinnock",
+          "wiki": "Ethan Pinnock"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "WAL",
+          "name": "Jay Dasilva",
+          "wiki": "Jay Dasilva"
+        },
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Bobby Thomas",
+          "wiki": "Bobby Thomas (footballer)"
+        },
+        {
+          "number": 5,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Jack Rudoni",
+          "wiki": "Jack Rudoni"
+        },
+        {
+          "number": 6,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Matt Grimes",
+          "wiki": "Matt Grimes"
+        },
+        {
+          "number": 7,
+          "pos": "FW",
+          "nat": "JPN",
+          "name": "Tatsuhiro Sakamoto",
+          "wiki": "Tatsuhiro Sakamoto"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "GHA",
+          "name": "Caleb Yirenkyi",
+          "wiki": "Caleb Yirenkyi"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "ENG",
+          "name": "Ellis Simms",
+          "wiki": "Ellis Simms"
+        },
+        {
+          "number": 10,
+          "pos": "FW",
+          "nat": "JAM",
+          "name": "Ephron Mason-Clark",
+          "wiki": "Ephron Mason-Clark"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "USA",
+          "name": "Haji Wright",
+          "wiki": "Haji Wright"
+        },
+        {
+          "number": 12,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Stephen Mfuni",
+          "wiki": "Stephen Mfuni"
+        },
+        {
+          "number": 13,
+          "pos": "GK",
+          "nat": "ENG",
+          "name": "Ben Wilson",
+          "wiki": "Ben Wilson (footballer, born 1992)"
+        },
+        {
+          "number": 14,
+          "pos": "FW",
+          "nat": "NGA",
+          "name": "Taiwo Awoniyi",
+          "wiki": "Taiwo Awoniyi"
+        },
+        {
+          "number": 16,
+          "pos": "MF",
+          "nat": "NGA",
+          "name": "Frank Onyeka",
+          "wiki": "Frank Onyeka"
+        },
+        {
+          "number": 17,
+          "pos": "FW",
+          "nat": "FRA",
+          "name": "Loum Tchaouna",
+          "wiki": "Loum Tchaouna"
+        },
+        {
+          "number": 19,
+          "pos": "GK",
+          "nat": "ENG",
+          "name": "Carl Rushworth",
+          "wiki": "Carl Rushworth"
+        },
+        {
+          "number": 20,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Kaine Kesler-Hayden",
+          "wiki": "Kaine Kesler-Hayden"
+        },
+        {
+          "number": 21,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Jake Bidwell",
+          "wiki": "Jake Bidwell"
+        },
+        {
+          "number": 22,
+          "pos": "DF",
+          "nat": "JAM",
+          "name": "Joel Latibeaudiere",
+          "wiki": "Joel Latibeaudiere"
+        },
+        {
+          "number": 23,
+          "pos": "FW",
+          "nat": "GHA",
+          "name": "Brandon Thomas-Asante",
+          "wiki": "Brandon Thomas-Asante"
+        },
+        {
+          "number": 24,
+          "pos": "DF",
+          "nat": "SUI",
+          "name": "Aurèle Amenda",
+          "wiki": "Aurèle Amenda"
+        },
+        {
+          "number": 25,
+          "pos": "GK",
+          "nat": "ENG",
+          "name": "Dan Bentley",
+          "wiki": "Dan Bentley (footballer)"
+        },
+        {
+          "number": 26,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Luke Woolfenden",
+          "wiki": "Luke Woolfenden"
+        },
+        {
+          "number": 27,
+          "pos": "DF",
+          "nat": "NED",
+          "name": "Milan van Ewijk",
+          "wiki": "Milan van Ewijk"
+        },
+        {
+          "number": 28,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Josh Eccles",
+          "wiki": "Josh Eccles"
+        },
+        {
+          "number": 29,
+          "pos": "MF",
+          "nat": "DEN",
+          "name": "Victor Torp",
+          "wiki": "Victor Torp"
+        },
+        {
+          "number": 34,
+          "pos": "FW",
+          "nat": "CIV",
+          "name": "Yann Gboho",
+          "wiki": "Yann Gboho"
+        },
+        {
+          "number": 38,
+          "pos": "MF",
+          "nat": "NED",
+          "name": "Gustavo Hamer",
+          "wiki": "Gustavo Hamer"
+        },
+        {
+          "number": 49,
+          "pos": "FW",
+          "nat": "GUI",
+          "name": "Sidiki Cherif",
+          "wiki": "Sidiki Cherif"
+        }
+      ]
+    },
+    {
+      "code": "CRY",
+      "name": "Crystal Palace",
+      "wiki": "Crystal Palace F.C.",
+      "crest": "eng-cry.png",
+      "previousSeason": {
+        "pos": 15,
+        "played": 38,
+        "w": 11,
+        "d": 12,
+        "l": 15,
+        "gf": 41,
+        "ga": 51
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "ENG",
+          "name": "Dean Henderson",
+          "wiki": "Dean Henderson"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Tyrick Mitchell",
+          "wiki": "Tyrick Mitchell"
+        },
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "MAR",
+          "name": "Chadi Riad",
+          "wiki": "Chadi Riad"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "FRA",
+          "name": "Axel Disasi",
+          "wiki": "Axel Disasi"
+        },
+        {
+          "number": 6,
+          "pos": "DF",
+          "nat": "FRA",
+          "name": "Jaydee Canvot",
+          "wiki": "Jaydee Canvot"
+        },
+        {
+          "number": 7,
+          "pos": "FW",
+          "nat": "SEN",
+          "name": "Ismaïla Sarr",
+          "wiki": "Ismaïla Sarr"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "COL",
+          "name": "Jefferson Lerma",
+          "wiki": "Jefferson Lerma"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "ENG",
+          "name": "Eddie Nketiah",
+          "wiki": "Eddie Nketiah"
+        },
+        {
+          "number": 10,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Yeremy Pino",
+          "wiki": "Yeremy Pino"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "ENG",
+          "name": "Dwight McNeil",
+          "wiki": "Dwight McNeil"
+        },
+        {
+          "number": 12,
+          "pos": "FW",
+          "nat": "USA",
+          "name": "Zavier Gozo",
+          "wiki": "Zavier Gozo"
+        },
+        {
+          "number": 14,
+          "pos": "FW",
+          "nat": "FRA",
+          "name": "Jean-Philippe Mateta",
+          "wiki": "Jean-Philippe Mateta"
+        },
+        {
+          "number": 17,
+          "pos": "DF",
+          "nat": "JPN",
+          "name": "Takehiro Tomiyasu",
+          "wiki": "Takehiro Tomiyasu"
+        },
+        {
+          "number": 18,
+          "pos": "MF",
+          "nat": "JPN",
+          "name": "Daichi Kamada",
+          "wiki": "Daichi Kamada"
+        },
+        {
+          "number": 19,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Will Hughes",
+          "wiki": "Will Hughes"
+        },
+        {
+          "number": 20,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Adam Wharton",
+          "wiki": "Adam Wharton"
+        },
+        {
+          "number": 21,
+          "pos": "DF",
+          "nat": "ITA",
+          "name": "Honest Ahanor",
+          "wiki": "Honest Ahanor"
+        },
+        {
+          "number": 22,
+          "pos": "FW",
+          "nat": "NOR",
+          "name": "Jørgen Strand Larsen",
+          "wiki": "Jørgen Strand Larsen"
+        },
+        {
+          "number": 23,
+          "pos": "MF",
+          "nat": "NED",
+          "name": "Quinten Timber",
+          "wiki": "Quinten Timber"
+        },
+        {
+          "number": 24,
+          "pos": "FW",
+          "nat": "CHI",
+          "name": "Darío Osorio",
+          "wiki": "Darío Osorio"
+        },
+        {
+          "number": 25,
+          "pos": "DF",
+          "nat": "ISR",
+          "name": "Anan Khalaili",
+          "wiki": "Anan Khalaili"
+        },
+        {
+          "number": 26,
+          "pos": "DF",
+          "nat": "USA",
+          "name": "Chris Richards",
+          "wiki": "Chris Richards (soccer)"
+        },
+        {
+          "number": 28,
+          "pos": "MF",
+          "nat": "MLI",
+          "name": "Cheick Doucouré",
+          "wiki": "Cheick Doucouré"
+        },
+        {
+          "number": 29,
+          "pos": "FW",
+          "nat": "CIV",
+          "name": "Evann Guessand",
+          "wiki": "Evann Guessand"
+        },
+        {
+          "number": 30,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Óscar Mingueza",
+          "wiki": "Óscar Mingueza"
+        },
+        {
+          "number": 31,
+          "pos": "GK",
+          "nat": "ENG",
+          "name": "Remi Matthews",
+          "wiki": "Remi Matthews"
+        },
+        {
+          "number": 33,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Ben Chilwell",
+          "wiki": "Ben Chilwell"
+        },
+        {
+          "number": 44,
+          "pos": "GK",
+          "nat": "ARG",
+          "name": "Walter Benítez",
+          "wiki": "Walter Benítez (footballer)"
+        }
+      ]
+    },
+    {
+      "code": "EVE",
+      "name": "Everton",
+      "wiki": "Everton F.C.",
+      "crest": "eng-eve.png",
+      "previousSeason": {
+        "pos": 13,
+        "played": 38,
+        "w": 13,
+        "d": 10,
+        "l": 15,
+        "gf": 47,
+        "ga": 50
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "ENG",
+          "name": "Jordan Pickford",
+          "wiki": "Jordan Pickford"
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Ainsley Maitland-Niles",
+          "wiki": "Ainsley Maitland-Niles"
+        },
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Jarrad Branthwaite",
+          "wiki": "Jarrad Branthwaite"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Michael Keane",
+          "wiki": "Michael Keane (footballer, born 1993)"
+        },
+        {
+          "number": 6,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "James Tarkowski",
+          "wiki": "James Tarkowski"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Kiernan Dewsbury-Hall",
+          "wiki": "Kiernan Dewsbury-Hall"
+        },
+        {
+          "number": 10,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Jack Grealish",
+          "wiki": "Jack Grealish"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "FRA",
+          "name": "Thierno Barry",
+          "wiki": "Thierno Barry (footballer, born 2002)"
+        },
+        {
+          "number": 12,
+          "pos": "GK",
+          "nat": "IRL",
+          "name": "Mark Travers",
+          "wiki": "Mark Travers"
+        },
+        {
+          "number": 15,
+          "pos": "DF",
+          "nat": "IRL",
+          "name": "Jake O'Brien",
+          "wiki": "Jake O'Brien (footballer)"
+        },
+        {
+          "number": 16,
+          "pos": "DF",
+          "nat": "UKR",
+          "name": "Vitalii Mykolenko",
+          "wiki": "Vitaliy Mykolenko"
+        },
+        {
+          "number": 19,
+          "pos": "FW",
+          "nat": "ENG",
+          "name": "Tyrique George",
+          "wiki": "Tyrique George"
+        },
+        {
+          "number": 20,
+          "pos": "FW",
+          "nat": "ENG",
+          "name": "Tyler Dibling",
+          "wiki": "Tyler Dibling"
+        },
+        {
+          "number": 22,
+          "pos": "FW",
+          "nat": "WAL",
+          "name": "Brennan Johnson",
+          "wiki": "Brennan Johnson"
+        },
+        {
+          "number": 23,
+          "pos": "MF",
+          "nat": "DEN",
+          "name": "Christian Nørgaard",
+          "wiki": "Christian Nørgaard"
+        },
+        {
+          "number": 24,
+          "pos": "MF",
+          "nat": "ARG",
+          "name": "Charly Alcaraz",
+          "wiki": "Charly Alcaraz"
+        },
+        {
+          "number": 30,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Hayden Hackney",
+          "wiki": "Hayden Hackney"
+        },
+        {
+          "number": 31,
+          "pos": "GK",
+          "nat": "WAL",
+          "name": "Tom King",
+          "wiki": "Tom King (footballer, born 1995)"
+        },
+        {
+          "number": 34,
+          "pos": "MF",
+          "nat": "GER",
+          "name": "Merlin Röhl",
+          "wiki": "Merlin Röhl"
+        },
+        {
+          "number": 37,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "James Garner",
+          "wiki": "James Garner (footballer, born 2001)"
+        },
+        {
+          "number": 45,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Harrison Armstrong",
+          "wiki": "Harrison Armstrong (footballer)"
+        }
+      ]
+    },
+    {
+      "code": "FUL",
+      "name": "Fulham",
+      "wiki": "Fulham F.C.",
+      "crest": "eng-ful.png",
+      "previousSeason": {
+        "pos": 11,
+        "played": 38,
+        "w": 15,
+        "d": 7,
+        "l": 16,
+        "gf": 47,
+        "ga": 51
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "GER",
+          "name": "Bernd Leno",
+          "wiki": "Bernd Leno"
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "NED",
+          "name": "Kenny Tete",
+          "wiki": "Kenny Tete"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "NGA",
+          "name": "Calvin Bassey",
+          "wiki": "Calvin Bassey"
+        },
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Jorge Cuenca",
+          "wiki": "Jorge Cuenca"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "DEN",
+          "name": "Joachim Andersen",
+          "wiki": "Joachim Andersen (footballer)"
+        },
+        {
+          "number": 6,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Harrison Reed",
+          "wiki": "Harrison Reed (footballer)"
+        },
+        {
+          "number": 7,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Gonzalo García",
+          "wiki": "Gonzalo García (footballer, born 2004)"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "César Palacios",
+          "wiki": "César Palacios (footballer, born 2004)"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Rodrigo Muniz",
+          "wiki": "Rodrigo Muniz (Brazilian footballer)"
+        },
+        {
+          "number": 10,
+          "pos": "MF",
+          "nat": "SCO",
+          "name": "Tom Cairney",
+          "wiki": "Tom Cairney"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Kevin",
+          "wiki": "Kevin (footballer, born 2003)"
+        },
+        {
+          "number": 14,
+          "pos": "FW",
+          "nat": "NOR",
+          "name": "Oscar Bobb",
+          "wiki": "Oscar Bobb"
+        },
+        {
+          "number": 15,
+          "pos": "MF",
+          "nat": "SWE",
+          "name": "Hugo Larsson",
+          "wiki": "Hugo Larsson (footballer)"
+        },
+        {
+          "number": 16,
+          "pos": "MF",
+          "nat": "NOR",
+          "name": "Sander Berge",
+          "wiki": "Sander Berge"
+        },
+        {
+          "number": 17,
+          "pos": "MF",
+          "nat": "NGA",
+          "name": "Alex Iwobi",
+          "wiki": "Alex Iwobi"
+        },
+        {
+          "number": 18,
+          "pos": "FW",
+          "nat": "SWE",
+          "name": "Jonah Kusi-Asare",
+          "wiki": "Jonah Kusi-Asare"
+        },
+        {
+          "number": 19,
+          "pos": "MF",
+          "nat": "NIR",
+          "name": "Shea Charles",
+          "wiki": "Shea Charles"
+        },
+        {
+          "number": 20,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Manuel Ángel",
+          "wiki": "Manuel Ángel"
+        },
+        {
+          "number": 21,
+          "pos": "DF",
+          "nat": "BEL",
+          "name": "Timothy Castagne",
+          "wiki": "Timothy Castagne"
+        },
+        {
+          "number": 22,
+          "pos": "DF",
+          "nat": "AUT",
+          "name": "David Affengruber",
+          "wiki": "David Affengruber (footballer, born 2001)"
+        },
+        {
+          "number": 23,
+          "pos": "GK",
+          "nat": "FRA",
+          "name": "Benjamin Lecomte",
+          "wiki": "Benjamin Lecomte"
+        },
+        {
+          "number": 24,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Josh King",
+          "wiki": "Josh King (footballer, born 2007)"
+        },
+        {
+          "number": 30,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Ryan Sessegnon",
+          "wiki": "Ryan Sessegnon"
+        },
+        {
+          "number": 32,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Emile Smith Rowe",
+          "wiki": "Emile Smith Rowe"
+        },
+        {
+          "number": 33,
+          "pos": "DF",
+          "nat": "USA",
+          "name": "Antonee Robinson",
+          "wiki": "Antonee Robinson"
+        },
+        {
+          "number": 36,
+          "pos": "GK",
+          "nat": "USA",
+          "name": "Alex Borto",
+          "wiki": null
+        }
+      ]
+    },
+    {
+      "code": "HUL",
+      "name": "Hull City",
+      "wiki": "Hull City A.F.C.",
+      "crest": "eng-hul.png",
+      "previousSeason": null,
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "ENG",
+          "name": "Jack Butland",
+          "wiki": "Jack Butland"
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Lewie Coyle",
+          "wiki": "Lewie Coyle"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Ryan Giles",
+          "wiki": "Ryan Giles"
+        },
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Charlie Hughes",
+          "wiki": "Charlie Hughes (footballer, born 2003)"
+        },
+        {
+          "number": 5,
+          "pos": "MF",
+          "nat": "JPN",
+          "name": "Hidemasa Morita",
+          "wiki": "Hidemasa Morita"
+        },
+        {
+          "number": 6,
+          "pos": "DF",
+          "nat": "NGA",
+          "name": "Semi Ajayi",
+          "wiki": "Semi Ajayi"
+        },
+        {
+          "number": 7,
+          "pos": "FW",
+          "nat": "WAL",
+          "name": "Sorba Thomas",
+          "wiki": "Sorba Thomas"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "BEL",
+          "name": "Eliot Matazo",
+          "wiki": "Eliot Matazo"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "SCO",
+          "name": "Oli McBurnie",
+          "wiki": "Oli McBurnie"
+        },
+        {
+          "number": 10,
+          "pos": "FW",
+          "nat": "ALG",
+          "name": "Mohamed Belloumi",
+          "wiki": "Mohamed Belloumi"
+        },
+        {
+          "number": 11,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Joe Gelhardt",
+          "wiki": "Joe Gelhardt"
+        },
+        {
+          "number": 12,
+          "pos": "GK",
+          "nat": "ENG",
+          "name": "Dillon Phillips",
+          "wiki": "Dillon Phillips"
+        },
+        {
+          "number": 14,
+          "pos": "MF",
+          "nat": "NOR",
+          "name": "Jens Hjertø-Dahl",
+          "wiki": "Jens Hjertø-Dahl"
+        },
+        {
+          "number": 15,
+          "pos": "DF",
+          "nat": "IRL",
+          "name": "John Egan",
+          "wiki": "John Egan (footballer, born 1992)"
+        },
+        {
+          "number": 17,
+          "pos": "DF",
+          "nat": "NIR",
+          "name": "Paddy McNair",
+          "wiki": "Paddy McNair"
+        },
+        {
+          "number": 18,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Brooke Norton-Cuffy",
+          "wiki": "Brooke Norton-Cuffy"
+        },
+        {
+          "number": 19,
+          "pos": "GK",
+          "nat": "GRE",
+          "name": "Konstantinos Tzolakis",
+          "wiki": "Konstantinos Tzolakis"
+        },
+        {
+          "number": 20,
+          "pos": "MF",
+          "nat": "ECU",
+          "name": "Óscar Zambrano",
+          "wiki": "Óscar Zambrano"
+        },
+        {
+          "number": 21,
+          "pos": "FW",
+          "nat": "SWE",
+          "name": "Elliot Stroud",
+          "wiki": "Elliot Stroud"
+        },
+        {
+          "number": 22,
+          "pos": "DF",
+          "nat": "AUS",
+          "name": "Lucas Herrington",
+          "wiki": "Lucas Herrington"
+        },
+        {
+          "number": 23,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Matt Targett",
+          "wiki": "Matt Targett"
+        },
+        {
+          "number": 24,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Darko Gyabi",
+          "wiki": "Darko Gyabi"
+        },
+        {
+          "number": 25,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Matt Crooks",
+          "wiki": "Matt Crooks"
+        },
+        {
+          "number": 26,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Kieran Dowell",
+          "wiki": "Kieran Dowell"
+        },
+        {
+          "number": 27,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Regan Slater",
+          "wiki": "Regan Slater"
+        },
+        {
+          "number": 28,
+          "pos": "FW",
+          "nat": "GER",
+          "name": "Ilyas Ansah",
+          "wiki": "Ilyas Ansah"
+        },
+        {
+          "number": 29,
+          "pos": "MF",
+          "nat": "FRA",
+          "name": "Lucas Gourna-Douath",
+          "wiki": "Lucas Gourna-Douath"
+        },
+        {
+          "number": 32,
+          "pos": "DF",
+          "nat": "SEN",
+          "name": "Nobel Mendy",
+          "wiki": "Nobel Mendy"
+        },
+        {
+          "number": 33,
+          "pos": "MF",
+          "nat": "TUR",
+          "name": "Abdülkadir Ömür",
+          "wiki": "Abdülkadir Ömür"
+        },
+        {
+          "number": 36,
+          "pos": "MF",
+          "nat": "GRE",
+          "name": "Christos Mouzakitis",
+          "wiki": "Christos Mouzakitis"
+        },
+        {
+          "number": 42,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Tim Iroegbunam",
+          "wiki": "Tim Iroegbunam"
+        },
+        {
+          "number": 47,
+          "pos": "FW",
+          "nat": "FRA",
+          "name": "Robinio Vaz",
+          "wiki": "Robinio Vaz"
+        },
+        {
+          "number": 50,
+          "pos": "FW",
+          "nat": "FRA",
+          "name": "Mohamed-Ali Cho",
+          "wiki": "Mohamed-Ali Cho"
+        }
+      ]
+    },
+    {
+      "code": "IPS",
+      "name": "Ipswich Town",
+      "wiki": "Ipswich Town F.C.",
+      "crest": "eng-ips.png",
+      "previousSeason": null,
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "ENG",
+          "name": "Alex Palmer",
+          "wiki": "Alex Palmer"
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Darnell Furlong",
+          "wiki": "Darnell Furlong"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Leif Davis",
+          "wiki": "Leif Davis"
+        },
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "CIV",
+          "name": "Cédric Kipré",
+          "wiki": "Cédric Kipré"
+        },
+        {
+          "number": 5,
+          "pos": "MF",
+          "nat": "NED",
+          "name": "Azor Matusiwa",
+          "wiki": "Azor Matusiwa"
+        },
+        {
+          "number": 6,
+          "pos": "DF",
+          "nat": "MAR",
+          "name": "Issa Diop",
+          "wiki": "Issa Diop (footballer)"
+        },
+        {
+          "number": 7,
+          "pos": "FW",
+          "nat": "GHA",
+          "name": "Abdul Fatawu",
+          "wiki": "Abdul Fatawu"
+        },
+        {
+          "number": 8,
+          "pos": "FW",
+          "nat": "NOR",
+          "name": "Sindre Walle Egeli",
+          "wiki": "Sindre Walle Egeli"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "NED",
+          "name": "Zian Flemming",
+          "wiki": "Zian Flemming"
+        },
+        {
+          "number": 10,
+          "pos": "FW",
+          "nat": "PAR",
+          "name": "Julio Enciso",
+          "wiki": "Julio Enciso (footballer, born 2004)"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "ENG",
+          "name": "Jaden Philogene",
+          "wiki": "Jaden Philogene"
+        },
+        {
+          "number": 12,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Florentino Luís",
+          "wiki": "Florentino Luís"
+        },
+        {
+          "number": 14,
+          "pos": "MF",
+          "nat": "IRL",
+          "name": "Jack Taylor",
+          "wiki": "Jack Taylor (footballer, born 1998)"
+        },
+        {
+          "number": 19,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Emersonn",
+          "wiki": "Emersonn"
+        },
+        {
+          "number": 20,
+          "pos": "FW",
+          "nat": "IRL",
+          "name": "Kasey McAteer",
+          "wiki": "Kasey McAteer"
+        },
+        {
+          "number": 23,
+          "pos": "MF",
+          "nat": "SER",
+          "name": "Saša Lukić",
+          "wiki": "Saša Lukić"
+        },
+        {
+          "number": 24,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Jacob Greaves",
+          "wiki": "Jacob Greaves"
+        },
+        {
+          "number": 25,
+          "pos": "MF",
+          "nat": "ARG",
+          "name": "Exequiel Palacios",
+          "wiki": "Exequiel Palacios"
+        },
+        {
+          "number": 26,
+          "pos": "DF",
+          "nat": "IRL",
+          "name": "Dara O'Shea",
+          "wiki": "Dara O'Shea"
+        },
+        {
+          "number": 27,
+          "pos": "GK",
+          "nat": "ENG",
+          "name": "David Button",
+          "wiki": "David Button"
+        },
+        {
+          "number": 28,
+          "pos": "GK",
+          "nat": "ENG",
+          "name": "Christian Walton",
+          "wiki": "Christian Walton"
+        },
+        {
+          "number": 29,
+          "pos": "FW",
+          "nat": "ENG",
+          "name": "Chuba Akpom",
+          "wiki": "Chuba Akpom"
+        },
+        {
+          "number": 32,
+          "pos": "MF",
+          "nat": "CHI",
+          "name": "Marcelino Núñez",
+          "wiki": "Marcelino Núñez"
+        },
+        {
+          "number": 33,
+          "pos": "FW",
+          "nat": "ALB",
+          "name": "Anis Mehmeti",
+          "wiki": "Anis Mehmeti"
+        },
+        {
+          "number": 37,
+          "pos": "GK",
+          "nat": "NED",
+          "name": "Kjell Scherpen",
+          "wiki": "Kjell Scherpen"
+        },
+        {
+          "number": 38,
+          "pos": "FW",
+          "nat": "JPN",
+          "name": "Daizen Maeda",
+          "wiki": "Daizen Maeda"
+        },
+        {
+          "number": 42,
+          "pos": "DF",
+          "nat": "CIV",
+          "name": "Abdoul Ouattara",
+          "wiki": "Abdoul Ouattara"
+        },
+        {
+          "number": 47,
+          "pos": "FW",
+          "nat": "ENG",
+          "name": "Jack Clarke",
+          "wiki": "Jack Clarke (footballer, born 2000)"
+        }
+      ]
+    },
+    {
+      "code": "LEE",
+      "name": "Leeds United",
+      "wiki": "Leeds United F.C.",
+      "crest": "eng-lee.png",
+      "previousSeason": {
+        "pos": 14,
+        "played": 38,
+        "w": 11,
+        "d": 14,
+        "l": 13,
+        "gf": 49,
+        "ga": 56
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "ENG",
+          "name": "James Trafford",
+          "wiki": "James Trafford"
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Jayden Bogle",
+          "wiki": "Jayden Bogle"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "SWE",
+          "name": "Gabriel Gudmundsson",
+          "wiki": "Gabriel Gudmundsson"
+        },
+        {
+          "number": 4,
+          "pos": "MF",
+          "nat": "WAL",
+          "name": "Ethan Ampadu",
+          "wiki": "Ethan Ampadu"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "BIH",
+          "name": "Tarik Muharemović",
+          "wiki": "Tarik Muharemović"
+        },
+        {
+          "number": 6,
+          "pos": "DF",
+          "nat": "WAL",
+          "name": "Joe Rodon",
+          "wiki": "Joe Rodon"
+        },
+        {
+          "number": 7,
+          "pos": "MF",
+          "nat": "WAL",
+          "name": "Daniel James",
+          "wiki": "Daniel James (footballer)"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Sean Longstaff",
+          "wiki": "Sean Longstaff"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "ENG",
+          "name": "Dominic Calvert-Lewin",
+          "wiki": "Dominic Calvert-Lewin"
+        },
+        {
+          "number": 10,
+          "pos": "MF",
+          "nat": "WAL",
+          "name": "Harry Wilson",
+          "wiki": "Harry Wilson (footballer, born 1997)"
+        },
+        {
+          "number": 11,
+          "pos": "MF",
+          "nat": "USA",
+          "name": "Brenden Aaronson",
+          "wiki": "Brenden Aaronson"
+        },
+        {
+          "number": 14,
+          "pos": "FW",
+          "nat": "GER",
+          "name": "Lukas Nmecha",
+          "wiki": "Lukas Nmecha"
+        },
+        {
+          "number": 15,
+          "pos": "DF",
+          "nat": "SVN",
+          "name": "Jaka Bijol",
+          "wiki": "Jaka Bijol"
+        },
+        {
+          "number": 16,
+          "pos": "GK",
+          "nat": "GER",
+          "name": "Michael Zetterer",
+          "wiki": "Michael Zetterer"
+        },
+        {
+          "number": 18,
+          "pos": "MF",
+          "nat": "GER",
+          "name": "Anton Stach",
+          "wiki": "Anton Stach"
+        },
+        {
+          "number": 19,
+          "pos": "FW",
+          "nat": "SUI",
+          "name": "Noah Okafor",
+          "wiki": "Noah Okafor"
+        },
+        {
+          "number": 21,
+          "pos": "GK",
+          "nat": "ENG",
+          "name": "Alex Cairns",
+          "wiki": "Alex Cairns"
+        },
+        {
+          "number": 22,
+          "pos": "MF",
+          "nat": "JPN",
+          "name": "Ao Tanaka",
+          "wiki": "Ao Tanaka"
+        },
+        {
+          "number": 23,
+          "pos": "FW",
+          "nat": "FRA",
+          "name": "Jean-Mattéo Bahoya",
+          "wiki": "Jean-Mattéo Bahoya"
+        },
+        {
+          "number": 24,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "James Justin",
+          "wiki": "James Justin"
+        },
+        {
+          "number": 26,
+          "pos": "DF",
+          "nat": "FRA",
+          "name": "Melvin Bard",
+          "wiki": "Melvin Bard"
+        },
+        {
+          "number": 30,
+          "pos": "DF",
+          "nat": "SUI",
+          "name": "Nico Elvedi",
+          "wiki": "Nico Elvedi"
+        },
+        {
+          "number": 44,
+          "pos": "MF",
+          "nat": "BUL",
+          "name": "Ilia Gruev",
+          "wiki": "Ilia Gruev (footballer, born 2000)"
+        },
+        {
+          "number": 65,
+          "pos": "DF",
+          "nat": "WAL",
+          "name": "Jayden Lienou",
+          "wiki": "Jayden Lienou"
+        }
+      ]
+    },
+    {
+      "code": "LIV",
+      "name": "Liverpool",
+      "wiki": "Liverpool F.C.",
+      "crest": "eng-liv.png",
+      "previousSeason": {
+        "pos": 5,
+        "played": 38,
+        "w": 17,
+        "d": 9,
+        "l": 12,
+        "gf": 63,
+        "ga": 53
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "BRA",
+          "name": "Alisson Becker",
+          "wiki": "Alisson Becker"
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Joe Gomez",
+          "wiki": "Joe Gomez"
+        },
+        {
+          "number": 3,
+          "pos": "MF",
+          "nat": "JPN",
+          "name": "Wataru Endo",
+          "wiki": "Wataru Endo"
+        },
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "NED",
+          "name": "Virgil van Dijk",
+          "wiki": "Virgil van Dijk"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "FRA",
+          "name": "Jérémy Jacquet",
+          "wiki": "Jérémy Jacquet"
+        },
+        {
+          "number": 6,
+          "pos": "DF",
+          "nat": "HUN",
+          "name": "Milos Kerkez",
+          "wiki": "Milos Kerkez"
+        },
+        {
+          "number": 7,
+          "pos": "MF",
+          "nat": "GER",
+          "name": "Florian Wirtz",
+          "wiki": "Florian Wirtz"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "HUN",
+          "name": "Dominik Szoboszlai",
+          "wiki": "Dominik Szoboszlai"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "SWE",
+          "name": "Alexander Isak",
+          "wiki": "Alexander Isak"
+        },
+        {
+          "number": 10,
+          "pos": "MF",
+          "nat": "ARG",
+          "name": "Alexis Mac Allister",
+          "wiki": "Alexis Mac Allister"
+        },
+        {
+          "number": 12,
+          "pos": "DF",
+          "nat": "NIR",
+          "name": "Conor Bradley",
+          "wiki": "Conor Bradley"
+        },
+        {
+          "number": 14,
+          "pos": "FW",
+          "nat": "ITA",
+          "name": "Federico Chiesa",
+          "wiki": "Federico Chiesa"
+        },
+        {
+          "number": 15,
+          "pos": "DF",
+          "nat": "ITA",
+          "name": "Giovanni Leoni",
+          "wiki": "Giovanni Leoni"
+        },
+        {
+          "number": 18,
+          "pos": "FW",
+          "nat": "NED",
+          "name": "Cody Gakpo",
+          "wiki": "Cody Gakpo"
+        },
+        {
+          "number": 21,
+          "pos": "DF",
+          "nat": "GRE",
+          "name": "Kostas Tsimikas",
+          "wiki": "Kostas Tsimikas"
+        },
+        {
+          "number": 22,
+          "pos": "FW",
+          "nat": "FRA",
+          "name": "Hugo Ekitike",
+          "wiki": "Hugo Ekitike"
+        },
+        {
+          "number": 23,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Víctor Muñoz",
+          "wiki": "Víctor Muñoz (footballer, born 2003)"
+        },
+        {
+          "number": 25,
+          "pos": "GK",
+          "nat": "GEO",
+          "name": "Giorgi Mamardashvili",
+          "wiki": "Giorgi Mamardashvili"
+        },
+        {
+          "number": 28,
+          "pos": "GK",
+          "nat": "ENG",
+          "name": "Freddie Woodman",
+          "wiki": "Freddie Woodman"
+        },
+        {
+          "number": 29,
+          "pos": "FW",
+          "nat": "FRA",
+          "name": "Bradley Barcola",
+          "wiki": "Bradley Barcola"
+        },
+        {
+          "number": 30,
+          "pos": "DF",
+          "nat": "NED",
+          "name": "Jeremie Frimpong",
+          "wiki": "Jeremie Frimpong"
+        },
+        {
+          "number": 33,
+          "pos": "DF",
+          "nat": "URU",
+          "name": "Ronald Araújo",
+          "wiki": "Ronald Araújo"
+        },
+        {
+          "number": 38,
+          "pos": "MF",
+          "nat": "NED",
+          "name": "Ryan Gravenberch",
+          "wiki": "Ryan Gravenberch"
+        },
+        {
+          "number": 42,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Trey Nyoni",
+          "wiki": "Trey Nyoni"
+        },
+        {
+          "number": 44,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Luke Chambers",
+          "wiki": "Luke Chambers (footballer, born 2004)"
+        },
+        {
+          "number": 53,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "James McConnell",
+          "wiki": "James McConnell (footballer, born 2004)"
+        },
+        {
+          "number": 56,
+          "pos": "GK",
+          "nat": "CZE",
+          "name": "Vítězslav Jaroš",
+          "wiki": "Vítězslav Jaroš"
+        },
+        {
+          "number": 67,
+          "pos": "FW",
+          "nat": "WAL",
+          "name": "Lewis Koumas",
+          "wiki": "Lewis Koumas"
+        },
+        {
+          "number": 73,
+          "pos": "FW",
+          "nat": "ENG",
+          "name": "Rio Ngumoha",
+          "wiki": "Rio Ngumoha"
+        },
+        {
+          "number": 76,
+          "pos": "FW",
+          "nat": "ENG",
+          "name": "Jayden Danns",
+          "wiki": "Jayden Danns"
+        },
+        {
+          "number": 95,
+          "pos": "GK",
+          "nat": "ENG",
+          "name": "Harvey Davies",
+          "wiki": "Harvey Davies"
+        }
+      ]
+    },
+    {
+      "code": "MCI",
+      "name": "Manchester City",
+      "wiki": "Manchester City F.C.",
+      "crest": "eng-mci.png",
+      "previousSeason": {
+        "pos": 2,
+        "played": 38,
+        "w": 23,
+        "d": 9,
+        "l": 6,
+        "gf": 77,
+        "ga": 35
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "ITA",
+          "name": "Gianluigi Donnarumma",
+          "wiki": "Gianluigi Donnarumma"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Rúben Dias",
+          "wiki": "Rúben Dias"
+        },
+        {
+          "number": 5,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Elliot Anderson",
+          "wiki": "Elliot Anderson"
+        },
+        {
+          "number": 6,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Marc Guéhi",
+          "wiki": "Marc Guéhi"
+        },
+        {
+          "number": 7,
+          "pos": "FW",
+          "nat": "SEN",
+          "name": "Iliman Ndiaye",
+          "wiki": "Iliman Ndiaye"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "CRO",
+          "name": "Mateo Kovačić",
+          "wiki": "Mateo Kovačić"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "NOR",
+          "name": "Erling Haaland",
+          "wiki": "Erling Haaland"
+        },
+        {
+          "number": 10,
+          "pos": "MF",
+          "nat": "FRA",
+          "name": "Rayan Cherki",
+          "wiki": "Rayan Cherki"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "BEL",
+          "name": "Jérémy Doku",
+          "wiki": "Jérémy Doku"
+        },
+        {
+          "number": 13,
+          "pos": "GK",
+          "nat": "ENG",
+          "name": "Marcus Bettinelli",
+          "wiki": "Marcus Bettinelli"
+        },
+        {
+          "number": 17,
+          "pos": "MF",
+          "nat": "ARG",
+          "name": "Enzo Fernández",
+          "wiki": "Enzo Fernández"
+        },
+        {
+          "number": 21,
+          "pos": "DF",
+          "nat": "ALG",
+          "name": "Rayan Aït-Nouri",
+          "wiki": "Rayan Aït-Nouri"
+        },
+        {
+          "number": 22,
+          "pos": "DF",
+          "nat": "BRA",
+          "name": "Vitor Reis",
+          "wiki": "Vitor Reis"
+        },
+        {
+          "number": 24,
+          "pos": "DF",
+          "nat": "CRO",
+          "name": "Joško Gvardiol",
+          "wiki": "Joško Gvardiol"
+        },
+        {
+          "number": 27,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Matheus Nunes",
+          "wiki": "Matheus Nunes"
+        },
+        {
+          "number": 28,
+          "pos": "GK",
+          "nat": "ARG",
+          "name": "Gerónimo Rulli",
+          "wiki": "Gerónimo Rulli"
+        },
+        {
+          "number": 32,
+          "pos": "MF",
+          "nat": "MAR",
+          "name": "Ayyoub Bouaddi",
+          "wiki": "Ayyoub Bouaddi"
+        },
+        {
+          "number": 33,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Nico O'Reilly",
+          "wiki": "Nico O'Reilly"
+        },
+        {
+          "number": 37,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Allan",
+          "wiki": "Allan (footballer, born 2004)"
+        },
+        {
+          "number": 42,
+          "pos": "FW",
+          "nat": "GHA",
+          "name": "Antoine Semenyo",
+          "wiki": "Antoine Semenyo"
+        },
+        {
+          "number": 45,
+          "pos": "DF",
+          "nat": "UZB",
+          "name": "Abdukodir Khusanov",
+          "wiki": "Abdukodir Khusanov"
+        },
+        {
+          "number": 47,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Phil Foden",
+          "wiki": "Phil Foden"
+        },
+        {
+          "number": 56,
+          "pos": "FW",
+          "nat": "ENG",
+          "name": "Ryan McAidoo",
+          "wiki": "Ryan McAidoo"
+        },
+        {
+          "number": 61,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Kaden Braithwaite",
+          "wiki": "Kaden Braithwaite"
+        },
+        {
+          "number": 75,
+          "pos": "MF",
+          "nat": "GER",
+          "name": "Floyd Samba",
+          "wiki": "Floyd Samba"
+        },
+        {
+          "number": 82,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Rico Lewis",
+          "wiki": "Rico Lewis"
+        }
+      ]
+    },
+    {
+      "code": "MUN",
+      "name": "Manchester United",
+      "wiki": "Manchester United F.C.",
+      "crest": "eng-mun.png",
+      "previousSeason": {
+        "pos": 3,
+        "played": 38,
+        "w": 20,
+        "d": 11,
+        "l": 7,
+        "gf": 69,
+        "ga": 50
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "BEL",
+          "name": "Senne Lammens",
+          "wiki": "Senne Lammens"
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Diogo Dalot",
+          "wiki": "Diogo Dalot"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "MAR",
+          "name": "Noussair Mazraoui",
+          "wiki": "Noussair Mazraoui"
+        },
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "NED",
+          "name": "Matthijs de Ligt",
+          "wiki": "Matthijs de Ligt"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Harry Maguire",
+          "wiki": "Harry Maguire"
+        },
+        {
+          "number": 6,
+          "pos": "DF",
+          "nat": "ARG",
+          "name": "Lisandro Martínez",
+          "wiki": "Lisandro Martínez"
+        },
+        {
+          "number": 7,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Mason Mount",
+          "wiki": "Mason Mount"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Bruno Fernandes",
+          "wiki": "Bruno Fernandes"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "ENG",
+          "name": "Marcus Rashford",
+          "wiki": "Marcus Rashford"
+        },
+        {
+          "number": 10,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Matheus Cunha",
+          "wiki": "Matheus Cunha"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "NED",
+          "name": "Joshua Zirkzee",
+          "wiki": "Joshua Zirkzee"
+        },
+        {
+          "number": 12,
+          "pos": "GK",
+          "nat": "WAL",
+          "name": "Karl Darlow",
+          "wiki": "Karl Darlow"
+        },
+        {
+          "number": 13,
+          "pos": "DF",
+          "nat": "DEN",
+          "name": "Patrick Dorgu",
+          "wiki": "Patrick Dorgu"
+        },
+        {
+          "number": 15,
+          "pos": "DF",
+          "nat": "FRA",
+          "name": "Leny Yoro",
+          "wiki": "Leny Yoro"
+        },
+        {
+          "number": 16,
+          "pos": "FW",
+          "nat": "CIV",
+          "name": "Amad Diallo",
+          "wiki": "Amad Diallo"
+        },
+        {
+          "number": 17,
+          "pos": "MF",
+          "nat": "BRA",
+          "name": "Andrey Santos",
+          "wiki": "Andrey Santos"
+        },
+        {
+          "number": 18,
+          "pos": "MF",
+          "nat": "BEL",
+          "name": "Youri Tielemans",
+          "wiki": "Youri Tielemans"
+        },
+        {
+          "number": 19,
+          "pos": "FW",
+          "nat": "CMR",
+          "name": "Bryan Mbeumo",
+          "wiki": "Bryan Mbeumo"
+        },
+        {
+          "number": 20,
+          "pos": "MF",
+          "nat": "CMR",
+          "name": "Carlos Baleba",
+          "wiki": "Carlos Baleba"
+        },
+        {
+          "number": 22,
+          "pos": "GK",
+          "nat": "ENG",
+          "name": "Tom Heaton",
+          "wiki": "Tom Heaton"
+        },
+        {
+          "number": 23,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Luke Shaw",
+          "wiki": "Luke Shaw"
+        },
+        {
+          "number": 25,
+          "pos": "MF",
+          "nat": "URU",
+          "name": "Manuel Ugarte",
+          "wiki": "Manuel Ugarte (footballer)"
+        },
+        {
+          "number": 26,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Ayden Heaven",
+          "wiki": "Ayden Heaven"
+        },
+        {
+          "number": 30,
+          "pos": "FW",
+          "nat": "SVN",
+          "name": "Benjamin Šeško",
+          "wiki": "Benjamin Šeško"
+        },
+        {
+          "number": 31,
+          "pos": "FW",
+          "nat": "ENG",
+          "name": "Shea Lacey",
+          "wiki": "Shea Lacey"
+        },
+        {
+          "number": 37,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Kobbie Mainoo",
+          "wiki": "Kobbie Mainoo"
+        },
+        {
+          "number": 38,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Jack Fletcher",
+          "wiki": "Jack Fletcher (footballer, born 2007)"
+        },
+        {
+          "number": 39,
+          "pos": "MF",
+          "nat": "SCO",
+          "name": "Tyler Fletcher",
+          "wiki": "Tyler Fletcher"
+        },
+        {
+          "number": 41,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Harry Amass",
+          "wiki": "Harry Amass"
+        },
+        {
+          "number": 45,
+          "pos": "GK",
+          "nat": "NIR",
+          "name": "Dermot Mee",
+          "wiki": "Dermot Mee"
+        }
+      ]
+    },
+    {
+      "code": "NEW",
+      "name": "Newcastle United",
+      "wiki": "Newcastle United F.C.",
+      "crest": "eng-new.png",
+      "previousSeason": {
+        "pos": 12,
+        "played": 38,
+        "w": 14,
+        "d": 7,
+        "l": 17,
+        "gf": 53,
+        "ga": 55
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "ENG",
+          "name": "Nick Pope",
+          "wiki": "Nick Pope (footballer)"
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Tino Livramento",
+          "wiki": "Tino Livramento"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Lewis Hall",
+          "wiki": "Lewis Hall (footballer)"
+        },
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "NED",
+          "name": "Sven Botman",
+          "wiki": "Sven Botman"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "SUI",
+          "name": "Fabian Schär",
+          "wiki": "Fabian Schär"
+        },
+        {
+          "number": 6,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Nico González",
+          "wiki": "Nico González (footballer, born 2002)"
+        },
+        {
+          "number": 7,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Joelinton",
+          "wiki": "Joelinton"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "FRA",
+          "name": "Aladji Bamba",
+          "wiki": "Aladji Bamba"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "COD",
+          "name": "Yoane Wissa",
+          "wiki": "Yoane Wissa"
+        },
+        {
+          "number": 10,
+          "pos": "FW",
+          "nat": "DEN",
+          "name": "William Osula",
+          "wiki": "William Osula"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "ENG",
+          "name": "Harvey Barnes",
+          "wiki": "Harvey Barnes"
+        },
+        {
+          "number": 12,
+          "pos": "DF",
+          "nat": "GER",
+          "name": "Malick Thiaw",
+          "wiki": "Malick Thiaw"
+        },
+        {
+          "number": 14,
+          "pos": "MF",
+          "nat": "NED",
+          "name": "Sean Steur",
+          "wiki": "Sean Steur"
+        },
+        {
+          "number": 17,
+          "pos": "FW",
+          "nat": "CIV",
+          "name": "Bazoumana Touré",
+          "wiki": "Bazoumana Touré"
+        },
+        {
+          "number": 19,
+          "pos": "FW",
+          "nat": "SWE",
+          "name": "Anthony Elanga",
+          "wiki": "Anthony Elanga"
+        },
+        {
+          "number": 20,
+          "pos": "FW",
+          "nat": "BEL",
+          "name": "Matias Fernandez-Pardo",
+          "wiki": "Matias Fernandez-Pardo"
+        },
+        {
+          "number": 21,
+          "pos": "GK",
+          "nat": "CZE",
+          "name": "Lukáš Horníček",
+          "wiki": "Lukáš Horníček"
+        },
+        {
+          "number": 23,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Jacob Murphy",
+          "wiki": "Jacob Murphy"
+        },
+        {
+          "number": 24,
+          "pos": "GK",
+          "nat": "FRA",
+          "name": "Ewen Jaouen",
+          "wiki": "Ewen Jaouen"
+        },
+        {
+          "number": 28,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Joe Willock",
+          "wiki": "Joe Willock"
+        },
+        {
+          "number": 29,
+          "pos": "GK",
+          "nat": "ENG",
+          "name": "Mark Gillespie",
+          "wiki": "Mark Gillespie (footballer)"
+        },
+        {
+          "number": 31,
+          "pos": "GK",
+          "nat": "ENG",
+          "name": "Aidan Harris",
+          "wiki": null
+        },
+        {
+          "number": 33,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Dan Burn",
+          "wiki": "Dan Burn"
+        },
+        {
+          "number": 37,
+          "pos": "DF",
+          "nat": "BIH",
+          "name": "Amar Dedić",
+          "wiki": "Amar Dedić"
+        },
+        {
+          "number": 41,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Jacob Ramsey",
+          "wiki": "Jacob Ramsey"
+        },
+        {
+          "number": 67,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Lewis Miley",
+          "wiki": "Lewis Miley"
+        }
+      ]
+    },
+    {
+      "code": "NFO",
+      "name": "Nottingham Forest",
+      "wiki": "Nottingham Forest F.C.",
+      "crest": "eng-nfo.png",
+      "previousSeason": {
+        "pos": 16,
+        "played": 38,
+        "w": 11,
+        "d": 11,
+        "l": 16,
+        "gf": 48,
+        "ga": 51
+      },
+      "squad": [
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "CIV",
+          "name": "Ousmane Diomande",
+          "wiki": "Ousmane Diomande"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "WAL",
+          "name": "Neco Williams",
+          "wiki": "Neco Williams"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "BRA",
+          "name": "Murillo",
+          "wiki": "Murillo (footballer)"
+        },
+        {
+          "number": 6,
+          "pos": "MF",
+          "nat": "CIV",
+          "name": "Ibrahim Sangaré",
+          "wiki": "Ibrahim Sangaré (Ivorian footballer)"
+        },
+        {
+          "number": 7,
+          "pos": "FW",
+          "nat": "ENG",
+          "name": "Callum Hudson-Odoi",
+          "wiki": "Callum Hudson-Odoi"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "ARG",
+          "name": "Nicolás Domínguez",
+          "wiki": "Nicolás Domínguez"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "NZL",
+          "name": "Chris Wood",
+          "wiki": "Chris Wood (footballer, born 1991)"
+        },
+        {
+          "number": 10,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Morgan Gibbs-White",
+          "wiki": "Morgan Gibbs-White"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Igor Jesus",
+          "wiki": "Igor Jesus (footballer, born 2001)"
+        },
+        {
+          "number": 12,
+          "pos": "GK",
+          "nat": "BRA",
+          "name": "John Victor",
+          "wiki": "John Victor (Brazilian footballer)"
+        },
+        {
+          "number": 14,
+          "pos": "FW",
+          "nat": "SUI",
+          "name": "Dan Ndoye",
+          "wiki": "Dan Ndoye"
+        },
+        {
+          "number": 15,
+          "pos": "FW",
+          "nat": "FRA",
+          "name": "Arnaud Kalimuendo",
+          "wiki": "Arnaud Kalimuendo"
+        },
+        {
+          "number": 19,
+          "pos": "FW",
+          "nat": "ENG",
+          "name": "Liam Delap",
+          "wiki": "Liam Delap"
+        },
+        {
+          "number": 21,
+          "pos": "MF",
+          "nat": "AUT",
+          "name": "Xaver Schlager",
+          "wiki": "Xaver Schlager"
+        },
+        {
+          "number": 22,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Ryan Yates",
+          "wiki": "Ryan Yates"
+        },
+        {
+          "number": 23,
+          "pos": "DF",
+          "nat": "BRA",
+          "name": "Jair Cunha",
+          "wiki": "Jair Cunha"
+        },
+        {
+          "number": 24,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "James McAtee",
+          "wiki": "James McAtee"
+        },
+        {
+          "number": 25,
+          "pos": "DF",
+          "nat": "GER",
+          "name": "Luca Netz",
+          "wiki": "Luca Netz"
+        },
+        {
+          "number": 26,
+          "pos": "GK",
+          "nat": "BEL",
+          "name": "Matz Sels",
+          "wiki": "Matz Sels"
+        },
+        {
+          "number": 27,
+          "pos": "DF",
+          "nat": "COL",
+          "name": "Daniel Muñoz",
+          "wiki": "Daniel Muñoz (footballer)"
+        },
+        {
+          "number": 31,
+          "pos": "DF",
+          "nat": "SRB",
+          "name": "Nikola Milenković",
+          "wiki": "Nikola Milenković"
+        },
+        {
+          "number": 33,
+          "pos": "GK",
+          "nat": "GER",
+          "name": "Steven Benda",
+          "wiki": "Steven Benda"
+        },
+        {
+          "number": 34,
+          "pos": "DF",
+          "nat": "NGA",
+          "name": "Ola Aina",
+          "wiki": "Ola Aina"
+        },
+        {
+          "number": 37,
+          "pos": "DF",
+          "nat": "ITA",
+          "name": "Nicolò Savona",
+          "wiki": "Nicolò Savona"
+        }
+      ]
+    },
+    {
+      "code": "SUN",
+      "name": "Sunderland",
+      "wiki": "Sunderland A.F.C.",
+      "crest": "eng-sun.png",
+      "previousSeason": {
+        "pos": 7,
+        "played": 38,
+        "w": 14,
+        "d": 12,
+        "l": 12,
+        "gf": 42,
+        "ga": 48
+      },
+      "squad": [
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "AUT",
+          "name": "Kevin Danso",
+          "wiki": "Kevin Danso"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "NIR",
+          "name": "Daniel Ballard",
+          "wiki": "Dan Ballard (footballer)"
+        },
+        {
+          "number": 6,
+          "pos": "DF",
+          "nat": "FRA",
+          "name": "Dayann Methalie",
+          "wiki": "Dayann Methalie"
+        },
+        {
+          "number": 7,
+          "pos": "FW",
+          "nat": "MAR",
+          "name": "Chemsdine Talbi",
+          "wiki": "Chemsdine Talbi"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "IRL",
+          "name": "Alan Browne",
+          "wiki": "Alan Browne (footballer)"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "NED",
+          "name": "Brian Brobbey",
+          "wiki": "Brian Brobbey"
+        },
+        {
+          "number": 10,
+          "pos": "FW",
+          "nat": "ECU",
+          "name": "Nilson Angulo",
+          "wiki": "Nilson Angulo"
+        },
+        {
+          "number": 11,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Chris Rigg",
+          "wiki": "Chris Rigg"
+        },
+        {
+          "number": 12,
+          "pos": "DF",
+          "nat": "BEL",
+          "name": "Thomas Meunier",
+          "wiki": "Thomas Meunier"
+        },
+        {
+          "number": 13,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Luke O'Nien",
+          "wiki": "Luke O'Nien"
+        },
+        {
+          "number": 14,
+          "pos": "FW",
+          "nat": "ENG",
+          "name": "Romaine Mundle",
+          "wiki": "Romaine Mundle"
+        },
+        {
+          "number": 15,
+          "pos": "DF",
+          "nat": "PAR",
+          "name": "Omar Alderete",
+          "wiki": "Omar Alderete"
+        },
+        {
+          "number": 17,
+          "pos": "DF",
+          "nat": "MOZ",
+          "name": "Reinildo",
+          "wiki": "Reinildo Mandava"
+        },
+        {
+          "number": 18,
+          "pos": "FW",
+          "nat": "HAI",
+          "name": "Wilson Isidor",
+          "wiki": "Wilson Isidor"
+        },
+        {
+          "number": 19,
+          "pos": "MF",
+          "nat": "SEN",
+          "name": "Habib Diarra",
+          "wiki": "Habib Diarra"
+        },
+        {
+          "number": 20,
+          "pos": "DF",
+          "nat": "FRA",
+          "name": "Nordi Mukiele",
+          "wiki": "Nordi Mukiele"
+        },
+        {
+          "number": 21,
+          "pos": "GK",
+          "nat": "ENG",
+          "name": "Simon Moore",
+          "wiki": "Simon Moore (footballer)"
+        },
+        {
+          "number": 22,
+          "pos": "GK",
+          "nat": "NED",
+          "name": "Robin Roefs",
+          "wiki": "Robin Roefs"
+        },
+        {
+          "number": 27,
+          "pos": "MF",
+          "nat": "COD",
+          "name": "Noah Sadiki",
+          "wiki": "Noah Sadiki"
+        },
+        {
+          "number": 28,
+          "pos": "MF",
+          "nat": "FRA",
+          "name": "Enzo Le Fée",
+          "wiki": "Enzo Le Fée"
+        },
+        {
+          "number": 29,
+          "pos": "MF",
+          "nat": "COD",
+          "name": "Jules Ahoka",
+          "wiki": "Jules Ahoka"
+        },
+        {
+          "number": 31,
+          "pos": "GK",
+          "nat": "SWE",
+          "name": "Melker Ellborg",
+          "wiki": "Melker Ellborg"
+        },
+        {
+          "number": 32,
+          "pos": "DF",
+          "nat": "NIR",
+          "name": "Trai Hume",
+          "wiki": "Trai Hume"
+        },
+        {
+          "number": 34,
+          "pos": "MF",
+          "nat": "SUI",
+          "name": "Granit Xhaka",
+          "wiki": "Granit Xhaka"
+        },
+        {
+          "number": 37,
+          "pos": "FW",
+          "nat": "CIV",
+          "name": "Jocelin Ta Bi",
+          "wiki": "Jocelin Ta Bi"
+        },
+        {
+          "number": 39,
+          "pos": "FW",
+          "nat": "BEL",
+          "name": "Malick Fofana",
+          "wiki": "Malick Fofana"
+        },
+        {
+          "number": 46,
+          "pos": "MF",
+          "nat": "MTN",
+          "name": "Abdoullah Ba",
+          "wiki": "Abdoullah Ba"
+        },
+        {
+          "number": 50,
+          "pos": "FW",
+          "nat": "ECU",
+          "name": "Juan Riquelme Angulo",
+          "wiki": "Juan Riquelme Angulo"
+        },
+        {
+          "number": 57,
+          "pos": "FW",
+          "nat": "UKR",
+          "name": "Timur Tutyerov",
+          "wiki": "Timur Tutyerov"
+        }
+      ]
+    },
+    {
+      "code": "TOT",
+      "name": "Tottenham Hotspur",
+      "wiki": "Tottenham Hotspur F.C.",
+      "crest": "eng-tot.png",
+      "previousSeason": {
+        "pos": 17,
+        "played": 38,
+        "w": 10,
+        "d": 11,
+        "l": 17,
+        "gf": 48,
+        "ga": 57
+      },
+      "squad": [
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "SCO",
+          "name": "Andy Robertson",
+          "wiki": "Andy Robertson"
+        },
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Tosin Adarabioyo",
+          "wiki": "Tosin Adarabioyo"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "ARG",
+          "name": "Marcos Senesi",
+          "wiki": "Marcos Senesi"
+        },
+        {
+          "number": 6,
+          "pos": "DF",
+          "nat": "NED",
+          "name": "Jan Paul van Hecke",
+          "wiki": "Jan Paul van Hecke"
+        },
+        {
+          "number": 7,
+          "pos": "MF",
+          "nat": "NED",
+          "name": "Xavi Simons",
+          "wiki": "Xavi Simons"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Conor Gallagher",
+          "wiki": "Conor Gallagher"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Richarlison",
+          "wiki": "Richarlison"
+        },
+        {
+          "number": 10,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "James Maddison",
+          "wiki": "James Maddison"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "FRA",
+          "name": "Mathys Tel",
+          "wiki": "Mathys Tel"
+        },
+        {
+          "number": 13,
+          "pos": "DF",
+          "nat": "ITA",
+          "name": "Destiny Udogie",
+          "wiki": "Destiny Udogie"
+        },
+        {
+          "number": 14,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Archie Gray",
+          "wiki": "Archie Gray"
+        },
+        {
+          "number": 15,
+          "pos": "MF",
+          "nat": "SWE",
+          "name": "Lucas Bergvall",
+          "wiki": "Lucas Bergvall"
+        },
+        {
+          "number": 16,
+          "pos": "MF",
+          "nat": "ITA",
+          "name": "Sandro Tonali",
+          "wiki": "Sandro Tonali"
+        },
+        {
+          "number": 17,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Sávio",
+          "wiki": "Sávio (footballer, born 2004)"
+        },
+        {
+          "number": 18,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Mateus Fernandes",
+          "wiki": "Mateus Fernandes (footballer)"
+        },
+        {
+          "number": 19,
+          "pos": "FW",
+          "nat": "ENG",
+          "name": "Dominic Solanke",
+          "wiki": "Dominic Solanke"
+        },
+        {
+          "number": 20,
+          "pos": "FW",
+          "nat": "GHA",
+          "name": "Mohammed Kudus",
+          "wiki": "Mohammed Kudus"
+        },
+        {
+          "number": 21,
+          "pos": "FW",
+          "nat": "SWE",
+          "name": "Dejan Kulusevski",
+          "wiki": "Dejan Kulusevski"
+        },
+        {
+          "number": 22,
+          "pos": "FW",
+          "nat": "EGY",
+          "name": "Omar Marmoush",
+          "wiki": "Omar Marmoush"
+        },
+        {
+          "number": 23,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Pedro Porro",
+          "wiki": "Pedro Porro"
+        },
+        {
+          "number": 27,
+          "pos": "FW",
+          "nat": "UKR",
+          "name": "Mykhailo Mudryk",
+          "wiki": "Mykhailo Mudryk"
+        },
+        {
+          "number": 28,
+          "pos": "FW",
+          "nat": "FRA",
+          "name": "Wilson Odobert",
+          "wiki": "Wilson Odobert"
+        },
+        {
+          "number": 30,
+          "pos": "MF",
+          "nat": "URU",
+          "name": "Rodrigo Bentancur",
+          "wiki": "Rodrigo Bentancur"
+        },
+        {
+          "number": 31,
+          "pos": "GK",
+          "nat": "CZE",
+          "name": "Antonín Kinský",
+          "wiki": "Antonín Kinský (footballer, born 2003)"
+        },
+        {
+          "number": 33,
+          "pos": "DF",
+          "nat": "WAL",
+          "name": "Ben Davies",
+          "wiki": "Ben Davies (footballer, born 1993)"
+        },
+        {
+          "number": 37,
+          "pos": "DF",
+          "nat": "NED",
+          "name": "Micky van de Ven",
+          "wiki": "Micky van de Ven"
+        },
+        {
+          "number": 39,
+          "pos": "GK",
+          "nat": "SVK",
+          "name": "Martin Dúbravka",
+          "wiki": "Martin Dúbravka"
+        },
+        {
+          "number": 40,
+          "pos": "GK",
+          "nat": "USA",
+          "name": "Brandon Austin",
+          "wiki": "Brandon Austin"
+        }
+      ]
+    }
+  ]
+}

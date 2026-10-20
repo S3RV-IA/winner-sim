@@ -1,0 +1,3889 @@
+{
+  "id": "esp",
+  "name": "LaLiga",
+  "wiki": "La Liga",
+  "country": "España",
+  "season": "2026–27",
+  "fetchedAt": "2026-10-20T21:39:10.775Z",
+  "teams": [
+    {
+      "code": "ALA",
+      "name": "Alavés",
+      "wiki": "Deportivo Alavés",
+      "crest": "esp-ala.png",
+      "previousSeason": {
+        "pos": 14,
+        "played": 38,
+        "w": 11,
+        "d": 10,
+        "l": 17,
+        "gf": 44,
+        "ga": 56
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "ESP",
+          "name": "Antonio Sivera",
+          "wiki": "Antonio Sivera"
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "ARG",
+          "name": "Nicolás Valentini",
+          "wiki": "Nicolás Valentini"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "MAR",
+          "name": "Youssef Enríquez",
+          "wiki": "Yusi (footballer)"
+        },
+        {
+          "number": 4,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Denis Suárez",
+          "wiki": "Denis Suárez"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "ARG",
+          "name": "Facundo Garcés",
+          "wiki": "Facundo Garcés"
+        },
+        {
+          "number": 6,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Ander Guevara",
+          "wiki": "Ander Guevara"
+        },
+        {
+          "number": 7,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Ángel Pérez",
+          "wiki": "Ángel Pérez (footballer, born 2002)"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Antonio Blanco",
+          "wiki": "Antonio Blanco (footballer)"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "DOM",
+          "name": "Mariano Díaz",
+          "wiki": "Mariano Díaz"
+        },
+        {
+          "number": 10,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Carles Aleñá",
+          "wiki": "Carles Aleñá"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Toni Martínez",
+          "wiki": "Toni Martínez"
+        },
+        {
+          "number": 12,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Hugo Novoa",
+          "wiki": "Hugo Novoa"
+        },
+        {
+          "number": 13,
+          "pos": "GK",
+          "nat": "ARG",
+          "name": "Adrián Rodríguez",
+          "wiki": "Adrián Rodríguez (footballer, born 2000)"
+        },
+        {
+          "number": 14,
+          "pos": "DF",
+          "nat": "ARG",
+          "name": "Nahuel Tenaglia",
+          "wiki": "Nahuel Tenaglia"
+        },
+        {
+          "number": 15,
+          "pos": "FW",
+          "nat": "ARG",
+          "name": "Lucas Boyé",
+          "wiki": "Lucas Boyé"
+        },
+        {
+          "number": 16,
+          "pos": "DF",
+          "nat": "FIN",
+          "name": "Ville Koski",
+          "wiki": "Ville Koski"
+        },
+        {
+          "number": 17,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Jonny Otto",
+          "wiki": "Jonny Otto"
+        },
+        {
+          "number": 18,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Mikel Rodríguez",
+          "wiki": "Mikel Rodríguez"
+        },
+        {
+          "number": 19,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Pablo Ibáñez",
+          "wiki": "Pablo Ibáñez (footballer, born 1998)"
+        },
+        {
+          "number": 20,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Aitor Mañas",
+          "wiki": "Aitor Mañas"
+        },
+        {
+          "number": 21,
+          "pos": "MF",
+          "nat": "ALG",
+          "name": "Abde Rebbach",
+          "wiki": "Abde Rebbach"
+        },
+        {
+          "number": 22,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Miguel Rodríguez",
+          "wiki": "Miguel Rodríguez (footballer, born April 2003)"
+        },
+        {
+          "number": 23,
+          "pos": "MF",
+          "nat": "URU",
+          "name": "Carlos Protesoni",
+          "wiki": "Carlos Protesoni"
+        },
+        {
+          "number": 24,
+          "pos": "MF",
+          "nat": "GUI",
+          "name": "Selu Diallo",
+          "wiki": "Selu Diallo"
+        },
+        {
+          "number": 27,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Xanet Olaiz",
+          "wiki": "Xanet Olaiz Ibarzabal"
+        },
+        {
+          "number": 29,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Izei Hernández",
+          "wiki": "Izei Hernández Cañas"
+        },
+        {
+          "number": 31,
+          "pos": "GK",
+          "nat": "CAN",
+          "name": "Grégoire Świderski",
+          "wiki": "Grégoire Świderski"
+        }
+      ]
+    },
+    {
+      "code": "ATH",
+      "name": "Athletic Bilbao",
+      "wiki": "Athletic Bilbao",
+      "crest": "esp-ath.png",
+      "previousSeason": {
+        "pos": 12,
+        "played": 38,
+        "w": 13,
+        "d": 6,
+        "l": 19,
+        "gf": 43,
+        "ga": 58
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "ESP",
+          "name": "Unai Simón",
+          "wiki": "Unai Simón"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Dani Vivian",
+          "wiki": "Daniel Vivian"
+        },
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Aitor Paredes",
+          "wiki": "Aitor Paredes"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Yeray Álvarez",
+          "wiki": "Yeray Álvarez"
+        },
+        {
+          "number": 6,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Beñat Prados",
+          "wiki": "Beñat Prados"
+        },
+        {
+          "number": 7,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Álex Berenguer",
+          "wiki": "Álex Berenguer"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Oihan Sancet",
+          "wiki": "Oihan Sancet"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "GHA",
+          "name": "Iñaki Williams",
+          "wiki": "Iñaki Williams"
+        },
+        {
+          "number": 10,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Nico Williams",
+          "wiki": "Nico Williams"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Gorka Guruzeta",
+          "wiki": "Gorka Guruzeta"
+        },
+        {
+          "number": 12,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Jesús Areso",
+          "wiki": "Jesús Areso"
+        },
+        {
+          "number": 13,
+          "pos": "GK",
+          "nat": "MEX",
+          "name": "Álex Padilla",
+          "wiki": "Alex Padilla (footballer)"
+        },
+        {
+          "number": 14,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Aymeric Laporte",
+          "wiki": "Aymeric Laporte"
+        },
+        {
+          "number": 15,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Hugo Rincón",
+          "wiki": "Hugo Rincón"
+        },
+        {
+          "number": 16,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Iñigo Ruiz de Galarreta",
+          "wiki": "Iñigo Ruiz de Galarreta"
+        },
+        {
+          "number": 17,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Yuri Berchiche",
+          "wiki": "Yuri Berchiche"
+        },
+        {
+          "number": 18,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Mikel Jauregizar",
+          "wiki": "Mikel Jauregizar"
+        },
+        {
+          "number": 20,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Alejandro Rego",
+          "wiki": "Alejandro Rego"
+        },
+        {
+          "number": 21,
+          "pos": "FW",
+          "nat": "MAR",
+          "name": "Maroan Sannadi",
+          "wiki": "Maroan Sannadi"
+        },
+        {
+          "number": 22,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Nico Serrano",
+          "wiki": "Nico Serrano"
+        },
+        {
+          "number": 23,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Robert Navarro",
+          "wiki": "Robert Navarro (footballer)"
+        },
+        {
+          "number": 24,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Beñat Gerenabarrena",
+          "wiki": "Beñat Gerenabarrena"
+        },
+        {
+          "number": 25,
+          "pos": "FW",
+          "nat": "GNB",
+          "name": "Álvaro Djaló",
+          "wiki": "Álvaro Djaló"
+        },
+        {
+          "number": 28,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Peio Canales",
+          "wiki": "Peio Canales"
+        },
+        {
+          "number": 31,
+          "pos": "DF",
+          "nat": "FRA",
+          "name": "Johaneko Louis-Jean",
+          "wiki": "Johaneko Louis-Jean"
+        },
+        {
+          "number": null,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Unai Egiluz",
+          "wiki": "Unai Egiluz"
+        }
+      ]
+    },
+    {
+      "code": "ATM",
+      "name": "Atlético Madrid",
+      "wiki": "Atlético Madrid",
+      "crest": "esp-atm.png",
+      "previousSeason": {
+        "pos": 4,
+        "played": 38,
+        "w": 21,
+        "d": 6,
+        "l": 11,
+        "gf": 62,
+        "ga": 44
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "ARG",
+          "name": "Juan Musso",
+          "wiki": "Juan Musso"
+        },
+        {
+          "number": 3,
+          "pos": "MF",
+          "nat": "MEX",
+          "name": "Obed Vargas",
+          "wiki": "Obed Vargas"
+        },
+        {
+          "number": 4,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Rodrigo Mendoza",
+          "wiki": "Rodrigo Mendoza"
+        },
+        {
+          "number": 5,
+          "pos": "MF",
+          "nat": "USA",
+          "name": "Johnny Cardoso",
+          "wiki": "Johnny Cardoso"
+        },
+        {
+          "number": 6,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Koke",
+          "wiki": "Koke (footballer, born 1992)"
+        },
+        {
+          "number": 7,
+          "pos": "MF",
+          "nat": "KOR",
+          "name": "Lee Kang-in",
+          "wiki": "Lee Kang-in"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Pablo Barrios",
+          "wiki": "Pablo Barrios (footballer)"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "NOR",
+          "name": "Alexander Sørloth",
+          "wiki": "Alexander Sørloth"
+        },
+        {
+          "number": 10,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Álex Baena",
+          "wiki": "Álex Baena"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "NGA",
+          "name": "Ademola Lookman",
+          "wiki": "Ademola Lookman"
+        },
+        {
+          "number": 13,
+          "pos": "GK",
+          "nat": "SVN",
+          "name": "Jan Oblak",
+          "wiki": "Jan Oblak"
+        },
+        {
+          "number": 14,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Marcos Llorente",
+          "wiki": "Marcos Llorente"
+        },
+        {
+          "number": 15,
+          "pos": "FW",
+          "nat": "CAN",
+          "name": "Jonathan David",
+          "wiki": "Jonathan David"
+        },
+        {
+          "number": 16,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Arnau Ortiz",
+          "wiki": "Arnau Ortiz"
+        },
+        {
+          "number": 17,
+          "pos": "DF",
+          "nat": "SVK",
+          "name": "Dávid Hancko",
+          "wiki": "Dávid Hancko"
+        },
+        {
+          "number": 18,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Marc Pubill",
+          "wiki": "Marc Pubill"
+        },
+        {
+          "number": 19,
+          "pos": "FW",
+          "nat": "ARG",
+          "name": "Julián Alvarez",
+          "wiki": "Julián Alvarez"
+        },
+        {
+          "number": 20,
+          "pos": "MF",
+          "nat": "ARG",
+          "name": "Giuliano Simeone",
+          "wiki": "Giuliano Simeone"
+        },
+        {
+          "number": 21,
+          "pos": "DF",
+          "nat": "ARG",
+          "name": "Cristian Romero",
+          "wiki": "Cristian Romero"
+        },
+        {
+          "number": 22,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Alejandro Grimaldo",
+          "wiki": "Alejandro Grimaldo"
+        },
+        {
+          "number": 23,
+          "pos": "MF",
+          "nat": "DEN",
+          "name": "Morten Hjulmand",
+          "wiki": "Morten Hjulmand"
+        },
+        {
+          "number": 24,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Robin Le Normand",
+          "wiki": "Robin Le Normand"
+        },
+        {
+          "number": 25,
+          "pos": "GK",
+          "nat": "ESP",
+          "name": "Salvi Esquivel",
+          "wiki": "Salvi Esquivel"
+        },
+        {
+          "number": 30,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Dani Martínez",
+          "wiki": "Dani Martínez"
+        }
+      ]
+    },
+    {
+      "code": "BAR",
+      "name": "Barcelona",
+      "wiki": "FC Barcelona",
+      "crest": "esp-bar.png",
+      "previousSeason": {
+        "pos": 1,
+        "played": 38,
+        "w": 31,
+        "d": 1,
+        "l": 6,
+        "gf": 95,
+        "ga": 36
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "ESP",
+          "name": "Joan Garcia",
+          "wiki": "Joan Garcia"
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "João Cancelo",
+          "wiki": "João Cancelo"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Alejandro Balde",
+          "wiki": "Alejandro Balde"
+        },
+        {
+          "number": 4,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Brian Fariñas",
+          "wiki": "Brian Fariñas"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Pau Cubarsí",
+          "wiki": "Pau Cubarsí"
+        },
+        {
+          "number": 6,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Gavi",
+          "wiki": "Gavi (footballer)"
+        },
+        {
+          "number": 7,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Fermín López",
+          "wiki": "Fermín López"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Pedri",
+          "wiki": "Pedri"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Gabriel Jesus",
+          "wiki": "Gabriel Jesus"
+        },
+        {
+          "number": 10,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Lamine Yamal",
+          "wiki": "Lamine Yamal"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Raphinha",
+          "wiki": "Raphinha"
+        },
+        {
+          "number": 12,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Xavi Espart",
+          "wiki": "Xavi Espart"
+        },
+        {
+          "number": 13,
+          "pos": "GK",
+          "nat": "POL",
+          "name": "Wojciech Szczęsny",
+          "wiki": "Wojciech Szczęsny"
+        },
+        {
+          "number": 14,
+          "pos": "FW",
+          "nat": "GER",
+          "name": "Karim Adeyemi",
+          "wiki": "Karim Adeyemi"
+        },
+        {
+          "number": 15,
+          "pos": "DF",
+          "nat": "DEN",
+          "name": "Andreas Christensen",
+          "wiki": "Andreas Christensen"
+        },
+        {
+          "number": 16,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Rodri",
+          "wiki": "Rodri"
+        },
+        {
+          "number": 17,
+          "pos": "FW",
+          "nat": "ENG",
+          "name": "Anthony Gordon",
+          "wiki": "Anthony Gordon (footballer)"
+        },
+        {
+          "number": 18,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Gerard Martín",
+          "wiki": "Gerard Martín (footballer)"
+        },
+        {
+          "number": 19,
+          "pos": "FW",
+          "nat": "SWE",
+          "name": "Roony Bardghji",
+          "wiki": "Roony Bardghji"
+        },
+        {
+          "number": 20,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Dani Olmo",
+          "wiki": "Dani Olmo"
+        },
+        {
+          "number": 21,
+          "pos": "MF",
+          "nat": "NED",
+          "name": "Frenkie de Jong",
+          "wiki": "Frenkie de Jong"
+        },
+        {
+          "number": 22,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Marc Bernal",
+          "wiki": "Marc Bernal"
+        },
+        {
+          "number": 23,
+          "pos": "DF",
+          "nat": "FRA",
+          "name": "Jules Koundé",
+          "wiki": "Jules Koundé"
+        },
+        {
+          "number": 24,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Eric Garcia",
+          "wiki": "Eric Garcia (footballer, born 2001)"
+        },
+        {
+          "number": 25,
+          "pos": "GK",
+          "nat": "CRO",
+          "name": "Dominik Livaković",
+          "wiki": "Dominik Livaković"
+        },
+        {
+          "number": 27,
+          "pos": "FW",
+          "nat": "BEL",
+          "name": "Jesse Bisiwu",
+          "wiki": "Jesse Bisiwu"
+        },
+        {
+          "number": 29,
+          "pos": "FW",
+          "nat": "EGY",
+          "name": "Hamza Abdelkarim",
+          "wiki": "Hamza Abdelkarim"
+        }
+      ]
+    },
+    {
+      "code": "CEL",
+      "name": "Celta Vigo",
+      "wiki": "RC Celta de Vigo",
+      "crest": "esp-cel.png",
+      "previousSeason": {
+        "pos": 6,
+        "played": 38,
+        "w": 14,
+        "d": 12,
+        "l": 12,
+        "gf": 53,
+        "ga": 48
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "TUR",
+          "name": "Altay Bayındır",
+          "wiki": "Altay Bayındır"
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "SWE",
+          "name": "Carl Starfelt",
+          "wiki": "Carl Starfelt"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Marcos Alonso",
+          "wiki": "Marcos Alonso (footballer, born 1990)"
+        },
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "SEN",
+          "name": "Abdoulaye Faye",
+          "wiki": "Abdoulaye Faye (footballer, born 2004)"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Sergio Carreira",
+          "wiki": "Sergio Carreira"
+        },
+        {
+          "number": 6,
+          "pos": "MF",
+          "nat": "GUI",
+          "name": "Ilaix Moriba",
+          "wiki": "Ilaix Moriba"
+        },
+        {
+          "number": 7,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Borja Iglesias",
+          "wiki": "Borja Iglesias"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Miguel Román",
+          "wiki": "Miguel Román (footballer)"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Ferran Jutglà",
+          "wiki": "Ferran Jutglà"
+        },
+        {
+          "number": 10,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Iago Aspas",
+          "wiki": "Iago Aspas"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Pablo Durán",
+          "wiki": "Pablo Durán"
+        },
+        {
+          "number": 13,
+          "pos": "GK",
+          "nat": "ROU",
+          "name": "Ionuț Radu",
+          "wiki": "Ionuț Radu"
+        },
+        {
+          "number": 14,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Aleix Febas",
+          "wiki": "Aleix Febas"
+        },
+        {
+          "number": 15,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Álvaro Núñez",
+          "wiki": "Álvaro Núñez (footballer, born 2000)"
+        },
+        {
+          "number": 16,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Hugo González",
+          "wiki": "Hugo González (Spanish footballer)"
+        },
+        {
+          "number": 17,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Javi Rueda",
+          "wiki": "Javi Rueda"
+        },
+        {
+          "number": 18,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Yoel Lago",
+          "wiki": "Yoel Lago"
+        },
+        {
+          "number": 19,
+          "pos": "FW",
+          "nat": "SWE",
+          "name": "Williot Swedberg",
+          "wiki": "Williot Swedberg"
+        },
+        {
+          "number": 20,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Javi Rodríguez",
+          "wiki": "Javi Rodríguez (footballer)"
+        },
+        {
+          "number": 21,
+          "pos": "DF",
+          "nat": "URU",
+          "name": "Sebastián Cáceres",
+          "wiki": "Sebastián Cáceres"
+        },
+        {
+          "number": 22,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Javi Galán",
+          "wiki": "Javi Galán"
+        },
+        {
+          "number": 23,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Hugo Álvarez",
+          "wiki": "Hugo Álvarez (footballer, born 2003)"
+        },
+        {
+          "number": 24,
+          "pos": "FW",
+          "nat": "MAR",
+          "name": "Couhaib Driouech",
+          "wiki": "Couhaib Driouech"
+        },
+        {
+          "number": 25,
+          "pos": "GK",
+          "nat": "ESP",
+          "name": "Iván Villar",
+          "wiki": "Iván Villar"
+        },
+        {
+          "number": 39,
+          "pos": "FW",
+          "nat": "MAR",
+          "name": "Jones El-Abdellaoui",
+          "wiki": "Jones El-Abdellaoui"
+        }
+      ]
+    },
+    {
+      "code": "DEP",
+      "name": "Deportivo A Coruña",
+      "wiki": "Deportivo de A Coruña",
+      "crest": "esp-dep.png",
+      "previousSeason": null,
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "ESP",
+          "name": "Germán Parreño",
+          "wiki": "Germán Parreño"
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Adrià Altimira",
+          "wiki": "Adrià Altimira"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Arnau Comas",
+          "wiki": "Arnau Comas"
+        },
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "BEL",
+          "name": "Lucas Noubi",
+          "wiki": "Lucas Noubi"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Dani Barcia",
+          "wiki": "Dani Barcia"
+        },
+        {
+          "number": 6,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Marc Casadó",
+          "wiki": "Marc Casadó"
+        },
+        {
+          "number": 7,
+          "pos": "FW",
+          "nat": "GAB",
+          "name": "Pierre-Emerick Aubameyang",
+          "wiki": "Pierre-Emerick Aubameyang"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Diego Villares",
+          "wiki": "Diego Villares"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "NED",
+          "name": "Zakaria Eddahchouri",
+          "wiki": "Zakaria Eddahchouri"
+        },
+        {
+          "number": 10,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Yeremay Hernández",
+          "wiki": "Yeremay Hernández"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "David Mella",
+          "wiki": "David Mella"
+        },
+        {
+          "number": 12,
+          "pos": "DF",
+          "nat": "ITA",
+          "name": "Giacomo Quagliata",
+          "wiki": "Giacomo Quagliata"
+        },
+        {
+          "number": 13,
+          "pos": "GK",
+          "nat": "ESP",
+          "name": "Leo Román",
+          "wiki": "Leo Román"
+        },
+        {
+          "number": 14,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Riki Rodríguez",
+          "wiki": "Riki (footballer, born 1997)"
+        },
+        {
+          "number": 15,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Miguel Loureiro",
+          "wiki": "Miguel Loureiro"
+        },
+        {
+          "number": 16,
+          "pos": "MF",
+          "nat": "ITA",
+          "name": "Lorenzo Amatucci",
+          "wiki": "Lorenzo Amatucci"
+        },
+        {
+          "number": 17,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Angeliño",
+          "wiki": "Angeliño"
+        },
+        {
+          "number": 18,
+          "pos": "MF",
+          "nat": "DEN",
+          "name": "Jonathan Asp Jensen",
+          "wiki": "Jonathan Asp Jensen"
+        },
+        {
+          "number": 19,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Luismi Cruz",
+          "wiki": "Luismi Cruz"
+        },
+        {
+          "number": 20,
+          "pos": "DF",
+          "nat": "URU",
+          "name": "José María Giménez",
+          "wiki": "José María Giménez"
+        },
+        {
+          "number": 21,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Mario Soriano",
+          "wiki": "Mario Soriano"
+        },
+        {
+          "number": 22,
+          "pos": "DF",
+          "nat": "POL",
+          "name": "Bright Ede",
+          "wiki": "Bright Ede"
+        },
+        {
+          "number": 23,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Ximo Navarro",
+          "wiki": "Ximo Navarro (footballer, born 1990)"
+        },
+        {
+          "number": 24,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Adama Traoré",
+          "wiki": "Adama Traoré (footballer, born 1996)"
+        },
+        {
+          "number": 25,
+          "pos": "GK",
+          "nat": "ESP",
+          "name": "Álvaro Fernández",
+          "wiki": "Álvaro Fernández (footballer, born 1998)"
+        },
+        {
+          "number": 32,
+          "pos": "FW",
+          "nat": "CMR",
+          "name": "Bil Nsongo",
+          "wiki": "Bil Nsongo"
+        }
+      ]
+    },
+    {
+      "code": "ELC",
+      "name": "Elche",
+      "wiki": "Elche CF",
+      "crest": "esp-elc.png",
+      "previousSeason": {
+        "pos": 15,
+        "played": 38,
+        "w": 10,
+        "d": 13,
+        "l": 15,
+        "gf": 49,
+        "ga": 57
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "ARG",
+          "name": "Matías Dituro",
+          "wiki": "Matías Dituro"
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Buba Sangaré",
+          "wiki": "Buba Sangaré"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "ISR",
+          "name": "Roy Revivo",
+          "wiki": "Roy Revivo"
+        },
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Bambo Diaby",
+          "wiki": "Bambo Diaby"
+        },
+        {
+          "number": 5,
+          "pos": "MF",
+          "nat": "ARG",
+          "name": "Federico Redondo",
+          "wiki": "Federico Redondo"
+        },
+        {
+          "number": 6,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Pedro Bigas",
+          "wiki": "Pedro Bigas"
+        },
+        {
+          "number": 7,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Yago Santiago",
+          "wiki": "Yago Santiago"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Marc Aguado",
+          "wiki": "Marc Aguado"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "ARG",
+          "name": "Ezequiel Ponce",
+          "wiki": "Ezequiel Ponce"
+        },
+        {
+          "number": 10,
+          "pos": "MF",
+          "nat": "ARG",
+          "name": "Facundo Buonanotte",
+          "wiki": "Facundo Buonanotte"
+        },
+        {
+          "number": 11,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Germán Valera",
+          "wiki": "Germán Valera"
+        },
+        {
+          "number": 12,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Gonzalo Villar",
+          "wiki": "Gonzalo Villar (footballer)"
+        },
+        {
+          "number": 13,
+          "pos": "GK",
+          "nat": "ESP",
+          "name": "Alejandro Iturbe",
+          "wiki": "Alejandro Iturbe"
+        },
+        {
+          "number": 14,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Fer Niño",
+          "wiki": "Fer Niño"
+        },
+        {
+          "number": 15,
+          "pos": "DF",
+          "nat": "ARG",
+          "name": "Kevin Lomónaco",
+          "wiki": "Kevin Lomónaco"
+        },
+        {
+          "number": 16,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Martim Neto",
+          "wiki": "Martim Neto"
+        },
+        {
+          "number": 17,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Josan",
+          "wiki": "Josan (footballer)"
+        },
+        {
+          "number": 18,
+          "pos": "MF",
+          "nat": "FRA",
+          "name": "Thomas Lemar",
+          "wiki": "Thomas Lemar"
+        },
+        {
+          "number": 19,
+          "pos": "MF",
+          "nat": "COD",
+          "name": "Grady Diangana",
+          "wiki": "Grady Diangana"
+        },
+        {
+          "number": 20,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Tete Morente",
+          "wiki": "Tete Morente"
+        },
+        {
+          "number": 21,
+          "pos": "FW",
+          "nat": "CHI",
+          "name": "Lucas Cepeda",
+          "wiki": "Lucas Cepeda"
+        },
+        {
+          "number": 22,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Rubén Sánchez",
+          "wiki": "Rubén Sánchez (footballer, born 2001)"
+        },
+        {
+          "number": 23,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Víctor Chust",
+          "wiki": "Víctor Chust"
+        },
+        {
+          "number": 24,
+          "pos": "FW",
+          "nat": "ARG",
+          "name": "Abiel Osorio",
+          "wiki": "Abiel Osorio"
+        },
+        {
+          "number": 26,
+          "pos": "DF",
+          "nat": "CRO",
+          "name": "Matía Barzić",
+          "wiki": "Matía Barzic"
+        },
+        {
+          "number": 29,
+          "pos": "MF",
+          "nat": "MAR",
+          "name": "Ali Houary",
+          "wiki": "Ali Houary"
+        },
+        {
+          "number": 32,
+          "pos": "MF",
+          "nat": "MAR",
+          "name": "Adam Boayar",
+          "wiki": "Adam Boayar"
+        },
+        {
+          "number": 47,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Javi Morcillo",
+          "wiki": "Javi Morcillo"
+        }
+      ]
+    },
+    {
+      "code": "ESP",
+      "name": "Espanyol",
+      "wiki": "RCD Espanyol",
+      "crest": "esp-esp.png",
+      "previousSeason": {
+        "pos": 11,
+        "played": 38,
+        "w": 12,
+        "d": 10,
+        "l": 16,
+        "gf": 43,
+        "ga": 55
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "ESP",
+          "name": "Ángel Fortuño",
+          "wiki": "Ángel Fortuño"
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Andoni Gorosabel",
+          "wiki": "Andoni Gorosabel"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "NED",
+          "name": "Quilindschy Hartman",
+          "wiki": "Quilindschy Hartman"
+        },
+        {
+          "number": 4,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Urko González de Zárate",
+          "wiki": "Urko González de Zárate"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "GER",
+          "name": "Clemens Riedel",
+          "wiki": "Clemens Riedel"
+        },
+        {
+          "number": 6,
+          "pos": "DF",
+          "nat": "URU",
+          "name": "Leandro Cabrera",
+          "wiki": "Leandro Cabrera"
+        },
+        {
+          "number": 7,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Javi Puado",
+          "wiki": "Javi Puado"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Edu Expósito",
+          "wiki": "Edu Expósito"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Roberto Fernández",
+          "wiki": "Roberto Fernández (footballer, born 2002)"
+        },
+        {
+          "number": 10,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Pol Lozano",
+          "wiki": "Pol Lozano"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Pere Milla",
+          "wiki": "Pere Milla"
+        },
+        {
+          "number": 13,
+          "pos": "GK",
+          "nat": "SRB",
+          "name": "Marko Dmitrović",
+          "wiki": "Marko Dmitrović"
+        },
+        {
+          "number": 14,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Unai Nuñez",
+          "wiki": "Unai Nuñez"
+        },
+        {
+          "number": 15,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Bryan Zaragoza",
+          "wiki": "Bryan Zaragoza"
+        },
+        {
+          "number": 16,
+          "pos": "DF",
+          "nat": "SVN",
+          "name": "Vanja Drkušić",
+          "wiki": "Vanja Drkušić"
+        },
+        {
+          "number": 17,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Jofre Carreras",
+          "wiki": "Jofre Carreras"
+        },
+        {
+          "number": 18,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Marcos Fernández",
+          "wiki": "Marcos Fernández (footballer, born May 2003)"
+        },
+        {
+          "number": 19,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Kike García",
+          "wiki": "Kike García (Spanish footballer)"
+        },
+        {
+          "number": 20,
+          "pos": "MF",
+          "nat": "BRA",
+          "name": "Gabriel Moscardo",
+          "wiki": "Gabriel Moscardo"
+        },
+        {
+          "number": 21,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Roger Hinojo",
+          "wiki": "Roger Hinojo"
+        },
+        {
+          "number": 22,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Álex Calatrava",
+          "wiki": "Álex Calatrava (footballer)"
+        },
+        {
+          "number": 23,
+          "pos": "DF",
+          "nat": "MAR",
+          "name": "Omar El Hilali",
+          "wiki": "Omar El Hilali"
+        },
+        {
+          "number": 24,
+          "pos": "FW",
+          "nat": "ENG",
+          "name": "Tyrhys Dolan",
+          "wiki": "Tyrhys Dolan"
+        },
+        {
+          "number": 26,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Rafel Bauzà",
+          "wiki": "Rafel Bauzà"
+        },
+        {
+          "number": 28,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Javi Hernández",
+          "wiki": "Javi Hernández (footballer, born 2004)"
+        }
+      ]
+    },
+    {
+      "code": "GET",
+      "name": "Getafe",
+      "wiki": "Getafe CF",
+      "crest": "esp-get.png",
+      "previousSeason": {
+        "pos": 7,
+        "played": 38,
+        "w": 15,
+        "d": 6,
+        "l": 17,
+        "gf": 32,
+        "ga": 38
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "CZE",
+          "name": "Jiří Letáček",
+          "wiki": "Jiří Letáček"
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "TOG",
+          "name": "Dakonam Djené",
+          "wiki": "Dakonam Djené"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Davinchi",
+          "wiki": "Davinchi"
+        },
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "GEO",
+          "name": "Saba Sazonov",
+          "wiki": "Saba Sazonov"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "MAR",
+          "name": "Abdel Abqar",
+          "wiki": "Abdel Abqar"
+        },
+        {
+          "number": 6,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Mario Martín",
+          "wiki": "Mario Martín"
+        },
+        {
+          "number": 7,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Juanmi",
+          "wiki": "Juanmi (footballer, born 1993)"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "SRB",
+          "name": "Nemanja Gudelj",
+          "wiki": "Nemanja Gudelj"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Borja Mayoral",
+          "wiki": "Borja Mayoral"
+        },
+        {
+          "number": 10,
+          "pos": "FW",
+          "nat": "URU",
+          "name": "Martín Satriano",
+          "wiki": "Martín Satriano"
+        },
+        {
+          "number": 11,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Ramon Terrats",
+          "wiki": "Ramon Terrats"
+        },
+        {
+          "number": 13,
+          "pos": "GK",
+          "nat": "ESP",
+          "name": "David Soria",
+          "wiki": "David Soria"
+        },
+        {
+          "number": 14,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Dani Carvajal",
+          "wiki": "Dani Carvajal"
+        },
+        {
+          "number": 15,
+          "pos": "DF",
+          "nat": "URU",
+          "name": "Sebastián Boselli",
+          "wiki": "Sebastián Boselli"
+        },
+        {
+          "number": 16,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Francho Serrano",
+          "wiki": "Francho Serrano"
+        },
+        {
+          "number": 17,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Kiko Femenía",
+          "wiki": "Kiko Femenía"
+        },
+        {
+          "number": 19,
+          "pos": "FW",
+          "nat": "TUR",
+          "name": "Enes Ünal",
+          "wiki": "Enes Ünal"
+        },
+        {
+          "number": 20,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Iván Azón",
+          "wiki": "Iván Azón"
+        },
+        {
+          "number": 21,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Andrés García",
+          "wiki": "Andrés García (footballer, born 2003)"
+        },
+        {
+          "number": 22,
+          "pos": "DF",
+          "nat": "COL",
+          "name": "Johan Mojica",
+          "wiki": "Johan Mojica"
+        },
+        {
+          "number": 23,
+          "pos": "MF",
+          "nat": "BEL",
+          "name": "Orel Mangala",
+          "wiki": "Orel Mangala"
+        },
+        {
+          "number": 24,
+          "pos": "DF",
+          "nat": "ARG",
+          "name": "Zaid Romero",
+          "wiki": "Zaid Romero"
+        },
+        {
+          "number": 26,
+          "pos": "DF",
+          "nat": "CIV",
+          "name": "Jean Ives Valou",
+          "wiki": "Jean Ives Valou"
+        },
+        {
+          "number": null,
+          "pos": "MF",
+          "nat": "NGA",
+          "name": "Christantus Uche",
+          "wiki": "Christantus Uche"
+        }
+      ]
+    },
+    {
+      "code": "LEV",
+      "name": "Levante",
+      "wiki": "Levante UD",
+      "crest": "esp-lev.png",
+      "previousSeason": {
+        "pos": 16,
+        "played": 38,
+        "w": 11,
+        "d": 9,
+        "l": 18,
+        "gf": 47,
+        "ga": 61
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "ESP",
+          "name": "Pablo Campos",
+          "wiki": "Pablo Campos (Spanish footballer)"
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "ALG",
+          "name": "Aïssa Mandi",
+          "wiki": "Aïssa Mandi"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "AUT",
+          "name": "Ifeanyi Ndukwe",
+          "wiki": "Ifeanyi Ndukwe"
+        },
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Adrián Dela",
+          "wiki": "Adrián de la Fuente"
+        },
+        {
+          "number": 5,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Hugo Sotelo",
+          "wiki": "Hugo Sotelo"
+        },
+        {
+          "number": 6,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Dani Requena",
+          "wiki": "Dani Requena"
+        },
+        {
+          "number": 7,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Roger Brugué",
+          "wiki": "Roger Brugué"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Jon Ander Olasagasti",
+          "wiki": "Jon Ander Olasagasti"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Iván Romero",
+          "wiki": "Iván Romero (footballer, born 2001)"
+        },
+        {
+          "number": 10,
+          "pos": "FW",
+          "nat": "SRB",
+          "name": "Petar Ratkov",
+          "wiki": "Petar Ratkov"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "BEL",
+          "name": "Yanis Musuayi",
+          "wiki": "Yanis Musuayi"
+        },
+        {
+          "number": 13,
+          "pos": "GK",
+          "nat": "AUS",
+          "name": "Mathew Ryan",
+          "wiki": "Mathew Ryan"
+        },
+        {
+          "number": 14,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Jorge Cabello",
+          "wiki": "Jorge Cabello"
+        },
+        {
+          "number": 16,
+          "pos": "MF",
+          "nat": "FRA",
+          "name": "Axel Tape",
+          "wiki": "Axel Tape"
+        },
+        {
+          "number": 17,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Víctor García",
+          "wiki": "Víctor García (footballer, born 1997)"
+        },
+        {
+          "number": 18,
+          "pos": "MF",
+          "nat": "FRA",
+          "name": "Enzo Bardeli",
+          "wiki": "Enzo Bardeli"
+        },
+        {
+          "number": 20,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Oriol Rey",
+          "wiki": "Oriol Rey"
+        },
+        {
+          "number": 21,
+          "pos": "FW",
+          "nat": "CMR",
+          "name": "Karl Etta Eyong",
+          "wiki": "Karl Etta Eyong"
+        },
+        {
+          "number": 22,
+          "pos": "DF",
+          "nat": "GER",
+          "name": "Jeremy Toljan",
+          "wiki": "Jeremy Toljan"
+        },
+        {
+          "number": 23,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Manu Sánchez",
+          "wiki": "Manu Sánchez (footballer, born 2000)"
+        },
+        {
+          "number": 24,
+          "pos": "MF",
+          "nat": "ARG",
+          "name": "Thiago Fernández",
+          "wiki": "Thiago Fernández"
+        },
+        {
+          "number": 27,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Paco Cortés",
+          "wiki": "Paco Cortés"
+        },
+        {
+          "number": 29,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Nacho Pérez",
+          "wiki": "Nacho Pérez"
+        },
+        {
+          "number": 32,
+          "pos": "GK",
+          "nat": "ESP",
+          "name": "Álex Primo",
+          "wiki": "Alejandro Primo"
+        },
+        {
+          "number": 33,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Marc Santos",
+          "wiki": "Marc Santos"
+        }
+      ]
+    },
+    {
+      "code": "MAL",
+      "name": "Málaga",
+      "wiki": "Málaga CF",
+      "crest": "esp-mal.png",
+      "previousSeason": null,
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "ESP",
+          "name": "Alfonso Herrero",
+          "wiki": "Alfonso Herrero"
+        },
+        {
+          "number": 2,
+          "pos": "MF",
+          "nat": "SWE",
+          "name": "Jens Cajuste",
+          "wiki": "Jens Cajuste"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Carlos Puga",
+          "wiki": "Carlos Puga"
+        },
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Einar Galilea",
+          "wiki": "Einar Galilea"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Álex Pastor",
+          "wiki": "Álex Pastor"
+        },
+        {
+          "number": 6,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Ramón",
+          "wiki": "Ramón Enríquez"
+        },
+        {
+          "number": 7,
+          "pos": "MF",
+          "nat": "MAR",
+          "name": "Haitam",
+          "wiki": "Haitam Abaida"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Carlos Dotor",
+          "wiki": "Carlos Dotor"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Chupete",
+          "wiki": "Chupete"
+        },
+        {
+          "number": 10,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "David Larrubia",
+          "wiki": "David Larrubia"
+        },
+        {
+          "number": 11,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Joaquín Muñoz",
+          "wiki": "Joaquín Muñoz (footballer, born 1999)"
+        },
+        {
+          "number": 12,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "José Salinas",
+          "wiki": "José Salinas (footballer)"
+        },
+        {
+          "number": 13,
+          "pos": "GK",
+          "nat": "ESP",
+          "name": "Carlos López",
+          "wiki": "Carlos López (footballer, born 2004)"
+        },
+        {
+          "number": 14,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Rafa",
+          "wiki": "Rafa (footballer, born 2003)"
+        },
+        {
+          "number": 15,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Ángel Recio",
+          "wiki": "Ángel Recio"
+        },
+        {
+          "number": 16,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Diego Murillo",
+          "wiki": "Diego Murillo"
+        },
+        {
+          "number": 17,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Eneko Jauregi",
+          "wiki": "Eneko Jauregi"
+        },
+        {
+          "number": 18,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Pablo Martínez",
+          "wiki": "Pablo Martínez (Spanish footballer)"
+        },
+        {
+          "number": 19,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Juan Cruz",
+          "wiki": "Juan Cruz (footballer, born 2000)"
+        },
+        {
+          "number": 20,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Fernando Calero",
+          "wiki": "Fernando Calero"
+        },
+        {
+          "number": 21,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Adrián Niño",
+          "wiki": "Adrián Niño"
+        },
+        {
+          "number": 22,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Dani Lorenzo",
+          "wiki": "Dani Lorenzo"
+        },
+        {
+          "number": 23,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Izan Merino",
+          "wiki": "Izan Merino"
+        },
+        {
+          "number": 24,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Julen Lobete",
+          "wiki": "Julen Lobete"
+        },
+        {
+          "number": 25,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Juan Berrocal",
+          "wiki": "Juan Berrocal"
+        },
+        {
+          "number": 31,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Rafita",
+          "wiki": "Rafita (footballer, born 2004)"
+        },
+        {
+          "number": 35,
+          "pos": "MF",
+          "nat": "IRL",
+          "name": "Aarón Ochoa",
+          "wiki": "Aarón Ochoa"
+        },
+        {
+          "number": 39,
+          "pos": "DF",
+          "nat": "MAR",
+          "name": "Adam Aznou",
+          "wiki": "Adam Aznou"
+        }
+      ]
+    },
+    {
+      "code": "OSA",
+      "name": "Osasuna",
+      "wiki": "CA Osasuna",
+      "crest": "esp-osa.png",
+      "previousSeason": {
+        "pos": 17,
+        "played": 38,
+        "w": 11,
+        "d": 9,
+        "l": 18,
+        "gf": 44,
+        "ga": 50
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "ESP",
+          "name": "Sergio Herrera",
+          "wiki": "Sergio Herrera (footballer, born 1993)"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Jorge Herrando",
+          "wiki": "Jorge Herrando"
+        },
+        {
+          "number": 6,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Lucas Torró",
+          "wiki": "Lucas Torró"
+        },
+        {
+          "number": 7,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Jon Moncayola",
+          "wiki": "Jon Moncayola"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Iker Muñoz",
+          "wiki": "Iker Muñoz"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Raúl García",
+          "wiki": "Raúl García (footballer, born 2000)"
+        },
+        {
+          "number": 10,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Aimar Oroz",
+          "wiki": "Aimar Oroz"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Kike Barja",
+          "wiki": "Kike Barja"
+        },
+        {
+          "number": 13,
+          "pos": "GK",
+          "nat": "ESP",
+          "name": "Aitor Fernández",
+          "wiki": "Aitor Fernández (footballer, born 1991)"
+        },
+        {
+          "number": 14,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Rubén García",
+          "wiki": "Rubén García (footballer, born 1993)"
+        },
+        {
+          "number": 15,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Diego Rico",
+          "wiki": "Diego Rico"
+        },
+        {
+          "number": 16,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Moi Gómez",
+          "wiki": "Moi Gómez"
+        },
+        {
+          "number": 17,
+          "pos": "FW",
+          "nat": "CRO",
+          "name": "Ante Budimir",
+          "wiki": "Ante Budimir"
+        },
+        {
+          "number": 18,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Raúl Moro",
+          "wiki": "Raúl Moro"
+        },
+        {
+          "number": 19,
+          "pos": "DF",
+          "nat": "FRA",
+          "name": "Valentin Rosier",
+          "wiki": "Valentin Rosier"
+        },
+        {
+          "number": 20,
+          "pos": "FW",
+          "nat": "FRA",
+          "name": "Romain Del Castillo",
+          "wiki": "Romain Del Castillo"
+        },
+        {
+          "number": 21,
+          "pos": "MF",
+          "nat": "BEL",
+          "name": "Jonathan Dubasin",
+          "wiki": "Jonathan Dubasin"
+        },
+        {
+          "number": 22,
+          "pos": "DF",
+          "nat": "CMR",
+          "name": "Enzo Boyomo",
+          "wiki": "Flavien Enzo Boyomo"
+        },
+        {
+          "number": 23,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Abel Bretones",
+          "wiki": "Abel Bretones"
+        },
+        {
+          "number": 24,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Alejandro Catena",
+          "wiki": "Alejandro Catena"
+        },
+        {
+          "number": 26,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Mauro Echegoyen",
+          "wiki": "Mauro Echegoyen Berrozpe"
+        },
+        {
+          "number": 27,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Iñigo Arguibide",
+          "wiki": "Iñigo Arguibide"
+        },
+        {
+          "number": 29,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Asier Osambela",
+          "wiki": "Asier Osambela"
+        },
+        {
+          "number": 48,
+          "pos": "DF",
+          "nat": "GHA",
+          "name": "Rockson Yeboah",
+          "wiki": "Rockson Yeboah"
+        }
+      ]
+    },
+    {
+      "code": "RAC",
+      "name": "Racing Santander",
+      "wiki": "Racing de Santander",
+      "crest": "esp-rac.png",
+      "previousSeason": null,
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "SWE",
+          "name": "Simon Eriksson",
+          "wiki": "Simon Eriksson (footballer)"
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Álvaro Mantilla",
+          "wiki": "Álvaro Mantilla"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Aarón Martín",
+          "wiki": "Aarón Martín (footballer, born 1997)"
+        },
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Manu Hernando",
+          "wiki": "Manu Hernando"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Pablo Ramón",
+          "wiki": "Pablo Ramón"
+        },
+        {
+          "number": 6,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Íñigo Sainz-Maza",
+          "wiki": "Íñigo Sainz-Maza"
+        },
+        {
+          "number": 7,
+          "pos": "FW",
+          "nat": "GEO",
+          "name": "Giorgi Guliashvili",
+          "wiki": "Giorgi Guliashvili"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "André Almeida",
+          "wiki": "André Almeida (footballer, born 2000)"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Juan Carlos Arana",
+          "wiki": "Juan Carlos Arana"
+        },
+        {
+          "number": 10,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Iñigo Vicente",
+          "wiki": "Iñigo Vicente"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Andrés Martín",
+          "wiki": "Andrés Martín (footballer)"
+        },
+        {
+          "number": 12,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Asier Villalibre",
+          "wiki": "Asier Villalibre"
+        },
+        {
+          "number": 13,
+          "pos": "GK",
+          "nat": "ESP",
+          "name": "Julen Agirrezabala",
+          "wiki": "Julen Agirrezabala"
+        },
+        {
+          "number": 14,
+          "pos": "MF",
+          "nat": "SEN",
+          "name": "Maguette Gueye",
+          "wiki": "Maguette Gueye"
+        },
+        {
+          "number": 15,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Pablo García",
+          "wiki": "Pablo García (footballer, born 2006)"
+        },
+        {
+          "number": 16,
+          "pos": "DF",
+          "nat": "URU",
+          "name": "Facundo González",
+          "wiki": "Facundo González"
+        },
+        {
+          "number": 17,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Jorge Salinas",
+          "wiki": "Jorge Salinas (Spanish footballer)"
+        },
+        {
+          "number": 18,
+          "pos": "MF",
+          "nat": "ITA",
+          "name": "Matteo Prati",
+          "wiki": "Matteo Prati"
+        },
+        {
+          "number": 19,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Iker Luque",
+          "wiki": "Iker Luque"
+        },
+        {
+          "number": 20,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Sergio Canales",
+          "wiki": "Sergio Canales"
+        },
+        {
+          "number": 21,
+          "pos": "FW",
+          "nat": "MAR",
+          "name": "Yassir Zabiri",
+          "wiki": "Yassir Zabiri"
+        },
+        {
+          "number": 22,
+          "pos": "DF",
+          "nat": "BRA",
+          "name": "Pedro Felipe",
+          "wiki": "Pedro Felipe (footballer, born 2004)"
+        },
+        {
+          "number": 23,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Iván Martín",
+          "wiki": "Iván Martín (footballer, born 1999)"
+        },
+        {
+          "number": 24,
+          "pos": "DF",
+          "nat": "FRA",
+          "name": "Jeanuël Belocian",
+          "wiki": "Jeanuël Belocian"
+        }
+      ]
+    },
+    {
+      "code": "RAY",
+      "name": "Rayo Vallecano",
+      "wiki": "Rayo Vallecano",
+      "crest": "esp-ray.png",
+      "previousSeason": {
+        "pos": 8,
+        "played": 38,
+        "w": 12,
+        "d": 14,
+        "l": 12,
+        "gf": 41,
+        "ga": 44
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "ESP",
+          "name": "Dani Cárdenas",
+          "wiki": "Daniel Cárdenas"
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "ROU",
+          "name": "Andrei Rațiu",
+          "wiki": "Andrei Rațiu"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "ALB",
+          "name": "Marash Kumbulla",
+          "wiki": "Marash Kumbulla"
+        },
+        {
+          "number": 4,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Pedro Díaz",
+          "wiki": "Pedro Díaz (footballer, born 1998)"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "ITA",
+          "name": "Luiz Felipe",
+          "wiki": "Luiz Felipe (footballer, born March 1997)"
+        },
+        {
+          "number": 6,
+          "pos": "MF",
+          "nat": "SEN",
+          "name": "Pathé Ciss",
+          "wiki": "Pathé Ciss"
+        },
+        {
+          "number": 7,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Isi Palazón",
+          "wiki": "Isi Palazón"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Unai López",
+          "wiki": "Unai López"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Alemão",
+          "wiki": "Alemão (footballer, born 1998)"
+        },
+        {
+          "number": 10,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Sergio Camello",
+          "wiki": "Sergio Camello"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "ANG",
+          "name": "Randy Nteka",
+          "wiki": "Randy Nteka"
+        },
+        {
+          "number": 13,
+          "pos": "GK",
+          "nat": "ARG",
+          "name": "Augusto Batalla",
+          "wiki": "Augusto Batalla"
+        },
+        {
+          "number": 14,
+          "pos": "MF",
+          "nat": "GEO",
+          "name": "Giorgi Tsitaishvili",
+          "wiki": "Giorgi Tsitaishvili"
+        },
+        {
+          "number": 15,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Mujaid Sadick",
+          "wiki": "Mujaid Sadick"
+        },
+        {
+          "number": 17,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Adrià Pedrosa",
+          "wiki": "Adrià Pedrosa"
+        },
+        {
+          "number": 18,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Álvaro García",
+          "wiki": "Álvaro García (footballer, born 1992)"
+        },
+        {
+          "number": 19,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Jorge de Frutos",
+          "wiki": "Jorge de Frutos"
+        },
+        {
+          "number": 20,
+          "pos": "DF",
+          "nat": "ALB",
+          "name": "Iván Balliu",
+          "wiki": "Iván Balliu"
+        },
+        {
+          "number": 21,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Fran Pérez",
+          "wiki": "Fran Pérez (footballer, born 2002)"
+        },
+        {
+          "number": 22,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Pelayo Fernández",
+          "wiki": "Pelayo Fernández"
+        },
+        {
+          "number": 23,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Óscar Valentín",
+          "wiki": "Óscar Valentín"
+        },
+        {
+          "number": 24,
+          "pos": "DF",
+          "nat": "FRA",
+          "name": "Florian Lejeune",
+          "wiki": "Florian Lejeune"
+        },
+        {
+          "number": 25,
+          "pos": "GK",
+          "nat": "IDN",
+          "name": "Emil Audero",
+          "wiki": "Emil Audero"
+        },
+        {
+          "number": 33,
+          "pos": "DF",
+          "nat": "NED",
+          "name": "Jozhua Vertrouwd",
+          "wiki": "Jozhua Vertrouwd"
+        },
+        {
+          "number": 36,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Gnangoro Bouare",
+          "wiki": "Gnangoro Bouare"
+        },
+        {
+          "number": 37,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Rayane Belaid",
+          "wiki": "Rayane Belaid"
+        }
+      ]
+    },
+    {
+      "code": "BET",
+      "name": "Real Betis",
+      "wiki": "Real Betis",
+      "crest": "esp-bet.png",
+      "previousSeason": {
+        "pos": 5,
+        "played": 38,
+        "w": 15,
+        "d": 15,
+        "l": 8,
+        "gf": 59,
+        "ga": 48
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "ESP",
+          "name": "Álvaro Valles",
+          "wiki": "Álvaro Valles"
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Héctor Bellerín",
+          "wiki": "Héctor Bellerín"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Diego Llorente",
+          "wiki": "Diego Llorente"
+        },
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "BRA",
+          "name": "Natan",
+          "wiki": "Natan (footballer, born 2001)"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Marc Bartra",
+          "wiki": "Marc Bartra"
+        },
+        {
+          "number": 6,
+          "pos": "MF",
+          "nat": "URU",
+          "name": "Facundo Bernal",
+          "wiki": "Facundo Bernal"
+        },
+        {
+          "number": 7,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Antony",
+          "wiki": "Antony (footballer, born 2000)"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Pablo Fornals",
+          "wiki": "Pablo Fornals"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "COL",
+          "name": "Cucho Hernández",
+          "wiki": "Cucho Hernández"
+        },
+        {
+          "number": 10,
+          "pos": "FW",
+          "nat": "MAR",
+          "name": "Abde Ezzalzouli",
+          "wiki": "Abde Ezzalzouli"
+        },
+        {
+          "number": 11,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Fran García",
+          "wiki": "Fran García (footballer, born 1999)"
+        },
+        {
+          "number": 12,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Ángel Ortiz",
+          "wiki": "Ángel Ortiz (footballer, born 2004)"
+        },
+        {
+          "number": 13,
+          "pos": "GK",
+          "nat": "ESP",
+          "name": "Diego Conde",
+          "wiki": "Diego Conde"
+        },
+        {
+          "number": 14,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Iker Losada",
+          "wiki": "Iker Losada"
+        },
+        {
+          "number": 15,
+          "pos": "MF",
+          "nat": "MEX",
+          "name": "Álvaro Fidalgo",
+          "wiki": "Álvaro Fidalgo"
+        },
+        {
+          "number": 16,
+          "pos": "DF",
+          "nat": "ARG",
+          "name": "Valentín Gómez",
+          "wiki": "Valentín Gómez"
+        },
+        {
+          "number": 17,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Rodrigo Riquelme",
+          "wiki": "Rodrigo Riquelme (footballer, born 2000)"
+        },
+        {
+          "number": 18,
+          "pos": "MF",
+          "nat": "COL",
+          "name": "Nelson Deossa",
+          "wiki": "Nelson Deossa"
+        },
+        {
+          "number": 19,
+          "pos": "FW",
+          "nat": "IRL",
+          "name": "Troy Parrott",
+          "wiki": "Troy Parrott"
+        },
+        {
+          "number": 20,
+          "pos": "MF",
+          "nat": "ARG",
+          "name": "Giovanni Lo Celso",
+          "wiki": "Giovanni Lo Celso"
+        },
+        {
+          "number": 21,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Marc Roca",
+          "wiki": "Marc Roca"
+        },
+        {
+          "number": 22,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Isco",
+          "wiki": "Isco"
+        },
+        {
+          "number": 23,
+          "pos": "DF",
+          "nat": "DOM",
+          "name": "Junior Firpo",
+          "wiki": "Junior Firpo"
+        },
+        {
+          "number": 24,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Aitor Ruibal",
+          "wiki": "Aitor Ruibal"
+        },
+        {
+          "number": 25,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Dani Ceballos",
+          "wiki": "Dani Ceballos"
+        }
+      ]
+    },
+    {
+      "code": "RMA",
+      "name": "Real Madrid",
+      "wiki": "Real Madrid CF",
+      "crest": "esp-rma.png",
+      "previousSeason": {
+        "pos": 2,
+        "played": 38,
+        "w": 27,
+        "d": 5,
+        "l": 6,
+        "gf": 77,
+        "ga": 35
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "BEL",
+          "name": "Thibaut Courtois",
+          "wiki": "Thibaut Courtois"
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Raúl Asencio",
+          "wiki": "Raúl Asencio (footballer, born 2003)"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "BRA",
+          "name": "Éder Militão",
+          "wiki": "Éder Militão"
+        },
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Dean Huijsen",
+          "wiki": "Dean Huijsen"
+        },
+        {
+          "number": 5,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Jude Bellingham",
+          "wiki": "Jude Bellingham"
+        },
+        {
+          "number": 6,
+          "pos": "MF",
+          "nat": "FRA",
+          "name": "Eduardo Camavinga",
+          "wiki": "Eduardo Camavinga"
+        },
+        {
+          "number": 7,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Vinícius Júnior",
+          "wiki": "Vinícius Júnior"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "URU",
+          "name": "Federico Valverde",
+          "wiki": "Federico Valverde"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Endrick",
+          "wiki": "Endrick"
+        },
+        {
+          "number": 10,
+          "pos": "FW",
+          "nat": "FRA",
+          "name": "Kylian Mbappé",
+          "wiki": "Kylian Mbappé"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Rodrygo",
+          "wiki": "Rodrygo"
+        },
+        {
+          "number": 12,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Trent Alexander-Arnold",
+          "wiki": "Trent Alexander-Arnold"
+        },
+        {
+          "number": 13,
+          "pos": "GK",
+          "nat": "UKR",
+          "name": "Andriy Lunin",
+          "wiki": "Andriy Lunin"
+        },
+        {
+          "number": 14,
+          "pos": "MF",
+          "nat": "FRA",
+          "name": "Aurélien Tchouaméni",
+          "wiki": "Aurélien Tchouaméni"
+        },
+        {
+          "number": 15,
+          "pos": "MF",
+          "nat": "TUR",
+          "name": "Arda Güler",
+          "wiki": "Arda Güler"
+        },
+        {
+          "number": 16,
+          "pos": "DF",
+          "nat": "FRA",
+          "name": "Ibrahima Konaté",
+          "wiki": "Ibrahima Konaté"
+        },
+        {
+          "number": 17,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Marc Cucurella",
+          "wiki": "Marc Cucurella"
+        },
+        {
+          "number": 18,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Álvaro Carreras",
+          "wiki": "Álvaro Carreras"
+        },
+        {
+          "number": 19,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Carlos Espí",
+          "wiki": "Carlos Espí"
+        },
+        {
+          "number": 20,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Bernardo Silva",
+          "wiki": "Bernardo Silva"
+        },
+        {
+          "number": 21,
+          "pos": "FW",
+          "nat": "MAR",
+          "name": "Brahim Díaz",
+          "wiki": "Brahim Díaz"
+        },
+        {
+          "number": 22,
+          "pos": "DF",
+          "nat": "GER",
+          "name": "Antonio Rüdiger",
+          "wiki": "Antonio Rüdiger"
+        },
+        {
+          "number": 23,
+          "pos": "DF",
+          "nat": "FRA",
+          "name": "Ferland Mendy",
+          "wiki": "Ferland Mendy"
+        },
+        {
+          "number": 24,
+          "pos": "DF",
+          "nat": "NED",
+          "name": "Denzel Dumfries",
+          "wiki": "Denzel Dumfries"
+        },
+        {
+          "number": 25,
+          "pos": "FW",
+          "nat": "CIV",
+          "name": "Yan Diomande",
+          "wiki": "Yan Diomande"
+        },
+        {
+          "number": 27,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Thiago Pitarch",
+          "wiki": "Thiago Pitarch"
+        }
+      ]
+    },
+    {
+      "code": "RSO",
+      "name": "Real Sociedad",
+      "wiki": "Real Sociedad",
+      "crest": "esp-rso.png",
+      "previousSeason": {
+        "pos": 10,
+        "played": 38,
+        "w": 11,
+        "d": 13,
+        "l": 14,
+        "gf": 59,
+        "ga": 61
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "ESP",
+          "name": "Álex Remiro",
+          "wiki": "Álex Remiro"
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "VEN",
+          "name": "Jon Aramburu",
+          "wiki": "Jon Aramburu"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Aihen Muñoz",
+          "wiki": "Aihen Muñoz"
+        },
+        {
+          "number": 4,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Jon Gorrotxategi",
+          "wiki": "Jon Gorrotxategi"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Igor Zubeldia",
+          "wiki": "Igor Zubeldia"
+        },
+        {
+          "number": 6,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Jon Martín",
+          "wiki": "Jon Martín"
+        },
+        {
+          "number": 7,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Ander Barrenetxea",
+          "wiki": "Ander Barrenetxea (footballer)"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Beñat Turrientes",
+          "wiki": "Beñat Turrientes"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "ISL",
+          "name": "Orri Óskarsson",
+          "wiki": "Orri Óskarsson"
+        },
+        {
+          "number": 10,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Mikel Oyarzabal",
+          "wiki": "Mikel Oyarzabal"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "POR",
+          "name": "Gonçalo Guedes",
+          "wiki": "Gonçalo Guedes"
+        },
+        {
+          "number": 12,
+          "pos": "FW",
+          "nat": "KEN",
+          "name": "Job Ochieng",
+          "wiki": "Job Ochieng"
+        },
+        {
+          "number": 13,
+          "pos": "GK",
+          "nat": "ESP",
+          "name": "Unai Marrero",
+          "wiki": "Unai Marrero"
+        },
+        {
+          "number": 14,
+          "pos": "MF",
+          "nat": "JPN",
+          "name": "Takefusa Kubo",
+          "wiki": "Takefusa Kubo"
+        },
+        {
+          "number": 15,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Pablo Marín",
+          "wiki": "Pablo Marín (footballer, born 2003)"
+        },
+        {
+          "number": 16,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Jon Pacheco",
+          "wiki": "Jon Pacheco"
+        },
+        {
+          "number": 17,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Sergio Gómez",
+          "wiki": "Sergio Gómez (footballer, born 2000)"
+        },
+        {
+          "number": 18,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Carlos Soler",
+          "wiki": "Carlos Soler"
+        },
+        {
+          "number": 19,
+          "pos": "DF",
+          "nat": "SEN",
+          "name": "Mamadou Sarr",
+          "wiki": "Mamadou Sarr"
+        },
+        {
+          "number": 20,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Álvaro Odriozola",
+          "wiki": "Álvaro Odriozola"
+        },
+        {
+          "number": 21,
+          "pos": "MF",
+          "nat": "VEN",
+          "name": "Yangel Herrera",
+          "wiki": "Yangel Herrera"
+        },
+        {
+          "number": 22,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Héctor Fort",
+          "wiki": "Héctor Fort"
+        },
+        {
+          "number": 23,
+          "pos": "MF",
+          "nat": "RUS",
+          "name": "Arsen Zakharyan",
+          "wiki": "Arsen Zakharyan"
+        },
+        {
+          "number": 24,
+          "pos": "MF",
+          "nat": "CRO",
+          "name": "Luka Sučić",
+          "wiki": "Luka Sučić"
+        }
+      ]
+    },
+    {
+      "code": "SEV",
+      "name": "Sevilla",
+      "wiki": "Sevilla FC",
+      "crest": "esp-sev.png",
+      "previousSeason": {
+        "pos": 13,
+        "played": 38,
+        "w": 12,
+        "d": 7,
+        "l": 19,
+        "gf": 46,
+        "ga": 60
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "GRE",
+          "name": "Odysseas Vlachodimos",
+          "wiki": "Odysseas Vlachodimos"
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Juan Iglesias",
+          "wiki": "Juan Iglesias"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Julio Díaz",
+          "wiki": "Julio Díaz (footballer, born 2005)"
+        },
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Kike Salas",
+          "wiki": "Kike Salas"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Andrés Castrín",
+          "wiki": "Andrés Castrín"
+        },
+        {
+          "number": 6,
+          "pos": "MF",
+          "nat": "FRA",
+          "name": "Lucien Agoumé",
+          "wiki": "Lucien Agoumé"
+        },
+        {
+          "number": 7,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Alfon González",
+          "wiki": "Alfon González"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "GEO",
+          "name": "Giorgi Kochorashvili",
+          "wiki": "Giorgi Kochorashvili"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "SCO",
+          "name": "Robbie Ure",
+          "wiki": "Robbie Ure"
+        },
+        {
+          "number": 10,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Peque Fernández",
+          "wiki": "Peque Fernández"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "SUI",
+          "name": "Rubén Vargas",
+          "wiki": "Rubén Vargas"
+        },
+        {
+          "number": 12,
+          "pos": "DF",
+          "nat": "SEN",
+          "name": "Arouna Sangante",
+          "wiki": "Arouna Sangante"
+        },
+        {
+          "number": 13,
+          "pos": "GK",
+          "nat": "ESP",
+          "name": "Fran González",
+          "wiki": "Fran González (footballer, born 2005)"
+        },
+        {
+          "number": 14,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Manu Bueno",
+          "wiki": "Manu Bueno"
+        },
+        {
+          "number": 15,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Fábio Cardoso",
+          "wiki": "Fábio Cardoso"
+        },
+        {
+          "number": 16,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Isaac Romero",
+          "wiki": "Isaac Romero"
+        },
+        {
+          "number": 17,
+          "pos": "DF",
+          "nat": "CHI",
+          "name": "Gabriel Suazo",
+          "wiki": "Gabriel Suazo"
+        },
+        {
+          "number": 18,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Jon Guridi",
+          "wiki": "Jon Guridi"
+        },
+        {
+          "number": 19,
+          "pos": "FW",
+          "nat": "BEL",
+          "name": "Lucas Stassin",
+          "wiki": "Lucas Stassin"
+        },
+        {
+          "number": 20,
+          "pos": "FW",
+          "nat": "POR",
+          "name": "Félix Correia",
+          "wiki": "Félix Correia"
+        },
+        {
+          "number": 21,
+          "pos": "FW",
+          "nat": "NGA",
+          "name": "Chidera Ejuke",
+          "wiki": "Chidera Ejuke"
+        },
+        {
+          "number": 22,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "José Ángel Carmona",
+          "wiki": "José Ángel Carmona"
+        },
+        {
+          "number": 23,
+          "pos": "DF",
+          "nat": "BRA",
+          "name": "Marcão",
+          "wiki": "Marcão (footballer, born 1996)"
+        },
+        {
+          "number": 24,
+          "pos": "MF",
+          "nat": "FRA",
+          "name": "Youssouf Fofana",
+          "wiki": "Youssouf Fofana (footballer, born 1999)"
+        },
+        {
+          "number": 30,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Miguel Sierra",
+          "wiki": "Miguel Sierra (footballer)"
+        },
+        {
+          "number": 33,
+          "pos": "GK",
+          "nat": "ESP",
+          "name": "Rafa Romero",
+          "wiki": "Rafael Romero Morilla"
+        }
+      ]
+    },
+    {
+      "code": "VAL",
+      "name": "Valencia",
+      "wiki": "Valencia CF",
+      "crest": "esp-val.png",
+      "previousSeason": {
+        "pos": 9,
+        "played": 38,
+        "w": 13,
+        "d": 10,
+        "l": 15,
+        "gf": 46,
+        "ga": 55
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "MKD",
+          "name": "Stole Dimitrievski",
+          "wiki": "Stole Dimitrievski"
+        },
+        {
+          "number": 2,
+          "pos": "MF",
+          "nat": "ARG",
+          "name": "Guido Rodríguez",
+          "wiki": "Guido Rodríguez"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "José Copete",
+          "wiki": "José Manuel Copete"
+        },
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "GUI",
+          "name": "Mouctar Diakhaby",
+          "wiki": "Mouctar Diakhaby"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "César Tárrega",
+          "wiki": "César Tárrega"
+        },
+        {
+          "number": 6,
+          "pos": "FW",
+          "nat": "NGA",
+          "name": "Umar Sadiq",
+          "wiki": "Umar Sadiq"
+        },
+        {
+          "number": 7,
+          "pos": "FW",
+          "nat": "NED",
+          "name": "Arnaut Danjuma",
+          "wiki": "Arnaut Danjuma"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Javi Guerra",
+          "wiki": "Javi Guerra (footballer, born 2003)"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Hugo Duro",
+          "wiki": "Hugo Duro"
+        },
+        {
+          "number": 10,
+          "pos": "FW",
+          "nat": "ENG",
+          "name": "Harvey Elliott",
+          "wiki": "Harvey Elliott"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Luis Rioja",
+          "wiki": "Luis Rioja"
+        },
+        {
+          "number": 12,
+          "pos": "DF",
+          "nat": "NED",
+          "name": "Justin de Haas",
+          "wiki": "Justin de Haas"
+        },
+        {
+          "number": 13,
+          "pos": "GK",
+          "nat": "ESP",
+          "name": "Cristian Rivero",
+          "wiki": "Cristian Rivero (footballer)"
+        },
+        {
+          "number": 14,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "José Gayà",
+          "wiki": "José Gayà"
+        },
+        {
+          "number": 15,
+          "pos": "MF",
+          "nat": "MLI",
+          "name": "Aliou Dieng",
+          "wiki": "Aliou Dieng"
+        },
+        {
+          "number": 16,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Diego López",
+          "wiki": "Diego López (footballer, born May 2002)"
+        },
+        {
+          "number": 18,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Pepelu",
+          "wiki": "Pepelu"
+        },
+        {
+          "number": 19,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Dani Raba",
+          "wiki": "Dani Raba"
+        },
+        {
+          "number": 20,
+          "pos": "DF",
+          "nat": "GLP",
+          "name": "Dimitri Foulquier",
+          "wiki": "Dimitri Foulquier"
+        },
+        {
+          "number": 21,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Jesús Vázquez",
+          "wiki": "Jesús Vázquez (footballer, born 2003)"
+        },
+        {
+          "number": 22,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Arnau Martínez",
+          "wiki": "Arnau Martínez"
+        },
+        {
+          "number": 23,
+          "pos": "MF",
+          "nat": "SUI",
+          "name": "Filip Ugrinić",
+          "wiki": "Filip Ugrinić"
+        },
+        {
+          "number": 24,
+          "pos": "DF",
+          "nat": "ARG",
+          "name": "Pablo Maffeo",
+          "wiki": "Pablo Maffeo"
+        },
+        {
+          "number": 25,
+          "pos": "GK",
+          "nat": "NED",
+          "name": "Kayne van Oevelen",
+          "wiki": "Kayne van Oevelen"
+        },
+        {
+          "number": 39,
+          "pos": "MF",
+          "nat": "JPN",
+          "name": "Ryūnosuke Satō",
+          "wiki": "Ryūnosuke Satō"
+        }
+      ]
+    },
+    {
+      "code": "VIL",
+      "name": "Villarreal",
+      "wiki": "Villarreal CF",
+      "crest": "esp-vil.png",
+      "previousSeason": {
+        "pos": 3,
+        "played": 38,
+        "w": 22,
+        "d": 6,
+        "l": 10,
+        "gf": 72,
+        "ga": 46
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "BRA",
+          "name": "Luiz Júnior",
+          "wiki": "Luiz Júnior (footballer, born 2001)"
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "CPV",
+          "name": "Logan Costa",
+          "wiki": "Logan Costa"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "USA",
+          "name": "Alex Freeman",
+          "wiki": "Alex Freeman"
+        },
+        {
+          "number": 5,
+          "pos": "MF",
+          "nat": "SEN",
+          "name": "Alassane Diatta",
+          "wiki": "Alassane Diatta"
+        },
+        {
+          "number": 6,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Pau Navarro",
+          "wiki": "Pau Navarro (footballer)"
+        },
+        {
+          "number": 7,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Gerard Moreno",
+          "wiki": "Gerard Moreno"
+        },
+        {
+          "number": 8,
+          "pos": "DF",
+          "nat": "ARG",
+          "name": "Juan Foyth",
+          "wiki": "Juan Foyth"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "GEO",
+          "name": "Georges Mikautadze",
+          "wiki": "Georges Mikautadze"
+        },
+        {
+          "number": 10,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Alberto Moleiro",
+          "wiki": "Alberto Moleiro"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "MAR",
+          "name": "Ilias Akhomach",
+          "wiki": "Ilias Akhomach"
+        },
+        {
+          "number": 12,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Renato Veiga",
+          "wiki": "Renato Veiga"
+        },
+        {
+          "number": 13,
+          "pos": "GK",
+          "nat": "ESP",
+          "name": "Rubén Gómez",
+          "wiki": "Rubén Gómez (footballer, born 2002)"
+        },
+        {
+          "number": 14,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Santi Comesaña",
+          "wiki": "Santi Comesaña"
+        },
+        {
+          "number": 15,
+          "pos": "DF",
+          "nat": "URU",
+          "name": "Santiago Mouriño",
+          "wiki": "Santiago Mouriño"
+        },
+        {
+          "number": 16,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Carlos Maciá",
+          "wiki": "Carlos Maciá"
+        },
+        {
+          "number": 17,
+          "pos": "MF",
+          "nat": "CAN",
+          "name": "Tajon Buchanan",
+          "wiki": "Tajon Buchanan"
+        },
+        {
+          "number": 18,
+          "pos": "MF",
+          "nat": "SEN",
+          "name": "Pape Gueye",
+          "wiki": "Pape Gueye"
+        },
+        {
+          "number": 19,
+          "pos": "FW",
+          "nat": "CIV",
+          "name": "Nicolas Pépé",
+          "wiki": "Nicolas Pépé"
+        },
+        {
+          "number": 20,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Carlos Romero",
+          "wiki": "Carlos Romero (footballer, born 2001)"
+        },
+        {
+          "number": 21,
+          "pos": "FW",
+          "nat": "CAN",
+          "name": "Tani Oluwaseyi",
+          "wiki": "Tani Oluwaseyi"
+        },
+        {
+          "number": 22,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Ayoze Pérez",
+          "wiki": "Ayoze Pérez"
+        },
+        {
+          "number": 23,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Sergi Cardona",
+          "wiki": "Sergi Cardona"
+        },
+        {
+          "number": 24,
+          "pos": "MF",
+          "nat": "CAN",
+          "name": "Nathan Saliba",
+          "wiki": "Nathan Saliba"
+        },
+        {
+          "number": 25,
+          "pos": "GK",
+          "nat": "HUN",
+          "name": "Péter Gulácsi",
+          "wiki": "Péter Gulácsi"
+        }
+      ]
+    }
+  ]
+}

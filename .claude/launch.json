@@ -1,0 +1,7 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    { "name": "winner", "runtimeExecutable": "npm", "runtimeArgs": ["run", "dev", "--", "--port", "5180"], "port": 5180 },
+    { "name": "winner-prod", "runtimeExecutable": "npm", "runtimeArgs": ["run", "preview", "--", "--port", "5181"], "port": 5181 }
+  ]
+}

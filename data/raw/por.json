@@ -1,0 +1,3996 @@
+{
+  "id": "por",
+  "name": "Liga Portugal",
+  "wiki": "Primeira Liga",
+  "country": "Portugal",
+  "season": "2026–27",
+  "fetchedAt": "2026-10-20T21:41:20.759Z",
+  "teams": [
+    {
+      "code": "POR",
+      "name": "Porto",
+      "wiki": "FC Porto",
+      "crest": "por-por.png",
+      "previousSeason": {
+        "pos": 1,
+        "played": 34,
+        "w": 28,
+        "d": 4,
+        "l": 2,
+        "gf": 66,
+        "ga": 18
+      },
+      "squad": [
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "POL",
+          "name": "Jakub Kiwior",
+          "wiki": "Jakub Kiwior"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "POL",
+          "name": "Jan Bednarek",
+          "wiki": "Jan Bednarek"
+        },
+        {
+          "number": 6,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Chris Smalling",
+          "wiki": "Chris Smalling"
+        },
+        {
+          "number": 7,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "William Gomes",
+          "wiki": "William Gomes"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "DEN",
+          "name": "Victor Froholdt",
+          "wiki": "Victor Froholdt"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Samu Aghehowa",
+          "wiki": "Samu Aghehowa"
+        },
+        {
+          "number": 10,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Gabri Veiga",
+          "wiki": "Gabri Veiga"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Pepê",
+          "wiki": "Pepê (footballer, born 1997)"
+        },
+        {
+          "number": 12,
+          "pos": "DF",
+          "nat": "NGA",
+          "name": "Zaidu Sanusi",
+          "wiki": "Zaidu Sanusi"
+        },
+        {
+          "number": 13,
+          "pos": "MF",
+          "nat": "DOM",
+          "name": "Pablo Rosario",
+          "wiki": "Pablo Rosario"
+        },
+        {
+          "number": 14,
+          "pos": "GK",
+          "nat": "POR",
+          "name": "Cláudio Ramos",
+          "wiki": "Cláudio Ramos (footballer)"
+        },
+        {
+          "number": 15,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Vasco Sousa",
+          "wiki": "Vasco Sousa (footballer)"
+        },
+        {
+          "number": 16,
+          "pos": "MF",
+          "nat": "KOR",
+          "name": "Hwang In-beom",
+          "wiki": "Hwang In-beom"
+        },
+        {
+          "number": 17,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Borja Sainz",
+          "wiki": "Borja Sainz"
+        },
+        {
+          "number": 18,
+          "pos": "DF",
+          "nat": "ARG",
+          "name": "Nehuén Pérez",
+          "wiki": "Nehuén Pérez"
+        },
+        {
+          "number": 19,
+          "pos": "FW",
+          "nat": "POR",
+          "name": "André Silva",
+          "wiki": "André Silva (footballer, born 1995)"
+        },
+        {
+          "number": 20,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Alberto Costa",
+          "wiki": "Alberto Costa (footballer, born 2003)"
+        },
+        {
+          "number": 21,
+          "pos": "DF",
+          "nat": "CRO",
+          "name": "Dominik Prpić",
+          "wiki": "Dominik Prpić"
+        },
+        {
+          "number": 22,
+          "pos": "MF",
+          "nat": "ARG",
+          "name": "Alan Varela",
+          "wiki": "Alan Varela"
+        },
+        {
+          "number": 24,
+          "pos": "GK",
+          "nat": "POR",
+          "name": "João Costa",
+          "wiki": "João Costa (footballer, born 1996)"
+        },
+        {
+          "number": 29,
+          "pos": "FW",
+          "nat": "MEX",
+          "name": "Santiago Giménez",
+          "wiki": "Santiago Giménez"
+        },
+        {
+          "number": 33,
+          "pos": "DF",
+          "nat": "BRA",
+          "name": "Souza",
+          "wiki": "Souza (footballer, born 2006)"
+        },
+        {
+          "number": 37,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Gabriel Mec",
+          "wiki": "Gabriel Mec"
+        },
+        {
+          "number": 42,
+          "pos": "MF",
+          "nat": "CIV",
+          "name": "Seko Fofana",
+          "wiki": "Seko Fofana"
+        },
+        {
+          "number": 50,
+          "pos": "GK",
+          "nat": "POR",
+          "name": "João Afonso",
+          "wiki": "João Afonso (footballer, born 2007)"
+        },
+        {
+          "number": 52,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Martim Fernandes",
+          "wiki": "Martim Fernandes"
+        },
+        {
+          "number": 74,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Francisco Moura",
+          "wiki": "Francisco Moura"
+        },
+        {
+          "number": 77,
+          "pos": "FW",
+          "nat": "POL",
+          "name": "Oskar Pietuszewski",
+          "wiki": "Oskar Pietuszewski"
+        },
+        {
+          "number": 99,
+          "pos": "GK",
+          "nat": "POR",
+          "name": "Diogo Costa",
+          "wiki": "Diogo Costa"
+        }
+      ]
+    },
+    {
+      "code": "BEN",
+      "name": "Benfica",
+      "wiki": "S.L. Benfica",
+      "crest": "por-ben.png",
+      "previousSeason": {
+        "pos": 3,
+        "played": 34,
+        "w": 23,
+        "d": 11,
+        "l": 0,
+        "gf": 74,
+        "ga": 25
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "UKR",
+          "name": "Anatoliy Trubin",
+          "wiki": "Anatoliy Trubin"
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "FRA",
+          "name": "Clément Lenglet",
+          "wiki": "Clément Lenglet"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "AUS",
+          "name": "Alessandro Circati",
+          "wiki": "Alessandro Circati"
+        },
+        {
+          "number": 5,
+          "pos": "MF",
+          "nat": "ARG",
+          "name": "Enzo Barrenechea",
+          "wiki": "Enzo Barrenechea"
+        },
+        {
+          "number": 6,
+          "pos": "DF",
+          "nat": "DEN",
+          "name": "Alexander Bah",
+          "wiki": "Alexander Bah"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "NOR",
+          "name": "Fredrik Aursnes",
+          "wiki": "Fredrik Aursnes"
+        },
+        {
+          "number": 10,
+          "pos": "MF",
+          "nat": "UKR",
+          "name": "Heorhiy Sudakov",
+          "wiki": "Heorhiy Sudakov"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "BEL",
+          "name": "Dodi Lukébakio",
+          "wiki": "Dodi Lukébakio"
+        },
+        {
+          "number": 13,
+          "pos": "MF",
+          "nat": "POL",
+          "name": "Jakub Kamiński",
+          "wiki": "Jakub Kamiński"
+        },
+        {
+          "number": 14,
+          "pos": "FW",
+          "nat": "GRE",
+          "name": "Vangelis Pavlidis",
+          "wiki": "Vangelis Pavlidis"
+        },
+        {
+          "number": 16,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Manu Silva",
+          "wiki": "Manu Silva"
+        },
+        {
+          "number": 18,
+          "pos": "MF",
+          "nat": "LUX",
+          "name": "Leandro Barreiro",
+          "wiki": "Leandro Barreiro"
+        },
+        {
+          "number": 21,
+          "pos": "FW",
+          "nat": "NOR",
+          "name": "Andreas Schjelderup",
+          "wiki": "Andreas Schjelderup"
+        },
+        {
+          "number": 22,
+          "pos": "FW",
+          "nat": "COL",
+          "name": "Jhon Durán",
+          "wiki": "Jhon Durán"
+        },
+        {
+          "number": 24,
+          "pos": "GK",
+          "nat": "POR",
+          "name": "Samuel Soares",
+          "wiki": "Samuel Soares"
+        },
+        {
+          "number": 25,
+          "pos": "FW",
+          "nat": "ARG",
+          "name": "Gianluca Prestianni",
+          "wiki": "Gianluca Prestianni"
+        },
+        {
+          "number": 26,
+          "pos": "DF",
+          "nat": "SWE",
+          "name": "Samuel Dahl",
+          "wiki": "Samuel Dahl"
+        },
+        {
+          "number": 27,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Rafa Silva",
+          "wiki": "Rafa Silva"
+        },
+        {
+          "number": 30,
+          "pos": "MF",
+          "nat": "ARG",
+          "name": "Claudio Echeverri",
+          "wiki": "Claudio Echeverri"
+        },
+        {
+          "number": 33,
+          "pos": "DF",
+          "nat": "BRA",
+          "name": "Gabriel Índio",
+          "wiki": "Gabriel Índio"
+        },
+        {
+          "number": 34,
+          "pos": "DF",
+          "nat": "MAR",
+          "name": "Souffian El Karouani",
+          "wiki": "Souffian El Karouani"
+        },
+        {
+          "number": 36,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "João Palhinha",
+          "wiki": "João Palhinha"
+        },
+        {
+          "number": 44,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Tomás Araújo",
+          "wiki": "Tomás Araújo"
+        },
+        {
+          "number": 50,
+          "pos": "GK",
+          "nat": "POR",
+          "name": "Diogo Ferreira",
+          "wiki": "Diogo Ferreira (footballer, born 2007)"
+        },
+        {
+          "number": 58,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Daniel Banjaqui",
+          "wiki": "Daniel Banjaqui"
+        },
+        {
+          "number": 62,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "José Neto",
+          "wiki": "José Neto (footballer, born 2008)"
+        },
+        {
+          "number": 72,
+          "pos": "FW",
+          "nat": "POR",
+          "name": "Anísio Cabral",
+          "wiki": "Anísio Cabral"
+        }
+      ]
+    },
+    {
+      "code": "SCP",
+      "name": "Sporting CP",
+      "wiki": "Sporting CP",
+      "crest": "por-scp.png",
+      "previousSeason": {
+        "pos": 2,
+        "played": 34,
+        "w": 25,
+        "d": 7,
+        "l": 2,
+        "gf": 89,
+        "ga": 24
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "POR",
+          "name": "Rui Silva",
+          "wiki": "Rui Silva (footballer, born 1994)"
+        },
+        {
+          "number": 4,
+          "pos": "MF",
+          "nat": "DEN",
+          "name": "Silas Andersen",
+          "wiki": "Silas Andersen"
+        },
+        {
+          "number": 5,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Sergi Altimira",
+          "wiki": "Sergi Altimira"
+        },
+        {
+          "number": 6,
+          "pos": "DF",
+          "nat": "BEL",
+          "name": "Zeno Debast",
+          "wiki": "Zeno Debast"
+        },
+        {
+          "number": 7,
+          "pos": "FW",
+          "nat": "GRE",
+          "name": "Fotis Ioannidis",
+          "wiki": "Fotis Ioannidis"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "João Simões",
+          "wiki": "João Simões (footballer, born 2007)"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "POR",
+          "name": "Rafael Nel",
+          "wiki": "Rafael Nel"
+        },
+        {
+          "number": 10,
+          "pos": "FW",
+          "nat": "MOZ",
+          "name": "Geny Catamo",
+          "wiki": "Geny Catamo"
+        },
+        {
+          "number": 11,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Nuno Santos",
+          "wiki": "Nuno Santos (footballer, born 1995)"
+        },
+        {
+          "number": 13,
+          "pos": "DF",
+          "nat": "GRE",
+          "name": "Georgios Vagiannidis",
+          "wiki": "Georgios Vagiannidis"
+        },
+        {
+          "number": 17,
+          "pos": "MF",
+          "nat": "URU",
+          "name": "Rodrigo Zalazar",
+          "wiki": "Rodrigo Zalazar"
+        },
+        {
+          "number": 18,
+          "pos": "DF",
+          "nat": "MAR",
+          "name": "Moncef Zekri",
+          "wiki": "Moncef Zekri"
+        },
+        {
+          "number": 19,
+          "pos": "FW",
+          "nat": "AUS",
+          "name": "Nestory Irankunda",
+          "wiki": "Nestory Irankunda"
+        },
+        {
+          "number": 20,
+          "pos": "FW",
+          "nat": "URU",
+          "name": "Maximiliano Araújo",
+          "wiki": "Maximiliano Araújo"
+        },
+        {
+          "number": 21,
+          "pos": "MF",
+          "nat": "BRA",
+          "name": "Pedro Lima",
+          "wiki": "Pedro Lima (footballer, born 2003)"
+        },
+        {
+          "number": 22,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Iván Fresneda",
+          "wiki": "Iván Fresneda"
+        },
+        {
+          "number": 25,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Gonçalo Inácio",
+          "wiki": "Gonçalo Inácio"
+        },
+        {
+          "number": 28,
+          "pos": "FW",
+          "nat": "ENG",
+          "name": "Jesse Derry",
+          "wiki": "Jesse Derry"
+        },
+        {
+          "number": 30,
+          "pos": "GK",
+          "nat": "BRA",
+          "name": "Kaique Pereira",
+          "wiki": "Kaique Pereira"
+        },
+        {
+          "number": 31,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Luis Guilherme",
+          "wiki": "Luis Guilherme"
+        },
+        {
+          "number": 41,
+          "pos": "GK",
+          "nat": "BRA",
+          "name": "Diego Callai",
+          "wiki": "Diego Callai"
+        },
+        {
+          "number": 50,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Rodrigo Dias",
+          "wiki": null
+        },
+        {
+          "number": 55,
+          "pos": "DF",
+          "nat": "SEN",
+          "name": "Ibrahima Ba",
+          "wiki": "Ibrahima Ba (footballer, born 2005)"
+        },
+        {
+          "number": 58,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Flávio Gonçalves",
+          "wiki": "Flávio Gonçalves"
+        },
+        {
+          "number": 72,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Eduardo Quaresma",
+          "wiki": "Eduardo Quaresma"
+        },
+        {
+          "number": 73,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Eduardo Felicíssimo",
+          "wiki": "Eduardo Felicíssimo"
+        },
+        {
+          "number": 77,
+          "pos": "MF",
+          "nat": "ITA",
+          "name": "Issa Doumbia",
+          "wiki": "Issa Doumbia (footballer)"
+        },
+        {
+          "number": 97,
+          "pos": "FW",
+          "nat": "COL",
+          "name": "Luis Suárez",
+          "wiki": "Luis Suárez (Colombian footballer)"
+        },
+        {
+          "number": 99,
+          "pos": "GK",
+          "nat": "POR",
+          "name": "Francisco Silva",
+          "wiki": "Francisco Silva (footballer, born 2005)"
+        }
+      ]
+    },
+    {
+      "code": "STC",
+      "name": "Santa Clara",
+      "wiki": "C.D. Santa Clara",
+      "crest": "por-stc.png",
+      "previousSeason": {
+        "pos": 13,
+        "played": 34,
+        "w": 9,
+        "d": 9,
+        "l": 16,
+        "gf": 32,
+        "ga": 41
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "BRA",
+          "name": "Lucas França",
+          "wiki": "Lucas França (footballer)"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "BRA",
+          "name": "Henrique Silva",
+          "wiki": "Henrique Silva (footballer, born 2005)"
+        },
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Pedro Pacheco",
+          "wiki": "Pedro Pacheco (footballer, born 1997)"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "BRA",
+          "name": "Guilherme Romão",
+          "wiki": "Guilherme Romão"
+        },
+        {
+          "number": 6,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Pedro Ferreira",
+          "wiki": "Pedro Ferreira (footballer, born 1998)"
+        },
+        {
+          "number": 7,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Fernando",
+          "wiki": "Fernando (footballer, born 2005)"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "CPV",
+          "name": "Djé Tavares",
+          "wiki": "Djé Tavares"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "POR",
+          "name": "Gonçalo Paciência",
+          "wiki": "Gonçalo Paciência"
+        },
+        {
+          "number": 10,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Brenner Lucas",
+          "wiki": "Brenner Lucas"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Welinton Torrão",
+          "wiki": "Welinton (footballer, born 1999)"
+        },
+        {
+          "number": 12,
+          "pos": "GK",
+          "nat": "BRA",
+          "name": "Neneca",
+          "wiki": "Neneca (footballer, born 2003)"
+        },
+        {
+          "number": 17,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "João Vasconcelos",
+          "wiki": "João Vasconcelos"
+        },
+        {
+          "number": 18,
+          "pos": "FW",
+          "nat": "POR",
+          "name": "Afonso Duarte",
+          "wiki": null
+        },
+        {
+          "number": 19,
+          "pos": "DF",
+          "nat": "BRA",
+          "name": "Ythallo",
+          "wiki": "Ythallo"
+        },
+        {
+          "number": 20,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Tiago Ribeiro",
+          "wiki": "Tiago Ribeiro (footballer, born 2002)"
+        },
+        {
+          "number": 21,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Emanuel Moreira",
+          "wiki": null
+        },
+        {
+          "number": 22,
+          "pos": "MF",
+          "nat": "BRA",
+          "name": "Vitinho",
+          "wiki": "Vitinho (footballer, born February 2004)"
+        },
+        {
+          "number": 25,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Fredy",
+          "wiki": null
+        },
+        {
+          "number": 32,
+          "pos": "DF",
+          "nat": "BRA",
+          "name": "MT",
+          "wiki": "MT (footballer)"
+        },
+        {
+          "number": 41,
+          "pos": "MF",
+          "nat": "BRA",
+          "name": "Dani Borges",
+          "wiki": "Dani Borges"
+        },
+        {
+          "number": 42,
+          "pos": "DF",
+          "nat": "BRA",
+          "name": "Lucas Soares",
+          "wiki": "Lucas Soares"
+        },
+        {
+          "number": 70,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Vinícius Lopes",
+          "wiki": "Vinícius Lopes (footballer, born 1999)"
+        },
+        {
+          "number": 73,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Léo Jacó",
+          "wiki": "Léo Jacó"
+        },
+        {
+          "number": 85,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Kamika",
+          "wiki": null
+        },
+        {
+          "number": 99,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Sorriso",
+          "wiki": null
+        }
+      ]
+    },
+    {
+      "code": "ARO",
+      "name": "Arouca",
+      "wiki": "F.C. Arouca",
+      "crest": "por-aro.png",
+      "previousSeason": {
+        "pos": 8,
+        "played": 34,
+        "w": 12,
+        "d": 6,
+        "l": 16,
+        "gf": 47,
+        "ga": 64
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "SVK",
+          "name": "Jakub Vinarčík",
+          "wiki": "Jakub Vinarčík"
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Leo Shahar",
+          "wiki": "Leo Shahar"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "José Fontán",
+          "wiki": "José Fontán"
+        },
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Diogo Monteiro",
+          "wiki": "Diogo Monteiro"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "SER",
+          "name": "Boris Popović",
+          "wiki": "Boris Popović"
+        },
+        {
+          "number": 6,
+          "pos": "MF",
+          "nat": "NED",
+          "name": "Espen van Ee",
+          "wiki": "Espen van Ee"
+        },
+        {
+          "number": 7,
+          "pos": "MF",
+          "nat": "FRA",
+          "name": "Naïs Djouahra",
+          "wiki": "Naïs Djouahra"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "JPN",
+          "name": "Taichi Fukui",
+          "wiki": "Taichi Fukui"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "FRA",
+          "name": "Fally Mayulu",
+          "wiki": "Fally Mayulu"
+        },
+        {
+          "number": 10,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Pablo Gozálbez",
+          "wiki": "Pablo Gozálbez"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Miguel Puche",
+          "wiki": "Miguel Puche"
+        },
+        {
+          "number": 12,
+          "pos": "GK",
+          "nat": "URU",
+          "name": "Ignacio de Arruabarrena",
+          "wiki": "Ignacio de Arruabarrena"
+        },
+        {
+          "number": 14,
+          "pos": "MF",
+          "nat": "KOR",
+          "name": "Lee Hyun-ju",
+          "wiki": "Lee Hyun-ju (footballer)"
+        },
+        {
+          "number": 15,
+          "pos": "DF",
+          "nat": "SPA",
+          "name": "Javi Sánchez",
+          "wiki": "Javi Sánchez (footballer)"
+        },
+        {
+          "number": 17,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Iván Barbero",
+          "wiki": "Iván Barbero"
+        },
+        {
+          "number": 18,
+          "pos": "DF",
+          "nat": "UKR",
+          "name": "Orest Lebedenko",
+          "wiki": "Orest Lebedenko"
+        },
+        {
+          "number": 19,
+          "pos": "FW",
+          "nat": "URU",
+          "name": "Alfonso Trezza",
+          "wiki": "Alfonso Trezza"
+        },
+        {
+          "number": 20,
+          "pos": "MF",
+          "nat": "CRO",
+          "name": "Gabriel Rukavina",
+          "wiki": "Gabriel Rukavina"
+        },
+        {
+          "number": 21,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Mateo Flores",
+          "wiki": "Mateo Flores (footballer)"
+        },
+        {
+          "number": 23,
+          "pos": "FW",
+          "nat": "URU",
+          "name": "Dylan Nandín",
+          "wiki": "Dylan Nandín"
+        },
+        {
+          "number": 24,
+          "pos": "FW",
+          "nat": "URU",
+          "name": "Brian Mansilla",
+          "wiki": "Brian Mansilla"
+        },
+        {
+          "number": 28,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Tiago Esgaio",
+          "wiki": "Tiago Esgaio"
+        },
+        {
+          "number": 37,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Mario Climent",
+          "wiki": "Mario Climent"
+        },
+        {
+          "number": 71,
+          "pos": "GK",
+          "nat": "POR",
+          "name": "Martim Duarte",
+          "wiki": null
+        },
+        {
+          "number": 77,
+          "pos": "FW",
+          "nat": "KOR",
+          "name": "Park Si-hoo",
+          "wiki": null
+        },
+        {
+          "number": 89,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Pedro Santos",
+          "wiki": "Pedro Santos (footballer, born 2000)"
+        }
+      ]
+    },
+    {
+      "code": "GIL",
+      "name": "Gil Vicente",
+      "wiki": "Gil Vicente F.C.",
+      "crest": "por-gil.png",
+      "previousSeason": {
+        "pos": 6,
+        "played": 34,
+        "w": 13,
+        "d": 11,
+        "l": 10,
+        "gf": 47,
+        "ga": 38
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "SWE",
+          "name": "André Picornell",
+          "wiki": "André Picornell"
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "José Silva",
+          "wiki": "José Silva (footballer, born 2005)"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Antonio Espigares",
+          "wiki": "Antonio Espigares"
+        },
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "FRA",
+          "name": "Marvin Elimbi",
+          "wiki": "Marvin Elimbi"
+        },
+        {
+          "number": 6,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Zé Carlos",
+          "wiki": "Zé Carlos (footballer, born 2001)"
+        },
+        {
+          "number": 7,
+          "pos": "FW",
+          "nat": "FRA",
+          "name": "Tidjany Touré",
+          "wiki": "Tidjany Touré"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "CIV",
+          "name": "Mohamed Bamba",
+          "wiki": "Mohamed Bamba (footballer, born 2004)"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Walace França",
+          "wiki": "Walace França"
+        },
+        {
+          "number": 10,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Santi García",
+          "wiki": "Santi García"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "POR",
+          "name": "Joelson Fernandes",
+          "wiki": "Joelson Fernandes"
+        },
+        {
+          "number": 12,
+          "pos": "MF",
+          "nat": "DEN",
+          "name": "Andreas Lausen",
+          "wiki": "Andreas Lausen"
+        },
+        {
+          "number": 17,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Sergio Bermejo",
+          "wiki": "Sergio Bermejo"
+        },
+        {
+          "number": 19,
+          "pos": "MF",
+          "nat": "BRA",
+          "name": "Guilherme Gomes",
+          "wiki": "Guilherme Gomes"
+        },
+        {
+          "number": 20,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Gil Martins",
+          "wiki": null
+        },
+        {
+          "number": 23,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Héctor Hernández",
+          "wiki": "Héctor Hernández (footballer, born 1995)"
+        },
+        {
+          "number": 26,
+          "pos": "DF",
+          "nat": "BRA",
+          "name": "Weverson",
+          "wiki": "Weverson (footballer, born 2000)"
+        },
+        {
+          "number": 27,
+          "pos": "FW",
+          "nat": "URU",
+          "name": "Agustín Moreira",
+          "wiki": "Agustín Moreira (footballer)"
+        },
+        {
+          "number": 30,
+          "pos": "GK",
+          "nat": "BRA",
+          "name": "Lucão",
+          "wiki": "Lucão (footballer, born 2001)"
+        },
+        {
+          "number": 32,
+          "pos": "MF",
+          "nat": "URU",
+          "name": "Martín Fernández",
+          "wiki": "Martín Fernández (footballer, born 2003)"
+        },
+        {
+          "number": 39,
+          "pos": "DF",
+          "nat": "ANG",
+          "name": "Jonathan Buatu",
+          "wiki": "Jonathan Buatu"
+        },
+        {
+          "number": 44,
+          "pos": "GK",
+          "nat": "POR",
+          "name": "Tiago Ferreira",
+          "wiki": null
+        },
+        {
+          "number": 45,
+          "pos": "DF",
+          "nat": "CPV",
+          "name": "David Moreira",
+          "wiki": "David Moreira"
+        },
+        {
+          "number": 47,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Ricardo Esgaio",
+          "wiki": "Ricardo Esgaio"
+        },
+        {
+          "number": 77,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Murilo Costa",
+          "wiki": "Murilo Costa"
+        },
+        {
+          "number": 82,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Gonçalo Maia",
+          "wiki": null
+        },
+        {
+          "number": 86,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Diogo Prioste",
+          "wiki": "Diogo Prioste"
+        },
+        {
+          "number": 88,
+          "pos": "MF",
+          "nat": "PER",
+          "name": "Bassco Soyer",
+          "wiki": "Bassco Soyer"
+        },
+        {
+          "number": 94,
+          "pos": "GK",
+          "nat": "BRA",
+          "name": "Samuel Portugal",
+          "wiki": "Samuel Portugal"
+        },
+        {
+          "number": 95,
+          "pos": "DF",
+          "nat": "FRA",
+          "name": "Arthur Tchaptchet",
+          "wiki": null
+        },
+        {
+          "number": 99,
+          "pos": "FW",
+          "nat": "MLI",
+          "name": "Mohamed Kaba",
+          "wiki": null
+        }
+      ]
+    },
+    {
+      "code": "AVF",
+      "name": "Académico de Viseu",
+      "wiki": "Académico de Viseu F.C.",
+      "crest": "por-avf.png",
+      "previousSeason": null,
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "ESP",
+          "name": "Marcos Lavín",
+          "wiki": "Marcos Lavín"
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "GRE",
+          "name": "Nikos Michelis",
+          "wiki": "Nikos Michelis"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Miguel Ángel Brau",
+          "wiki": "Miguel Ángel Brau"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "BRA",
+          "name": "Pedro Barcelos",
+          "wiki": "Pedro Barcelos"
+        },
+        {
+          "number": 6,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "André Ceitil",
+          "wiki": "André Ceitil"
+        },
+        {
+          "number": 7,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Luís Silva",
+          "wiki": "Luís Silva (footballer, born 1992)"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "TUR",
+          "name": "Cihan Kahraman",
+          "wiki": "Cihan Kahraman"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "MAR",
+          "name": "Mohamed Bouldini",
+          "wiki": "Mohamed Bouldini"
+        },
+        {
+          "number": 10,
+          "pos": "FW",
+          "nat": "CRC",
+          "name": "Álvaro Zamora",
+          "wiki": "Álvaro Zamora"
+        },
+        {
+          "number": 12,
+          "pos": "GK",
+          "nat": "ESP",
+          "name": "Juan Soriano",
+          "wiki": "Juan Soriano (footballer)"
+        },
+        {
+          "number": 14,
+          "pos": "MF",
+          "nat": "GER",
+          "name": "Soufiane Messeguem",
+          "wiki": "Soufiane Messeguem"
+        },
+        {
+          "number": 17,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Valery Fernández",
+          "wiki": "Valery Fernández"
+        },
+        {
+          "number": 18,
+          "pos": "MF",
+          "nat": "ARG",
+          "name": "Cristian Ferreira",
+          "wiki": "Cristian Ferreira"
+        },
+        {
+          "number": 21,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Tomás Domingos",
+          "wiki": "Tomás Domingos"
+        },
+        {
+          "number": 22,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Nils Mortimer",
+          "wiki": "Nils Mortimer"
+        },
+        {
+          "number": 29,
+          "pos": "MF",
+          "nat": "CRO",
+          "name": "Andro Babić",
+          "wiki": null
+        },
+        {
+          "number": 31,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "João Guilherme",
+          "wiki": null
+        },
+        {
+          "number": 33,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "André Clóvis",
+          "wiki": "André Clóvis"
+        },
+        {
+          "number": 41,
+          "pos": "DF",
+          "nat": "FRA",
+          "name": "Anthony Correia",
+          "wiki": "Anthony Correia (footballer, born 1999)"
+        },
+        {
+          "number": 44,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Rúben Pereira",
+          "wiki": null
+        },
+        {
+          "number": 45,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Alejandro Mestanza",
+          "wiki": "Alejandro Mestanza"
+        },
+        {
+          "number": 47,
+          "pos": "FW",
+          "nat": "CIV",
+          "name": "Lorougnon Gohi",
+          "wiki": null
+        },
+        {
+          "number": 55,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Tomás Silva",
+          "wiki": null
+        },
+        {
+          "number": 57,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Gu Costa",
+          "wiki": null
+        },
+        {
+          "number": 58,
+          "pos": "GK",
+          "nat": "BRA",
+          "name": "Matheus Sampaio",
+          "wiki": null
+        },
+        {
+          "number": 66,
+          "pos": "DF",
+          "nat": "BRA",
+          "name": "Igor Milioransa",
+          "wiki": null
+        },
+        {
+          "number": 75,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Robinho",
+          "wiki": "Robinho (footballer, born 1997)"
+        },
+        {
+          "number": 77,
+          "pos": "FW",
+          "nat": "POR",
+          "name": "Paulinho",
+          "wiki": "Paulinho (footballer, born 1999)"
+        },
+        {
+          "number": 80,
+          "pos": "GK",
+          "nat": "BRA",
+          "name": "Raphael Nunes",
+          "wiki": null
+        },
+        {
+          "number": 82,
+          "pos": "DF",
+          "nat": "CAF",
+          "name": "Hugo Gambor",
+          "wiki": "Hugo Gambor"
+        },
+        {
+          "number": 98,
+          "pos": "GK",
+          "nat": "BRA",
+          "name": "Ewerton",
+          "wiki": null
+        }
+      ]
+    },
+    {
+      "code": "ALV",
+      "name": "Alverca",
+      "wiki": "F.C. Alverca",
+      "crest": "por-alv.png",
+      "previousSeason": {
+        "pos": 11,
+        "played": 34,
+        "w": 10,
+        "d": 9,
+        "l": 15,
+        "gf": 35,
+        "ga": 52
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "FRA",
+          "name": "Noah Raveyre",
+          "wiki": "Noah Raveyre"
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "MAR",
+          "name": "Nabil Touaizi",
+          "wiki": "Nabil Touaizi"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "HON",
+          "name": "Julián Martínez",
+          "wiki": "Julián Martínez (footballer)"
+        },
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "GAM",
+          "name": "Yaya Bojang",
+          "wiki": "Yaya Bojang"
+        },
+        {
+          "number": 5,
+          "pos": "MF",
+          "nat": "GHA",
+          "name": "Sabit Abdulai",
+          "wiki": "Sabit Abdulai"
+        },
+        {
+          "number": 6,
+          "pos": "MF",
+          "nat": "CIV",
+          "name": "Davy Gui",
+          "wiki": "Davy Gui"
+        },
+        {
+          "number": 7,
+          "pos": "MF",
+          "nat": "ANG",
+          "name": "André Vidigal",
+          "wiki": "André Vidigal"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Vasco Moreira",
+          "wiki": null
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "POR",
+          "name": "Vivaldo Semedo",
+          "wiki": "Vivaldo Semedo"
+        },
+        {
+          "number": 10,
+          "pos": "FW",
+          "nat": "POR",
+          "name": "Chiquinho",
+          "wiki": "Chiquinho (footballer, born 2000)"
+        },
+        {
+          "number": 11,
+          "pos": "MF",
+          "nat": "BEL",
+          "name": "Cédric Nuozzi",
+          "wiki": "Cédric Nuozzi"
+        },
+        {
+          "number": 12,
+          "pos": "DF",
+          "nat": "NGA",
+          "name": "Isaac James",
+          "wiki": "Isaac James (footballer)"
+        },
+        {
+          "number": 14,
+          "pos": "DF",
+          "nat": "FRA",
+          "name": "Steven Baseya",
+          "wiki": "Steven Baseya"
+        },
+        {
+          "number": 15,
+          "pos": "DF",
+          "nat": "BEL",
+          "name": "Ikker Julian",
+          "wiki": null
+        },
+        {
+          "number": 17,
+          "pos": "FW",
+          "nat": "LBN",
+          "name": "Samy Merheg",
+          "wiki": "Samy Merheg"
+        },
+        {
+          "number": 18,
+          "pos": "MF",
+          "nat": "MAR",
+          "name": "Zakaria Kassary",
+          "wiki": null
+        },
+        {
+          "number": 19,
+          "pos": "FW",
+          "nat": "MTN",
+          "name": "Dawda Camara",
+          "wiki": "Dawda Camara"
+        },
+        {
+          "number": 20,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Diogo Spencer",
+          "wiki": "Diogo Spencer"
+        },
+        {
+          "number": 21,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Sergi Gómez",
+          "wiki": "Sergi Gómez"
+        },
+        {
+          "number": 22,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Figueiredo",
+          "wiki": "Figueiredo (footballer, born 2001)"
+        },
+        {
+          "number": 23,
+          "pos": "GK",
+          "nat": "POR",
+          "name": "André Paulo",
+          "wiki": "André Paulo"
+        },
+        {
+          "number": 24,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Mofe Jemide",
+          "wiki": "Mofe Jemide"
+        },
+        {
+          "number": 25,
+          "pos": "MF",
+          "nat": "BRA",
+          "name": "Ian Luccas",
+          "wiki": "Ian Luccas"
+        },
+        {
+          "number": 26,
+          "pos": "MF",
+          "nat": "BRA",
+          "name": "Matheus França",
+          "wiki": "Matheus França"
+        },
+        {
+          "number": 27,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Toni Tamarit",
+          "wiki": "Toni Tamarit"
+        },
+        {
+          "number": 31,
+          "pos": "GK",
+          "nat": "BRA",
+          "name": "Matheus Mendes",
+          "wiki": "Matheus Mendes"
+        },
+        {
+          "number": 33,
+          "pos": "DF",
+          "nat": "FRA",
+          "name": "Bastien Meupiyou",
+          "wiki": "Bastien Meupiyou"
+        },
+        {
+          "number": 35,
+          "pos": "MF",
+          "nat": "BRA",
+          "name": "Rayan Lucas",
+          "wiki": "Rayan Lucas"
+        },
+        {
+          "number": 55,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Francisco Chissumba",
+          "wiki": "Francisco Chissumba"
+        },
+        {
+          "number": 77,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Óscar Torrellas",
+          "wiki": null
+        },
+        {
+          "number": 90,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Tiago Octávio",
+          "wiki": null
+        },
+        {
+          "number": 91,
+          "pos": "GK",
+          "nat": "BRA",
+          "name": "Jhonatan",
+          "wiki": "Jhonatan (footballer, born 1991)"
+        },
+        {
+          "number": 93,
+          "pos": "MF",
+          "nat": "BRA",
+          "name": "Zé Rafael",
+          "wiki": "Zé Rafael"
+        }
+      ]
+    },
+    {
+      "code": "BRA",
+      "name": "Braga",
+      "wiki": "S.C. Braga",
+      "crest": "por-bra.png",
+      "previousSeason": {
+        "pos": 4,
+        "played": 34,
+        "w": 16,
+        "d": 11,
+        "l": 7,
+        "gf": 64,
+        "ga": 36
+      },
+      "squad": [
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Víctor Gómez",
+          "wiki": "Víctor Gómez (footballer)"
+        },
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "MLI",
+          "name": "Sikou Niakaté",
+          "wiki": "Sikou Niakaté"
+        },
+        {
+          "number": 6,
+          "pos": "MF",
+          "nat": "BRA",
+          "name": "Vitor Carvalho",
+          "wiki": "Vitor Carvalho"
+        },
+        {
+          "number": 7,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Diogo Travassos",
+          "wiki": "Diogo Travassos"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "João Moutinho",
+          "wiki": "João Moutinho"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Fran Navarro",
+          "wiki": "Fran Navarro"
+        },
+        {
+          "number": 10,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Pau Víctor",
+          "wiki": "Pau Víctor"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Gabriel Silva",
+          "wiki": "Gabriel Silva (footballer, born March 2002)"
+        },
+        {
+          "number": 12,
+          "pos": "GK",
+          "nat": "POR",
+          "name": "Tiago Sá",
+          "wiki": "Tiago Sá"
+        },
+        {
+          "number": 14,
+          "pos": "DF",
+          "nat": "SWE",
+          "name": "Gustaf Lagerbielke",
+          "wiki": "Gustaf Lagerbielke (footballer)"
+        },
+        {
+          "number": 16,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Tommy Marqués",
+          "wiki": "Tommy Marqués"
+        },
+        {
+          "number": 17,
+          "pos": "FW",
+          "nat": "SRB",
+          "name": "Jovan Milošević",
+          "wiki": "Jovan Milošević"
+        },
+        {
+          "number": 19,
+          "pos": "FW",
+          "nat": "DEN",
+          "name": "Jonas Wind",
+          "wiki": "Jonas Wind"
+        },
+        {
+          "number": 20,
+          "pos": "MF",
+          "nat": "CIV",
+          "name": "Mario Dorgeles",
+          "wiki": "Mario Dorgeles"
+        },
+        {
+          "number": 21,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Ricardo Horta",
+          "wiki": "Ricardo Horta"
+        },
+        {
+          "number": 22,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Sergio Barcia",
+          "wiki": "Sergio Barcia"
+        },
+        {
+          "number": 23,
+          "pos": "MF",
+          "nat": "BIH",
+          "name": "Denis Huseinbašić",
+          "wiki": "Denis Huseinbašić"
+        },
+        {
+          "number": 26,
+          "pos": "DF",
+          "nat": "GER",
+          "name": "Bright Arrey-Mbi",
+          "wiki": "Bright Arrey-Mbi"
+        },
+        {
+          "number": 29,
+          "pos": "MF",
+          "nat": "FRA",
+          "name": "Jean-Baptiste Gorby",
+          "wiki": "Jean-Baptiste Gorby"
+        },
+        {
+          "number": 31,
+          "pos": "GK",
+          "nat": "BRA",
+          "name": "Bernardo",
+          "wiki": "Bernardo Fontes"
+        },
+        {
+          "number": 34,
+          "pos": "MF",
+          "nat": "TUR",
+          "name": "Demir Ege Tıknaz",
+          "wiki": "Demir Ege Tıknaz"
+        },
+        {
+          "number": 37,
+          "pos": "DF",
+          "nat": "BIH",
+          "name": "Adrian-Leon Barišić",
+          "wiki": "Adrian-Leon Barišić"
+        },
+        {
+          "number": 44,
+          "pos": "DF",
+          "nat": "SUI",
+          "name": "Adrian Bajrami",
+          "wiki": "Adrian Bajrami"
+        },
+        {
+          "number": 50,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Diego Rodrigues",
+          "wiki": "Diego Rodrigues"
+        },
+        {
+          "number": 73,
+          "pos": "FW",
+          "nat": "POR",
+          "name": "João Aragão",
+          "wiki": "João Aragão"
+        },
+        {
+          "number": 77,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Gabri Martínez",
+          "wiki": "Gabri Martínez"
+        },
+        {
+          "number": 78,
+          "pos": "GK",
+          "nat": "POR",
+          "name": "João Carvalho",
+          "wiki": "João Carvalho (footballer, born 2004)"
+        }
+      ]
+    },
+    {
+      "code": "AMA",
+      "name": "Estrela da Amadora",
+      "wiki": "C.F. Estrela da Amadora",
+      "crest": "por-ama.png",
+      "previousSeason": {
+        "pos": 15,
+        "played": 34,
+        "w": 6,
+        "d": 12,
+        "l": 16,
+        "gf": 38,
+        "ga": 56
+      },
+      "squad": [
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "FRA",
+          "name": "Lucas Mincarelli",
+          "wiki": "Lucas Mincarelli"
+        },
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "BRA",
+          "name": "Bernardo Schappo",
+          "wiki": "Bernardo Schappo"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "SRB",
+          "name": "Stefan Leković",
+          "wiki": "Stefan Leković"
+        },
+        {
+          "number": 6,
+          "pos": "MF",
+          "nat": "SWE",
+          "name": "Kevin Höög Jansson",
+          "wiki": "Kevin Höög Jansson"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "BRA",
+          "name": "Robinho",
+          "wiki": null
+        },
+        {
+          "number": 10,
+          "pos": "FW",
+          "nat": "ROU",
+          "name": "Ianis Stoica",
+          "wiki": "Ianis Stoica"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "URU",
+          "name": "Rodrigo Dudok",
+          "wiki": "Rodrigo Dudok"
+        },
+        {
+          "number": 14,
+          "pos": "MF",
+          "nat": "CRO",
+          "name": "Lovro Zvonarek",
+          "wiki": "Lovro Zvonarek"
+        },
+        {
+          "number": 17,
+          "pos": "DF",
+          "nat": "GNB",
+          "name": "Jefferson Encada",
+          "wiki": "Jefferson Encada"
+        },
+        {
+          "number": 18,
+          "pos": "MF",
+          "nat": "MNE",
+          "name": "Vuk Pavićević",
+          "wiki": null
+        },
+        {
+          "number": 19,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Joan Jordán",
+          "wiki": "Joan Jordán"
+        },
+        {
+          "number": 21,
+          "pos": "DF",
+          "nat": "GER",
+          "name": "Max Scholze",
+          "wiki": null
+        },
+        {
+          "number": 22,
+          "pos": "GK",
+          "nat": "POR",
+          "name": "David Grilo",
+          "wiki": null
+        },
+        {
+          "number": 24,
+          "pos": "GK",
+          "nat": "BRA",
+          "name": "Léo Linck",
+          "wiki": "Léo Linck"
+        },
+        {
+          "number": 28,
+          "pos": "MF",
+          "nat": "FRA",
+          "name": "Tom Moustier",
+          "wiki": null
+        },
+        {
+          "number": 29,
+          "pos": "FW",
+          "nat": "ECU",
+          "name": "Jeremy Arévalo",
+          "wiki": "Jeremy Arévalo"
+        },
+        {
+          "number": 30,
+          "pos": "DF",
+          "nat": "BRA",
+          "name": "Luan Patrick",
+          "wiki": "Luan Patrick"
+        },
+        {
+          "number": 37,
+          "pos": "FW",
+          "nat": "PUR",
+          "name": "Leandro Antonetti",
+          "wiki": "Leandro Antonetti"
+        },
+        {
+          "number": 39,
+          "pos": "MF",
+          "nat": "CIV",
+          "name": "Eddy Doué",
+          "wiki": "Eddy Doué"
+        },
+        {
+          "number": 41,
+          "pos": "FW",
+          "nat": "KOR",
+          "name": "Yang Si-Woo",
+          "wiki": null
+        },
+        {
+          "number": 49,
+          "pos": "FW",
+          "nat": "BEL",
+          "name": "René Mitongo",
+          "wiki": "René Mitongo"
+        },
+        {
+          "number": 51,
+          "pos": "GK",
+          "nat": "POR",
+          "name": "Diogo Pinto",
+          "wiki": "Diogo Pinto (footballer, born 2004)"
+        },
+        {
+          "number": 55,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Rafa Soares",
+          "wiki": "Rafa Soares"
+        },
+        {
+          "number": 71,
+          "pos": "MF",
+          "nat": "FRA",
+          "name": "Emerson Vanga",
+          "wiki": null
+        },
+        {
+          "number": 72,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Henrique Poniewas",
+          "wiki": null
+        },
+        {
+          "number": 78,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Santiago Serra",
+          "wiki": null
+        },
+        {
+          "number": 79,
+          "pos": "DF",
+          "nat": "BUL",
+          "name": "Atanas Chernev",
+          "wiki": "Atanas Chernev"
+        },
+        {
+          "number": 80,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Alisson Souza",
+          "wiki": null
+        },
+        {
+          "number": 93,
+          "pos": "FW",
+          "nat": "FRA",
+          "name": "Bénito",
+          "wiki": null
+        },
+        {
+          "number": 99,
+          "pos": "FW",
+          "nat": "NGR",
+          "name": "Abraham Marcus",
+          "wiki": "Abraham Marcus"
+        }
+      ]
+    },
+    {
+      "code": "MAR",
+      "name": "Marítimo",
+      "wiki": "C.S. Marítimo",
+      "crest": "por-mar.png",
+      "previousSeason": null,
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "POR",
+          "name": "Gonçalo Tabuaço",
+          "wiki": "Gonçalo Tabuaço"
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "BRA",
+          "name": "Igor Julião",
+          "wiki": "Igor Julião"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Nathanael Ogbeta",
+          "wiki": "Nathanael Ogbeta"
+        },
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Rafael Fernandes",
+          "wiki": "Rafael Fernandes (footballer)"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Nilton Varela",
+          "wiki": "Nilton Varela"
+        },
+        {
+          "number": 6,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Rodrigo Andrade",
+          "wiki": "Rodrigo Andrade (footballer, born 2001)"
+        },
+        {
+          "number": 7,
+          "pos": "FW",
+          "nat": "VEN",
+          "name": "Enrique Zauner",
+          "wiki": "Enrique Peña Zauner"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "SUI",
+          "name": "Maxime Dominguez",
+          "wiki": "Maxime Dominguez"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "POR",
+          "name": "José Melro",
+          "wiki": "José Melro"
+        },
+        {
+          "number": 10,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Martín Tejón",
+          "wiki": "Martín Tejón"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "MAR",
+          "name": "Simo Bouzaidi",
+          "wiki": "Simo Bouzaidi"
+        },
+        {
+          "number": 12,
+          "pos": "FW",
+          "nat": "CGO",
+          "name": "Mons Bassouamina",
+          "wiki": "Mons Bassouamina"
+        },
+        {
+          "number": 13,
+          "pos": "GK",
+          "nat": "ESP",
+          "name": "Alfonso Pastor",
+          "wiki": "Alfonso Pastor"
+        },
+        {
+          "number": 14,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Raphael Guzzo",
+          "wiki": "Raphael Guzzo"
+        },
+        {
+          "number": 15,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Tomás Tavares",
+          "wiki": "Tomás Tavares"
+        },
+        {
+          "number": 16,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Francisco Silva",
+          "wiki": null
+        },
+        {
+          "number": 17,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Adrián Butzke",
+          "wiki": "Adrián Butzke"
+        },
+        {
+          "number": 18,
+          "pos": "MF",
+          "nat": "BIH",
+          "name": "Vladan Danilović",
+          "wiki": "Vladan Danilović"
+        },
+        {
+          "number": 20,
+          "pos": "FW",
+          "nat": "POR",
+          "name": "Francisco Gomes",
+          "wiki": "Francisco Gomes (footballer)"
+        },
+        {
+          "number": 21,
+          "pos": "MF",
+          "nat": "NGR",
+          "name": "Ibrahim Alani",
+          "wiki": "Ibrahim Alani"
+        },
+        {
+          "number": 22,
+          "pos": "DF",
+          "nat": "HUN",
+          "name": "Gábor Szalai",
+          "wiki": "Gábor Szalai"
+        },
+        {
+          "number": 23,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Paulo Henrique",
+          "wiki": "Paulo Henrique (Portuguese footballer)"
+        },
+        {
+          "number": 25,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Yellu Santiago",
+          "wiki": "Yellu Santiago"
+        },
+        {
+          "number": 27,
+          "pos": "FW",
+          "nat": "GER",
+          "name": "Samuel Bamba",
+          "wiki": "Samuel Bamba"
+        },
+        {
+          "number": 30,
+          "pos": "GK",
+          "nat": "ESP",
+          "name": "Fran Vieites",
+          "wiki": "Fran Vieites"
+        },
+        {
+          "number": 34,
+          "pos": "GK",
+          "nat": "MOZ",
+          "name": "Kimiss Zavala",
+          "wiki": "Kimiss Zavala"
+        },
+        {
+          "number": 35,
+          "pos": "FW",
+          "nat": "BEL",
+          "name": "Bryan Limbombe",
+          "wiki": "Bryan Limbombe"
+        },
+        {
+          "number": 44,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Romain Correia",
+          "wiki": "Romain Correia"
+        },
+        {
+          "number": 66,
+          "pos": "MF",
+          "nat": "NGA",
+          "name": "Israel Ayuma",
+          "wiki": "Israel Isaac Ayuma"
+        },
+        {
+          "number": 68,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Nélio Batista",
+          "wiki": null
+        },
+        {
+          "number": 90,
+          "pos": "FW",
+          "nat": "GER",
+          "name": "Maurice Boakye",
+          "wiki": "Maurice Boakye"
+        }
+      ]
+    },
+    {
+      "code": "MOR",
+      "name": "Moreirense",
+      "wiki": "Moreirense F.C.",
+      "crest": "por-mor.png",
+      "previousSeason": {
+        "pos": 7,
+        "played": 34,
+        "w": 12,
+        "d": 7,
+        "l": 15,
+        "gf": 37,
+        "ga": 49
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "BRA",
+          "name": "Aranha",
+          "wiki": null
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Leandro",
+          "wiki": "Leandro Santos (footballer, born 2005)"
+        },
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "BRA",
+          "name": "Kevyn Monteiro",
+          "wiki": null
+        },
+        {
+          "number": 7,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Manuel Mendonça",
+          "wiki": "Manuel Mendonça"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "SRB",
+          "name": "Mateja Stjepanović",
+          "wiki": "Mateja Stjepanović"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "MTQ",
+          "name": "Alexandre Parsemain",
+          "wiki": "Alexandre Parsemain"
+        },
+        {
+          "number": 10,
+          "pos": "FW",
+          "nat": "POR",
+          "name": "Kiko Bondoso",
+          "wiki": "Kiko Bondoso"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Landerson",
+          "wiki": null
+        },
+        {
+          "number": 13,
+          "pos": "GK",
+          "nat": "POR",
+          "name": "André Ferreira",
+          "wiki": "André Ferreira (footballer, born 1996)"
+        },
+        {
+          "number": 17,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Álvaro Martínez",
+          "wiki": "Álvaro Martínez (footballer, born 2002)"
+        },
+        {
+          "number": 19,
+          "pos": "FW",
+          "nat": "POR",
+          "name": "Tiago Andrade",
+          "wiki": "Tiago Andrade"
+        },
+        {
+          "number": 20,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "João Veloso",
+          "wiki": "João Veloso"
+        },
+        {
+          "number": 21,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Rodri",
+          "wiki": "Rodri (footballer, born 2003)"
+        },
+        {
+          "number": 23,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Nile John",
+          "wiki": "Nile John"
+        },
+        {
+          "number": 25,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Afonso Assis",
+          "wiki": "Afonso Assis"
+        },
+        {
+          "number": 26,
+          "pos": "DF",
+          "nat": "BRA",
+          "name": "Maracás",
+          "wiki": "Maracás (footballer)"
+        },
+        {
+          "number": 27,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Kiko",
+          "wiki": "Francisco Domingues"
+        },
+        {
+          "number": 28,
+          "pos": "MF",
+          "nat": "ZAM",
+          "name": "Chipyoka Songa",
+          "wiki": "Chipyoka Songa"
+        },
+        {
+          "number": 30,
+          "pos": "MF",
+          "nat": "ENG",
+          "name": "Jimi Gower",
+          "wiki": "Jimi Gower"
+        },
+        {
+          "number": 31,
+          "pos": "DF",
+          "nat": "BRA",
+          "name": "Pedro Jesus",
+          "wiki": null
+        },
+        {
+          "number": 32,
+          "pos": "DF",
+          "nat": "BRA",
+          "name": "Janderson",
+          "wiki": "Janderson (footballer, born 2005)"
+        },
+        {
+          "number": 44,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Michael Dacosta",
+          "wiki": "Michael Dacosta"
+        },
+        {
+          "number": 65,
+          "pos": "MF",
+          "nat": "BRA",
+          "name": "Guilherme Liberato",
+          "wiki": null
+        },
+        {
+          "number": 66,
+          "pos": "DF",
+          "nat": "GNB",
+          "name": "Gilberto Batista",
+          "wiki": "Gilberto Batista"
+        },
+        {
+          "number": 76,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Dinis Pinto",
+          "wiki": "Dinis Pinto"
+        },
+        {
+          "number": 77,
+          "pos": "FW",
+          "nat": "ENG",
+          "name": "Koby Mottoh",
+          "wiki": "Koby Mottoh"
+        },
+        {
+          "number": 79,
+          "pos": "FW",
+          "nat": "CRO",
+          "name": "Leonardo Vonić",
+          "wiki": "Leonardo Vonić"
+        },
+        {
+          "number": 89,
+          "pos": "FW",
+          "nat": "POR",
+          "name": "Afonso Vieira",
+          "wiki": null
+        },
+        {
+          "number": 99,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Yan Maranhão",
+          "wiki": null
+        }
+      ]
+    },
+    {
+      "code": "FAM",
+      "name": "Famalicão",
+      "wiki": "F.C. Famalicão",
+      "crest": "por-fam.png",
+      "previousSeason": {
+        "pos": 5,
+        "played": 34,
+        "w": 15,
+        "d": 11,
+        "l": 8,
+        "gf": 42,
+        "ga": 29
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "RUS",
+          "name": "Ivan Zlobin",
+          "wiki": "Ivan Zlobin"
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "BRA",
+          "name": "Gustavo Garcia",
+          "wiki": "Gustavo Garcia (footballer, born 2002)"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "ECU",
+          "name": "Leo Realpe",
+          "wiki": "Leonardo Realpe"
+        },
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "NED",
+          "name": "Finn van Breemen",
+          "wiki": "Finn van Breemen"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "SUI",
+          "name": "Leny Meyer",
+          "wiki": "Leny Meyer"
+        },
+        {
+          "number": 6,
+          "pos": "MF",
+          "nat": "NED",
+          "name": "Tom van de Looi",
+          "wiki": "Tom van de Looi"
+        },
+        {
+          "number": 7,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Sorriso",
+          "wiki": "Sorriso (footballer, born 2001)"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Marcos Peña",
+          "wiki": "Marcos Peña (footballer)"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "NGR",
+          "name": "Umar Abubakar",
+          "wiki": "Umar Abubakar"
+        },
+        {
+          "number": 10,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Pedro Santos",
+          "wiki": "Pedro Santos (footballer, born 2003)"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Óscar Aranda",
+          "wiki": "Óscar Aranda"
+        },
+        {
+          "number": 14,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Mathias De Amorim",
+          "wiki": "Mathias De Amorim"
+        },
+        {
+          "number": 15,
+          "pos": "DF",
+          "nat": "GNB",
+          "name": "Víctor Rofino",
+          "wiki": "Víctor Rofino"
+        },
+        {
+          "number": 17,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Rodrigo Pinheiro",
+          "wiki": "Rodrigo Pinheiro"
+        },
+        {
+          "number": 18,
+          "pos": "FW",
+          "nat": "SUI",
+          "name": "Roméo Beney",
+          "wiki": "Roméo Beney"
+        },
+        {
+          "number": 19,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Paulo Moreira",
+          "wiki": "Paulo Moreira"
+        },
+        {
+          "number": 21,
+          "pos": "MF",
+          "nat": "HUN",
+          "name": "Tamás Szűcs",
+          "wiki": "Tamás Szűcs (footballer, born 2005)"
+        },
+        {
+          "number": 22,
+          "pos": "GK",
+          "nat": "BRA",
+          "name": "Gabriel Cabral",
+          "wiki": null
+        },
+        {
+          "number": 23,
+          "pos": "FW",
+          "nat": "POR",
+          "name": "Gil Dias",
+          "wiki": "Gil Dias"
+        },
+        {
+          "number": 24,
+          "pos": "MF",
+          "nat": "FRA",
+          "name": "Mathis Jangéal",
+          "wiki": "Mathis Jangéal"
+        },
+        {
+          "number": 25,
+          "pos": "GK",
+          "nat": "MNE",
+          "name": "Lazar Carević",
+          "wiki": "Lazar Carević"
+        },
+        {
+          "number": 28,
+          "pos": "DF",
+          "nat": "ANG",
+          "name": "Pedro Bondo",
+          "wiki": "Pedro Bondo"
+        },
+        {
+          "number": 30,
+          "pos": "DF",
+          "nat": "SRB",
+          "name": "Vojin Serafimović",
+          "wiki": "Vojin Serafimović"
+        },
+        {
+          "number": 33,
+          "pos": "FW",
+          "nat": "MEX",
+          "name": "Patricio Salas",
+          "wiki": "Patricio Salas (footballer, born 2004)"
+        },
+        {
+          "number": 36,
+          "pos": "DF",
+          "nat": "BRA",
+          "name": "Matheus Mattara",
+          "wiki": null
+        },
+        {
+          "number": 70,
+          "pos": "FW",
+          "nat": "GRE",
+          "name": "Georgios Koutsias",
+          "wiki": "Georgios Koutsias"
+        }
+      ]
+    },
+    {
+      "code": "RAV",
+      "name": "Rio Ave",
+      "wiki": "Rio Ave F.C.",
+      "crest": "por-rav.png",
+      "previousSeason": {
+        "pos": 12,
+        "played": 34,
+        "w": 8,
+        "d": 12,
+        "l": 14,
+        "gf": 35,
+        "ga": 57
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "POL",
+          "name": "Cezary Miszta",
+          "wiki": "Cezary Miszta"
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Zé Carlos",
+          "wiki": "Zé Carlos (footballer, born 1998)"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "COL",
+          "name": "Simón García",
+          "wiki": "Simón García"
+        },
+        {
+          "number": 5,
+          "pos": "MF",
+          "nat": "GRE",
+          "name": "Andreas Ntoi",
+          "wiki": "Andreas Ntoi"
+        },
+        {
+          "number": 6,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Nelson Abbey",
+          "wiki": "Nelson Abbey"
+        },
+        {
+          "number": 7,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Diogo Bezerra",
+          "wiki": "Diogo Bezerra"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "BRA",
+          "name": "Ryan Guilherme",
+          "wiki": "Ryan Guilherme"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "GNB",
+          "name": "Tamble Monteiro",
+          "wiki": "Tamble Monteiro"
+        },
+        {
+          "number": 10,
+          "pos": "MF",
+          "nat": "CRC",
+          "name": "Brandon Aguilera",
+          "wiki": "Brandon Aguilera"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Jalen Blesa",
+          "wiki": "Jalen Blesa"
+        },
+        {
+          "number": 13,
+          "pos": "DF",
+          "nat": "FRA",
+          "name": "Julien Lomboto",
+          "wiki": "Julien Lomboto"
+        },
+        {
+          "number": 14,
+          "pos": "DF",
+          "nat": "CZE",
+          "name": "Jakub Brabec",
+          "wiki": "Jakub Brabec"
+        },
+        {
+          "number": 17,
+          "pos": "DF",
+          "nat": "GRE",
+          "name": "Marios Vrousai",
+          "wiki": "Marios Vrousai"
+        },
+        {
+          "number": 19,
+          "pos": "MF",
+          "nat": "FRA",
+          "name": "Malik Sellouki",
+          "wiki": "Malik Sellouki"
+        },
+        {
+          "number": 20,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "João Tomé",
+          "wiki": "João Tomé"
+        },
+        {
+          "number": 21,
+          "pos": "FW",
+          "nat": "CZE",
+          "name": "Radek Šiler",
+          "wiki": "Radek Šiler"
+        },
+        {
+          "number": 22,
+          "pos": "GK",
+          "nat": "CRC",
+          "name": "Kevin Chamorro",
+          "wiki": "Kevin Chamorro"
+        },
+        {
+          "number": 23,
+          "pos": "DF",
+          "nat": "ARG",
+          "name": "Francisco Petrasso",
+          "wiki": "Francisco Petrasso"
+        },
+        {
+          "number": 24,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Pedro Amaral",
+          "wiki": "Pedro Amaral"
+        },
+        {
+          "number": 27,
+          "pos": "FW",
+          "nat": "ARG",
+          "name": "Tobías Medina",
+          "wiki": null
+        },
+        {
+          "number": 30,
+          "pos": "FW",
+          "nat": "SVK",
+          "name": "Roland Galčík",
+          "wiki": "Roland Galčík"
+        },
+        {
+          "number": 32,
+          "pos": "GK",
+          "nat": "BRA",
+          "name": "Vitor Hugo",
+          "wiki": "Vitor Hugo (footballer, born 2001)"
+        },
+        {
+          "number": 39,
+          "pos": "DF",
+          "nat": "BRA",
+          "name": "Gustavo Mancha",
+          "wiki": "Gustavo Mancha"
+        },
+        {
+          "number": 44,
+          "pos": "MF",
+          "nat": "HUN",
+          "name": "Tamás Nikitscher",
+          "wiki": "Tamás Nikitscher"
+        },
+        {
+          "number": 54,
+          "pos": "MF",
+          "nat": "GRE",
+          "name": "Georgios Liavas",
+          "wiki": "Georgios Liavas"
+        },
+        {
+          "number": 67,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Samuel Alves",
+          "wiki": null
+        },
+        {
+          "number": 68,
+          "pos": "DF",
+          "nat": "BRA",
+          "name": "Caike",
+          "wiki": null
+        },
+        {
+          "number": 70,
+          "pos": "MF",
+          "nat": "SEN",
+          "name": "Antoine Wenck",
+          "wiki": null
+        },
+        {
+          "number": 77,
+          "pos": "FW",
+          "nat": "CRO",
+          "name": "Dario Špikić",
+          "wiki": "Dario Špikić"
+        },
+        {
+          "number": 79,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Miguel Patrício",
+          "wiki": null
+        },
+        {
+          "number": 80,
+          "pos": "FW",
+          "nat": "TOG",
+          "name": "Sebastian Clemmensen",
+          "wiki": "Sebastian Clemmensen"
+        },
+        {
+          "number": 90,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Diogo Nascimento",
+          "wiki": "Diogo Nascimento"
+        },
+        {
+          "number": 99,
+          "pos": "GK",
+          "nat": "NED",
+          "name": "Ennio van der Gouw",
+          "wiki": "Ennio van der Gouw"
+        }
+      ]
+    },
+    {
+      "code": "VSC",
+      "name": "Vitória de Guimarães",
+      "wiki": "Vitória S.C.",
+      "crest": "por-vsc.png",
+      "previousSeason": {
+        "pos": 9,
+        "played": 34,
+        "w": 12,
+        "d": 6,
+        "l": 16,
+        "gf": 39,
+        "ga": 51
+      },
+      "squad": [
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Miguel Maga",
+          "wiki": "Miguel Maga (footballer, born 2002)"
+        },
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Óscar Rivas",
+          "wiki": "Óscar Rivas (footballer)"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "FRA",
+          "name": "Ahmed Sidibé",
+          "wiki": "Ahmed Sidibé (footballer, born 2002)"
+        },
+        {
+          "number": 6,
+          "pos": "MF",
+          "nat": "SRB",
+          "name": "Matija Mitrović",
+          "wiki": "Matija Mitrović"
+        },
+        {
+          "number": 7,
+          "pos": "FW",
+          "nat": "FRA",
+          "name": "Oumar Camara",
+          "wiki": "Oumar Camara (footballer, born 2007)"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Gonçalo Nogueira",
+          "wiki": "Gonçalo Nogueira"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "AUT",
+          "name": "Arnel Jakupović",
+          "wiki": "Arnel Jakupović"
+        },
+        {
+          "number": 10,
+          "pos": "MF",
+          "nat": "BRA",
+          "name": "Alan",
+          "wiki": "Alan (footballer, born 2000)"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Gustavo Silva",
+          "wiki": "Gustavo Silva (footballer, born 1999)"
+        },
+        {
+          "number": 13,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "João Mendes",
+          "wiki": "João Mendes (footballer, born 2000)"
+        },
+        {
+          "number": 15,
+          "pos": "DF",
+          "nat": "COL",
+          "name": "Yeimar Mosquera",
+          "wiki": "Yeimar Mosquera"
+        },
+        {
+          "number": 16,
+          "pos": "MF",
+          "nat": "ANG",
+          "name": "Beni Mukendi",
+          "wiki": "Beni Mukendi"
+        },
+        {
+          "number": 17,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Miguel Nogueira",
+          "wiki": "Miguel Nogueira"
+        },
+        {
+          "number": 18,
+          "pos": "FW",
+          "nat": "CPV",
+          "name": "Telmo Arcanjo",
+          "wiki": "Telmo Arcanjo"
+        },
+        {
+          "number": 19,
+          "pos": "MF",
+          "nat": "SWE",
+          "name": "Victor Andersson",
+          "wiki": "Victor Andersson"
+        },
+        {
+          "number": 20,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Samu",
+          "wiki": "Samu (footballer)"
+        },
+        {
+          "number": 21,
+          "pos": "DF",
+          "nat": "CRO",
+          "name": "Toni Borevković",
+          "wiki": "Toni Borevković"
+        },
+        {
+          "number": 22,
+          "pos": "GK",
+          "nat": "COL",
+          "name": "Juan Castillo",
+          "wiki": "Juan Diego Castillo"
+        },
+        {
+          "number": 23,
+          "pos": "DF",
+          "nat": "ROU",
+          "name": "Tony Strata",
+          "wiki": "Tony Strata"
+        },
+        {
+          "number": 24,
+          "pos": "FW",
+          "nat": "SEN",
+          "name": "Alioune Ndoye",
+          "wiki": "Alioune Ndoye"
+        },
+        {
+          "number": 28,
+          "pos": "DF",
+          "nat": "BRA",
+          "name": "Thiago Balieiro",
+          "wiki": "Thiago Balieiro"
+        },
+        {
+          "number": 29,
+          "pos": "FW",
+          "nat": "CIV",
+          "name": "Patrick Ouotro",
+          "wiki": "Patrick Ouotro"
+        },
+        {
+          "number": 35,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Fabio Blanco",
+          "wiki": "Fabio Blanco"
+        },
+        {
+          "number": 44,
+          "pos": "MF",
+          "nat": "BFA",
+          "name": "Lohann Doucet",
+          "wiki": "Lohann Doucet"
+        },
+        {
+          "number": 45,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Marco Cruz",
+          "wiki": "Marco Cruz"
+        },
+        {
+          "number": 48,
+          "pos": "GK",
+          "nat": "POL",
+          "name": "Oliwier Zych",
+          "wiki": "Oliwier Zych"
+        },
+        {
+          "number": 56,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Santiago Verdi",
+          "wiki": "Santiago Verdi"
+        },
+        {
+          "number": 80,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Rica Rocha",
+          "wiki": null
+        },
+        {
+          "number": 82,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Francisco Dias",
+          "wiki": null
+        },
+        {
+          "number": 98,
+          "pos": "GK",
+          "nat": "BRA",
+          "name": "Lucas Furtado",
+          "wiki": null
+        }
+      ]
+    },
+    {
+      "code": "NAC",
+      "name": "Nacional",
+      "wiki": "C.D. Nacional",
+      "crest": "por-nac.png",
+      "previousSeason": {
+        "pos": 14,
+        "played": 34,
+        "w": 9,
+        "d": 7,
+        "l": 18,
+        "gf": 37,
+        "ga": 45
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "ITA",
+          "name": "Renato Marin",
+          "wiki": "Renato Marin"
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "ECU",
+          "name": "Daniel de la Cruz",
+          "wiki": "Daniel de la Cruz"
+        },
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "BRA",
+          "name": "Ulisses",
+          "wiki": "Ulisses (footballer, born 1999)"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "José Gomes",
+          "wiki": "José Gomes (footballer, born 1996)"
+        },
+        {
+          "number": 6,
+          "pos": "MF",
+          "nat": "BRA",
+          "name": "Matheus Dias",
+          "wiki": "Matheus Dias"
+        },
+        {
+          "number": 7,
+          "pos": "MF",
+          "nat": "DEN",
+          "name": "Markus Jensen",
+          "wiki": "Markus Jensen"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Miguel Baeza",
+          "wiki": "Miguel Baeza (footballer)"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "ECU",
+          "name": "Allen Obando",
+          "wiki": "Allen Obando"
+        },
+        {
+          "number": 10,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Daniel Júnior",
+          "wiki": "Daniel Júnior"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "CYP",
+          "name": "Stavros Gavriil",
+          "wiki": "Stavros Gavriil"
+        },
+        {
+          "number": 12,
+          "pos": "FW",
+          "nat": "KOR",
+          "name": "Song Min-kyu",
+          "wiki": "Song Min-kyu (footballer)"
+        },
+        {
+          "number": 13,
+          "pos": "GK",
+          "nat": "POR",
+          "name": "João Gonçalves",
+          "wiki": "João Gonçalves (footballer, born 2000)"
+        },
+        {
+          "number": 14,
+          "pos": "DF",
+          "nat": "CPV",
+          "name": "Ivanildo Fernandes",
+          "wiki": "Ivanildo Fernandes"
+        },
+        {
+          "number": 15,
+          "pos": "MF",
+          "nat": "TUN",
+          "name": "Chiheb Labidi",
+          "wiki": "Chiheb Labidi"
+        },
+        {
+          "number": 17,
+          "pos": "FW",
+          "nat": "BOL",
+          "name": "Fernando Nava",
+          "wiki": "Fernando Nava"
+        },
+        {
+          "number": 20,
+          "pos": "FW",
+          "nat": "POR",
+          "name": "Matchoi Djaló",
+          "wiki": "Matchoi Djaló"
+        },
+        {
+          "number": 21,
+          "pos": "MF",
+          "nat": "FRA",
+          "name": "William Kokolo",
+          "wiki": "William Kokolo"
+        },
+        {
+          "number": 22,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Filipe Soares",
+          "wiki": "Filipe Soares (footballer, born 1999)"
+        },
+        {
+          "number": 23,
+          "pos": "MF",
+          "nat": "BRA",
+          "name": "Mateus Iseppe",
+          "wiki": "Mateus Iseppe"
+        },
+        {
+          "number": 26,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Joel Silva",
+          "wiki": "Joel Silva (footballer, born 2003)"
+        },
+        {
+          "number": 28,
+          "pos": "MF",
+          "nat": "BRA",
+          "name": "Igor Liziero",
+          "wiki": "Igor Liziero"
+        },
+        {
+          "number": 29,
+          "pos": "FW",
+          "nat": "CMR",
+          "name": "Njoya Abdel",
+          "wiki": null
+        },
+        {
+          "number": 30,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Martim Watts",
+          "wiki": "Martim Gustavo"
+        },
+        {
+          "number": 31,
+          "pos": "MF",
+          "nat": "CMR",
+          "name": "Danel Dongmo",
+          "wiki": "Danel Dongmo"
+        },
+        {
+          "number": 33,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Francisco Gonçalves",
+          "wiki": "Francisco Gonçalves"
+        },
+        {
+          "number": 34,
+          "pos": "DF",
+          "nat": "BRA",
+          "name": "Léo Santos",
+          "wiki": "Léo Santos"
+        },
+        {
+          "number": 38,
+          "pos": "DF",
+          "nat": "BRA",
+          "name": "Zé Vitor",
+          "wiki": "Zé Vitor (footballer, born 2001)"
+        },
+        {
+          "number": 50,
+          "pos": "GK",
+          "nat": "BRA",
+          "name": "Kevyn",
+          "wiki": null
+        },
+        {
+          "number": 52,
+          "pos": "DF",
+          "nat": "BRA",
+          "name": "Wesley Gasolina",
+          "wiki": "Wesley Gasolina"
+        },
+        {
+          "number": 88,
+          "pos": "MF",
+          "nat": "BRA",
+          "name": "Deivison",
+          "wiki": null
+        },
+        {
+          "number": 99,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Pablo Ruan",
+          "wiki": null
+        },
+        {
+          "number": null,
+          "pos": "MF",
+          "nat": "BRA",
+          "name": "Josué",
+          "wiki": "Josué (footballer, born 2005)"
+        }
+      ]
+    },
+    {
+      "code": "CPI",
+      "name": "Casa Pia",
+      "wiki": "Casa Pia A.C.",
+      "crest": "por-cpi.png",
+      "previousSeason": {
+        "pos": 16,
+        "played": 34,
+        "w": 6,
+        "d": 12,
+        "l": 16,
+        "gf": 31,
+        "ga": 57
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "CRC",
+          "name": "Patrick Sequeira",
+          "wiki": "Patrick Sequeira"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "ANG",
+          "name": "Khaly",
+          "wiki": "Khaly"
+        },
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "João Goulart",
+          "wiki": "João Goulart (footballer)"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Abdu Conté",
+          "wiki": "Abdu Conté"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Gabi",
+          "wiki": null
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "POR",
+          "name": "Henrique Araújo",
+          "wiki": "Henrique Araújo"
+        },
+        {
+          "number": 10,
+          "pos": "FW",
+          "nat": "POR",
+          "name": "Rochinha",
+          "wiki": "Rochinha (Portuguese footballer)"
+        },
+        {
+          "number": 11,
+          "pos": "MF",
+          "nat": "BEL",
+          "name": "Mo Salah",
+          "wiki": "Mo Salah (footballer, born 2004)"
+        },
+        {
+          "number": 16,
+          "pos": "MF",
+          "nat": "ESP",
+          "name": "Selvi Clua",
+          "wiki": "Selvi Clua"
+        },
+        {
+          "number": 17,
+          "pos": "FW",
+          "nat": "FRA",
+          "name": "Evans Maurin",
+          "wiki": null
+        },
+        {
+          "number": 18,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "André Geraldes",
+          "wiki": "André Geraldes"
+        },
+        {
+          "number": 19,
+          "pos": "DF",
+          "nat": "URU",
+          "name": "Kevin Prieto",
+          "wiki": null
+        },
+        {
+          "number": 20,
+          "pos": "FW",
+          "nat": "GAM",
+          "name": "Alassana Jatta",
+          "wiki": "Alassana Jatta"
+        },
+        {
+          "number": 21,
+          "pos": "FW",
+          "nat": "MAR",
+          "name": "Aymen Zouin",
+          "wiki": null
+        },
+        {
+          "number": 22,
+          "pos": "GK",
+          "nat": "POR",
+          "name": "Daniel Azevedo",
+          "wiki": "Daniel Azevedo"
+        },
+        {
+          "number": 24,
+          "pos": "MF",
+          "nat": "COL",
+          "name": "Seba Pérez",
+          "wiki": "Sebastián Pérez (footballer, born 1993)"
+        },
+        {
+          "number": 27,
+          "pos": "DF",
+          "nat": "BRA",
+          "name": "Kaique Rocha",
+          "wiki": "Kaique Rocha"
+        },
+        {
+          "number": 29,
+          "pos": "FW",
+          "nat": "FRA",
+          "name": "Jérémy Livolant",
+          "wiki": "Jérémy Livolant"
+        },
+        {
+          "number": 31,
+          "pos": "GK",
+          "nat": "POR",
+          "name": "André Gomes",
+          "wiki": "André Gomes (footballer, born 2004)"
+        },
+        {
+          "number": 43,
+          "pos": "DF",
+          "nat": "BRA",
+          "name": "David Sousa",
+          "wiki": "David Sousa (footballer, born 2001)"
+        },
+        {
+          "number": 44,
+          "pos": "DF",
+          "nat": "BRA",
+          "name": "Lipe",
+          "wiki": "Lipe (footballer)"
+        },
+        {
+          "number": 59,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Abdu Dafé",
+          "wiki": null
+        },
+        {
+          "number": 70,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "João Rego",
+          "wiki": "João Rego"
+        },
+        {
+          "number": 75,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Pedro Rosas",
+          "wiki": "Pedro Rosas"
+        },
+        {
+          "number": 77,
+          "pos": "MF",
+          "nat": "BEL",
+          "name": "Benjamin Pauwels",
+          "wiki": "Benjamin Pauwels"
+        },
+        {
+          "number": 80,
+          "pos": "MF",
+          "nat": "GHA",
+          "name": "Lawrence Ofori",
+          "wiki": "Lawrence Ofori"
+        },
+        {
+          "number": 90,
+          "pos": "FW",
+          "nat": "BRA",
+          "name": "Cassiano",
+          "wiki": "Cassiano (footballer, born 1989)"
+        },
+        {
+          "number": 95,
+          "pos": "GK",
+          "nat": "CRO",
+          "name": "Ivan Mandić",
+          "wiki": null
+        },
+        {
+          "number": 98,
+          "pos": "MF",
+          "nat": "BRA",
+          "name": "JP",
+          "wiki": "João Pedro (footballer, born 2005)"
+        }
+      ]
+    },
+    {
+      "code": "EST",
+      "name": "Estoril Praia",
+      "wiki": "G.D. Estoril Praia",
+      "crest": "por-est.png",
+      "previousSeason": {
+        "pos": 10,
+        "played": 34,
+        "w": 10,
+        "d": 9,
+        "l": 15,
+        "gf": 54,
+        "ga": 57
+      },
+      "squad": [
+        {
+          "number": 1,
+          "pos": "GK",
+          "nat": "ESP",
+          "name": "Joel Robles",
+          "wiki": "Joel Robles"
+        },
+        {
+          "number": 2,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Ricard Sánchez",
+          "wiki": "Ricard Sánchez"
+        },
+        {
+          "number": 3,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Fernando Medrano",
+          "wiki": "Fernando Medrano (footballer)"
+        },
+        {
+          "number": 4,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Ferro",
+          "wiki": "Ferro (footballer)"
+        },
+        {
+          "number": 5,
+          "pos": "DF",
+          "nat": "BEL",
+          "name": "Antef Tsoungui",
+          "wiki": "Antef Tsoungui"
+        },
+        {
+          "number": 6,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Xavi Sintes",
+          "wiki": "Xavi Sintes"
+        },
+        {
+          "number": 7,
+          "pos": "FW",
+          "nat": "POR",
+          "name": "André Lacximicant",
+          "wiki": "André Lacximicant"
+        },
+        {
+          "number": 8,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Xeka",
+          "wiki": "Xeka"
+        },
+        {
+          "number": 9,
+          "pos": "FW",
+          "nat": "FRA",
+          "name": "Axel Camblan",
+          "wiki": "Axel Camblan"
+        },
+        {
+          "number": 10,
+          "pos": "MF",
+          "nat": "SCO",
+          "name": "Jordan Holsgrove",
+          "wiki": "Jordan Holsgrove"
+        },
+        {
+          "number": 11,
+          "pos": "FW",
+          "nat": "BIH",
+          "name": "Nail Omerović",
+          "wiki": "Nail Omerović"
+        },
+        {
+          "number": 12,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "João Carvalho",
+          "wiki": "João Carvalho (footballer, born 1997)"
+        },
+        {
+          "number": 14,
+          "pos": "FW",
+          "nat": "MAR",
+          "name": "Yanis Begraoui",
+          "wiki": "Yanis Begraoui"
+        },
+        {
+          "number": 15,
+          "pos": "DF",
+          "nat": "ESP",
+          "name": "Ismael Sierra",
+          "wiki": "Ismael Sierra"
+        },
+        {
+          "number": 16,
+          "pos": "GK",
+          "nat": "SVN",
+          "name": "Martin Turk",
+          "wiki": "Martin Turk"
+        },
+        {
+          "number": 17,
+          "pos": "FW",
+          "nat": "POR",
+          "name": "Peixinho",
+          "wiki": "Peixinho (Portuguese footballer)"
+        },
+        {
+          "number": 19,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Tiago Parente",
+          "wiki": "Tiago Parente (footballer, born 2004)"
+        },
+        {
+          "number": 21,
+          "pos": "DF",
+          "nat": "CRO",
+          "name": "Roko Jurišić",
+          "wiki": "Roko Jurišić"
+        },
+        {
+          "number": 22,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Pedro Carvalho",
+          "wiki": "Pedro Carvalho (footballer)"
+        },
+        {
+          "number": 23,
+          "pos": "GK",
+          "nat": "POR",
+          "name": "Diogo Dias",
+          "wiki": null
+        },
+        {
+          "number": 25,
+          "pos": "DF",
+          "nat": "CYP",
+          "name": "Stelios Andreou",
+          "wiki": "Stelios Andreou"
+        },
+        {
+          "number": 35,
+          "pos": "DF",
+          "nat": "ENG",
+          "name": "Samuel Amissah",
+          "wiki": "Samuel Amissah"
+        },
+        {
+          "number": 38,
+          "pos": "FW",
+          "nat": "ESP",
+          "name": "Israel Salazar",
+          "wiki": "Israel Salazar (footballer)"
+        },
+        {
+          "number": 42,
+          "pos": "DF",
+          "nat": "POR",
+          "name": "Jordan Arnolin",
+          "wiki": null
+        },
+        {
+          "number": 43,
+          "pos": "GK",
+          "nat": "RSA",
+          "name": "Fletcher Smythe-Lowe",
+          "wiki": "Fletcher Smythe-Lowe"
+        },
+        {
+          "number": 44,
+          "pos": "MF",
+          "nat": "FRA",
+          "name": "Milan Robin",
+          "wiki": "Milan Robin"
+        },
+        {
+          "number": 80,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Luís Gomes",
+          "wiki": null
+        },
+        {
+          "number": 90,
+          "pos": "MF",
+          "nat": "POR",
+          "name": "Tiago Brito",
+          "wiki": "Tiago Brito (footballer)"
+        },
+        {
+          "number": 98,
+          "pos": "DF",
+          "nat": "CPV",
+          "name": "Fabrício Garcia",
+          "wiki": "Fabrício Garcia"
+        },
+        {
+          "number": 99,
+          "pos": "FW",
+          "nat": "ALG",
+          "name": "Rafik Guitane",
+          "wiki": "Rafik Guitane"
+        },
+        {
+          "number": null,
+          "pos": "FW",
+          "nat": "ENG",
+          "name": "Khayon Edwards",
+          "wiki": "Khayon Edwards"
+        }
+      ]
+    }
+  ]
+}
