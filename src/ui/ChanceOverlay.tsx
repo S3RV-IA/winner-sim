@@ -77,9 +77,12 @@ interface Props {
   /** Multiplicador de velocidad del directo (1, 2 o 4). */
   speed: number;
   onDone: () => void;
+  /** Textos propios (p. ej. en la tanda de penaltis). */
+  title?: string;
+  subtitle?: string;
 }
 
-export function ChanceOverlay({ event, team, shooter, keeper, speed, onDone }: Props) {
+export function ChanceOverlay({ event, team, shooter, keeper, speed, onDone, title, subtitle }: Props) {
   const ball = useRef<SVGGElement>(null);
   const gk = useRef<SVGGElement>(null);
   const net = useRef<SVGGElement>(null);
@@ -138,10 +141,14 @@ export function ChanceOverlay({ event, team, shooter, keeper, speed, onDone }: P
         <div className="chance-head">
           <Crest team={team} size={26} />
           <div className="grow">
-            <div className="chance-kind">{event.counter ? '¡CONTRAATAQUE!' : INTRO[event.kind]}</div>
+            <div className="chance-kind">{title ?? (event.counter ? '¡CONTRAATAQUE!' : INTRO[event.kind])}</div>
             <div className="small chance-sub">
-              {event.min}
-              {event.plus ? `+${event.plus}` : ''}' · {team.short}
+              {subtitle ?? (
+                <>
+                  {event.min}
+                  {event.plus ? `+${event.plus}` : ''}' · {team.short}
+                </>
+              )}
             </div>
           </div>
         </div>

@@ -2,7 +2,7 @@ import { useLiveQuery } from 'dexie-react-hooks';
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { db } from '../../db/db';
-import type { MatchEvent, PlayerLine, Role, ShotKind, TeamLine } from '../../engine/types';
+import type { MatchEvent, PenaltyKick, PlayerLine, Role, ShotKind, TeamLine } from '../../engine/types';
 import type { Match, StoredResult } from '../../game/types';
 import { ChanceOverlay, isDramatic } from '../ChanceOverlay';
 import { AppBar, Crest, Rating } from '../common';
@@ -154,14 +154,31 @@ export function LiveView() {
   const [chance, setChance] = useState<number | null>(null);
   const [handled] = useState(() => new Set<number>());
   const [tab, setTab] = useState<NarrowTab>('feed');
+  // Tanda de penaltis: lanzamientos ya mostrados y lanzamiento que se está animando
+  const [kicksShown, setKicksShown] = useState(0);
+  const [kickAnim, setKickAnim] = useState<number | null>(null);
 
   // Cada evento con su instante: el añadido se comprime dentro del minuto (45+7 sigue antes del 46)
   const timeline = useMemo(() => (result ? result.events.map((e, i) => ({ e, i, t: e.min + (e.plus ?? 0) * 0.09 + i * 0.0001 })) : []), [result]);
   const end = timeline.length ? timeline[timeline.length - 1].t + 0.5 : 90;
-  const finished = clock >= end;
+  const kicks = result?.penalties?.kicks ?? [];
+  const clockDone = clock >= end;
+  const inShootout = clockDone && kicksShown < kicks.length;
+  const finished = clockDone && !inShootout;
+
+  // Tanda de penaltis lanzamiento a lanzamiento (con animación o con una pausa entre cada uno)
+  useEffect(() => {
+    if (!inShootout || paused || kickAnim !== null) return;
+    if (animations) {
+      const t = window.setTimeout(() => setKickAnim(kicksShown), 600 / speed);
+      return () => window.clearTimeout(t);
+    }
+    const t = window.setTimeout(() => setKicksShown((k) => k + 1), 900 / speed);
+    return () => window.clearTimeout(t);
+  }, [inShootout, paused, kickAnim, animations, kicksShown, speed]);
 
   useEffect(() => {
-    if (paused || finished || chance !== null || !timeline.length) return;
+    if (paused || clockDone || chance !== null || !timeline.length) return;
     const timer = window.setTimeout(() => {
       const next = Math.min(end, clock + 0.25);
       const dramatic = animations ? timeline.find((x) => x.t > clock && x.t <= next && !handled.has(x.i) && isDramatic(x.e)) : undefined;
@@ -172,7 +189,7 @@ export function LiveView() {
       } else setClock(next);
     }, 250 / speed);
     return () => window.clearTimeout(timer);
-  }, [clock, paused, speed, end, finished, chance, animations, timeline, handled]);
+  }, [clock, paused, speed, end, clockDone, chance, animations, timeline, handled]);
 
   if (!match || !result) return null;
   const home = teams.get(match.homeId)!;
@@ -186,6 +203,21 @@ export function LiveView() {
   const halfTime = clock > 45.7 && clock < 46 && shown.some((e) => e.t === 'phase' && e.label === 'HT');
   const displayMin = Math.min(Math.floor(clock), regularEnd);
   const chanceEvent = chance !== null ? result.events[chance] : null;
+  const shownKicks = kicks.slice(0, kicksShown);
+  const pens: [number, number] = [0, 0];
+  for (const k of shownKicks) if (k.scored) pens[k.side]++;
+  /** Portero rival en la tanda: el que más minutos jugó. */
+  const keeperOf = (side: 0 | 1) =>
+    result.players.filter((l) => l.side === side && l.role === 'GK').sort((a, b) => b.minutes - a.minutes)[0]?.id;
+  /** Cada lanzamiento como una ocasión de penalti para reutilizar la animación. */
+  const kickEvent = (i: number): Extract<MatchEvent, { t: 'goal' | 'miss' }> => {
+    const k = kicks[i];
+    const sc: [number, number] = [0, 0];
+    for (const x of kicks.slice(0, i + 1)) if (x.scored) sc[x.side]++;
+    return k.scored
+      ? { t: 'goal', min: 120, side: k.side, player: k.player, kind: 'pen', score: sc }
+      : { t: 'miss', min: 120, side: k.side, player: k.player, kind: 'pen', outcome: i % 3 === 0 ? 'off' : 'saved', keeper: keeperOf((1 - k.side) as 0 | 1) };
+  };
 
   const finishChance = () => {
     if (chance === null) return;
@@ -209,6 +241,16 @@ export function LiveView() {
   );
   const feed = (
     <div className="card list" style={{ overflow: 'hidden' }}>
+      {[...shownKicks].reverse().map((k, j) => {
+        const i = shownKicks.length - 1 - j;
+        return (
+          <div key={`k${i}`} className={`event ${k.scored ? 'goal' : ''}`}>
+            <div className="home">{k.side === 0 && <span className="small">{players.get(k.player)?.name} {k.scored ? '✅' : '❌'}</span>}</div>
+            <div className="min">P{i + 1}</div>
+            <div className="away">{k.side === 1 && <span className="small">{k.scored ? '✅' : '❌'} {players.get(k.player)?.name}</span>}</div>
+          </div>
+        );
+      })}
       {[...shown].reverse().map((e, i) => (
         <EventLine key={shown.length - i} e={e} />
       ))}
@@ -234,7 +276,13 @@ export function LiveView() {
                     {score[0]}-{score[1]}
                   </div>
                   <div className="bold tnum" style={{ textAlign: 'center', color: finished ? 'var(--muted)' : 'var(--win)' }}>
-                    {finished ? (result.penalties ? `Penaltis ${result.penalties.score[0]}-${result.penalties.score[1]}` : 'Final') : halfTime ? 'Descanso' : `${displayMin}'`}
+                    {kicks.length && clockDone
+                      ? `${finished ? 'Final · ' : ''}Penaltis ${pens[0]}-${pens[1]}`
+                      : finished
+                        ? 'Final'
+                        : halfTime
+                          ? 'Descanso'
+                          : `${displayMin}'`}
                   </div>
                 </div>
                 <Link to={`/t/${away.id}`} className="team">
@@ -243,6 +291,7 @@ export function LiveView() {
                 </Link>
               </div>
               <TraitBadges result={result} match={match} />
+              {kicks.length > 0 && clockDone && <ShootoutBoard kicks={kicks} shown={kicksShown} homeName={home.short} awayName={away.short} />}
               {!finished && (
                 <div className="progress" style={{ margin: '0 16px 12px' }}>
                   <span style={{ width: `${(100 * clock) / end}%` }} />
@@ -278,9 +327,14 @@ export function LiveView() {
                     onClick={() => {
                       setChance(null);
                       setClock(end);
+                      // Si hay tanda, primero se salta a los penaltis (para verlos); el segundo toque la termina
+                      if (!kicks.length || clockDone) {
+                        setKickAnim(null);
+                        setKicksShown(kicks.length);
+                      }
                     }}
                   >
-                    <Icon name="forward" size={18} /> Final
+                    <Icon name="forward" size={18} /> {kicks.length && !clockDone ? 'A los penaltis' : 'Final'}
                   </button>
                 ) : (
                   <button className="btn primary" onClick={() => nav(`/m/${match.id}`, { replace: true })}>
@@ -311,6 +365,25 @@ export function LiveView() {
         </div>
       </div>
 
+      {kickAnim !== null && kicks[kickAnim] && (
+        <ChanceOverlay
+          key={`kick${kickAnim}`}
+          event={kickEvent(kickAnim)}
+          team={kicks[kickAnim].side === 0 ? home : away}
+          shooter={players.get(kicks[kickAnim].player)?.name ?? ''}
+          keeper={(() => {
+            const gk = keeperOf((1 - kicks[kickAnim].side) as 0 | 1);
+            return gk ? players.get(gk)?.name : undefined;
+          })()}
+          speed={speed}
+          title="TANDA DE PENALTIS"
+          subtitle={`Lanzamiento ${Math.floor(kickAnim / 2) + 1} · ${(kicks[kickAnim].side === 0 ? home : away).short} · ${pens[0]}-${pens[1]}`}
+          onDone={() => {
+            setKickAnim(null);
+            setKicksShown((n) => Math.max(n, kickAnim + 1));
+          }}
+        />
+      )}
       {chanceEvent && (chanceEvent.t === 'goal' || chanceEvent.t === 'miss') && (
         <ChanceOverlay
           key={chance}
@@ -322,6 +395,33 @@ export function LiveView() {
           onDone={finishChance}
         />
       )}
+    </div>
+  );
+}
+
+/** Marcador de la tanda: un círculo por lanzamiento (verde gol, rojo fallo, gris pendiente). */
+function ShootoutBoard({ kicks, shown, homeName, awayName }: { kicks: PenaltyKick[]; shown: number; homeName: string; awayName: string }) {
+  const rounds = Math.max(5, Math.ceil(kicks.length / 2));
+  const row = (side: 0 | 1, name: string) => {
+    const mine = kicks.map((k, i) => ({ k, i })).filter((x) => x.k.side === side);
+    return (
+      <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+        <span className="small bold ellipsis" style={{ width: 90 }}>
+          {name}
+        </span>
+        {Array.from({ length: rounds }, (_, r) => {
+          const kick = mine[r];
+          const done = kick && kick.i < shown;
+          const bg = !done ? 'var(--surface-2)' : kick.k.scored ? 'var(--win)' : 'var(--loss)';
+          return <span key={r} style={{ width: 16, height: 16, borderRadius: '50%', background: bg, display: 'inline-block' }} />;
+        })}
+      </div>
+    );
+  };
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 6, alignItems: 'center', padding: '0 12px 12px' }}>
+      {row(0, homeName)}
+      {row(1, awayName)}
     </div>
   );
 }
