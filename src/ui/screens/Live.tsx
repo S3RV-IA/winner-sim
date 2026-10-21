@@ -8,7 +8,7 @@ import { ChanceOverlay, isDramatic } from '../ChanceOverlay';
 import { AppBar, Crest, Rating } from '../common';
 import { Icon } from '../Icon';
 import { useWorld } from '../world';
-import { EventLine, TeamStats } from './MatchView';
+import { EventLine, TeamStats, TraitBadges } from './MatchView';
 
 const KIND_XG: Record<ShotKind, number> = { pen: 0.78, big: 0.4, head: 0.09, box: 0.1, out: 0.04 };
 const ROLE_ORDER: Role[] = ['GK', 'RB', 'CB', 'LB', 'DM', 'CM', 'AM', 'RW', 'LW', 'ST'];
@@ -242,6 +242,7 @@ export function LiveView() {
                   {away.short}
                 </Link>
               </div>
+              <TraitBadges result={result} match={match} />
               {!finished && (
                 <div className="progress" style={{ margin: '0 16px 12px' }}>
                   <span style={{ width: `${(100 * clock) / end}%` }} />

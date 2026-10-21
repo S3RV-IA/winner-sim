@@ -51,8 +51,8 @@ export function PlayerView() {
   );
   const isGk = p.role === 'GK';
   const attrs: [string, number][] = isGk
-    ? [['Portería', p.gk], ['Pase', p.pas], ['Juego aéreo', p.hea]]
-    : [['Definición', p.fin], ['Disparo lejano', p.lng], ['Cabeza', p.hea], ['Regate', p.dri], ['Pase', p.pas], ['Creación', p.cre], ['Defensa', p.def]];
+    ? [['Portería', p.gk], ['Pase', p.pas], ['Juego aéreo', p.hea], ['Velocidad', p.pac ?? 0]]
+    : [['Velocidad', p.pac ?? 0], ['Definición', p.fin], ['Disparo lejano', p.lng], ['Cabeza', p.hea], ['Regate', p.dri], ['Pase', p.pas], ['Creación', p.cre], ['Defensa', p.def]];
 
   const detail: [string, string | number][] = [
     ['Partidos', `${total.apps} (${total.minutes}')`],

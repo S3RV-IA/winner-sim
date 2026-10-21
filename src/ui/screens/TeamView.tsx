@@ -8,6 +8,7 @@ import type { CompType, Team } from '../../game/types';
 import { AppBar, Crest, FormArrow, FormDots, MatchCard, Rating, Sheet, Stepper, Tabs, useTab, useUi } from '../common';
 import { Icon } from '../Icon';
 import { useWorld } from '../world';
+import { TRAITS } from '../../game/traits';
 
 type TeamTab = 'squad' | 'matches' | 'trophies';
 const ROLE_ORDER = ['GK', 'RB', 'CB', 'LB', 'DM', 'CM', 'AM', 'RW', 'LW', 'ST'];
@@ -95,6 +96,19 @@ export function TeamView() {
             <Bar label="Control" value={team.ctl} color="#3b82f6" />
             <Bar label="Defensa" value={team.def} color="#16a34a" />
           </div>
+          {(TRAITS[team.id] ?? []).length > 0 && (
+            <div style={{ marginTop: 10, display: 'flex', flexDirection: 'column', gap: 8 }}>
+              {TRAITS[team.id].map((t) => (
+                <div key={t.name} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', background: 'var(--surface-2)', borderRadius: 10, padding: '8px 10px' }}>
+                  <Icon name="star" size={18} color="var(--accent-strong)" />
+                  <div>
+                    <div className="bold small">{t.name}</div>
+                    <div className="small muted">{t.description}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
           {Math.abs(team.form) >= 0.15 && (
             <div className="small muted" style={{ padding: '4px 12px 0' }}>
               Por su estado de forma juega ahora como un {Math.round(team.ovr + team.form * 3)} ({team.form > 0 ? '+' : ''}

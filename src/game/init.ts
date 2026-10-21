@@ -15,7 +15,11 @@ export function ensureGame(): Promise<void> {
 }
 
 async function createIfMissing(): Promise<void> {
-  if (await db.meta.get('seedVersion')) return;
+  const stored = (await db.meta.get('seedVersion'))?.value as number | undefined;
+  if (stored !== undefined) {
+    if (stored < SEED_VERSION) await migratePlayers();
+    return;
+  }
   const leagues = seed.leagues as League[];
   const teams = seed.teams.map((t) => ({ ...t, form: 0 })) as Team[];
   const players = seed.players.map((p) => ({ ...p, form: 0 })) as Player[];
@@ -42,6 +46,23 @@ async function createIfMissing(): Promise<void> {
       { key: 'playOrder', value: 0 },
       { key: 'seedVersion', value: SEED_VERSION },
     ]);
+  });
+}
+
+/**
+ * Partida ya empezada con datos antiguos: actualiza los atributos de los jugadores (p. ej. la velocidad
+ * o un ajuste de media) sin tocar su forma, temporadas, estadísticas ni palmarés.
+ */
+async function migratePlayers(): Promise<void> {
+  const byId = new Map(seed.players.map((p) => [p.id, p]));
+  const current = await db.players.toArray();
+  const updated = current.map((p) => {
+    const s = byId.get(p.id);
+    return s ? { ...p, ...s, form: p.form } : p;
+  }) as Player[];
+  await db.transaction('rw', db.players, db.meta, async () => {
+    await db.players.bulkPut(updated);
+    await db.meta.put({ key: 'seedVersion', value: SEED_VERSION });
   });
 }
 

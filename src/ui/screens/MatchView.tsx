@@ -66,6 +66,7 @@ export function MatchView() {
             {away.short}
           </Link>
         </div>
+        {played && result && <TraitBadges result={result} match={match} />}
         <div style={{ display: 'flex', gap: 8, padding: '0 12px 14px', justifyContent: 'center', flexWrap: 'wrap' }}>
           {!played ? (
             <>
@@ -419,6 +420,23 @@ function PlayerLineRow({ l }: { l: PlayerLine }) {
           </Link>
         </div>
       )}
+    </div>
+  );
+}
+
+/** Rasgos históricos que estuvieron activos en el partido (p. ej. «Noches mágicas del Bernabéu»). */
+export function TraitBadges({ result, match }: { result: StoredResult; match: Match }) {
+  const { teams } = useWorld();
+  if (!result.traits) return null;
+  const items = result.traits.flatMap((labels, side) => labels.map((l) => ({ l, team: teams.get(side === 0 ? match.homeId : match.awayId) })));
+  if (!items.length) return null;
+  return (
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, justifyContent: 'center', padding: '0 12px 12px' }}>
+      {items.map(({ l, team }) => (
+        <span key={l + team?.id} className="chip" style={{ background: 'var(--surface-2)', boxShadow: 'none' }}>
+          <Crest team={team} size={16} />✨ {l}
+        </span>
+      ))}
     </div>
   );
 }

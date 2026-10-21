@@ -5,6 +5,7 @@ import type { MatchOptions, MatchResult, SimTeam } from '../engine/types';
 import { applyLine, emptyStats } from './stats';
 import { bracketPairs, nextKnockoutMatches, roundWinners } from './season';
 import { computeStandings } from './standings';
+import { boostFor, type TraitContext } from './traits';
 import { summarize, type Competition, type Match, type Player, type PlayerCompStats, type StoredResult, type Team } from './types';
 
 /** Equipos y jugadores en memoria durante una tanda de simulación. */
@@ -25,6 +26,30 @@ class World {
       w.byTeam.set(p.teamId, list);
     }
     return w;
+  }
+
+  /** Equipos listos para el motor, con sus rasgos históricos evaluados para este partido. */
+  pair(m: Match, comp: Competition, leg1: Match | undefined, useTraits: boolean): [SimTeam, SimTeam] {
+    const home = this.sim(m.homeId);
+    const away = this.sim(m.awayId);
+    if (!useTraits) return [home, away];
+    const kind = comp.rounds.find((r) => r.round === m.round)?.kind;
+    const ovr = (id: string) => this.teams.get(id)!.ovr;
+    const ctx = (teamId: string, oppId: string, isHome: boolean): TraitContext => ({
+      comp: comp.type,
+      leagueId: comp.leagueId,
+      home: isHome,
+      neutral: !!m.neutral,
+      final: kind === 'final',
+      knockout: kind === 'final' || kind === 'single' || kind === 'leg1' || kind === 'leg2',
+      secondLeg: kind === 'leg2',
+      // En la ida, este equipo era el local si ahora es el visitante
+      lostFirstLeg: !!leg1?.score && (leg1.homeId === teamId ? leg1.score[0] < leg1.score[1] : leg1.score[1] < leg1.score[0]),
+      underdog: ovr(oppId) - ovr(teamId) >= 3,
+    });
+    home.boost = boostFor(m.homeId, ctx(m.homeId, m.awayId, true));
+    away.boost = boostFor(m.awayId, ctx(m.awayId, m.homeId, false));
+    return [home, away];
   }
 
   sim(teamId: string): SimTeam {
@@ -160,11 +185,10 @@ export async function play(opts: { maxSlot?: number; matchIds?: string[]; focusC
     for (const m of group) {
       const comp = comps.get(m.compId)!;
       const matchOpts: MatchOptions = { neutral: m.neutral, knockout: m.knockout };
-      if (m.firstLegId) {
-        const leg1 = playedNow.get(m.firstLegId) ?? (await db.matches.get(m.firstLegId));
-        if (leg1?.score) matchOpts.firstLeg = [leg1.score[1], leg1.score[0]];
-      }
-      const r = simulateMatch(world.sim(m.homeId), world.sim(m.awayId), config.sim, matchOpts, m.seed);
+      const leg1 = m.firstLegId ? playedNow.get(m.firstLegId) ?? (await db.matches.get(m.firstLegId)) : undefined;
+      if (leg1?.score) matchOpts.firstLeg = [leg1.score[1], leg1.score[0]];
+      const [home, away] = world.pair(m, comp, leg1, config.traits !== false);
+      const r = simulateMatch(home, away, config.sim, matchOpts, m.seed);
       m.status = 'played';
       summarize(m, r);
       results.push({ ...r, id: m.id, seasonId });
@@ -225,7 +249,9 @@ export async function setManualResult(matchId: string, score: [number, number]) 
   const world = await World.load();
   const old = m.status === 'played' ? await db.results.get(m.id) : undefined;
   if (old) await applyStats(m, comp, old, world, -1);
-  const r = simulateMatch(world.sim(m.homeId), world.sim(m.awayId), config.sim, await matchOptions(m, score), m.seed + 1);
+  const leg1 = m.firstLegId ? await db.matches.get(m.firstLegId) : undefined;
+  const [home, away] = world.pair(m, comp, leg1, config.traits !== false);
+  const r = simulateMatch(home, away, config.sim, await matchOptions(m, score), m.seed + 1);
   m.status = 'played';
   summarize(m, r);
   m.manual = true;

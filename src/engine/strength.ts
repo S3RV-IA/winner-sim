@@ -1,7 +1,7 @@
 import type { SimSettings, SimTeam } from './types';
 
 /** Goles por equipo y partido entre dos equipos iguales en campo neutral. */
-export const BASE_GOALS = 1.25;
+export const BASE_GOALS = 1.22;
 /** Peso de (ataque − defensa rival) en los goles esperados, por cada 10 puntos. */
 export const ATT_DEF_WEIGHT = 0.25;
 /** Peso de (control − control rival) en los goles esperados, por cada 10 puntos. */

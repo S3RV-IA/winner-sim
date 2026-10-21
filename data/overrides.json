@@ -1,0 +1,6 @@
+{
+  "_info": "Ajustes manuales sobre las valoraciones generadas. Clave: '<idEquipo>|<nombre exacto>'.",
+  "players": {
+    "esp-rma|Yan Diomande": { "ovr": 84, "fin": 75, "lng": 71, "dri": 88, "pas": 75, "cre": 80 }
+  }
+}

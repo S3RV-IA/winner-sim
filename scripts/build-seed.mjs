@@ -59,6 +59,7 @@ const NAMES = {
 const ascii = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 const slug = (s) => ascii(s).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
+const overrides = JSON.parse(await readFile(path.join(ROOT, 'data', 'overrides.json'), 'utf8'));
 const leagues = [];
 const teams = [];
 const players = [];
@@ -66,6 +67,7 @@ const players = [];
 for (const lg of LEAGUES) {
   const raw = JSON.parse(await readFile(path.join(ROOT, 'data', 'raw', `${lg.id}.json`), 'utf8'));
   const ratings = JSON.parse(await readFile(path.join(ROOT, 'data', 'ratings', `${lg.id}.json`), 'utf8'));
+  const pace = JSON.parse(await readFile(path.join(ROOT, 'data', 'ratings', 'pace', `${lg.id}.json`), 'utf8'));
   const teamIds = [];
   for (const t of raw.teams) {
     const r = ratings.teams[t.code];
@@ -81,6 +83,8 @@ for (const lg of LEAGUES) {
       used.add(pid);
       if (p.name === r.penaltyTaker) penaltyTaker = pid;
       const attrs = Object.fromEntries(PLAYER_FIELDS.map((f, i) => [f, row[2 + i]]));
+      attrs.pac = pace[t.code][p.name];
+      Object.assign(attrs, overrides.players[`${id}|${p.name}`] ?? {});
       players.push({ id: pid, teamId: id, name: p.name, number: p.number, nat: p.nat, role: row[1], ...attrs });
     }
     teams.push({
@@ -93,5 +97,5 @@ for (const lg of LEAGUES) {
   leagues.push({ id: lg.id, name: lg.name, country: lg.country, teams: teamIds });
 }
 
-await writeFile(path.join(ROOT, 'src', 'data', 'seed.json'), JSON.stringify({ version: 1, season: '2026/27', leagues, teams, players }));
+await writeFile(path.join(ROOT, 'src', 'data', 'seed.json'), JSON.stringify({ version: 2, season: '2026/27', leagues, teams, players }));
 console.log(`seed.json: ${leagues.length} ligas, ${teams.length} equipos, ${players.length} jugadores`);

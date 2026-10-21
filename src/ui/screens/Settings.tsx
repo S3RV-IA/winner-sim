@@ -112,6 +112,19 @@ export function Settings() {
           </button>
         </div>
 
+        <label className="card row" style={{ marginTop: 12 }}>
+          <div className="grow">
+            Rasgos históricos de los clubes
+            <div className="small muted">Ventajas especiales según la historia de cada club (remontadas del Madrid, posesión del Barça…)</div>
+          </div>
+          <input
+            type="checkbox"
+            checked={draft.traits !== false}
+            onChange={(e) => setDraft({ ...draft, traits: e.target.checked })}
+            style={{ width: 22, height: 22, accentColor: 'var(--accent)' }}
+          />
+        </label>
+
         <button className="btn primary block" style={{ marginTop: 14 }} disabled={!dirty} onClick={save}>
           Guardar ajustes
         </button>

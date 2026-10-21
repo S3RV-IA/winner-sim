@@ -47,6 +47,8 @@ export interface Config {
   zones: Record<LeagueId, Zones>;
   /** El campeón de copa juega la Europa League. */
   cupWinnerToUel: boolean;
+  /** Rasgos históricos de los clubes (undefined en partidas antiguas = activados). */
+  traits?: boolean;
 }
 
 export interface Season {

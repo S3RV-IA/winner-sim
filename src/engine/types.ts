@@ -10,6 +10,7 @@ export interface PlayerAttrs {
   cre: number; // creación / visión
   def: number; // defensa
   gk: number; // portería
+  pac: number; // velocidad
 }
 
 export interface SimPlayer extends PlayerAttrs {
@@ -20,6 +21,27 @@ export interface SimPlayer extends PlayerAttrs {
   /** Estado de forma −1..1 */
   form: number;
 }
+
+/** Ventajas de un equipo en un partido concreto (rasgos históricos ya evaluados). */
+export interface TeamBoost {
+  /** Multiplicador de goles esperados propios. */
+  xg: number;
+  /** Multiplicador de goles esperados del rival. */
+  oppXg: number;
+  /** Puntos extra de control y defensa. */
+  ctl: number;
+  def: number;
+  /** Multiplicador de la posesión (dominio del balón). */
+  possession: number;
+  /** Multiplicador del ritmo de ocasiones cuando no gana a partir del 80'. */
+  lateRally: number;
+  /** Multiplicador de acierto en remates de cabeza. */
+  header: number;
+  /** Nombres de los rasgos activos (para mostrarlos). */
+  labels: string[];
+}
+
+export const NO_BOOST: TeamBoost = { xg: 1, oppXg: 1, ctl: 0, def: 0, possession: 1, lateRally: 1, header: 1, labels: [] };
 
 export interface SimTeam {
   id: string;
@@ -32,6 +54,7 @@ export interface SimTeam {
   form: number;
   players: SimPlayer[];
   penaltyTaker?: string;
+  boost?: TeamBoost;
 }
 
 export interface SimSettings {
@@ -140,6 +163,8 @@ export interface MatchResult {
   players: PlayerLine[];
   /** Id del mejor jugador del partido. */
   mvp: string;
+  /** Rasgos históricos activos en el partido [local, visitante]. */
+  traits?: [string[], string[]];
   /** Probabilidades previas al partido [local, empate, visitante] (para la forma). */
   odds: [number, number, number];
   expectedGoals: [number, number];
