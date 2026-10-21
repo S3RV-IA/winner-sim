@@ -41,6 +41,8 @@ for (let s = 0; s < 4; s++)
   }
 const avg = (xs: number[]) => (xs.reduce((a, b) => a + b, 0) / Math.max(1, xs.length)).toFixed(2);
 console.log(`Media titulares ${avg(ALL.map((x) => x.rating))} · sin gol ni asistencia ${avg(ALL.filter((x) => !x.goals && !x.assists).map((x) => x.rating))}`);
+const oneGoal = ALL.filter((x) => x.goals === 1 && !x.assists);
+console.log(`1 gol sin más: <8 en ${Math.round((100 * oneGoal.filter((x) => x.rating < 8).length) / oneGoal.length)}% · ≥9 en ${Math.round((100 * oneGoal.filter((x) => x.rating >= 9).length) / oneGoal.length)}% · gol+asist ${avg(ALL.filter((x) => x.goals === 1 && x.assists === 1).map((x) => x.rating))} · 2 asist ${avg(ALL.filter((x) => x.assists === 2 && !x.goals).map((x) => x.rating))} · dieces ${(100 * ALL.filter((x) => x.rating >= 10).length / ALL.length).toFixed(2)}% de las notas`);
 console.log(`Partido con 1 gol ${avg(ALL.filter((x) => x.goals === 1).map((x) => x.rating))} · doblete ${avg(ALL.filter((x) => x.goals === 2).map((x) => x.rating))} · triplete ${avg(ALL.filter((x) => x.goals >= 3).map((x) => x.rating))} · 1 asistencia ${avg(ALL.filter((x) => x.assists === 1 && !x.goals).map((x) => x.rating))}`);
 const def = ALL.filter((x) => ['CB', 'LB', 'RB'].includes(x.role));
 console.log(`Defensas: portería a cero ${avg(def.filter((x) => !x.conceded).map((x) => x.rating))} · derrota encajando 2+ ${avg(def.filter((x) => x.lost && x.conceded >= 2).map((x) => x.rating))} (suspenden ${Math.round((100 * def.filter((x) => x.lost && x.conceded >= 2 && x.rating < 6).length) / Math.max(1, def.filter((x) => x.lost && x.conceded >= 2).length))}%)`);

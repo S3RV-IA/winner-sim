@@ -33,22 +33,25 @@ const DRIBBLE_ROLE: Record<Role, number> = { GK: 0.02, CB: 0.3, LB: 0.9, RB: 0.9
 const BLOCK_ROLE: Record<Role, number> = { GK: 0, CB: 1, LB: 0.6, RB: 0.6, DM: 0.6, CM: 0.3, AM: 0.1, LW: 0.1, RW: 0.1, ST: 0.05 };
 const DEF_ROLE: Record<Role, number> = { GK: 0.3, CB: 4.5, LB: 3.8, RB: 3.8, DM: 4.5, CM: 3, AM: 1.4, LW: 1.2, RW: 1.2, ST: 0.8 };
 /** Nota de partida antes de sumar y restar acciones (calibrada con scripts/rating-season.ts). */
-const RATING_BASE = 5.55;
+const RATING_BASE = 5.75;
 /** Peso de cada acción en la nota del partido. */
 const R = {
-  firstGoal: 3.2,
+  firstGoal: 2.0,
   nextGoal: 1.4,
   /** Un gol de penalti vale algo menos que uno en juego. */
   penFactor: 0.75,
-  assist: 1.6,
-  keyPass: 0.32,
-  shot: 0.08,
-  shotOn: 0.3,
-  dribble: 0.18,
+  assist: 1.1,
+  keyPass: 0.28,
+  shot: 0.06,
+  shotOn: 0.2,
+  dribble: 0.14,
   passOk: 0.006,
   passAcc: 2,
-  defAction: 0.16,
+  defAction: 0.15,
   quality: 0.03,
+  /** Por encima de esta nota cada punto «bruto» sube menos: el 10 tiene que ser excepcional. */
+  softCap: 8.2,
+  softFactor: 0.55,
 };
 const ATTACKING: ReadonlySet<Role> = new Set(['ST', 'LW', 'RW', 'AM']);
 const DEFENSIVE: ReadonlySet<Role> = new Set(['CB', 'LB', 'RB']);
@@ -639,7 +642,8 @@ export function simulateMatch(home: SimTeam, away: SimTeam, settings: SimSetting
     else if (a.role === 'DM') r += -l.conceded * 0.15 + (cleanSheet ? 0.2 : 0);
     r -= l.yellow * 0.15 + l.red * 1.0;
     r += res === 1 ? 0.3 : res === -1 ? -0.3 : 0;
-    r += rng.normal(0, 0.2);
+    r += rng.normal(0, 0.3);
+    if (r > R.softCap) r = R.softCap + (r - R.softCap) * R.softFactor;
     l.rating = Math.round(clamp(r, 3, 10) * 10) / 10;
   }
 
