@@ -26,6 +26,11 @@ function computeHonors(comps: Competition[], matches: Match[]): Map<string, Team
     } else if (c.type === 'cup') {
       if (c.championId) get(c.championId).cup = 'win';
       if (c.runnerUpId) get(c.runnerUpId).cup = 'final';
+    } else if (c.type === 'supercup' || c.type === 'uefasuper') {
+      if (c.championId) get(c.championId).supercups = (get(c.championId).supercups ?? 0) + 1;
+    } else if (c.type === 'uecl') {
+      if (c.championId) get(c.championId).uecl = 'win';
+      if (c.runnerUpId) get(c.runnerUpId).uecl = 'final';
     } else {
       // Europa: ronda más avanzada que jugó cada equipo (cuartos o semifinales)
       const reached = new Map<string, 'quarter' | 'semi'>();
@@ -165,7 +170,7 @@ export async function closeSeason(): Promise<number> {
   }
 
   // 5) Racha de salida para la próxima temporada
-  const europeWinners = new Set(trophies.filter((t) => t.compType === 'ucl' || t.compType === 'uel').map((t) => t.teamId));
+  const europeWinners = new Set(trophies.filter((t) => t.compType === 'ucl' || t.compType === 'uel' || t.compType === 'uecl').map((t) => t.teamId));
   for (const lg of leagues) {
     const table = tables[lg.id];
     const z = config.zones[lg.id];
@@ -193,7 +198,12 @@ export async function closeSeason(): Promise<number> {
   // 7) Nueva temporada
   const ranked = Object.fromEntries(leagues.map((lg) => [lg.id, tables[lg.id].map((r) => r.teamId)])) as Record<LeagueId, string[]>;
   const cupWinners = Object.fromEntries(comps.filter((c) => c.type === 'cup' && c.championId).map((c) => [c.leagueId, c.championId])) as Partial<Record<LeagueId, string>>;
-  const next = createSeason({ seasonId: seasonId + 1, year: season.year + 1, leagues, teams, config, ranked, cupWinners });
+  const cupRunnersUp = Object.fromEntries(comps.filter((c) => c.type === 'cup' && c.runnerUpId).map((c) => [c.leagueId, c.runnerUpId])) as Partial<Record<LeagueId, string>>;
+  const europe = {
+    ucl: comps.find((c) => c.type === 'ucl')?.championId,
+    uel: comps.find((c) => c.type === 'uel')?.championId,
+  };
+  const next = createSeason({ seasonId: seasonId + 1, year: season.year + 1, leagues, teams, config, ranked, cupWinners, cupRunnersUp, europeWinners: europe });
 
   await db.transaction('rw', db.tables, async () => {
     await db.results.bulkPut(results);

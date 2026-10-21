@@ -24,7 +24,7 @@ export function SeasonView() {
 
   const award = (type: AwardType, leagueId?: LeagueId) => awards.find((a) => a.type === type && a.leagueId === leagueId);
   const ballon = award('ballonDor');
-  const order = ['ucl', 'uel', 'league', 'cup'];
+  const order = ['ucl', 'uel', 'uecl', 'uefasuper', 'league', 'cup', 'supercup'];
 
   return (
     <div className="screen">
@@ -101,7 +101,7 @@ export function SeasonView() {
               zoneColor={(pos) => {
                 const z = config.zones[league];
                 const n = archive.tables[league].length;
-                return pos <= z.ucl ? 'var(--ucl)' : pos <= z.ucl + z.uel ? 'var(--uel)' : pos > n - z.rel ? 'var(--rel)' : undefined;
+                return pos <= z.ucl ? 'var(--ucl)' : pos <= z.ucl + z.uel ? 'var(--uel)' : pos <= z.ucl + z.uel + (z.uecl ?? 1) ? 'var(--uecl)' : pos > n - z.rel ? 'var(--rel)' : undefined;
               }}
             />
           </div>

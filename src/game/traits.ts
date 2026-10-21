@@ -35,8 +35,8 @@ export interface Trait {
   effect: TraitEffect;
 }
 
-const europe = (c: TraitContext) => c.comp === 'ucl' || c.comp === 'uel';
-const domestic = (c: TraitContext) => c.comp === 'league' || c.comp === 'cup';
+const europe = (c: TraitContext) => c.comp === 'ucl' || c.comp === 'uel' || c.comp === 'uecl' || c.comp === 'uefasuper';
+const domestic = (c: TraitContext) => c.comp === 'league' || c.comp === 'cup' || c.comp === 'supercup';
 
 /**
  * Rasgos históricos de los clubes. Los porcentajes de victoria se traducen en goles esperados

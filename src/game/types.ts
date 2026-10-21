@@ -1,7 +1,8 @@
 import type { MatchResult, PlayerAttrs, Role, SimSettings } from '../engine/types';
 
 export type LeagueId = 'eng' | 'esp' | 'ger' | 'ita' | 'fra' | 'por';
-export type CompType = 'league' | 'cup' | 'ucl' | 'uel';
+/** league · cup (copa nacional) · supercup (supercopa nacional) · ucl · uel · uecl (Conference) · uefasuper (Supercopa de Europa) */
+export type CompType = 'league' | 'cup' | 'supercup' | 'ucl' | 'uel' | 'uecl' | 'uefasuper';
 
 export interface League {
   id: LeagueId;
@@ -42,6 +43,8 @@ export interface Player extends PlayerAttrs {
 export interface Zones {
   ucl: number;
   uel: number;
+  /** Plazas de Conference League (partidas antiguas sin el dato: 1). */
+  uecl?: number;
   rel: number;
 }
 

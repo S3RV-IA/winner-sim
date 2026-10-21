@@ -64,8 +64,9 @@ function CompetitionsTab() {
   if (!comps || !pending) return null;
 
   const nextSlot = pending.length ? Math.min(...pending.map((m) => m.slot)) : null;
-  const nextWeek = nextSlot ? weekOf(nextSlot) : null;
-  const weekMatches = nextWeek ? pending.filter((m) => weekOf(m.slot) === nextWeek) : [];
+  // La semana 0 existe (pretemporada: supercopas), así que se compara con null y no con «falso»
+  const nextWeek = nextSlot !== null ? weekOf(nextSlot) : null;
+  const weekMatches = nextWeek !== null ? pending.filter((m) => weekOf(m.slot) === nextWeek) : [];
   const weekPlan = describeWeek(weekMatches, comps);
   const pendingByComp = new Map<string, number[]>();
   for (const m of pending) pendingByComp.set(m.compId, [...(pendingByComp.get(m.compId) ?? []), m.round]);
@@ -109,7 +110,7 @@ function CompetitionsTab() {
       ) : (
         <div className="card" style={{ padding: 14 }}>
           <div className="small muted">
-            Próxima fecha{nextWeek ? ` · semana ${nextWeek} · ${monthOf(nextWeek)} · ${weekMatches.length} partidos` : ''}
+            Próxima fecha{nextWeek !== null ? ` · ${nextWeek === 0 ? 'pretemporada' : `semana ${nextWeek}`} · ${monthOf(nextWeek)} · ${weekMatches.length} partidos` : ''}
           </div>
           <div style={{ margin: '6px 0 12px', display: 'flex', flexDirection: 'column', gap: 6 }}>
             {weekPlan.map((w) => (
@@ -126,7 +127,7 @@ function CompetitionsTab() {
           <div className="grid2" style={{ gridTemplateColumns: '1fr 1fr' }}>
             <button
               className="btn"
-              disabled={!nextSlot}
+              disabled={nextSlot === null}
               onClick={async () => {
                 const r = await ui.run('Jugando la semana…', (p) => playNextDate(season.id, p), { heavy: true });
                 if (r) ui.toast(`Semana jugada: ${r.played} partidos${r.finished.length ? ` · ¡${r.finished.map((c) => c.name).join(', ')} terminada!` : ''}`);
@@ -136,7 +137,7 @@ function CompetitionsTab() {
             </button>
             <button
               className="btn primary"
-              disabled={!nextSlot}
+              disabled={nextSlot === null}
               onClick={async () => {
                 const r = await ui.run('Simulando la temporada…', (p) => playSeason(season.id, p), { heavy: true });
                 if (r) ui.toast(`Temporada simulada: ${r.played} partidos`);
@@ -151,8 +152,8 @@ function CompetitionsTab() {
       {(
         [
           ['Ligas', ['league']],
-          ['Europa', ['ucl', 'uel']],
-          ['Copas nacionales', ['cup']],
+          ['Europa', ['ucl', 'uel', 'uecl', 'uefasuper']],
+          ['Copas y supercopas', ['cup', 'supercup']],
         ] as [string, CompType[]][]
       ).map(([title, types]) => (
         <div key={title}>
@@ -187,8 +188,16 @@ function CompetitionsTab() {
   );
 }
 
-const TYPE_ORDER: CompType[] = ['ucl', 'uel', 'cup', 'league'];
-const TYPE_NAMES: Record<CompType, string> = { ucl: 'Champions League', uel: 'Europa League', cup: 'Copas', league: 'Ligas' };
+const TYPE_ORDER: CompType[] = ['uefasuper', 'supercup', 'ucl', 'uel', 'uecl', 'cup', 'league'];
+const TYPE_NAMES: Record<CompType, string> = {
+  uefasuper: 'Supercopa de Europa',
+  supercup: 'Supercopas',
+  ucl: 'Champions League',
+  uel: 'Europa League',
+  uecl: 'Conference League',
+  cup: 'Copas',
+  league: 'Ligas',
+};
 
 /** Qué se juega en la semana: una línea por tipo de competición con su jornada o ronda. */
 function describeWeek(matches: Match[], comps: Competition[]) {
@@ -211,7 +220,7 @@ function describeWeek(matches: Match[], comps: Competition[]) {
         : labels.length === 1
           ? labels[0]
           : labels.join(' / ');
-    const name = type === 'cup' && compsByType.get(type)!.size === 1 ? comps.find((c) => compsByType.get(type)!.has(c.id))!.name : TYPE_NAMES[type];
+    const name = (type === 'cup' || type === 'supercup') && compsByType.get(type)!.size === 1 ? comps.find((c) => compsByType.get(type)!.has(c.id))!.name : TYPE_NAMES[type];
     return { type, name, round };
   });
 }
@@ -288,7 +297,8 @@ function PlayersTab() {
   const totals = useMemo(() => {
     const map = new Map<string, Totals>();
     for (const s of stats ?? []) {
-      if (scope !== 'all' && s.compType !== scope) continue;
+      // «Supercopas» agrupa las nacionales y la de Europa
+      if (scope !== 'all' && s.compType !== scope && !(scope === 'supercup' && s.compType === 'uefasuper')) continue;
       if (league !== 'all' && s.compId !== `${season.id}-league-${league}`) continue;
       const t = map.get(s.playerId) ?? { goals: 0, assists: 0, ratingSum: 0, rated: 0, apps: 0, cleanSheets: 0, motm: 0 };
       t.goals += s.goals;
@@ -414,12 +424,12 @@ function HistoryTab() {
 
   const counts = new Map<string, Record<CompType, number>>();
   for (const t of trophies) {
-    const c = counts.get(t.teamId) ?? { league: 0, cup: 0, ucl: 0, uel: 0 };
-    c[t.compType]++;
+    const c = counts.get(t.teamId) ?? { league: 0, cup: 0, supercup: 0, ucl: 0, uel: 0, uecl: 0, uefasuper: 0 };
+    c[t.compType] = (c[t.compType] ?? 0) + 1;
     counts.set(t.teamId, c);
   }
   const table = [...counts.entries()]
-    .map(([id, c]) => ({ id, c, total: c.league + c.cup + c.ucl + c.uel }))
+    .map(([id, c]) => ({ id, c, total: Object.values(c).reduce((a, b) => a + b, 0) }))
     .sort((a, b) => b.c.ucl - a.c.ucl || b.c.league - a.c.league || b.total - a.total);
 
   const finished = seasons.filter((s) => s.status === 'finished').sort((a, b) => b.id - a.id);
@@ -427,16 +437,20 @@ function HistoryTab() {
   return (
     <div className="content">
       <div className="section-title">Palmarés</div>
-      <div className="card" style={{ overflow: 'hidden' }}>
+      <div className="card" style={{ overflowX: 'auto' }}>
         {table.length ? (
-          <table className="table">
+          <table className="table compact">
             <thead>
               <tr>
                 <th style={{ textAlign: 'left', paddingLeft: 12 }}>Club</th>
-                <th title="Champions">UCL</th>
+                <th title="Champions League">UCL</th>
                 <th title="Ligas">Liga</th>
-                <th title="Copas">Copa</th>
+                <th title="Copas nacionales">Copa</th>
                 <th title="Europa League">UEL</th>
+                <th title="Conference League">UECL</th>
+                <th title="Supercopas nacionales">Sup.</th>
+                <th title="Supercopa de Europa">SCE</th>
+                <th title="Total de títulos">Tot.</th>
               </tr>
             </thead>
             <tbody>
@@ -447,13 +461,17 @@ function HistoryTab() {
                     <td className="team" style={{ paddingLeft: 12 }}>
                       <Link to={`/t/${r.id}?tab=trophies`} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                         <Crest team={t} size={20} />
-                        <span className="ellipsis">{t.short}</span>
+                        <span className="ellipsis" style={{ maxWidth: 92 }}>{t.short}</span>
                       </Link>
                     </td>
                     <td className="tnum bold">{r.c.ucl || '·'}</td>
                     <td className="tnum">{r.c.league || '·'}</td>
                     <td className="tnum">{r.c.cup || '·'}</td>
                     <td className="tnum">{r.c.uel || '·'}</td>
+                    <td className="tnum">{r.c.uecl || '·'}</td>
+                    <td className="tnum">{r.c.supercup || '·'}</td>
+                    <td className="tnum">{r.c.uefasuper || '·'}</td>
+                    <td className="tnum bold">{r.total}</td>
                   </tr>
                 );
               })}

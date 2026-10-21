@@ -1,6 +1,6 @@
 import { Rng, randomSeed } from '../engine/rng';
-import { CUP_WEEKS, DAY, EURO_WEEKS, leagueWeeks, slot } from './calendar';
-import { CUP_NAMES, EURO_SIZES, LEAGUE_ORDER } from './defaults';
+import { CUP_WEEKS, DAY, EURO_WEEKS, SUPER_WEEKS, UECL_WEEKS, leagueWeeks, slot } from './calendar';
+import { CUP_NAMES, EURO_SIZES, FOUR_TEAM_SUPERCUPS, LEAGUE_ORDER, SUPERCUP_NAMES, UECL_SIZE } from './defaults';
 import { currentOvr } from './level';
 import { doubleRoundRobin, swissLeaguePhase } from './schedule';
 import type { Competition, CompType, Config, League, LeagueId, Match, RoundInfo, Season, Team } from './types';
@@ -18,6 +18,10 @@ export interface SeasonInput {
   ranked: Record<LeagueId, string[]>;
   /** Campeones de copa de la temporada anterior. */
   cupWinners: Partial<Record<LeagueId, string>>;
+  /** Finalistas de copa de la temporada anterior (supercopas de 4 equipos). */
+  cupRunnersUp?: Partial<Record<LeagueId, string>>;
+  /** Campeones de Champions y Europa League de la temporada anterior (Supercopa de Europa). */
+  europeWinners?: { ucl?: string; uel?: string };
 }
 
 export interface SeasonBundle {
@@ -26,7 +30,7 @@ export interface SeasonBundle {
   matches: Match[];
 }
 
-/** Crea una temporada completa: 6 ligas, 6 copas, Champions y Europa League. */
+/** Crea una temporada completa: ligas, copas, supercopas, Champions, Europa League, Conference y Supercopa de Europa. */
 export function createSeason(input: SeasonInput): SeasonBundle {
   const rng = new Rng(randomSeed());
   const { seasonId, year } = input;
@@ -64,10 +68,24 @@ export function createSeason(input: SeasonInput): SeasonBundle {
       const [home, away] = seeding.indexOf(x) > seeding.indexOf(y) ? [x, y] : [y, x];
       matches.push({ id: `${cupId}-1-${i}`, seasonId, compId: cupId, round: 1, slot: cupRounds[0].slot, homeId: home, awayId: away, status: 'scheduled', seed: randomSeed(), knockout: true, bracket: i });
     }
+
+    // Supercopa nacional (campo neutral)
+    const sup = createSupercup(input, lg.id);
+    competitions.push(sup.comp);
+    matches.push(...sup.matches);
+  }
+
+  // Supercopa de Europa: campeón de Champions contra campeón de Europa League
+  const ew = input.europeWinners;
+  if (ew?.ucl && ew.uel && ew.ucl !== ew.uel) {
+    const id = compId(seasonId, 'uefasuper');
+    const rounds: RoundInfo[] = [{ round: 1, label: 'Final', slot: slot(SUPER_WEEKS.uefa, DAY.cup), kind: 'final' }];
+    competitions.push({ id, seasonId, type: 'uefasuper', name: 'Supercopa de Europa', teams: [ew.ucl, ew.uel], rounds, status: 'active', seeding: [ew.ucl, ew.uel] });
+    matches.push({ id: `${id}-1-0`, seasonId, compId: id, round: 1, slot: rounds[0].slot, homeId: ew.ucl, awayId: ew.uel, status: 'scheduled', seed: randomSeed(), knockout: true, neutral: true, bracket: 0 });
   }
 
   // Competiciones europeas
-  const { ucl, uel } = qualifyEurope(input);
+  const { ucl, uel, uecl } = qualifyEurope(input);
   for (const [type, teams, name, day] of [['ucl', ucl, 'Champions League', DAY.ucl], ['uel', uel, 'Europa League', DAY.uel]] as const) {
     const id = compId(seasonId, type);
     const seeded = [...teams].sort((a, b) => currentOvr(input.teams.get(b)!) - currentOvr(input.teams.get(a)!));
@@ -81,7 +99,58 @@ export function createSeason(input: SeasonInput): SeasonBundle {
     );
   }
 
+  // Conference League: 16 equipos, sorteo libre de octavos a ida y vuelta
+  {
+    const id = compId(seasonId, 'uecl');
+    const seeded = [...uecl].sort((a, b) => currentOvr(input.teams.get(b)!) - currentOvr(input.teams.get(a)!));
+    const rounds: RoundInfo[] = [];
+    let n = 1;
+    for (const [label, [w1, w2]] of [['Octavos', UECL_WEEKS.r16], ['Cuartos', UECL_WEEKS.qf], ['Semifinales', UECL_WEEKS.sf]] as const) {
+      rounds.push({ round: n++, label: `${label} (ida)`, slot: slot(w1, DAY.uecl), kind: 'leg1' });
+      rounds.push({ round: n++, label: `${label} (vuelta)`, slot: slot(w2, DAY.uecl), kind: 'leg2' });
+    }
+    rounds.push({ round: n, label: 'Final', slot: slot(UECL_WEEKS.final, DAY.uecl), kind: 'final' });
+    const comp: Competition = { id, seasonId, type: 'uecl', name: 'Conference League', teams: seeded, rounds, status: 'active', seeding: seeded };
+    competitions.push(comp);
+    const drawn = rng.shuffle([...seeded]);
+    const pairs: [string, string, number][] = Array.from({ length: drawn.length / 2 }, (_, i) => [drawn[2 * i], drawn[2 * i + 1], i]);
+    matches.push(...nextKnockoutMatches(comp, 1, pairs, (t) => seeded.indexOf(t)));
+  }
+
   return { season: { id: seasonId, year, label: seasonLabel(year), status: 'active' }, competitions, matches };
+}
+
+/**
+ * Supercopa nacional. España e Italia: 4 equipos (campeón y subcampeón de liga, campeón y finalista de copa)
+ * con semifinales y final en enero. El resto: final única al empezar la temporada (campeón de liga contra
+ * campeón de copa; si es el mismo, contra el subcampeón de liga). Siempre en campo neutral.
+ */
+function createSupercup(input: SeasonInput, leagueId: LeagueId): { comp: Competition; matches: Match[] } {
+  const id = compId(input.seasonId, 'supercup', leagueId);
+  const ranked = input.ranked[leagueId];
+  const cupW = input.cupWinners[leagueId];
+  const cupRU = input.cupRunnersUp?.[leagueId];
+  const base = { seasonId: input.seasonId, compId: id, status: 'scheduled' as const, knockout: true, neutral: true };
+  if (FOUR_TEAM_SUPERCUPS.includes(leagueId)) {
+    const teams: string[] = [];
+    for (const t of [ranked[0], ranked[1], cupW, cupRU, ...ranked.slice(2)]) if (t && !teams.includes(t) && teams.length < 4) teams.push(t);
+    const rounds: RoundInfo[] = [
+      { round: 1, label: 'Semifinales', slot: slot(SUPER_WEEKS.semis, DAY.cup), kind: 'single' },
+      { round: 2, label: 'Final', slot: slot(SUPER_WEEKS.final, DAY.cup), kind: 'final' },
+    ];
+    const comp: Competition = { id, seasonId: input.seasonId, type: 'supercup', leagueId, name: SUPERCUP_NAMES[leagueId], teams, rounds, status: 'active', seeding: teams };
+    return {
+      comp,
+      matches: [
+        { ...base, id: `${id}-1-0`, round: 1, slot: rounds[0].slot, homeId: teams[0], awayId: teams[3], seed: randomSeed(), bracket: 0 },
+        { ...base, id: `${id}-1-1`, round: 1, slot: rounds[0].slot, homeId: teams[1], awayId: teams[2], seed: randomSeed(), bracket: 1 },
+      ],
+    };
+  }
+  const other = cupW && cupW !== ranked[0] ? cupW : ranked[1];
+  const rounds: RoundInfo[] = [{ round: 1, label: 'Final', slot: slot(SUPER_WEEKS.single, DAY.cup), kind: 'final' }];
+  const comp: Competition = { id, seasonId: input.seasonId, type: 'supercup', leagueId, name: SUPERCUP_NAMES[leagueId], teams: [ranked[0], other], rounds, status: 'active', seeding: [ranked[0], other] };
+  return { comp, matches: [{ ...base, id: `${id}-1-0`, round: 1, slot: rounds[0].slot, homeId: ranked[0], awayId: other, seed: randomSeed(), bracket: 0 }] };
 }
 
 function euroRounds(day: number): RoundInfo[] {
@@ -96,8 +165,8 @@ function euroRounds(day: number): RoundInfo[] {
   return r;
 }
 
-/** Reparte las plazas de Champions y Europa League según la configuración. */
-export function qualifyEurope(input: Pick<SeasonInput, 'config' | 'ranked' | 'cupWinners' | 'leagues'>): { ucl: string[]; uel: string[] } {
+/** Reparte las plazas de Champions, Europa League y Conference League según la configuración. */
+export function qualifyEurope(input: Pick<SeasonInput, 'config' | 'ranked' | 'cupWinners' | 'leagues'>): { ucl: string[]; uel: string[]; uecl: string[] } {
   const { config, ranked, cupWinners } = input;
   const leagues = LEAGUE_ORDER.filter((l) => input.leagues.some((x) => x.id === l));
   const taken = new Set<string>();
@@ -145,7 +214,15 @@ export function qualifyEurope(input: Pick<SeasonInput, 'config' | 'ranked' | 'cu
   const uelSize = sizeFor(uel.length);
   uel.splice(uelSize);
   fill(uel, uelSize);
-  return { ucl, uel };
+
+  const uecl: string[] = [];
+  for (const l of leagues) for (let i = 0; i < (config.zones[l].uecl ?? 1); i++) {
+    const t = takeFrom(l);
+    if (t) uecl.push(t);
+  }
+  uecl.splice(UECL_SIZE);
+  fill(uecl, UECL_SIZE);
+  return { ucl, uel, uecl };
 }
 
 /** Orden inicial de cada liga para la primera temporada: puesto real de 2025/26, ascendidos al final por nivel. */

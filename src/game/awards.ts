@@ -4,21 +4,26 @@ import type { CompType, LeagueId, PlayerCompStats } from './types';
 export interface TeamHonors {
   ucl?: 'win' | 'final' | 'semi' | 'quarter';
   uel?: 'win' | 'final' | 'semi';
+  uecl?: 'win' | 'final';
   league?: 'win' | 'second';
   cup?: 'win' | 'final';
+  /** Supercopas ganadas (nacional y de Europa): pesan poco. */
+  supercups?: number;
 }
 
 /** Puntos por título o ronda alcanzada: la Champions es lo que más pesa, como en una votación real. */
 const HONOR_POINTS = {
   ucl: { win: 32, final: 14, semi: 7, quarter: 3 },
   uel: { win: 12, final: 5, semi: 2 },
+  uecl: { win: 7, final: 2.5 },
   league: { win: 14, second: 3 },
   cup: { win: 5, final: 1.5 },
 } as const;
+const SUPERCUP_POINTS = 2;
 
 /** La Liga Portugal pesa algo menos que las cinco grandes. */
 const LEAGUE_WEIGHT: Record<LeagueId, number> = { eng: 1, esp: 1, ger: 1, ita: 1, fra: 1, por: 0.6 };
-const GOAL_WEIGHT: Record<CompType, number> = { league: 1, ucl: 1.5, uel: 0.8, cup: 0.6 };
+const GOAL_WEIGHT: Record<CompType, number> = { league: 1, ucl: 1.5, uel: 0.8, uecl: 0.6, cup: 0.6, supercup: 0.5, uefasuper: 0.8 };
 const DEFENSIVE = new Set(['GK', 'CB', 'LB', 'RB']);
 
 export interface ScoreInput {
@@ -75,6 +80,9 @@ export function ballonDorScore({ rows, role, leagueId, honors, teamGames }: Scor
   };
   if (honors.ucl) add('ucl', HONOR_POINTS.ucl[honors.ucl], honors.ucl === 'win' ? 'Champions' : undefined);
   if (honors.uel) add('uel', HONOR_POINTS.uel[honors.uel], honors.uel === 'win' ? 'Europa League' : undefined);
+  if (honors.uecl) add('uecl', HONOR_POINTS.uecl[honors.uecl], honors.uecl === 'win' ? 'Conference' : undefined);
+  // Las supercopas cuentan si el jugador es importante en liga (son uno o dos partidos)
+  if (honors.supercups) add('league', SUPERCUP_POINTS * honors.supercups, undefined);
   if (honors.league) add('league', HONOR_POINTS.league[honors.league] * LEAGUE_WEIGHT[leagueId], honors.league === 'win' ? 'Liga' : undefined);
   if (honors.cup) add('cup', HONOR_POINTS.cup[honors.cup], honors.cup === 'win' ? 'Copa' : undefined);
 

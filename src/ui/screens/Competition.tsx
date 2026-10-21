@@ -22,7 +22,7 @@ export function Competition() {
   if (!comp) return null;
 
   const tabs: TabDef<CompTab>[] = [{ id: 'matches', label: 'Partidos', icon: 'list' }];
-  if (comp.type !== 'cup') tabs.push({ id: 'table', label: comp.type === 'league' ? 'Clasificación' : 'Fase de liga', icon: 'table' });
+  if (comp.type === 'league' || comp.type === 'ucl' || comp.type === 'uel') tabs.push({ id: 'table', label: comp.type === 'league' ? 'Clasificación' : 'Fase de liga', icon: 'table' });
   if (comp.type !== 'league') tabs.push({ id: 'bracket', label: 'Cuadro', icon: 'bracket' });
   tabs.push({ id: 'stats', label: 'Estadísticas', icon: 'chart' });
 
@@ -103,7 +103,7 @@ function MatchesTab({ comp }: { comp: Comp }) {
         </button>
       </div>
       <div className="small muted" style={{ textAlign: 'center', marginBottom: 10 }}>
-        Semana {weekOf(info.slot)} · {monthOf(weekOf(info.slot))}
+        {weekOf(info.slot) === 0 ? 'Pretemporada' : `Semana ${weekOf(info.slot)}`} · {monthOf(weekOf(info.slot))}
       </div>
 
       {matches.length ? (
@@ -171,6 +171,7 @@ function TableTab({ comp }: { comp: Comp }) {
     if (comp.type !== 'league') return pos <= 8 ? 'var(--win)' : pos <= 24 ? 'var(--uel)' : undefined;
     if (pos <= zones.ucl) return 'var(--ucl)';
     if (pos <= zones.ucl + zones.uel) return 'var(--uel)';
+    if (pos <= zones.ucl + zones.uel + (zones.uecl ?? 1)) return 'var(--uecl)';
     if (pos > table.length - zones.rel) return 'var(--rel)';
     return undefined;
   };
@@ -183,6 +184,7 @@ function TableTab({ comp }: { comp: Comp }) {
             <>
               <span><i style={{ background: 'var(--ucl)' }} />Champions</span>
               <span><i style={{ background: 'var(--uel)' }} />Europa League</span>
+              <span><i style={{ background: 'var(--uecl)' }} />Conference</span>
               <span><i style={{ background: 'var(--rel)' }} />Descenso (penaliza la forma)</span>
             </>
           ) : (

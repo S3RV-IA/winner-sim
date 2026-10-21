@@ -232,10 +232,10 @@ function TeamTrophies({ team }: { team: Team }) {
   const seasons = useLiveQuery(() => db.seasons.toArray());
   if (!trophies || !seasons) return null;
   const label = (sid: number) => seasons.find((s) => s.id === sid)?.label ?? '';
-  const types: CompType[] = ['ucl', 'league', 'cup', 'uel'];
+  const types: CompType[] = ['ucl', 'league', 'cup', 'uel', 'uecl', 'supercup', 'uefasuper'];
   return (
     <>
-      <div className="grid2" style={{ gridTemplateColumns: 'repeat(4, 1fr)', marginTop: 12 }}>
+      <div className="grid2" style={{ gridTemplateColumns: 'repeat(4, 1fr)', marginTop: 12, gap: 8 }}>
         {types.map((t) => (
           <div key={t} className="card" style={{ padding: 10, textAlign: 'center' }}>
             <div style={{ fontSize: 24, fontWeight: 800 }} className="tnum">

@@ -16,7 +16,7 @@ export function Settings() {
   const file = useRef<HTMLInputElement>(null);
   const dirty = JSON.stringify(draft) !== JSON.stringify(config);
 
-  const setZone = (l: LeagueId, k: 'ucl' | 'uel' | 'rel', v: number) => setDraft({ ...draft, zones: { ...draft.zones, [l]: { ...draft.zones[l], [k]: v } } });
+  const setZone = (l: LeagueId, k: 'ucl' | 'uel' | 'uecl' | 'rel', v: number) => setDraft({ ...draft, zones: { ...draft.zones, [l]: { ...draft.zones[l], [k]: v } } });
   const totalUcl = leagues.reduce((a, l) => a + draft.zones[l.id].ucl, 0);
   const totalUel = leagues.reduce((a, l) => a + draft.zones[l.id].uel, 0) + (draft.cupWinnerToUel ? 6 : 0);
 
@@ -50,6 +50,7 @@ export function Settings() {
             <div className="grow" />
             <span style={{ width: 112, textAlign: 'center', color: 'var(--ucl)' }}>Champions</span>
             <span style={{ width: 112, textAlign: 'center', color: 'var(--uel)' }}>Europa L.</span>
+            <span style={{ width: 112, textAlign: 'center', color: 'var(--uecl)' }}>Conference</span>
             <span style={{ width: 112, textAlign: 'center', color: 'var(--rel)' }}>Descenso</span>
           </div>
           {leagues.map((l) => (
@@ -59,6 +60,7 @@ export function Settings() {
               </div>
               <Stepper value={draft.zones[l.id].ucl} max={8} onChange={(v) => setZone(l.id, 'ucl', v)} />
               <Stepper value={draft.zones[l.id].uel} max={8} onChange={(v) => setZone(l.id, 'uel', v)} />
+              <Stepper value={draft.zones[l.id].uecl ?? 1} max={6} onChange={(v) => setZone(l.id, 'uecl', v)} />
               <Stepper value={draft.zones[l.id].rel} max={5} onChange={(v) => setZone(l.id, 'rel', v)} />
             </div>
           ))}
@@ -71,7 +73,8 @@ export function Settings() {
           </label>
         </div>
         <p className="small muted" style={{ margin: '8px 4px' }}>
-          Champions: {totalUcl} plazas · Europa League: {totalUel}. Cada competición se juega con 24 equipos (o 32 si hay más clasificados); los huecos se completan con los siguientes
+          Champions: {totalUcl} plazas · Europa League: {totalUel} · Conference League: 16 equipos.
+          Las supercopas las juegan los campeones y finalistas de liga y copa, y la Supercopa de Europa los campeones de Champions y Europa League. Cada competición se juega con 24 equipos (o 32 si hay más clasificados); los huecos se completan con los siguientes
           mejor clasificados. Los colores de la clasificación cambian al momento; las plazas se reparten al empezar la próxima temporada. Los puestos de descenso no bajan de categoría: reciben una penalización de forma para la temporada siguiente.
         </p>
 

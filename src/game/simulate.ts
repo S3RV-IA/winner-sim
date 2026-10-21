@@ -336,7 +336,9 @@ export async function advanceCompetition(comp: Competition): Promise<{ finished:
   if (matches.some((m) => m.round === maxRound && m.status !== 'played')) return none;
 
   let newMatches: Match[] = [];
-  if (comp.type === 'cup') {
+  if (comp.type !== 'ucl' && comp.type !== 'uel') {
+    // Copas, supercopas y Conference: cuadro fijo (la ida espera a la vuelta)
+    if (info.kind === 'leg1') return none;
     const res = roundWinners(comp, maxRound, matches)!;
     const seeding = comp.seeding ?? comp.teams;
     newMatches = nextKnockoutMatches(comp, maxRound + 1, bracketPairs(res, 'adjacent'), (t) => seeding.indexOf(t));
