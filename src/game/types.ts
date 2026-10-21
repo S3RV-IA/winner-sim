@@ -147,6 +147,7 @@ export interface PlayerCompStats {
   passes: number;
   passesOk: number;
   defActions: number;
+  blocks: number;
   saves: number;
   conceded: number;
   cleanSheets: number;

@@ -29,7 +29,10 @@ const CARD_ROLE: Record<Role, number> = { GK: 0.15, CB: 1.3, LB: 1.2, RB: 1.2, D
 const PASS_ROLE: Record<Role, number> = { GK: 0.05, CB: 0.13, LB: 0.1, RB: 0.1, DM: 0.13, CM: 0.12, AM: 0.09, LW: 0.07, RW: 0.07, ST: 0.05 };
 const PASS_ACC: Record<Role, number> = { GK: 0.72, CB: 0.89, LB: 0.82, RB: 0.82, DM: 0.88, CM: 0.87, AM: 0.82, LW: 0.78, RW: 0.78, ST: 0.73 };
 const DRIBBLE_ROLE: Record<Role, number> = { GK: 0.02, CB: 0.3, LB: 0.9, RB: 0.9, DM: 0.6, CM: 1.1, AM: 2.2, LW: 3.2, RW: 3.2, ST: 1.6 };
+const BLOCK_ROLE: Record<Role, number> = { GK: 0, CB: 1, LB: 0.6, RB: 0.6, DM: 0.6, CM: 0.3, AM: 0.1, LW: 0.1, RW: 0.1, ST: 0.05 };
 const DEF_ROLE: Record<Role, number> = { GK: 0.3, CB: 4.5, LB: 3.8, RB: 3.8, DM: 4.5, CM: 3, AM: 1.4, LW: 1.2, RW: 1.2, ST: 0.8 };
+/** Nota de partida antes de sumar y restar acciones (calibrada para una media de ~6,8). */
+const RATING_BASE = 6.25;
 const ATTACKING: ReadonlySet<Role> = new Set(['ST', 'LW', 'RW', 'AM']);
 const DEFENSIVE: ReadonlySet<Role> = new Set(['CB', 'LB', 'RB']);
 
@@ -441,7 +444,7 @@ export function simulateMatch(home: SimTeam, away: SimTeam, settings: SimSetting
       lines.set(a, {
         id: a.p.id, side: a.side, role: a.role, starter: a.starter, minutes,
         goals: 0, assists: 0, shots: 0, shotsOn: 0, shotsOff: 0, bigMissed: 0, penGoals: 0, penMissed: 0, headGoals: 0, outGoals: 0,
-        keyPasses: 0, dribbles: 0, dribblesFailed: 0, passes: 0, passesOk: 0, defActions: 0, saves: 0, conceded: 0,
+        keyPasses: 0, dribbles: 0, dribblesFailed: 0, passes: 0, passesOk: 0, defActions: 0, blocks: 0, saves: 0, conceded: 0,
         yellow: a.yellow > 0 ? 1 : 0, red: a.red ? 1 : 0, rating: 0,
       });
     }
@@ -453,6 +456,9 @@ export function simulateMatch(home: SimTeam, away: SimTeam, settings: SimSetting
 
   const events: { idx: number; ev: MatchEvent }[] = [];
   const running: [number, number] = [0, 0];
+  /** Extra de nota por evitar ocasiones claras (paradas o bloqueos de ocasiones manifiestas). */
+  const bigStops = new Map<Appearance, number>();
+  const addStop = (a: Appearance, v: number) => bigStops.set(a, (bigStops.get(a) ?? 0) + v);
   for (const s of shots) {
     const l = lines.get(s.shooter)!;
     const tl = teamLines[s.side];
@@ -467,6 +473,15 @@ export function simulateMatch(home: SimTeam, away: SimTeam, settings: SimSetting
     if (s.outcome === 'saved' && s.keeper) {
       lines.get(s.keeper)!.saves++;
       teamLines[1 - s.side].saves++;
+      if (s.kind === 'big' || s.kind === 'pen') addStop(s.keeper, s.kind === 'pen' ? 0.6 : 0.3);
+    }
+    if (s.outcome === 'blocked') {
+      const cands = states[1 - s.side].at(s.tick.idx);
+      const i = rng.weighted(cands.map((a) => BLOCK_ROLE[a.role] * (a.p.def / 70)));
+      if (i >= 0) {
+        lines.get(cands[i])!.blocks++;
+        if (s.kind === 'big') addStop(cands[i], 0.3);
+      }
     }
     if (s.outcome === 'goal') {
       running[s.side]++;
@@ -535,23 +550,24 @@ export function simulateMatch(home: SimTeam, away: SimTeam, settings: SimSetting
       l.rating = 0;
       continue;
     }
-    const conceded = final[1 - a.side];
     const cleanSheet = l.conceded === 0 && l.minutes >= 60;
     const res = winner === null ? (final[a.side] > final[1 - a.side] ? 1 : final[a.side] < final[1 - a.side] ? -1 : 0) : winner === a.side ? 1 : -1;
-    let r = 6.3;
-    r += (l.goals - l.penGoals) * 0.95 + l.penGoals * 0.65 + (l.headGoals + l.outGoals) * 0.1;
-    r += l.assists * 0.65 + (l.keyPasses - l.assists) * 0.12;
-    r += (l.shotsOn - l.goals) * 0.08 - l.shotsOff * 0.03 - l.bigMissed * 0.22 - l.penMissed * 0.5;
+    const defender = DEFENSIVE.has(a.role);
+    let r = RATING_BASE;
+    // Goles y asistencias son lo que más pesa
+    r += (l.goals - l.penGoals) * 1.3 + l.penGoals * 0.9 + (l.headGoals + l.outGoals) * 0.1;
+    r += l.assists * 1.0 + (l.keyPasses - l.assists) * 0.15;
+    r += (l.shotsOn - l.goals) * 0.08 - l.shotsOff * 0.03 - l.bigMissed * 0.25 - l.penMissed * 0.6;
     r += l.dribbles * 0.07 - l.dribblesFailed * 0.03;
     if (l.passes >= 10) r += l.passesOk * 0.004 + (l.passesOk / l.passes - 0.82) * 1.2;
-    r += l.defActions * 0.07;
-    if (a.role === 'GK') r += l.saves * 0.28 - l.conceded * 0.22 + (cleanSheet ? 0.55 : 0);
-    else if (DEFENSIVE.has(a.role)) r += -l.conceded * 0.12 + (cleanSheet ? 0.35 : 0);
-    else if (a.role === 'DM') r += cleanSheet ? 0.15 : 0;
+    // Defender bien (cortes, bloqueos, ocasiones claras evitadas) puede salvar la nota aunque se encajen goles
+    r += l.defActions * (defender || a.role === 'DM' ? 0.1 : 0.07) + l.blocks * 0.2 + (bigStops.get(a) ?? 0);
+    if (a.role === 'GK') r += l.saves * 0.3 - l.conceded * 0.4 + (cleanSheet ? 0.7 : 0);
+    else if (defender) r += -l.conceded * 0.45 + (cleanSheet ? 0.4 : 0);
+    else if (a.role === 'DM') r += -l.conceded * 0.12 + (cleanSheet ? 0.2 : 0);
     r -= l.yellow * 0.15 + l.red * 1.0;
-    r += res === 1 ? 0.25 : res === -1 ? -0.2 : 0;
-    r += rng.normal(0, 0.22);
-    void conceded;
+    r += res === 1 ? 0.3 : res === -1 ? -0.3 : 0;
+    r += rng.normal(0, 0.2);
     l.rating = Math.round(clamp(r, 3, 10) * 10) / 10;
   }
 

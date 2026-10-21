@@ -392,6 +392,7 @@ function PlayerLineRow({ l }: { l: PlayerLine }) {
           <span>Pases clave: {l.keyPasses}</span>
           <span>Regates: {l.dribbles}/{l.dribbles + l.dribblesFailed}</span>
           <span>Acciones defensivas: {l.defActions}</span>
+          {(l.blocks ?? 0) > 0 && <span>Tiros bloqueados: {l.blocks}</span>}
           {l.role === 'GK' && <span>Paradas: {l.saves}</span>}
           {l.penGoals + l.penMissed > 0 && <span>Penaltis: {l.penGoals}/{l.penGoals + l.penMissed}</span>}
           <Link to={`/p/${l.id}`} style={{ color: 'var(--accent-strong)', fontWeight: 600 }}>

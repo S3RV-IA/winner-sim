@@ -5,9 +5,9 @@ import { db } from '../../db/db';
 import { monthOf, weekOf } from '../../game/calendar';
 import { canCloseSeason, closeSeason } from '../../game/endSeason';
 import { avgRating } from '../../game/stats';
-import type { Competition, CompType, LeagueId, PlayerCompStats } from '../../game/types';
-import { describe, playNextDate, playSeason } from '../actions';
-import { AppBar, Crest, Rating, Tabs, useTab, useUi } from '../common';
+import type { Competition, CompType, LeagueId, Match, PlayerCompStats } from '../../game/types';
+import { playNextDate, playSeason } from '../actions';
+import { AppBar, Crest, Rating, Tabs, useTab, useUi, useUrlParam } from '../common';
 import { Icon } from '../Icon';
 import { useWorld } from '../world';
 
@@ -65,6 +65,9 @@ function CompetitionsTab() {
   if (!comps || !pending) return null;
 
   const nextSlot = pending.length ? Math.min(...pending.map((m) => m.slot)) : null;
+  const nextWeek = nextSlot ? weekOf(nextSlot) : null;
+  const weekMatches = nextWeek ? pending.filter((m) => weekOf(m.slot) === nextWeek) : [];
+  const weekPlan = describeWeek(weekMatches, comps);
   const pendingByComp = new Map<string, number[]>();
   for (const m of pending) pendingByComp.set(m.compId, [...(pendingByComp.get(m.compId) ?? []), m.round]);
 
@@ -106,17 +109,28 @@ function CompetitionsTab() {
         </div>
       ) : (
         <div className="card" style={{ padding: 14 }}>
-          <div className="small muted">Próxima fecha</div>
-          <div className="bold" style={{ margin: '2px 0 12px' }}>
-            {nextSlot ? `Semana ${weekOf(nextSlot)} · ${monthOf(weekOf(nextSlot))} · ${pending.filter((m) => m.slot === nextSlot).length} partidos` : 'Sin partidos pendientes'}
+          <div className="small muted">
+            Próxima fecha{nextWeek ? ` · semana ${nextWeek} · ${monthOf(nextWeek)} · ${weekMatches.length} partidos` : ''}
+          </div>
+          <div style={{ margin: '6px 0 12px', display: 'flex', flexDirection: 'column', gap: 6 }}>
+            {weekPlan.map((w) => (
+              <div key={w.type} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <span style={{ width: 22, height: 22, borderRadius: 6, background: COMP_COLORS[w.type], display: 'grid', placeItems: 'center', flex: 'none' }}>
+                  <Icon name={w.type === 'cup' ? 'medal' : 'trophy'} size={14} color={w.type === 'league' ? '#1f1f1f' : '#fff'} />
+                </span>
+                <span className="bold">{w.name}</span>
+                <span className="muted">· {w.round}</span>
+              </div>
+            ))}
+            {!weekPlan.length && <span className="bold">Sin partidos pendientes</span>}
           </div>
           <div className="grid2" style={{ gridTemplateColumns: '1fr 1fr' }}>
             <button
               className="btn"
               disabled={!nextSlot}
               onClick={async () => {
-                const r = await ui.run('Jugando la fecha…', (p) => playNextDate(season.id, p), { heavy: true });
-                if (r) ui.toast(describe(r, 'Fecha jugada'));
+                const r = await ui.run('Jugando la semana…', (p) => playNextDate(season.id, p), { heavy: true });
+                if (r) ui.toast(`Semana jugada: ${r.played} partidos${r.finished.length ? ` · ¡${r.finished.map((c) => c.name).join(', ')} terminada!` : ''}`);
               }}
             >
               <Icon name="forward" size={18} /> Siguiente
@@ -174,6 +188,35 @@ function CompetitionsTab() {
   );
 }
 
+const TYPE_ORDER: CompType[] = ['ucl', 'uel', 'cup', 'league'];
+const TYPE_NAMES: Record<CompType, string> = { ucl: 'Champions League', uel: 'Europa League', cup: 'Copas', league: 'Ligas' };
+
+/** Qué se juega en la semana: una línea por tipo de competición con su jornada o ronda. */
+function describeWeek(matches: Match[], comps: Competition[]) {
+  const byType = new Map<CompType, Set<string>>();
+  const compsByType = new Map<CompType, Set<string>>();
+  for (const m of matches) {
+    const c = comps.find((x) => x.id === m.compId);
+    if (!c) continue;
+    const label = c.rounds.find((r) => r.round === m.round)?.label ?? '';
+    byType.set(c.type, (byType.get(c.type) ?? new Set()).add(label));
+    compsByType.set(c.type, (compsByType.get(c.type) ?? new Set()).add(c.id));
+  }
+  return TYPE_ORDER.filter((t) => byType.has(t)).map((type) => {
+    const labels = [...byType.get(type)!];
+    // Varias ligas pueden ir por jornadas distintas (34 o 38 jornadas)
+    const nums = labels.map((l) => Number(l.replace(/\D+/g, ''))).filter((n) => n > 0);
+    const round =
+      type === 'league' && labels.length > 1 && nums.length === labels.length
+        ? `Jornadas ${Math.min(...nums)}–${Math.max(...nums)}`
+        : labels.length === 1
+          ? labels[0]
+          : labels.join(' / ');
+    const name = type === 'cup' && compsByType.get(type)!.size === 1 ? comps.find((c) => compsByType.get(type)!.has(c.id))!.name : TYPE_NAMES[type];
+    return { type, name, round };
+  });
+}
+
 // ---------------------------------------------------------------------------
 
 function TeamsTab() {
@@ -206,28 +249,57 @@ function TeamsTab() {
 
 // ---------------------------------------------------------------------------
 
-type Board = 'goals' | 'assists' | 'rating' | 'ga';
+type Board = 'goals' | 'assists' | 'ga' | 'rating' | 'cleanSheets' | 'motm';
+type Scope = 'all' | CompType;
+type Totals = Pick<PlayerCompStats, 'goals' | 'assists' | 'ratingSum' | 'rated' | 'apps' | 'cleanSheets' | 'motm'>;
 
+const BOARDS: [Board, string][] = [
+  ['goals', 'Goles'],
+  ['assists', 'Asistencias'],
+  ['ga', 'G + A'],
+  ['rating', 'Nota media'],
+  ['motm', 'MVP'],
+  ['cleanSheets', 'Porterías a cero'],
+];
+const SCOPES: [Scope, string][] = [
+  ['all', 'Total'],
+  ['league', 'Ligas'],
+  ['ucl', 'Champions'],
+  ['uel', 'Europa League'],
+  ['cup', 'Copas'],
+];
+
+/** Clasificaciones de jugadores de la temporada: en total o por tipo de competición (y por liga). */
 function PlayersTab() {
-  const { season, players, teams } = useWorld();
-  const [board, setBoard] = useState<Board>('goals');
+  const { season, players, teams, leagues } = useWorld();
+  const [boardParam, setBoard] = useUrlParam('board');
+  const [scopeParam, setScope] = useUrlParam('scope');
+  const [leagueParam, setLeague] = useUrlParam('league');
+  const board = (boardParam as Board) || 'goals';
+  const scope = (scopeParam as Scope) || 'all';
+  const league = scope === 'league' ? (leagueParam as LeagueId | 'all') || 'all' : 'all';
   const [query, setQuery] = useState('');
   const stats = useLiveQuery(() => db.stats.where('seasonId').equals(season.id).toArray(), [season.id]);
 
   const totals = useMemo(() => {
-    const map = new Map<string, Pick<PlayerCompStats, 'goals' | 'assists' | 'ratingSum' | 'rated' | 'apps'>>();
+    const map = new Map<string, Totals>();
     for (const s of stats ?? []) {
-      const t = map.get(s.playerId) ?? { goals: 0, assists: 0, ratingSum: 0, rated: 0, apps: 0 };
+      if (scope !== 'all' && s.compType !== scope) continue;
+      if (league !== 'all' && s.compId !== `${season.id}-league-${league}`) continue;
+      const t = map.get(s.playerId) ?? { goals: 0, assists: 0, ratingSum: 0, rated: 0, apps: 0, cleanSheets: 0, motm: 0 };
       t.goals += s.goals;
       t.assists += s.assists;
       t.ratingSum += s.ratingSum;
       t.rated += s.rated;
       t.apps += s.apps;
+      t.cleanSheets += s.cleanSheets;
+      t.motm += s.motm;
       map.set(s.playerId, t);
     }
     return map;
-  }, [stats]);
+  }, [stats, scope, league, season.id]);
 
+  if (!stats) return null;
   const q = query.trim().toLowerCase();
   if (q) {
     const found = [...players.values()].filter((p) => p.name.toLowerCase().includes(q)).slice(0, 40);
@@ -248,34 +320,57 @@ function PlayersTab() {
     );
   }
 
+  // Para la nota media hace falta haber jugado una parte razonable de los partidos
   const maxApps = Math.max(1, ...[...totals.values()].map((t) => t.apps));
-  const value = (t: Pick<PlayerCompStats, 'goals' | 'assists' | 'ratingSum' | 'rated' | 'apps'>) =>
-    board === 'goals' ? t.goals : board === 'assists' ? t.assists : board === 'ga' ? t.goals + t.assists : t.apps >= maxApps * 0.4 ? avgRating(t) : 0;
+  const value = (id: string, t: Totals) => {
+    switch (board) {
+      case 'goals': return t.goals;
+      case 'assists': return t.assists;
+      case 'ga': return t.goals + t.assists;
+      case 'motm': return t.motm;
+      case 'cleanSheets': return players.get(id)?.role === 'GK' ? t.cleanSheets : 0;
+      case 'rating': return t.apps >= maxApps * 0.4 ? avgRating(t) : 0;
+    }
+  };
   const ranking = [...totals.entries()]
-    .map(([id, t]) => ({ id, t, v: value(t) }))
+    .map(([id, t]) => ({ id, t, v: value(id, t) }))
     .filter((x) => x.v > 0)
-    .sort((a, b) => b.v - a.v)
+    .sort((a, b) => b.v - a.v || a.t.apps - b.t.apps)
     .slice(0, 30);
+  const scopeLabel =
+    scope === 'all' ? 'Todas las competiciones' : scope === 'league' && league !== 'all' ? leagues.find((l) => l.id === league)?.name : SCOPES.find(([s]) => s === scope)![1];
 
   return (
     <div className="content">
       <input type="search" placeholder="Buscar jugador" value={query} onChange={(e) => setQuery(e.target.value)} />
       <div className="chips" style={{ marginTop: 10 }}>
-        {(
-          [
-            ['goals', 'Goles'],
-            ['assists', 'Asistencias'],
-            ['ga', 'G + A'],
-            ['rating', 'Nota media'],
-          ] as [Board, string][]
-        ).map(([id, label]) => (
-          <button key={id} className={`chip ${board === id ? 'active' : ''}`} onClick={() => setBoard(id)}>
+        {SCOPES.map(([id, label]) => (
+          <button key={id} className={`chip ${scope === id ? 'active' : ''}`} onClick={() => setScope(id)}>
+            {label}
+          </button>
+        ))}
+      </div>
+      {scope === 'league' && (
+        <div className="chips">
+          <button className={`chip ${league === 'all' ? 'active' : ''}`} onClick={() => setLeague('all')}>
+            Las 6 ligas
+          </button>
+          {leagues.map((l) => (
+            <button key={l.id} className={`chip ${league === l.id ? 'active' : ''}`} onClick={() => setLeague(l.id)}>
+              {FLAGS[l.id]} {l.name}
+            </button>
+          ))}
+        </div>
+      )}
+      <div className="chips">
+        {BOARDS.map(([id, label]) => (
+          <button key={id} className={`chip ${board === id ? 'active' : ''}`} style={board === id ? { background: '#1f1f1f', color: '#fff' } : undefined} onClick={() => setBoard(id)}>
             {label}
           </button>
         ))}
       </div>
       <div className="small muted" style={{ margin: '4px 4px 8px' }}>
-        Todas las competiciones · temporada {season.label}
+        {scopeLabel} · temporada {season.label}
       </div>
       <div className="card list">
         {ranking.map((x, i) => {
@@ -288,13 +383,15 @@ function PlayersTab() {
               <Crest team={teams.get(p.teamId)} size={22} />
               <div className="grow">
                 <div className="ellipsis">{p.name}</div>
-                <div className="small muted">{x.t.apps} partidos</div>
+                <div className="small muted">
+                  {x.t.apps} PJ · {x.t.goals} G · {x.t.assists} A
+                </div>
               </div>
               {board === 'rating' ? <Rating value={x.v} /> : <b className="tnum">{x.v}</b>}
             </Link>
           );
         })}
-        {!ranking.length && <div className="empty">Aún no se ha jugado ningún partido</div>}
+        {!ranking.length && <div className="empty">Aún no hay datos en esta competición</div>}
       </div>
     </div>
   );

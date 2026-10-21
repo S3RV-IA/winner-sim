@@ -3,14 +3,14 @@ import type { CompType, PlayerCompStats } from './types';
 
 const SUMMED = [
   'minutes', 'goals', 'assists', 'shots', 'shotsOn', 'bigMissed', 'penGoals', 'penMissed', 'headGoals', 'outGoals', 'keyPasses',
-  'dribbles', 'dribblesFailed', 'passes', 'passesOk', 'defActions', 'saves', 'conceded', 'yellow', 'red',
+  'dribbles', 'dribblesFailed', 'passes', 'passesOk', 'defActions', 'blocks', 'saves', 'conceded', 'yellow', 'red',
 ] as const satisfies readonly (keyof PlayerLine & keyof PlayerCompStats)[];
 
 export function emptyStats(key: string, seasonId: number, compId: string, compType: CompType, playerId: string, teamId: string): PlayerCompStats {
   return {
     key, seasonId, compId, compType, playerId, teamId, apps: 0, starts: 0, minutes: 0, goals: 0, assists: 0, shots: 0, shotsOn: 0,
     bigMissed: 0, penGoals: 0, penMissed: 0, headGoals: 0, outGoals: 0, keyPasses: 0, dribbles: 0, dribblesFailed: 0, passes: 0,
-    passesOk: 0, defActions: 0, saves: 0, conceded: 0, cleanSheets: 0, yellow: 0, red: 0, ratingSum: 0, rated: 0, motm: 0,
+    passesOk: 0, defActions: 0, blocks: 0, saves: 0, conceded: 0, cleanSheets: 0, yellow: 0, red: 0, ratingSum: 0, rated: 0, motm: 0,
   };
 }
 
@@ -18,7 +18,8 @@ export function emptyStats(key: string, seasonId: number, compId: string, compTy
 export function applyLine(s: PlayerCompStats, line: PlayerLine, result: MatchResult, sign: 1 | -1) {
   s.apps += sign;
   if (line.starter) s.starts += sign;
-  for (const k of SUMMED) s[k] += sign * line[k];
+  // `?? 0`: filas guardadas antes de que existiera una estadística nueva
+  for (const k of SUMMED) s[k] = (s[k] ?? 0) + sign * (line[k] ?? 0);
   if (line.rating > 0) {
     s.ratingSum = Math.round((s.ratingSum + sign * line.rating) * 10) / 10;
     s.rated += sign;

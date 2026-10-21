@@ -1,4 +1,5 @@
 import { db } from '../db/db';
+import { weekOf } from '../game/calendar';
 import { play, type PlayReport } from '../game/simulate';
 import type { Competition } from '../game/types';
 
@@ -28,12 +29,14 @@ export async function playCompetition(comp: Competition, progress: Progress) {
   return play({ maxSlot: last, focusCompId: comp.id, onProgress: (n) => progress(n, total) });
 }
 
-/** Juega la siguiente fecha del calendario (todas las competiciones). */
+/** Juega la siguiente semana del calendario: Europa/copa entre semana y la liga el fin de semana. */
 export async function playNextDate(seasonId: number, progress: Progress) {
   const next = await db.matches.where('status').equals('scheduled').filter((m) => m.seasonId === seasonId).toArray();
   if (!next.length) return null;
-  const slot = Math.min(...next.map((m) => m.slot));
-  return play({ maxSlot: slot, onProgress: (n) => progress(n) });
+  const week = weekOf(Math.min(...next.map((m) => m.slot)));
+  const maxSlot = week * 10 + 9;
+  const total = next.filter((m) => m.slot <= maxSlot).length;
+  return play({ maxSlot, onProgress: (n) => progress(n, total) });
 }
 
 export async function playSeason(seasonId: number, progress: Progress) {

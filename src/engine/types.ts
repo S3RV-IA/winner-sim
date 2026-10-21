@@ -103,6 +103,8 @@ export interface PlayerLine {
   passes: number;
   passesOk: number;
   defActions: number;
+  /** Tiros rivales bloqueados (los de ocasión clara cuentan más en la nota). */
+  blocks: number;
   saves: number;
   conceded: number;
   yellow: number;

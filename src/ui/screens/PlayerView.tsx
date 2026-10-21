@@ -43,11 +43,11 @@ export function PlayerView() {
       a.apps += s.apps; a.goals += s.goals; a.assists += s.assists; a.minutes += s.minutes; a.ratingSum += s.ratingSum; a.rated += s.rated;
       a.shots += s.shots; a.shotsOn += s.shotsOn; a.bigMissed += s.bigMissed; a.penGoals += s.penGoals; a.penMissed += s.penMissed;
       a.headGoals += s.headGoals; a.outGoals += s.outGoals; a.keyPasses += s.keyPasses; a.dribbles += s.dribbles; a.dribblesFailed += s.dribblesFailed;
-      a.passes += s.passes; a.passesOk += s.passesOk; a.defActions += s.defActions; a.saves += s.saves; a.cleanSheets += s.cleanSheets;
+      a.passes += s.passes; a.passesOk += s.passesOk; a.defActions += s.defActions; a.blocks += s.blocks ?? 0; a.saves += s.saves; a.cleanSheets += s.cleanSheets;
       a.yellow += s.yellow; a.red += s.red; a.motm += s.motm;
       return a;
     },
-    { apps: 0, goals: 0, assists: 0, minutes: 0, ratingSum: 0, rated: 0, shots: 0, shotsOn: 0, bigMissed: 0, penGoals: 0, penMissed: 0, headGoals: 0, outGoals: 0, keyPasses: 0, dribbles: 0, dribblesFailed: 0, passes: 0, passesOk: 0, defActions: 0, saves: 0, cleanSheets: 0, yellow: 0, red: 0, motm: 0 },
+    { apps: 0, goals: 0, assists: 0, minutes: 0, ratingSum: 0, rated: 0, shots: 0, shotsOn: 0, bigMissed: 0, penGoals: 0, penMissed: 0, headGoals: 0, outGoals: 0, keyPasses: 0, dribbles: 0, dribblesFailed: 0, passes: 0, passesOk: 0, defActions: 0, blocks: 0, saves: 0, cleanSheets: 0, yellow: 0, red: 0, motm: 0 },
   );
   const isGk = p.role === 'GK';
   const attrs: [string, number][] = isGk
@@ -70,6 +70,7 @@ export function PlayerView() {
           ['Pases clave', total.keyPasses],
           ['Regates', `${total.dribbles}/${total.dribbles + total.dribblesFailed}`],
           ['Acciones defensivas', total.defActions],
+          ['Tiros bloqueados', total.blocks],
         ] as [string, string | number][])),
     ['Pases (precisión)', `${total.passesOk}/${total.passes}${total.passes ? ` · ${Math.round((100 * total.passesOk) / total.passes)}%` : ''}`],
     ['Tarjetas', `${total.yellow} 🟨 · ${total.red} 🟥`],
