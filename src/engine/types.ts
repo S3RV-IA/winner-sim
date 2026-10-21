@@ -68,8 +68,8 @@ interface At {
 }
 
 export type MatchEvent =
-  | (At & { t: 'goal'; side: Side; player: string; assist?: string; kind: ShotKind; score: [number, number] })
-  | (At & { t: 'miss'; side: Side; player: string; kind: ShotKind; outcome: Exclude<ShotOutcome, 'goal'>; keeper?: string })
+  | (At & { t: 'goal'; side: Side; player: string; assist?: string; kind: ShotKind; score: [number, number]; xg?: number; keeper?: string })
+  | (At & { t: 'miss'; side: Side; player: string; kind: ShotKind; outcome: Exclude<ShotOutcome, 'goal'>; keeper?: string; xg?: number; blocker?: string })
   | (At & { t: 'card'; side: Side; player: string; color: 'Y' | 'R' })
   | (At & { t: 'sub'; side: Side; out: string; in: string })
   | (At & { t: 'phase'; label: 'HT' | 'FT' | 'ET' | 'AET' | 'PENS' });

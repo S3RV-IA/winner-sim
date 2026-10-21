@@ -475,14 +475,17 @@ export function simulateMatch(home: SimTeam, away: SimTeam, settings: SimSetting
       teamLines[1 - s.side].saves++;
       if (s.kind === 'big' || s.kind === 'pen') addStop(s.keeper, s.kind === 'pen' ? 0.6 : 0.3);
     }
+    let blocker: Appearance | undefined;
     if (s.outcome === 'blocked') {
       const cands = states[1 - s.side].at(s.tick.idx);
       const i = rng.weighted(cands.map((a) => BLOCK_ROLE[a.role] * (a.p.def / 70)));
       if (i >= 0) {
-        lines.get(cands[i])!.blocks++;
-        if (s.kind === 'big') addStop(cands[i], 0.3);
+        blocker = cands[i];
+        lines.get(blocker)!.blocks++;
+        if (s.kind === 'big') addStop(blocker, 0.3);
       }
     }
+    const xg = Math.round(s.xg * 100) / 100;
     if (s.outcome === 'goal') {
       running[s.side]++;
       l.goals++;
@@ -495,12 +498,12 @@ export function simulateMatch(home: SimTeam, away: SimTeam, settings: SimSetting
         al.keyPasses++;
       }
       for (const a of states[1 - s.side].at(s.tick.idx)) lines.get(a)!.conceded++;
-      events.push({ idx: s.tick.idx, ev: { t: 'goal', min: s.tick.min, plus: s.tick.plus, side: s.side, player: s.shooter.p.id, assist: s.assist?.p.id, kind: s.kind, score: [running[0], running[1]] } });
+      events.push({ idx: s.tick.idx, ev: { t: 'goal', min: s.tick.min, plus: s.tick.plus, side: s.side, player: s.shooter.p.id, assist: s.assist?.p.id, kind: s.kind, score: [running[0], running[1]], xg, keeper: s.keeper?.p.id } });
     } else {
       if (s.kind === 'big') l.bigMissed++;
       if (s.kind === 'pen') l.penMissed++;
       if (s.keyPasser) lines.get(s.keyPasser)!.keyPasses++;
-      events.push({ idx: s.tick.idx, ev: { t: 'miss', min: s.tick.min, plus: s.tick.plus, side: s.side, player: s.shooter.p.id, kind: s.kind, outcome: s.outcome as Exclude<ShotOutcome, 'goal'>, keeper: s.keeper?.p.id } });
+      events.push({ idx: s.tick.idx, ev: { t: 'miss', min: s.tick.min, plus: s.tick.plus, side: s.side, player: s.shooter.p.id, kind: s.kind, outcome: s.outcome as Exclude<ShotOutcome, 'goal'>, keeper: s.keeper?.p.id, xg, blocker: blocker?.p.id } });
     }
   }
   for (const o of others) {

@@ -1,5 +1,5 @@
 import { useLiveQuery } from 'dexie-react-hooks';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { db } from '../../db/db';
 import { resetMatch, setManualResult } from '../../game/simulate';
@@ -8,6 +8,7 @@ import type { Match, StoredResult } from '../../game/types';
 import { playOne } from '../actions';
 import { AppBar, Crest, Rating, Sheet, Stepper, Tabs, useUi } from '../common';
 import { Icon } from '../Icon';
+import { LineupPanel, useWide } from './Live';
 import { useWorld } from '../world';
 
 type MatchTab = 'summary' | 'stats' | 'players';
@@ -25,6 +26,7 @@ export function MatchView() {
   const comp = useLiveQuery(() => (match ? db.competitions.get(match.compId) : undefined), [match?.compId]);
   const firstLeg = useLiveQuery(() => (match?.firstLegId ? db.matches.get(match.firstLegId) : undefined), [match?.firstLegId]);
   const [tab, setTab] = useState<MatchTab>('summary');
+  const wide = useWide();
   const [manual, setManual] = useState(false);
   if (!match || !comp) return null;
   const home = teams.get(match.homeId)!;
@@ -40,7 +42,7 @@ export function MatchView() {
   return (
     <div className="screen">
       <AppBar title={comp.name} subtitle={round.label} back />
-      <div className="card" style={{ margin: 12, overflow: 'hidden' }}>
+      <div className="card" style={{ margin: '12px auto', maxWidth: 720, overflow: 'hidden', marginLeft: wide ? 'auto' : 12, marginRight: wide ? 'auto' : 12 }}>
         <div className="scoreboard">
           <Link to={`/t/${home.id}`} className="team">
             <Crest team={home} size={64} />
@@ -99,7 +101,24 @@ export function MatchView() {
         </div>
       </div>
 
-      {played && result && (
+      {played && result && wide && (
+        <div className="wide-wrap" style={{ paddingTop: 0 }}>
+          <div className="side-grid">
+            <aside className="side-panel">
+              <h4>Estadísticas</h4>
+              <TeamStats lines={result.teams} />
+            </aside>
+            <main style={{ minWidth: 0 }}>
+              <Summary result={result} match={match} />
+            </main>
+            <aside className="side-panel">
+              <h4>Alineaciones y notas</h4>
+              <LineupPanel match={match} result={result} shown={result.events} finished />
+            </aside>
+          </div>
+        </div>
+      )}
+      {played && result && !wide && (
         <>
           <div style={{ background: 'var(--surface)', borderTop: '1px solid var(--line)', borderBottom: '1px solid var(--line)' }}>
             <Tabs
@@ -400,116 +419,6 @@ function PlayerLineRow({ l }: { l: PlayerLine }) {
           </Link>
         </div>
       )}
-    </div>
-  );
-}
-
-// ---------------------------------------------------------------------------
-// Directo: reproduce los eventos minuto a minuto
-// ---------------------------------------------------------------------------
-
-export function LiveView() {
-  const { id } = useParams();
-  const nav = useNavigate();
-  const { teams } = useWorld();
-  const match = useLiveQuery(() => db.matches.get(id!), [id]);
-  const result = useLiveQuery(() => db.results.get(id!), [id]);
-  const [clock, setClock] = useState(0);
-  const [speed, setSpeed] = useState(1);
-  const [paused, setPaused] = useState(false);
-  const timer = useRef<number>();
-
-  // Secuencia: cada evento con su "instante" (minuto + añadido) para ordenarlos en el tiempo
-  const timeline = useMemo(() => {
-    if (!result) return [];
-    // El añadido se comprime dentro del minuto (45+7 sigue antes del 46)
-    return result.events.map((e, i) => ({ e, t: e.min + (e.plus ?? 0) * 0.09 + i * 0.0001 }));
-  }, [result]);
-  const end = timeline.length ? timeline[timeline.length - 1].t + 0.5 : 90;
-
-  useEffect(() => {
-    if (paused || clock >= end) return;
-    timer.current = window.setTimeout(() => setClock((c) => Math.min(end, c + 0.25)), 250 / speed);
-    return () => window.clearTimeout(timer.current);
-  }, [clock, paused, speed, end]);
-
-  if (!match || !result) return null;
-  const home = teams.get(match.homeId)!;
-  const away = teams.get(match.awayId)!;
-  const shown = timeline.filter((x) => x.t <= clock).map((x) => x.e);
-  const score: [number, number] = [0, 0];
-  const shots: [number, number] = [0, 0];
-  const onTarget: [number, number] = [0, 0];
-  for (const e of shown) {
-    if (e.t === 'goal') {
-      score[e.side]++;
-      shots[e.side]++;
-      onTarget[e.side]++;
-    } else if (e.t === 'miss') {
-      shots[e.side]++;
-      if (e.outcome === 'saved') onTarget[e.side]++;
-    }
-  }
-  const finished = clock >= end;
-  const lastPhase = [...shown].reverse().find((e) => e.t === 'phase');
-  const displayMin = Math.min(Math.floor(clock), result.extraTime ? 120 : 90);
-
-  return (
-    <div className="screen">
-      <AppBar title="En directo" subtitle={`${home.short} – ${away.short}`} back />
-      <div className="card" style={{ margin: 12 }}>
-        <div className="scoreboard">
-          <div className="team">
-            <Crest team={home} size={56} />
-            {home.short}
-          </div>
-          <div>
-            <div className="big tnum">
-              {score[0]}-{score[1]}
-            </div>
-            <div className="bold tnum" style={{ textAlign: 'center', color: finished ? 'var(--muted)' : 'var(--win)' }}>
-              {finished ? 'Final' : lastPhase?.t === 'phase' && lastPhase.label === 'HT' && clock < 46 ? 'Descanso' : `${displayMin}'`}
-            </div>
-          </div>
-          <div className="team">
-            <Crest team={away} size={56} />
-            {away.short}
-          </div>
-        </div>
-        <div className="small muted tnum" style={{ textAlign: 'center', paddingBottom: 12 }}>
-          Tiros {shots[0]} ({onTarget[0]}) · {shots[1]} ({onTarget[1]})
-        </div>
-        <div style={{ display: 'flex', gap: 8, justifyContent: 'center', paddingBottom: 14 }}>
-          {!finished && (
-            <button className="btn" onClick={() => setPaused(!paused)}>
-              <Icon name={paused ? 'play' : 'pause'} size={18} />
-            </button>
-          )}
-          {!finished &&
-            [1, 2, 4].map((s) => (
-              <button key={s} className={`btn ${speed === s ? 'primary' : ''}`} onClick={() => setSpeed(s)}>
-                x{s}
-              </button>
-            ))}
-          {!finished ? (
-            <button className="btn" onClick={() => setClock(end)}>
-              <Icon name="forward" size={18} /> Final
-            </button>
-          ) : (
-            <button className="btn primary" onClick={() => nav(`/m/${match.id}`, { replace: true })}>
-              Ver estadísticas
-            </button>
-          )}
-        </div>
-      </div>
-      <div className="content" style={{ paddingTop: 0 }}>
-        <div className="card list" style={{ overflow: 'hidden' }}>
-          {[...shown].reverse().map((e, i) => (
-            <EventLine key={shown.length - i} e={e} />
-          ))}
-          {!shown.length && <div className="empty">¡Empieza el partido!</div>}
-        </div>
-      </div>
     </div>
   );
 }
