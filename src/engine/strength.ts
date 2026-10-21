@@ -1,4 +1,4 @@
-import type { SimSettings, SimTeam } from './types';
+import { NO_BOOST, type SimSettings, type SimTeam, type TeamBoost } from './types';
 
 /** Goles por equipo y partido entre dos equipos iguales en campo neutral. */
 export const BASE_GOALS = 1.22;
@@ -55,4 +55,31 @@ export function outcomeOdds(xg: [number, number]): [number, number, number] {
     }
   const s = w + d + l;
   return [w / s, d / s, l / s];
+}
+
+export type MatchSide = Pick<SimTeam, 'att' | 'ctl' | 'def' | 'form' | 'boost'>;
+
+export interface Prematch {
+  boosts: readonly [TeamBoost, TeamBoost];
+  eff: [EffectiveTeam, EffectiveTeam];
+  /** Goles esperados antes del factor del día. */
+  xg: [number, number];
+  /** Probabilidades [local, empate, visitante]. */
+  odds: [number, number, number];
+}
+
+/**
+ * Lo que se sabe antes del partido: nivel efectivo (nivel actual + racha + rasgos), goles esperados
+ * y probabilidades. Lo usan el motor y el pronóstico de la ficha, así que siempre coinciden.
+ */
+export function prematch(home: MatchSide, away: MatchSide, settings: SimSettings, neutral = false): Prematch {
+  const boosts = [home.boost ?? NO_BOOST, away.boost ?? NO_BOOST] as const;
+  const eff = [home, away].map((t, s) => {
+    const e = effective(t, settings);
+    return { att: e.att, ctl: e.ctl + boosts[s].ctl, def: e.def + boosts[s].def };
+  }) as [EffectiveTeam, EffectiveTeam];
+  const base = expectedGoals(eff[0], eff[1], settings, neutral);
+  // Rasgos históricos: multiplican los goles esperados propios y reducen los del rival
+  const xg: [number, number] = [base[0] * boosts[0].xg * boosts[1].oppXg, base[1] * boosts[1].xg * boosts[0].oppXg];
+  return { boosts, eff, xg, odds: outcomeOdds(xg) };
 }

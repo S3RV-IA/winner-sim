@@ -1,5 +1,5 @@
 import { NO_BOOST, type TeamBoost } from '../engine/types';
-import type { CompType, LeagueId } from './types';
+import type { Competition, CompType, LeagueId, Match } from './types';
 
 /** Situación del partido desde el punto de vista de un equipo. */
 export interface TraitContext {
@@ -244,4 +244,22 @@ export function boostFor(teamId: string, ctx: TraitContext): TeamBoost | undefin
     b.labels.push(t.name);
   }
   return b;
+}
+
+/** Rasgos activos de local y visitante en un partido concreto. `ovrOf` = nivel actual de cada equipo. */
+export function matchBoosts(m: Match, comp: Competition, leg1: Match | undefined, ovrOf: (teamId: string) => number): [TeamBoost | undefined, TeamBoost | undefined] {
+  const kind = comp.rounds.find((r) => r.round === m.round)?.kind;
+  const ctx = (teamId: string, oppId: string, isHome: boolean): TraitContext => ({
+    comp: comp.type,
+    leagueId: comp.leagueId,
+    home: isHome,
+    neutral: !!m.neutral,
+    final: kind === 'final',
+    knockout: kind === 'final' || kind === 'single' || kind === 'leg1' || kind === 'leg2',
+    secondLeg: kind === 'leg2',
+    // En la ida, este equipo era el local si ahora es el visitante
+    lostFirstLeg: !!leg1?.score && (leg1.homeId === teamId ? leg1.score[0] < leg1.score[1] : leg1.score[1] < leg1.score[0]),
+    underdog: ovrOf(oppId) - ovrOf(teamId) >= 3,
+  });
+  return [boostFor(m.homeId, ctx(m.homeId, m.awayId, true)), boostFor(m.awayId, ctx(m.awayId, m.homeId, false))];
 }

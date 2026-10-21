@@ -10,9 +10,11 @@ import { Icon } from '../Icon';
 import { COMP_TROPHY_LABEL } from '../labels';
 import { useWorld } from '../world';
 import { TRAITS } from '../../game/traits';
+import { RIVALS, headToHead } from '../../game/preview';
+import { HeadToHeadCard } from '../MatchParts';
 import { currentOvr, currentRatings, weightedOvr } from '../../game/level';
 
-type TeamTab = 'squad' | 'matches' | 'trophies';
+type TeamTab = 'squad' | 'matches' | 'rivals' | 'trophies';
 const ROLE_ORDER = ['GK', 'RB', 'CB', 'LB', 'DM', 'CM', 'AM', 'RW', 'LW', 'ST'];
 const ROLE_GROUP: Record<string, string> = { GK: 'Porteros', CB: 'Defensas', LB: 'Defensas', RB: 'Defensas', DM: 'Centrocampistas', CM: 'Centrocampistas', AM: 'Centrocampistas', LW: 'Delanteros', RW: 'Delanteros', ST: 'Delanteros' };
 
@@ -64,6 +66,7 @@ export function TeamView() {
           tabs={[
             { id: 'squad', label: 'Plantilla', icon: 'teams' },
             { id: 'matches', label: 'Partidos', icon: 'calendar' },
+            { id: 'rivals', label: 'Rivales', icon: 'swap' },
             { id: 'trophies', label: 'Palmarés', icon: 'trophy' },
           ]}
         />
@@ -138,6 +141,7 @@ export function TeamView() {
 
         {tab === 'squad' && <Squad team={team} />}
         {tab === 'matches' && <TeamMatches team={team} />}
+        {tab === 'rivals' && <TeamRivals team={team} />}
         {tab === 'trophies' && <TeamTrophies team={team} />}
       </div>
       <EditTeam team={team} open={edit} onClose={() => setEdit(false)} />
@@ -227,10 +231,26 @@ function TeamMatches({ team }: { team: Team }) {
   );
 }
 
+/** Competiciones que se deciden en una final (las ligas no). */
+const FINAL_TYPES: CompType[] = ['ucl', 'uel', 'uecl', 'cup', 'supercup', 'uefasuper'];
+
 function TeamTrophies({ team }: { team: Team }) {
   const trophies = useLiveQuery(() => db.trophies.where('teamId').equals(team.id).toArray(), [team.id]);
   const seasons = useLiveQuery(() => db.seasons.toArray());
-  if (!trophies || !seasons) return null;
+  const finals = useLiveQuery(
+    () => db.competitions.filter((c) => c.status === 'finished' && FINAL_TYPES.includes(c.type) && (c.championId === team.id || c.runnerUpId === team.id)).toArray(),
+    [team.id],
+  );
+  if (!trophies || !seasons || !finals) return null;
+  // Finales por competición: jugadas, ganadas y perdidas
+  const byComp = new Map<string, { type: CompType; played: number; won: number }>();
+  for (const c of finals) {
+    const name = c.name;
+    const row = byComp.get(name) ?? { type: c.type, played: 0, won: 0 };
+    row.played++;
+    if (c.championId === team.id) row.won++;
+    byComp.set(name, row);
+  }
   const label = (sid: number) => seasons.find((s) => s.id === sid)?.label ?? '';
   const types: CompType[] = ['ucl', 'league', 'cup', 'uel', 'uecl', 'supercup', 'uefasuper'];
   return (
@@ -244,6 +264,23 @@ function TeamTrophies({ team }: { team: Team }) {
             <div className="small muted">{COMP_TROPHY_LABEL[t]}</div>
           </div>
         ))}
+      </div>
+      <div className="section-title">Finales disputadas</div>
+      <div className="card list">
+        {[...byComp.entries()]
+          .sort((a, b) => FINAL_TYPES.indexOf(a[1].type) - FINAL_TYPES.indexOf(b[1].type))
+          .map(([name, r]) => (
+            <div key={name} className="row">
+              <Icon name="medal" color="var(--accent)" />
+              <div className="grow">{name}</div>
+              <span className="small">
+                <b className="tnum">{r.played}</b> {r.played === 1 ? 'final' : 'finales'} ·{' '}
+                <span style={{ color: 'var(--win)' }}>{r.won} {r.won === 1 ? 'ganada' : 'ganadas'}</span> ·{' '}
+                <span style={{ color: 'var(--loss)' }}>{r.played - r.won} {r.played - r.won === 1 ? 'perdida' : 'perdidas'}</span>
+              </span>
+            </div>
+          ))}
+        {!byComp.size && <div className="empty">Todavía no ha jugado ninguna final</div>}
       </div>
       <div className="section-title">Títulos</div>
       <div className="card list">
@@ -306,3 +343,85 @@ function EditTeam({ team, open, onClose }: { team: Team; open: boolean; onClose:
   );
 }
 
+
+/** Cara a cara contra cualquier equipo, con accesos directos a sus derbis. */
+function TeamRivals({ team }: { team: Team }) {
+  const { teams, leagues } = useWorld();
+  const derbies = RIVALS[team.id] ?? [];
+  const [rivalId, setRivalId] = useState<string>(derbies[0] ?? '');
+  const h2h = useLiveQuery(() => (rivalId ? headToHead(team.id, rivalId) : undefined), [team.id, rivalId]);
+  const seasons = useLiveQuery(() => db.seasons.toArray());
+  const comps = useLiveQuery(() => db.competitions.toArray());
+  const rival = teams.get(rivalId);
+  return (
+    <>
+      {derbies.length > 0 && (
+        <>
+          <div className="section-title">Derbis y grandes rivales</div>
+          <div className="chips">
+            {derbies.map((id) => (
+              <button key={id} className={`chip ${rivalId === id ? 'active' : ''}`} onClick={() => setRivalId(id)}>
+                <Crest team={teams.get(id)} size={18} /> {teams.get(id)?.short}
+              </button>
+            ))}
+          </div>
+        </>
+      )}
+      <div className="section-title">Elegir rival</div>
+      <select
+        value={rivalId}
+        onChange={(e) => setRivalId(e.target.value)}
+        style={{ width: '100%', height: 42, borderRadius: 10, border: '1px solid var(--line)', background: 'var(--surface)', padding: '0 10px', marginBottom: 12 }}
+      >
+        <option value="">— Elige un equipo —</option>
+        {leagues.map((l) => (
+          <optgroup key={l.id} label={l.name}>
+            {l.teams
+              .filter((id) => id !== team.id)
+              .map((id) => teams.get(id)!)
+              .sort((a, b) => a.short.localeCompare(b.short))
+              .map((t) => (
+                <option key={t.id} value={t.id}>
+                  {t.short}
+                </option>
+              ))}
+          </optgroup>
+        ))}
+      </select>
+      {rival && h2h && (
+        <>
+          <HeadToHeadCard team={team} rival={rival} h2h={h2h} />
+          {h2h.matches.length > 0 && (
+            <div className="card list">
+              {h2h.matches.slice(0, 30).map((m) => {
+                const comp = comps?.find((c) => c.id === m.compId);
+                const round = comp?.rounds.find((r) => r.round === m.round)?.label;
+                const mine = m.homeId === team.id ? m.score![0] : m.score![1];
+                const theirs = m.homeId === team.id ? m.score![1] : m.score![0];
+                const res = mine > theirs ? 'V' : mine < theirs ? 'D' : 'E';
+                const color = res === 'V' ? 'var(--win)' : res === 'D' ? 'var(--loss)' : 'var(--draw)';
+                return (
+                  <Link key={m.id} to={`/m/${m.id}`} className="row">
+                    <span className="form-dot" style={{ background: color, width: 20, height: 20, fontSize: 10 }}>
+                      {res}
+                    </span>
+                    <div className="grow">
+                      <div className="ellipsis">
+                        {teams.get(m.homeId)?.short} <b className="tnum">{m.score![0]}-{m.score![1]}</b> {teams.get(m.awayId)?.short}
+                        {m.penalties ? ` (pen. ${m.penalties[0]}-${m.penalties[1]})` : ''}
+                      </div>
+                      <div className="small muted ellipsis">
+                        {seasons?.find((x) => x.id === m.seasonId)?.label} · {comp?.name} · {round}
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          )}
+        </>
+      )}
+      {!rival && <div className="card empty">Elige un rival para ver el historial de enfrentamientos</div>}
+    </>
+  );
+}

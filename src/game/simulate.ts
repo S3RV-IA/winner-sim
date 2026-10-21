@@ -6,7 +6,7 @@ import { applyLine, emptyStats } from './stats';
 import { bracketPairs, nextKnockoutMatches, roundWinners } from './season';
 import { computeStandings } from './standings';
 import { currentOvr, currentRatings } from './level';
-import { boostFor, type TraitContext } from './traits';
+import { matchBoosts } from './traits';
 import { summarize, type Competition, type Match, type Player, type PlayerCompStats, type StoredResult, type Team } from './types';
 
 /** Equipos y jugadores en memoria durante una tanda de simulación. */
@@ -34,22 +34,7 @@ class World {
     const home = this.sim(m.homeId);
     const away = this.sim(m.awayId);
     if (!useTraits) return [home, away];
-    const kind = comp.rounds.find((r) => r.round === m.round)?.kind;
-    const ovr = (id: string) => currentOvr(this.teams.get(id)!);
-    const ctx = (teamId: string, oppId: string, isHome: boolean): TraitContext => ({
-      comp: comp.type,
-      leagueId: comp.leagueId,
-      home: isHome,
-      neutral: !!m.neutral,
-      final: kind === 'final',
-      knockout: kind === 'final' || kind === 'single' || kind === 'leg1' || kind === 'leg2',
-      secondLeg: kind === 'leg2',
-      // En la ida, este equipo era el local si ahora es el visitante
-      lostFirstLeg: !!leg1?.score && (leg1.homeId === teamId ? leg1.score[0] < leg1.score[1] : leg1.score[1] < leg1.score[0]),
-      underdog: ovr(oppId) - ovr(teamId) >= 3,
-    });
-    home.boost = boostFor(m.homeId, ctx(m.homeId, m.awayId, true));
-    away.boost = boostFor(m.awayId, ctx(m.awayId, m.homeId, false));
+    [home.boost, away.boost] = matchBoosts(m, comp, leg1, (id) => currentOvr(this.teams.get(id)!));
     return [home, away];
   }
 

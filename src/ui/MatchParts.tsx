@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import type { MatchEvent, PlayerLine, TeamLine } from '../engine/types';
-import type { Match, StoredResult } from '../game/types';
+import type { HeadToHead, MatchPreview } from '../game/preview';
+import type { Match, StoredResult, Team } from '../game/types';
 import { Crest, Rating } from './common';
 import { Icon } from './Icon';
 import { KIND_LABEL, minuteLabel } from './labels';
@@ -204,5 +205,90 @@ export function LineupPanel({ match, result, shown, finished }: { match: Match; 
         );
       })}
     </>
+  );
+}
+
+/** Pronóstico previo: probabilidades, cuotas y goles esperados (mismo cálculo que el motor). */
+export function Prediction({ preview, home, away }: { preview: MatchPreview; home: Team; away: Team }) {
+  const [ph, pd, pa] = preview.odds;
+  const cell = (label: string, p: number, quote: number, color: string) => (
+    <div style={{ flex: 1, textAlign: 'center', background: 'var(--surface-2)', borderRadius: 10, padding: '8px 4px' }}>
+      <div className="small muted ellipsis">{label}</div>
+      <div className="bold tnum" style={{ fontSize: 20, color }}>
+        {Math.round(p * 100)}%
+      </div>
+      <div className="small tnum muted">cuota {quote.toFixed(2)}</div>
+    </div>
+  );
+  return (
+    <div className="card" style={{ padding: 12, marginBottom: 12 }}>
+      <div className="small bold muted" style={{ marginBottom: 8 }}>
+        PRONÓSTICO
+      </div>
+      <div style={{ display: 'flex', height: 8, borderRadius: 4, overflow: 'hidden', marginBottom: 10 }}>
+        <span style={{ width: `${ph * 100}%`, background: 'var(--win)' }} />
+        <span style={{ width: `${pd * 100}%`, background: 'var(--draw)' }} />
+        <span style={{ width: `${pa * 100}%`, background: 'var(--loss)' }} />
+      </div>
+      <div style={{ display: 'flex', gap: 8 }}>
+        {cell(home.short, ph, preview.quotes[0], 'var(--win)')}
+        {cell('Empate', pd, preview.quotes[1], 'var(--muted)')}
+        {cell(away.short, pa, preview.quotes[2], 'var(--loss)')}
+      </div>
+      <div className="small muted" style={{ marginTop: 8, textAlign: 'center' }}>
+        Goles esperados {preview.xg[0].toFixed(2)} – {preview.xg[1].toFixed(2)} · según nivel, momento, racha, campo y rasgos
+      </div>
+      {(preview.traits[0].length > 0 || preview.traits[1].length > 0) && (
+        <div className="small" style={{ marginTop: 6, textAlign: 'center' }}>
+          {[...preview.traits[0].map((t) => `${home.short}: ${t}`), ...preview.traits[1].map((t) => `${away.short}: ${t}`)].map((t) => (
+            <div key={t}>✨ {t}</div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+/** Resumen del cara a cara entre dos equipos (todas las temporadas y competiciones). */
+export function HeadToHeadCard({ team, rival, h2h, title = 'CARA A CARA' }: { team: Team; rival: Team; h2h: HeadToHead; title?: string }) {
+  const box = (n: number, label: string, color: string) => (
+    <div style={{ flex: 1, textAlign: 'center' }}>
+      <div className="bold tnum" style={{ fontSize: 22, color }}>
+        {n}
+      </div>
+      <div className="small muted">{label}</div>
+    </div>
+  );
+  return (
+    <div className="card" style={{ padding: 12, marginBottom: 12 }}>
+      <div className="small bold muted" style={{ marginBottom: 8 }}>
+        {title}
+      </div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+        <Crest team={team} size={22} />
+        <b className="grow ellipsis">{team.short}</b>
+        <span className="small muted">vs</span>
+        <b className="grow ellipsis" style={{ textAlign: 'right' }}>
+          {rival.short}
+        </b>
+        <Crest team={rival} size={22} />
+      </div>
+      {h2h.played ? (
+        <>
+          <div style={{ display: 'flex' }}>
+            {box(h2h.won, `Victorias ${team.short}`, 'var(--win)')}
+            {box(h2h.drawn, 'Empates', 'var(--muted)')}
+            {box(h2h.lost, `Victorias ${rival.short}`, 'var(--loss)')}
+          </div>
+          <div className="small muted" style={{ textAlign: 'center', marginTop: 6 }}>
+            {h2h.played} partidos · goles {h2h.gf}-{h2h.ga}
+          </div>
+        </>
+      ) : (
+        <div className="small muted" style={{ textAlign: 'center' }}>
+          Todavía no se han enfrentado en esta partida
+        </div>
+      )}
+    </div>
   );
 }

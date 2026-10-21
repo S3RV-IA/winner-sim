@@ -9,7 +9,8 @@ import { playOne } from '../actions';
 import { AppBar, Crest, Rating, Sheet, Stepper, Tabs, TieStrip, useUi } from '../common';
 import { Icon } from '../Icon';
 import { useWide } from '../liveStats';
-import { EventLine, LineupPanel, TeamStats, TraitBadges } from '../MatchParts';
+import { EventLine, HeadToHeadCard, LineupPanel, Prediction, TeamStats, TraitBadges } from '../MatchParts';
+import { headToHead, previewMatch } from '../../game/preview';
 import { useWorld } from '../world';
 
 type MatchTab = 'summary' | 'stats' | 'players';
@@ -18,7 +19,7 @@ export function MatchView() {
   const { id } = useParams();
   const nav = useNavigate();
   const ui = useUi();
-  const { teams } = useWorld();
+  const { teams, config } = useWorld();
   const match = useLiveQuery(() => db.matches.get(id!), [id]);
   const result = useLiveQuery(() => db.results.get(id!), [id, match?.playedOrder, match?.score?.join()]);
   const comp = useLiveQuery(() => (match ? db.competitions.get(match.compId) : undefined), [match?.compId]);
@@ -26,6 +27,7 @@ export function MatchView() {
   const [tab, setTab] = useState<MatchTab>('summary');
   const wide = useWide();
   const [manual, setManual] = useState(false);
+  const h2h = useLiveQuery(() => (match ? headToHead(match.homeId, match.awayId) : undefined), [match?.homeId, match?.awayId, match?.status]);
   if (!match || !comp) return null;
   const home = teams.get(match.homeId)!;
   const away = teams.get(match.awayId)!;
@@ -100,6 +102,12 @@ export function MatchView() {
         </div>
       </div>
 
+      {!played && (
+        <div style={{ maxWidth: 720, margin: '0 auto', padding: '0 12px' }}>
+          <Prediction preview={previewMatch(match, comp, home, away, firstLeg, config)} home={home} away={away} />
+          {h2h && <HeadToHeadCard team={home} rival={away} h2h={h2h} />}
+        </div>
+      )}
       {played && result && wide && (
         <div className="wide-wrap" style={{ paddingTop: 0 }}>
           <div className="side-grid">
@@ -138,6 +146,11 @@ export function MatchView() {
         </>
       )}
       {played && !result && <div className="empty">Detalle no disponible</div>}
+      {played && h2h && (
+        <div style={{ maxWidth: 720, margin: '0 auto', padding: '0 12px 12px' }}>
+          <HeadToHeadCard team={home} rival={away} h2h={h2h} title="CARA A CARA (INCLUIDO ESTE PARTIDO)" />
+        </div>
+      )}
 
       <ManualSheet open={manual} onClose={() => setManual(false)} match={match} />
     </div>

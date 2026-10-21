@@ -1,7 +1,6 @@
 import { chooseLineup, fitFor, type Lineup } from './lineup';
 import { Rng } from './rng';
-import { effective, expectedGoals, outcomeOdds, possessionShare } from './strength';
-import { NO_BOOST } from './types';
+import { possessionShare, prematch } from './strength';
 import type {
   MatchEvent, MatchOptions, MatchResult, PenaltyKick, PlayerLine, Role, ShotKind, ShotOutcome, Side, SimPlayer, SimSettings, SimTeam, TeamLine,
 } from './types';
@@ -152,16 +151,8 @@ class TeamState {
 export function simulateMatch(home: SimTeam, away: SimTeam, settings: SimSettings, opts: MatchOptions, seed: number): MatchResult {
   const rng = new Rng(seed);
   const teams: [SimTeam, SimTeam] = [home, away];
-  const boosts = [home.boost ?? NO_BOOST, away.boost ?? NO_BOOST] as const;
-  const eff = teams.map((t, s) => {
-    const e = effective(t, settings);
-    return { att: e.att, ctl: e.ctl + boosts[s].ctl, def: e.def + boosts[s].def };
-  }) as [ReturnType<typeof effective>, ReturnType<typeof effective>];
   const neutral = !!opts.neutral;
-  const base = expectedGoals(eff[0], eff[1], settings, neutral);
-  // Rasgos históricos: multiplican los goles esperados propios y reducen los del rival
-  const xg0: [number, number] = [base[0] * boosts[0].xg * boosts[1].oppXg, base[1] * boosts[1].xg * boosts[0].oppXg];
-  const odds = outcomeOdds(xg0);
+  const { boosts, eff, xg: xg0, odds } = prematch(home, away, settings, neutral);
 
   // Factor del día: Gamma de media 1 y desviación `randomness`
   const k = 1 / Math.max(0.0001, settings.randomness) ** 2;

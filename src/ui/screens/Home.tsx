@@ -1,10 +1,11 @@
 import { useLiveQuery } from 'dexie-react-hooks';
-import { useMemo, useState } from 'react';
+import { useMemo, useState, type ReactNode } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { db } from '../../db/db';
 import { monthOf, weekOf } from '../../game/calendar';
 import { canCloseSeason, closeSeason } from '../../game/endSeason';
 import { currentOvr } from '../../game/level';
+import { computeStandings } from '../../game/standings';
 import { avgRating } from '../../game/stats';
 import type { Competition, CompType, LeagueId, Match, PlayerCompStats } from '../../game/types';
 import { playNextDate, playSeason } from '../actions';
@@ -56,12 +57,16 @@ function CompetitionsTab() {
   const ui = useUi();
   const nav = useNavigate();
   const comps = useLiveQuery(() => db.competitions.where('seasonId').equals(season.id).toArray(), [season.id]);
-  const pending = useLiveQuery(
-    () => db.matches.where('status').equals('scheduled').filter((m) => m.seasonId === season.id).toArray(),
-    [season.id],
-  );
+  // Todos los partidos (ligeros) y estadísticas de la temporada: para la próxima fecha y los resúmenes de cada bloque
+  const seasonMatches = useLiveQuery(() => db.matches.where('seasonId').equals(season.id).toArray(), [season.id]);
+  const seasonStats = useLiveQuery(() => db.stats.where('seasonId').equals(season.id).toArray(), [season.id]);
   const closable = useLiveQuery(() => canCloseSeason(season.id), [season.id, comps]);
-  if (!comps || !pending) return null;
+  if (!comps || !seasonMatches || !seasonStats) return <div className="empty">Cargando la temporada…</div>;
+  const pending = seasonMatches.filter((m) => m.status === 'scheduled');
+  const matchesByComp = new Map<string, Match[]>();
+  for (const m of seasonMatches) matchesByComp.set(m.compId, [...(matchesByComp.get(m.compId) ?? []), m]);
+  const statsByComp = new Map<string, PlayerCompStats[]>();
+  for (const st of seasonStats) statsByComp.set(st.compId, [...(statsByComp.get(st.compId) ?? []), st]);
 
   const nextSlot = pending.length ? Math.min(...pending.map((m) => m.slot)) : null;
   // La semana 0 existe (pretemporada: supercopas), así que se compara con null y no con «falso»
@@ -178,10 +183,109 @@ function CompetitionsTab() {
                   ) : (
                     <div className="small muted">{status(c)}</div>
                   )}
+                  <CompSummary comp={c} matches={matchesByComp.get(c.id) ?? []} stats={statsByComp.get(c.id) ?? []} />
                 </Link>
               );
             })}
           </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/**
+ * Lo más destacado de una competición en este momento: líder y segundo (o favorito), máximo goleador,
+ * mejor jugador y el partido más atractivo de la próxima ronda.
+ */
+function CompSummary({ comp, matches, stats }: { comp: Competition; matches: Match[]; stats: PlayerCompStats[] }) {
+  const { teams, players } = useWorld();
+  const played = matches.filter((m) => m.status === 'played');
+  const lines: { key: string; node: ReactNode }[] = [];
+  const team = (id: string) => teams.get(id);
+  const teamLine = (key: string, prefix: string, id: string, extra: string) =>
+    lines.push({
+      key,
+      node: (
+        <>
+          <span className="muted tnum" style={{ width: 12 }}>{prefix}</span>
+          <Crest team={team(id)} size={14} />
+          <span className="ellipsis grow">{team(id)?.short}</span>
+          <b className="tnum">{extra}</b>
+        </>
+      ),
+    });
+
+  // Clasificación (ligas y fase de liga europea mientras dure)
+  const phaseOpen = comp.type === 'league' || ((comp.type === 'ucl' || comp.type === 'uel') && matches.some((m) => m.round <= 8 && m.status === 'scheduled'));
+  if (phaseOpen && comp.status !== 'finished') {
+    if (played.length) {
+      const pool = comp.type === 'league' ? matches : matches.filter((m) => m.round <= 8);
+      const table = computeStandings(comp.teams, pool);
+      teamLine('p1', '1', table[0].teamId, `${table[0].points}`);
+      if (comp.type === 'league') teamLine('p2', '2', table[1].teamId, `${table[1].points}`);
+    } else {
+      const fav = [...comp.teams].sort((a, b) => currentOvr(team(b)!) - currentOvr(team(a)!))[0];
+      teamLine('fav', '★', fav, 'favorito');
+    }
+  }
+
+  // Goleador y mejor jugador
+  if (stats.length) {
+    const scorer = [...stats].sort((a, b) => b.goals - a.goals || a.apps - b.apps)[0];
+    if (scorer.goals > 0)
+      lines.push({
+        key: 'g',
+        node: (
+          <>
+            <span style={{ width: 12 }}>⚽</span>
+            <span className="ellipsis grow">{players.get(scorer.playerId)?.name}</span>
+            <b className="tnum">{scorer.goals}</b>
+          </>
+        ),
+      });
+    const maxApps = Math.max(...stats.map((x) => x.apps));
+    const best = stats.filter((x) => x.rated && x.apps >= Math.max(2, maxApps * 0.5)).sort((a, b) => avgRating(b) - avgRating(a))[0];
+    if (best && comp.type === 'league')
+      lines.push({
+        key: 'r',
+        node: (
+          <>
+            <span style={{ width: 12 }}>⭐</span>
+            <span className="ellipsis grow">{players.get(best.playerId)?.name}</span>
+            <b className="tnum">{avgRating(best).toFixed(1)}</b>
+          </>
+        ),
+      });
+  }
+
+  // Partido estrella de la próxima ronda (no en ligas: ahí hay demasiados)
+  if (comp.type !== 'league' && comp.status !== 'finished') {
+    const pending = matches.filter((m) => m.status === 'scheduled');
+    if (pending.length) {
+      const round = Math.min(...pending.map((m) => m.round));
+      const top = pending
+        .filter((m) => m.round === round)
+        .sort((a, b) => currentOvr(team(b.homeId)!) + currentOvr(team(b.awayId)!) - currentOvr(team(a.homeId)!) - currentOvr(team(a.awayId)!))[0];
+      lines.push({
+        key: 'f',
+        node: (
+          <>
+            <span style={{ width: 12 }}>🔥</span>
+            <span className="ellipsis grow">
+              {team(top.homeId)?.short} – {team(top.awayId)?.short}
+            </span>
+          </>
+        ),
+      });
+    }
+  }
+  if (!lines.length) return null;
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 4, borderTop: '1px solid var(--line)', paddingTop: 8, marginTop: 'auto' }}>
+      {lines.map((l) => (
+        <div key={l.key} className="small" style={{ display: 'flex', alignItems: 'center', gap: 6, minWidth: 0 }}>
+          {l.node}
         </div>
       ))}
     </div>
