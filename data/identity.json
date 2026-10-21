@@ -3,7 +3,8 @@
     "Peso histórico (hist) e identidad de juego (style) de cada club. Escala: el Real Madrid ronda 92-93.",
     "hist: prestigio/peso histórico del club. Nivel histórico = 60 % historia + 40 % nivel actual.",
     "style: [ataque, control, defensa] relativos al propio nivel. Se reajustan para no cambiar la fuerza total del equipo.",
-    "Sin style se usa el reparto actual del equipo, algo más marcado."
+    "Sin style se usa el reparto actual del equipo, algo más marcado.",
+    "level (opcional): fija directamente el nivel histórico que se muestra (si no, 60 % hist + 40 % actual)."
   ],
   "styles": {
     "galactico": [
@@ -141,7 +142,8 @@
     },
     "eng-mun": {
       "hist": 90,
-      "style": "contragolpe"
+      "style": "contragolpe",
+      "level": 90
     },
     "eng-liv": {
       "hist": 90,
@@ -149,7 +151,8 @@
     },
     "eng-ars": {
       "hist": 85,
-      "style": "posesion"
+      "style": "posesion",
+      "level": 86
     },
     "eng-che": {
       "hist": 83,

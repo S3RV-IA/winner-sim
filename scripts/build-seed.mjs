@@ -94,9 +94,11 @@ function teamLevels(id, r) {
   const k = -(style.att + style.def + CTL_W * style.ctl) / (2 + CTL_W);
   const current = { att: level + style.att + k, ctl: level + style.ctl + k, def: level + style.def + k };
   const hist = info.hist ?? level;
-  const historic = HIST_WEIGHT * hist + (1 - HIST_WEIGHT) * level;
-  const momentum = Math.round((level - historic) * 10) / 10;
-  const base = { att: Math.round(current.att - momentum), ctl: Math.round(current.ctl - momentum), def: Math.round(current.def - momentum) };
+  const historic = info.level ?? HIST_WEIGHT * hist + (1 - HIST_WEIGHT) * level;
+  const gap = level - historic;
+  const base = { att: Math.round(current.att - gap), ctl: Math.round(current.ctl - gap), def: Math.round(current.def - gap) };
+  // El momento se calcula después de redondear para que el nivel con el que juega hoy no cambie
+  const momentum = Math.round((level - weighted(base)) * 10) / 10;
   return { ...base, ovr: Math.round(weighted(base)), momentum };
 }
 const leagues = [];
@@ -136,5 +138,5 @@ for (const lg of LEAGUES) {
   leagues.push({ id: lg.id, name: lg.name, country: lg.country, teams: teamIds });
 }
 
-await writeFile(path.join(ROOT, 'src', 'data', 'seed.json'), JSON.stringify({ version: 3, season: '2026/27', leagues, teams, players }));
+await writeFile(path.join(ROOT, 'src', 'data', 'seed.json'), JSON.stringify({ version: 5, season: '2026/27', leagues, teams, players }));
 console.log(`seed.json: ${leagues.length} ligas, ${teams.length} equipos, ${players.length} jugadores`);
