@@ -15,7 +15,7 @@ const sim = (id: string): SimTeam => {
 type Agg = { apps: number; goals: number; assists: number; dribbles: number; sum: number; role: string; name: string };
 const seasons: Map<string, Agg>[] = [];
 let n = 1;
-const ALL: { rating: number; role: string; goals: number; assists: number; conceded: number; lost: boolean }[] = [];
+const ALL: { rating: number; role: string; goals: number; assists: number; conceded: number; lost: boolean; dribbles: number; keyPasses: number }[] = [];
 const ALL_ELITE: { rating: number; goals: number }[] = [];
 const ELITE_IDS = new Set(seed.players.filter((p) => p.role === 'ST' && p.fin >= 88).map((p) => p.id));
 for (let s = 0; s < 4; s++)
@@ -27,7 +27,7 @@ for (let s = 0; s < 4; s++)
         for (const l of r.players) {
           if (!l.rating) continue;
           if (l.starter && ELITE_IDS.has(l.id)) ALL_ELITE.push({ rating: l.rating, goals: l.goals });
-          if (l.starter) ALL.push({ rating: l.rating, role: l.role, goals: l.goals, assists: l.assists, conceded: l.conceded, lost: r.score[l.side] < r.score[1 - l.side] });
+          if (l.starter) ALL.push({ rating: l.rating, role: l.role, goals: l.goals, assists: l.assists, conceded: l.conceded, lost: r.score[l.side] < r.score[1 - l.side], dribbles: l.dribbles, keyPasses: l.keyPasses });
           const p = agg.get(l.id) ?? { apps: 0, goals: 0, assists: 0, dribbles: 0, sum: 0, role: l.role, name: seed.players.find((x) => x.id === l.id)!.name };
           p.apps++;
           p.goals += l.goals;
@@ -43,6 +43,9 @@ const avg = (xs: number[]) => (xs.reduce((a, b) => a + b, 0) / Math.max(1, xs.le
 console.log(`Media titulares ${avg(ALL.map((x) => x.rating))} · sin gol ni asistencia ${avg(ALL.filter((x) => !x.goals && !x.assists).map((x) => x.rating))}`);
 const oneGoal = ALL.filter((x) => x.goals === 1 && !x.assists);
 console.log(`1 gol sin más: <8 en ${Math.round((100 * oneGoal.filter((x) => x.rating < 8).length) / oneGoal.length)}% · ≥9 en ${Math.round((100 * oneGoal.filter((x) => x.rating >= 9).length) / oneGoal.length)}% · gol+asist ${avg(ALL.filter((x) => x.goals === 1 && x.assists === 1).map((x) => x.rating))} · 2 asist ${avg(ALL.filter((x) => x.assists === 2 && !x.goals).map((x) => x.rating))} · dieces ${(100 * ALL.filter((x) => x.rating >= 10).length / ALL.length).toFixed(2)}% de las notas`);
+const tens = ALL.filter((x) => x.rating >= 10);
+console.log(`Doblete + asistencia ${avg(ALL.filter((x) => x.goals === 2 && x.assists >= 1).map((x) => x.rating))} · hat-trick ${avg(ALL.filter((x) => x.goals === 3).map((x) => x.rating))} · póker+ ${avg(ALL.filter((x) => x.goals >= 4).map((x) => x.rating))} (${ALL.filter((x) => x.goals >= 4).length} casos)`);
+console.log(`Dieces: ${tens.length} de ${ALL.length} notas (${(100 * tens.length / ALL.length).toFixed(3)}%) → ${tens.slice(0, 8).map((x) => `${x.goals}g ${x.assists}a ${x.dribbles}reg ${x.keyPasses}pc`).join(' · ')}`);
 console.log(`Partido con 1 gol ${avg(ALL.filter((x) => x.goals === 1).map((x) => x.rating))} · doblete ${avg(ALL.filter((x) => x.goals === 2).map((x) => x.rating))} · triplete ${avg(ALL.filter((x) => x.goals >= 3).map((x) => x.rating))} · 1 asistencia ${avg(ALL.filter((x) => x.assists === 1 && !x.goals).map((x) => x.rating))}`);
 const def = ALL.filter((x) => ['CB', 'LB', 'RB'].includes(x.role));
 console.log(`Defensas: portería a cero ${avg(def.filter((x) => !x.conceded).map((x) => x.rating))} · derrota encajando 2+ ${avg(def.filter((x) => x.lost && x.conceded >= 2).map((x) => x.rating))} (suspenden ${Math.round((100 * def.filter((x) => x.lost && x.conceded >= 2 && x.rating < 6).length) / Math.max(1, def.filter((x) => x.lost && x.conceded >= 2).length))}%)`);

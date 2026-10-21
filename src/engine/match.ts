@@ -48,9 +48,14 @@ const R = {
   passAcc: 2,
   defAction: 0.15,
   quality: 0.03,
-  /** Por encima de esta nota cada punto «bruto» sube menos: el 10 tiene que ser excepcional. */
+  /** Por encima de esta nota cada punto «bruto» sube menos… */
   softCap: 8.2,
   softFactor: 0.55,
+  /** …y por encima de esta, mucho menos: el 10 queda para pókers o partidazos con gol, regates y pases. */
+  eliteCap: 9.3,
+  eliteFactor: 0.35,
+  /** Plus por el cuarto gol (y siguientes): un póker es casi siempre un 10. */
+  pokerBonus: 1.6,
 };
 const ATTACKING: ReadonlySet<Role> = new Set(['ST', 'LW', 'RW', 'AM']);
 const DEFENSIVE: ReadonlySet<Role> = new Set(['CB', 'LB', 'RB']);
@@ -618,6 +623,7 @@ export function simulateMatch(home: SimTeam, away: SimTeam, settings: SimSetting
     const openPlay = l.goals - l.penGoals;
     const goalPoints = (n: number) => (n > 0 ? R.firstGoal + (n - 1) * R.nextGoal : 0);
     r += goalPoints(openPlay) + l.penGoals * (openPlay > 0 ? R.nextGoal : R.firstGoal) * R.penFactor + (l.headGoals + l.outGoals) * 0.1;
+    if (l.goals >= 4) r += R.pokerBonus * (l.goals - 3);
     r += l.assists * R.assist + (l.keyPasses - l.assists) * R.keyPass;
     r += l.shots * R.shot + (l.shotsOn - l.goals) * R.shotOn - l.shotsOff * 0.02 - l.bigMissed * 0.2 - l.penMissed * 0.6;
     r += l.dribbles * R.dribble - l.dribblesFailed * 0.05;
@@ -635,6 +641,7 @@ export function simulateMatch(home: SimTeam, away: SimTeam, settings: SimSetting
     r += res === 1 ? 0.3 : res === -1 ? -0.3 : 0;
     r += rng.normal(0, 0.3);
     if (r > R.softCap) r = R.softCap + (r - R.softCap) * R.softFactor;
+    if (r > R.eliteCap) r = R.eliteCap + (r - R.eliteCap) * R.eliteFactor;
     l.rating = Math.round(clamp(r, 3, 10) * 10) / 10;
   }
 
