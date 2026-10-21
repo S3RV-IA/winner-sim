@@ -7,8 +7,8 @@ import { AppBar, Crest } from '../common';
 import { Icon } from '../Icon';
 import { useWorld } from '../world';
 import { Standings } from './Competition';
-import { FLAGS } from './Home';
-import { AWARD_NAMES } from './PlayerView';
+import { FLAGS } from '../labels';
+import { AWARD_NAMES } from '../labels';
 
 /** Resumen de una temporada cerrada: campeones, premios y clasificaciones finales. */
 export function SeasonView() {

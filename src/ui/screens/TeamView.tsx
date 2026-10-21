@@ -7,6 +7,7 @@ import { avgRating } from '../../game/stats';
 import type { CompType, Team } from '../../game/types';
 import { AppBar, Crest, FormArrow, FormDots, MatchCard, Rating, Sheet, Stepper, Tabs, useTab, useUi } from '../common';
 import { Icon } from '../Icon';
+import { COMP_TROPHY_LABEL } from '../labels';
 import { useWorld } from '../world';
 import { TRAITS } from '../../game/traits';
 import { currentOvr, currentRatings, weightedOvr } from '../../game/level';
@@ -14,7 +15,6 @@ import { currentOvr, currentRatings, weightedOvr } from '../../game/level';
 type TeamTab = 'squad' | 'matches' | 'trophies';
 const ROLE_ORDER = ['GK', 'RB', 'CB', 'LB', 'DM', 'CM', 'AM', 'RW', 'LW', 'ST'];
 const ROLE_GROUP: Record<string, string> = { GK: 'Porteros', CB: 'Defensas', LB: 'Defensas', RB: 'Defensas', DM: 'Centrocampistas', CM: 'Centrocampistas', AM: 'Centrocampistas', LW: 'Delanteros', RW: 'Delanteros', ST: 'Delanteros' };
-export const COMP_TROPHY_LABEL: Record<CompType, string> = { league: 'Ligas', ucl: 'Champions League', uel: 'Europa League', cup: 'Copas' };
 
 export function Bar({ label, value, color = 'var(--accent)' }: { label: string; value: number; color?: string }) {
   return (

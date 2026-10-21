@@ -3,26 +3,15 @@ import { Link, useParams } from 'react-router-dom';
 import { db } from '../../db/db';
 import { expectedRating } from '../../engine/form';
 import { avgRating } from '../../game/stats';
-import type { AwardType } from '../../game/types';
 import { AppBar, Crest, FormArrow, Rating } from '../common';
 import { Icon } from '../Icon';
+import { AWARD_NAMES } from '../labels';
 import { useWorld } from '../world';
 import { Bar } from './TeamView';
 
 const ROLE_NAMES: Record<string, string> = {
   GK: 'Portero', CB: 'Central', LB: 'Lateral izquierdo', RB: 'Lateral derecho', DM: 'Mediocentro defensivo', CM: 'Centrocampista',
   AM: 'Mediapunta', LW: 'Extremo izquierdo', RW: 'Extremo derecho', ST: 'Delantero centro',
-};
-
-export const AWARD_NAMES: Record<AwardType, string> = {
-  ballonDor: 'Balón de Oro',
-  goldenBoot: 'Bota de Oro',
-  leagueMvp: 'Mejor jugador de la liga',
-  leagueTopScorer: 'Máximo goleador de la liga',
-  leagueTopAssists: 'Máximo asistente de la liga',
-  uclMvp: 'Mejor jugador de la Champions',
-  uclTopScorer: 'Máximo goleador de la Champions',
-  bestGoalkeeper: 'Mejor portero',
 };
 
 export function PlayerView() {

@@ -10,12 +10,10 @@ import type { Competition, CompType, LeagueId, Match, PlayerCompStats } from '..
 import { playNextDate, playSeason } from '../actions';
 import { AppBar, Crest, Rating, Tabs, useTab, useUi, useUrlParam } from '../common';
 import { Icon } from '../Icon';
+import { COMP_COLORS, FLAGS } from '../labels';
 import { useWorld } from '../world';
 
 type HomeTab = 'comps' | 'teams' | 'players' | 'history';
-
-export const COMP_COLORS: Record<CompType, string> = { league: '#ffb300', cup: '#10b981', ucl: '#1d4ed8', uel: '#f97316' };
-export const FLAGS: Record<LeagueId, string> = { eng: '🏴', esp: '🇪🇸', ger: '🇩🇪', ita: '🇮🇹', fra: '🇫🇷', por: '🇵🇹' };
 
 export function Home() {
   const { season } = useWorld();

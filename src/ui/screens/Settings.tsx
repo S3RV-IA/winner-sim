@@ -7,7 +7,7 @@ import type { Config, LeagueId } from '../../game/types';
 import { AppBar, Stepper, useUi } from '../common';
 import { Icon } from '../Icon';
 import { useWorld } from '../world';
-import { FLAGS } from './Home';
+import { FLAGS } from '../labels';
 
 export function Settings() {
   const { config, leagues, season } = useWorld();

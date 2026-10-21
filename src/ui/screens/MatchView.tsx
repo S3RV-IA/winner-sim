@@ -3,18 +3,16 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { db } from '../../db/db';
 import { resetMatch, setManualResult } from '../../game/simulate';
-import type { MatchEvent, PlayerLine, ShotKind, TeamLine } from '../../engine/types';
+import type { PlayerLine } from '../../engine/types';
 import type { Match, StoredResult } from '../../game/types';
 import { playOne } from '../actions';
 import { AppBar, Crest, Rating, Sheet, Stepper, Tabs, TieStrip, useUi } from '../common';
 import { Icon } from '../Icon';
-import { LineupPanel, useWide } from './Live';
+import { useWide } from '../liveStats';
+import { EventLine, LineupPanel, TeamStats, TraitBadges } from '../MatchParts';
 import { useWorld } from '../world';
 
 type MatchTab = 'summary' | 'stats' | 'players';
-
-const KIND_LABEL: Record<ShotKind, string> = { pen: 'de penalti', big: '', head: 'de cabeza', box: '', out: 'desde fuera del área' };
-export const minuteLabel = (e: { min: number; plus?: number }) => `${e.min}${e.plus ? `+${e.plus}` : ''}'`;
 
 export function MatchView() {
   const { id } = useParams();
@@ -184,73 +182,6 @@ function ManualSheet({ open, onClose, match }: { open: boolean; onClose: () => v
 
 // ---------------------------------------------------------------------------
 
-function useNames() {
-  const { players } = useWorld();
-  return (id?: string) => (id ? players.get(id)?.name ?? '?' : '');
-}
-
-export function EventLine({ e, homeFirst = true }: { e: MatchEvent; homeFirst?: boolean }) {
-  const name = useNames();
-  if (e.t === 'phase') {
-    const label = { HT: 'Descanso', FT: 'Final del partido', ET: 'Prórroga', AET: 'Final de la prórroga', PENS: 'Tanda de penaltis' }[e.label];
-    return <div className="phase">{label}</div>;
-  }
-  let content: React.ReactNode = null;
-  if (e.t === 'goal')
-    content = (
-      <>
-        <Icon name="ball" size={20} color="var(--accent-strong)" />
-        <span>
-          <b>{name(e.player)}</b>
-          <span className="small muted">
-            {' '}
-            {e.counter ? 'al contraataque' : e.kind !== 'box' && e.kind !== 'big' ? KIND_LABEL[e.kind] : ''}
-            {e.assist ? ` · asist. ${name(e.assist)}` : ''}
-          </span>
-          <span className="small bold tnum"> ({e.score[0]}-{e.score[1]})</span>
-        </span>
-      </>
-    );
-  else if (e.t === 'card')
-    content = (
-      <>
-        <span style={{ width: 11, height: 15, borderRadius: 2, background: e.color === 'Y' ? '#facc15' : '#dc2626', display: 'inline-block' }} />
-        <span>{name(e.player)}</span>
-      </>
-    );
-  else if (e.t === 'sub')
-    content = (
-      <>
-        <Icon name="swap" size={16} color="var(--muted)" />
-        <span className="small">
-          <span style={{ color: 'var(--win)' }}>{name(e.in)}</span> <span className="muted">por {name(e.out)}</span>
-        </span>
-      </>
-    );
-  else if (e.t === 'miss')
-    content = (
-      <span className="small muted">
-        {e.kind === 'pen'
-          ? `Penalti fallado por ${name(e.player)}`
-          : e.counter
-            ? `Contraataque de ${name(e.player)}`
-            : e.kind === 'big'
-              ? `Ocasión clara de ${name(e.player)}`
-              : `Tiro de ${name(e.player)}`}
-        {' · '}
-        {e.outcome === 'saved' ? `parada de ${name(e.keeper)}` : e.outcome === 'post' ? 'al palo' : e.outcome === 'blocked' ? 'bloqueado' : 'fuera'}
-      </span>
-    );
-  const side = homeFirst ? e.side : 1 - e.side;
-  return (
-    <div className={`event ${e.t === 'goal' ? 'goal' : ''}`}>
-      <div className="home">{side === 0 && content}</div>
-      <div className="min">{minuteLabel(e)}</div>
-      <div className="away">{side === 1 && content}</div>
-    </div>
-  );
-}
-
 function Summary({ result, match }: { result: StoredResult; match: Match }) {
   const { players, teams } = useWorld();
   const [all, setAll] = useState(false);
@@ -296,55 +227,6 @@ function Summary({ result, match }: { result: StoredResult; match: Match }) {
         {Math.round(result.odds[2] * 100)}%
       </div>
     </>
-  );
-}
-
-export function TeamStats({ lines }: { lines: [TeamLine, TeamLine] }) {
-  const [h, a] = lines;
-  const pct = (t: TeamLine) => (t.passes ? Math.round((100 * t.passesOk) / t.passes) : 0);
-  const rows: [string, number, number, string?][] = [
-    ['Posesión', h.possession, a.possession, '%'],
-    ['Goles esperados (xG)', h.xg, a.xg],
-    ['Tiros', h.shots, a.shots],
-    ['Tiros a puerta', h.shotsOn, a.shotsOn],
-    ['Ocasiones claras', h.bigChances, a.bigChances],
-    ['Paradas', h.saves, a.saves],
-    ['Pases', h.passes, a.passes],
-    ['Precisión de pase', pct(h), pct(a), '%'],
-    ['Regates completados', h.dribbles, a.dribbles],
-    ['Córners', h.corners, a.corners],
-    ['Amarillas', h.yellow, a.yellow],
-    ['Rojas', h.red, a.red],
-  ];
-  return (
-    <div className="card list">
-      {rows.map(([label, x, y, unit]) => {
-        const tot = x + y || 1;
-        return (
-          <div key={label} className="stat-row">
-            <div className="stat-head">
-              <b className="tnum">
-                {x}
-                {unit}
-              </b>
-              <span className="muted">{label}</span>
-              <b className="tnum">
-                {y}
-                {unit}
-              </b>
-            </div>
-            <div className="stat-bars">
-              <div>
-                <span style={{ width: `${(100 * x) / tot}%`, background: x >= y ? 'var(--accent)' : 'var(--draw)' }} />
-              </div>
-              <div>
-                <span style={{ width: `${(100 * y) / tot}%`, background: y >= x ? 'var(--accent)' : 'var(--draw)' }} />
-              </div>
-            </div>
-          </div>
-        );
-      })}
-    </div>
   );
 }
 
@@ -430,19 +312,3 @@ function PlayerLineRow({ l }: { l: PlayerLine }) {
   );
 }
 
-/** Rasgos históricos que estuvieron activos en el partido (p. ej. «Noches mágicas del Bernabéu»). */
-export function TraitBadges({ result, match }: { result: StoredResult; match: Match }) {
-  const { teams } = useWorld();
-  if (!result.traits) return null;
-  const items = result.traits.flatMap((labels, side) => labels.map((l) => ({ l, team: teams.get(side === 0 ? match.homeId : match.awayId) })));
-  if (!items.length) return null;
-  return (
-    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, justifyContent: 'center', padding: '0 12px 12px' }}>
-      {items.map(({ l, team }) => (
-        <span key={l + team?.id} className="chip" style={{ background: 'var(--surface-2)', boxShadow: 'none' }}>
-          <Crest team={team} size={16} />✨ {l}
-        </span>
-      ))}
-    </div>
-  );
-}
