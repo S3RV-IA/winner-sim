@@ -60,7 +60,7 @@ describe('temporada completa', () => {
     const players = new Map((await db.players.toArray()).map((p) => [p.id, p]));
     const teams = new Map((await db.teams.toArray()).map((t) => [t.id, t]));
     const name = (id: string) => players.get(id)?.name;
-    console.log('Balón de Oro:', ballon.ranking!.slice(0, 5).map((r) => `${name(r.playerId)} (${teams.get(r.teamId)?.short}) ${r.value} ${r.detail}`).join(' | '));
+    console.log('Balón de Oro:', ballon.ranking!.slice(0, 10).map((r) => `${name(r.playerId)} (${teams.get(r.teamId)?.short}) ${r.value} ${r.detail}`).join(' | '));
     for (const c of comps) console.log(`${c.name}: ${teams.get(c.championId!)?.name} (sub: ${teams.get(c.runnerUpId!)?.short})`);
     for (const a of awards.filter((x) => x.type === 'leagueTopScorer')) console.log(`Pichichi ${a.leagueId}: ${name(a.playerId)} ${a.value}`);
   });

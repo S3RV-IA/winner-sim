@@ -1,30 +1,55 @@
 import { db, getConfig } from '../db/db';
 import { seasonStartPlayerForm, seasonStartTeamForm } from '../engine/form';
 import type { MatchEvent } from '../engine/types';
+import { ballonDorScore, type TeamHonors } from './awards';
 import { currentOvr } from './level';
 import { createSeason } from './season';
 import { computeStandings } from './standings';
 import { avgRating } from './stats';
-import type { Award, AwardType, Competition, LeagueId, PlayerCompStats, PlayerSeason, StandingRow } from './types';
+import type { Award, AwardType, Competition, LeagueId, Match, PlayerCompStats, PlayerSeason, StandingRow } from './types';
 
-const TITLE_BONUS: Record<Competition['type'], number> = { league: 5, ucl: 9, uel: 3, cup: 2 };
 const BOOT_FACTOR: Record<LeagueId, number> = { eng: 2, esp: 2, ger: 2, ita: 2, fra: 2, por: 1.5 };
-const DEFENSIVE = new Set(['GK', 'CB', 'LB', 'RB']);
 
 export async function canCloseSeason(seasonId: number) {
   const comps = await db.competitions.where('seasonId').equals(seasonId).toArray();
   return comps.length > 0 && comps.every((c) => c.status === 'finished');
 }
 
-/** Puntuación de rendimiento de una temporada: nota por encima de la media, goles, asistencias y títulos. */
-function performanceScore(rows: PlayerCompStats[], titles: number, role: string) {
-  let s = 0;
-  for (const r of rows) {
-    const goalWeight = r.compType === 'ucl' ? 0.8 : 0.55;
-    s += r.ratingSum - r.rated * 6.7 + r.goals * goalWeight + r.assists * 0.4 + r.motm * 0.3;
-    if (DEFENSIVE.has(role)) s += r.cleanSheets * 0.25;
+/** Hasta dónde llegó cada equipo en cada competición (títulos, finales, semifinales…). */
+function computeHonors(comps: Competition[], matches: Match[]): Map<string, TeamHonors> {
+  const honors = new Map<string, TeamHonors>();
+  const get = (t: string) => honors.get(t) ?? (honors.set(t, {}), honors.get(t)!);
+  for (const c of comps) {
+    if (c.type === 'league') {
+      if (c.championId) get(c.championId).league = 'win';
+      if (c.runnerUpId) get(c.runnerUpId).league = 'second';
+    } else if (c.type === 'cup') {
+      if (c.championId) get(c.championId).cup = 'win';
+      if (c.runnerUpId) get(c.runnerUpId).cup = 'final';
+    } else {
+      // Europa: ronda más avanzada que jugó cada equipo (cuartos o semifinales)
+      const reached = new Map<string, 'quarter' | 'semi'>();
+      for (const m of matches.filter((x) => x.compId === c.id)) {
+        const label = c.rounds.find((r) => r.round === m.round)?.label ?? '';
+        const stage = label.startsWith('Semifinales') ? 'semi' : label.startsWith('Cuartos') ? 'quarter' : null;
+        if (!stage) continue;
+        for (const t of [m.homeId, m.awayId]) if (reached.get(t) !== 'semi') reached.set(t, stage);
+      }
+      for (const [t, stage] of reached) {
+        if (c.type === 'ucl') get(t).ucl = stage;
+        else if (stage === 'semi') get(t).uel = 'semi';
+      }
+      if (c.runnerUpId) {
+        if (c.type === 'ucl') get(c.runnerUpId).ucl = 'final';
+        else get(c.runnerUpId).uel = 'final';
+      }
+      if (c.championId) {
+        if (c.type === 'ucl') get(c.championId).ucl = 'win';
+        else get(c.championId).uel = 'win';
+      }
+    }
   }
-  return s + titles;
+  return honors;
 }
 
 /** Cierra la temporada: premios, archivo, forma para la siguiente y crea la nueva temporada. */
@@ -63,8 +88,21 @@ export async function closeSeason(): Promise<number> {
   }
   await db.playerSeasons.bulkPut(playerSeasons);
 
-  // 3) Premios
-  const titleBonus = (teamId: string) => trophies.filter((t) => t.teamId === teamId).reduce((a, t) => a + TITLE_BONUS[t.compType], 0);
+  // 3) Premios: rendimiento individual + títulos (la Champions es lo que más pesa)
+  const seasonMatches = await db.matches.where('seasonId').equals(seasonId).toArray();
+  const honors = computeHonors(comps, seasonMatches);
+  const teamGames = new Map<string, Map<string, number>>();
+  for (const m of seasonMatches.filter((x) => x.status === 'played'))
+    for (const t of [m.homeId, m.awayId]) {
+      const g = teamGames.get(t) ?? new Map<string, number>();
+      g.set(m.compId, (g.get(m.compId) ?? 0) + 1);
+      teamGames.set(t, g);
+    }
+  const scoreOf = (pid: string, rows: PlayerCompStats[], only?: Partial<TeamHonors>) => {
+    const p = players.get(pid)!;
+    const t = teams.get(p.teamId)!;
+    return ballonDorScore({ rows, role: p.role, leagueId: t.leagueId, honors: only ?? honors.get(p.teamId) ?? {}, teamGames: teamGames.get(p.teamId) ?? new Map() });
+  };
   const awards: Award[] = [];
   const rank = (type: AwardType, entries: { playerId: string; value: number; detail?: string }[], leagueId?: LeagueId) => {
     const sorted = entries.filter((e) => e.value > 0).sort((a, b) => b.value - a.value).slice(0, 10);
@@ -75,10 +113,8 @@ export async function closeSeason(): Promise<number> {
 
   const eligible = [...byPlayer.entries()].filter(([, rows]) => rows.reduce((a, r) => a + r.apps, 0) >= 20);
   rank('ballonDor', eligible.map(([pid, rows]) => {
-    const p = players.get(pid)!;
-    const g = rows.reduce((a, r) => a + r.goals, 0);
-    const as = rows.reduce((a, r) => a + r.assists, 0);
-    return { playerId: pid, value: performanceScore(rows, titleBonus(p.teamId), p.role), detail: `${g} goles · ${as} asist.` };
+    const s = scoreOf(pid, rows);
+    return { playerId: pid, value: s.total, detail: s.detail };
   }));
 
   const leagueComps = comps.filter((c) => c.type === 'league');
@@ -93,9 +129,8 @@ export async function closeSeason(): Promise<number> {
     rank('leagueTopAssists', rows.map((s) => ({ playerId: s.playerId, value: s.assists })), c.leagueId);
     const games = Math.max(...rows.map((s) => s.apps), 1);
     rank('leagueMvp', rows.filter((s) => s.apps >= games * 0.5).map((s) => {
-      const p = players.get(s.playerId)!;
-      const title = c.championId === s.teamId ? 3 : 0;
-      return { playerId: s.playerId, value: performanceScore([s], title, p.role), detail: `${avgRating(s).toFixed(2)} · ${s.goals} g · ${s.assists} a` };
+      const league = honors.get(s.teamId)?.league;
+      return { playerId: s.playerId, value: scoreOf(s.playerId, [s], { league }).total, detail: `${avgRating(s).toFixed(2)} · ${s.goals} g · ${s.assists} a` };
     }), c.leagueId);
   }
 
@@ -104,8 +139,8 @@ export async function closeSeason(): Promise<number> {
     const rows = stats.filter((s) => s.compId === ucl.id);
     rank('uclTopScorer', rows.map((s) => ({ playerId: s.playerId, value: s.goals })));
     rank('uclMvp', rows.filter((s) => s.apps >= 6).map((s) => {
-      const p = players.get(s.playerId)!;
-      return { playerId: s.playerId, value: performanceScore([s], ucl.championId === s.teamId ? 4 : 0, p.role), detail: `${s.goals} g · ${s.assists} a` };
+      const uclHonor = honors.get(s.teamId)?.ucl;
+      return { playerId: s.playerId, value: scoreOf(s.playerId, [s], { ucl: uclHonor }).total, detail: `${s.goals} g · ${s.assists} a` };
     }));
   }
 
