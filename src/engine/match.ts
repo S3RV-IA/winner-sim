@@ -32,8 +32,24 @@ const PASS_ACC: Record<Role, number> = { GK: 0.72, CB: 0.89, LB: 0.82, RB: 0.82,
 const DRIBBLE_ROLE: Record<Role, number> = { GK: 0.02, CB: 0.3, LB: 0.9, RB: 0.9, DM: 0.6, CM: 1.1, AM: 2.2, LW: 3.2, RW: 3.2, ST: 1.6 };
 const BLOCK_ROLE: Record<Role, number> = { GK: 0, CB: 1, LB: 0.6, RB: 0.6, DM: 0.6, CM: 0.3, AM: 0.1, LW: 0.1, RW: 0.1, ST: 0.05 };
 const DEF_ROLE: Record<Role, number> = { GK: 0.3, CB: 4.5, LB: 3.8, RB: 3.8, DM: 4.5, CM: 3, AM: 1.4, LW: 1.2, RW: 1.2, ST: 0.8 };
-/** Nota de partida antes de sumar y restar acciones (calibrada para una media de ~6,8). */
-const RATING_BASE = 6.25;
+/** Nota de partida antes de sumar y restar acciones (calibrada con scripts/rating-season.ts). */
+const RATING_BASE = 5.55;
+/** Peso de cada acción en la nota del partido. */
+const R = {
+  firstGoal: 3.2,
+  nextGoal: 1.4,
+  /** Un gol de penalti vale algo menos que uno en juego. */
+  penFactor: 0.75,
+  assist: 1.6,
+  keyPass: 0.32,
+  shot: 0.08,
+  shotOn: 0.3,
+  dribble: 0.18,
+  passOk: 0.006,
+  passAcc: 2,
+  defAction: 0.16,
+  quality: 0.03,
+};
 const ATTACKING: ReadonlySet<Role> = new Set(['ST', 'LW', 'RW', 'AM']);
 const DEFENSIVE: ReadonlySet<Role> = new Set(['CB', 'LB', 'RB']);
 
@@ -604,17 +620,23 @@ export function simulateMatch(home: SimTeam, away: SimTeam, settings: SimSetting
     const res = winner === null ? (final[a.side] > final[1 - a.side] ? 1 : final[a.side] < final[1 - a.side] ? -1 : 0) : winner === a.side ? 1 : -1;
     const defender = DEFENSIVE.has(a.role);
     let r = RATING_BASE;
-    // Goles y asistencias son lo que más pesa
-    r += (l.goals - l.penGoals) * 1.3 + l.penGoals * 0.9 + (l.headGoals + l.outGoals) * 0.1;
-    r += l.assists * 1.0 + (l.keyPasses - l.assists) * 0.15;
-    r += (l.shotsOn - l.goals) * 0.08 - l.shotsOff * 0.03 - l.bigMissed * 0.25 - l.penMissed * 0.6;
-    r += l.dribbles * 0.07 - l.dribblesFailed * 0.03;
-    if (l.passes >= 10) r += l.passesOk * 0.004 + (l.passesOk / l.passes - 0.82) * 1.2;
+    // Goles: el primero es lo que más sube la nota; cada gol más sigue sumando (doblete ≈ 10)
+    const openPlay = l.goals - l.penGoals;
+    const goalPoints = (n: number) => (n > 0 ? R.firstGoal + (n - 1) * R.nextGoal : 0);
+    r += goalPoints(openPlay) + l.penGoals * (openPlay > 0 ? R.nextGoal : R.firstGoal) * R.penFactor + (l.headGoals + l.outGoals) * 0.1;
+    r += l.assists * R.assist + (l.keyPasses - l.assists) * R.keyPass;
+    r += l.shots * R.shot + (l.shotsOn - l.goals) * R.shotOn - l.shotsOff * 0.02 - l.bigMissed * 0.2 - l.penMissed * 0.6;
+    r += l.dribbles * R.dribble - l.dribblesFailed * 0.05;
+    // Calidad del jugador: lo que no se ve en las estadísticas (aguantar, presionar, desmarques)
+    r += (a.p.ovr - 78) * R.quality;
+    // La precisión se compara con lo normal en su puesto (un delantero no da los mismos pases seguros que un central)
+    if (l.passes >= 10) r += l.passesOk * R.passOk + (l.passesOk / l.passes - PASS_ACC[a.role]) * R.passAcc;
     // Defender bien (cortes, bloqueos, ocasiones claras evitadas) puede salvar la nota aunque se encajen goles
-    r += l.defActions * (defender || a.role === 'DM' ? 0.1 : 0.07) + l.blocks * 0.2 + (bigStops.get(a) ?? 0);
-    if (a.role === 'GK') r += l.saves * 0.3 - l.conceded * 0.4 + (cleanSheet ? 0.7 : 0);
-    else if (defender) r += -l.conceded * 0.45 + (cleanSheet ? 0.4 : 0);
-    else if (a.role === 'DM') r += -l.conceded * 0.12 + (cleanSheet ? 0.2 : 0);
+    r += l.defActions * (defender || a.role === 'DM' ? R.defAction : R.defAction * 0.7) + l.blocks * 0.3 + (bigStops.get(a) ?? 0);
+    // Porteros y defensas apenas tienen goles, regates o pases clave: parten algo más arriba
+    if (a.role === 'GK') r += 0.6 + l.saves * 0.35 - l.conceded * 0.45 + (cleanSheet ? 0.8 : 0);
+    else if (defender) r += 0.35 - l.conceded * 0.5 + (cleanSheet ? 0.5 : 0);
+    else if (a.role === 'DM') r += -l.conceded * 0.15 + (cleanSheet ? 0.2 : 0);
     r -= l.yellow * 0.15 + l.red * 1.0;
     r += res === 1 ? 0.3 : res === -1 ? -0.3 : 0;
     r += rng.normal(0, 0.2);

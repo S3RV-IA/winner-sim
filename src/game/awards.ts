@@ -63,8 +63,9 @@ export function ballonDorScore({ rows, role, leagueId, honors, teamGames }: Scor
     involvement.set(r.compType, Math.min(1, Math.max(0, (share - 0.2) / 0.45)));
   }
   // Nota media por encima de lo normal, ponderada por cuánto ha jugado
+  // (la nota ya incluye los goles, por eso pesa moderadamente: así no se cuentan dos veces)
   const avg = rated ? ratingSum / rated : 0;
-  individual += Math.max(0, avg - 6.8) * 25 * Math.min(1, apps / 45);
+  individual += Math.max(0, avg - 6.8) * 12 * Math.min(1, apps / 45);
 
   let titles = 0;
   const won: string[] = [];

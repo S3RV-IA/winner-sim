@@ -12,7 +12,7 @@ export function nextTeamForm(form: number, odds: [number, number, number], point
 }
 
 /** Nota esperada de un titular según su nivel. */
-export const expectedRating = (ovr: number) => 6.8 + (ovr - 78) * 0.025;
+export const expectedRating = (ovr: number) => 7.05 + (ovr - 78) * 0.08;
 
 /** Forma del jugador tras un partido en el que ha tenido nota. */
 export function nextPlayerForm(form: number, rating: number, ovr: number): number {

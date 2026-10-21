@@ -14,19 +14,19 @@ describe('Balón de Oro', () => {
   // Mbappé: 42 goles y campeón de Europa (sin liga)
   const mbappe = ballonDorScore({
     role: 'ST', leagueId: 'esp', honors: { ucl: 'win', league: 'second' },
-    rows: [row('l', 'league', 36, 30, 5, 7.6, 9), row('u', 'ucl', 15, 12, 1, 7.7, 4)],
+    rows: [row('l', 'league', 36, 30, 5, 8.6, 9), row('u', 'ucl', 15, 12, 1, 8.7, 4)],
     teamGames: games([['l', 38], ['u', 15]]),
   });
   // Guirassy: 44 goles, Bundesliga y copa, cae en cuartos de Champions
   const guirassy = ballonDorScore({
     role: 'ST', leagueId: 'ger', honors: { league: 'win', cup: 'win', ucl: 'quarter' },
-    rows: [row('l', 'league', 33, 36, 3, 7.5, 9), row('u', 'ucl', 10, 4, 1, 7.2, 1), row('c', 'cup', 4, 4, 0, 7.6, 1)],
+    rows: [row('l', 'league', 33, 36, 3, 8.8, 9), row('u', 'ucl', 10, 4, 1, 7.6, 1), row('c', 'cup', 4, 4, 0, 8.7, 1)],
     teamGames: games([['l', 34], ['u', 12], ['c', 4]]),
   });
   // Kane: 48 goles sin títulos (segundo en liga, semifinal de Champions)
   const kane = ballonDorScore({
     role: 'ST', leagueId: 'ger', honors: { league: 'second', ucl: 'semi' },
-    rows: [row('l', 'league', 34, 38, 4, 7.6, 10), row('u', 'ucl', 14, 10, 1, 7.5, 3)],
+    rows: [row('l', 'league', 34, 38, 4, 8.9, 10), row('u', 'ucl', 14, 10, 1, 8.4, 3)],
     teamGames: games([['l', 34], ['u', 14]]),
   });
 
