@@ -15,6 +15,7 @@ const sim = (id: string): SimTeam => {
 type Agg = { apps: number; goals: number; assists: number; dribbles: number; sum: number; role: string; name: string };
 const seasons: Map<string, Agg>[] = [];
 let n = 1;
+const AST = new Map<string, number>();
 const ALL: { rating: number; role: string; goals: number; assists: number; conceded: number; lost: boolean; dribbles: number; keyPasses: number }[] = [];
 const ALL_ELITE: { rating: number; goals: number }[] = [];
 const ELITE_IDS = new Set(seed.players.filter((p) => p.role === 'ST' && p.fin >= 88).map((p) => p.id));
@@ -27,6 +28,7 @@ for (let s = 0; s < 4; s++)
         for (const l of r.players) {
           if (!l.rating) continue;
           if (l.starter && ELITE_IDS.has(l.id)) ALL_ELITE.push({ rating: l.rating, goals: l.goals });
+          if (l.assists) AST.set(l.role, (AST.get(l.role) ?? 0) + l.assists);
           if (l.starter) ALL.push({ rating: l.rating, role: l.role, goals: l.goals, assists: l.assists, conceded: l.conceded, lost: r.score[l.side] < r.score[1 - l.side], dribbles: l.dribbles, keyPasses: l.keyPasses });
           const p = agg.get(l.id) ?? { apps: 0, goals: 0, assists: 0, dribbles: 0, sum: 0, role: l.role, name: seed.players.find((x) => x.id === l.id)!.name };
           p.apps++;
@@ -73,3 +75,8 @@ for (const rate of [1.0, 1.1, 1.22, 1.35]) {
   console.log(`  ${rate} goles/partido (${Math.round(rate * 55)} en 55 partidos) → media ≈ ${(p0 * byGoals[0] + p1 * byGoals[1] + p2 * byGoals[2] + p3 * byGoals[3]).toFixed(2)}`);
 }
 void elite;
+
+const astTotal = [...AST.values()].reduce((a, b) => a + b, 0);
+console.log('Asistencias por puesto: ' + [...AST.entries()].sort((a, b) => b[1] - a[1]).map(([r, n]) => `${r} ${(100 * n / astTotal).toFixed(1)}%`).join(' · '));
+const ninePlus = ALL.filter((x) => x.rating >= 9);
+console.log(`Notas de 9 o más: ${(100 * ninePlus.length / ALL.length).toFixed(2)}% de los titulares`);

@@ -26,6 +26,8 @@ interface TraitEffect {
   lateRally?: number;
   header?: number;
   counter?: number;
+  stoppageRally?: number;
+  stoppageFinish?: number;
 }
 
 export interface Trait {
@@ -51,10 +53,10 @@ export const TRAITS: Record<string, Trait[]> = {
       effect: { win: 0.2 },
     },
     {
-      name: 'Letales a la contra',
-      description: 'Cuando juega con poca posesión o le están dominando: más ocasiones y más claras al contraataque.',
-      when: () => true,
-      effect: { counter: 1.1 },
+      name: 'Remontadas en el descuento',
+      description: 'En casa, si va perdiendo en el añadido de la segunda parte (90+): un 50 % más de ocasiones y un 20 % más de acierto.',
+      when: (c) => c.home && !c.neutral,
+      effect: { stoppageRally: 1.5, stoppageFinish: 1.2 },
     },
     {
       name: 'ADN de finales',
@@ -64,6 +66,12 @@ export const TRAITS: Record<string, Trait[]> = {
     },
   ],
   'esp-bar': [
+    {
+      name: 'Hegemonía en España',
+      description: 'En LaLiga, la Copa del Rey y la Supercopa de España: +10 % de probabilidad de ganar.',
+      when: domestic,
+      effect: { win: 0.1 },
+    },
     {
       name: 'Dueños del balón',
       description: 'En todos los partidos: +20 % de dominio del balón (posesión) y algo más de control.',
@@ -241,6 +249,8 @@ export function boostFor(teamId: string, ctx: TraitContext): TeamBoost | undefin
     b.lateRally *= e.lateRally ?? 1;
     b.header *= e.header ?? 1;
     b.counter *= e.counter ?? 1;
+    b.stoppageRally *= e.stoppageRally ?? 1;
+    b.stoppageFinish *= e.stoppageFinish ?? 1;
     b.labels.push(t.name);
   }
   return b;

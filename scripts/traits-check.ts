@@ -43,11 +43,13 @@ function run(label: string, homeId: string, awayId: string, ctxHome: Partial<Tra
 run('PSG vs Marsella en Ligue 1', 'fra-psg', 'fra-om', {});
 run('PSG vs Lens en Ligue 1', 'fra-psg', 'fra-len', {});
 run('PSG vs Arsenal en casa, Champions', 'fra-psg', 'eng-ars', { comp: 'ucl' });
-run('Madrid contra el Barça (contraataque)', 'esp-rma', 'esp-bar', {});
-run('Madrid visitando al Bayern (contraataque)', 'esp-rma', 'ger-mun', { comp: 'ucl', home: false });
+run('Madrid contra el Barça en casa', 'esp-rma', 'esp-bar', {});
+run('Madrid visitando al Bayern', 'esp-rma', 'ger-mun', { comp: 'ucl', home: false });
 run('Madrid vuelta Champions en casa tras perder la ida vs Man City', 'esp-rma', 'eng-mci', { comp: 'ucl', secondLeg: true, lostFirstLeg: true, knockout: true });
 run('Madrid en una final vs Bayern (neutral)', 'esp-rma', 'ger-mun', { comp: 'ucl', final: true, knockout: true, neutral: true }, { neutral: true });
-run('Barça vs Atlético (posesión)', 'esp-bar', 'esp-atm', {});
+run('Barça vs Atlético en LaLiga (posesión + hegemonía)', 'esp-bar', 'esp-atm', {});
+run('Barça vs Valencia en LaLiga', 'esp-bar', 'esp-val', {});
+run('Barça vs Bayern en Champions (sin hegemonía)', 'esp-bar', 'ger-mun', { comp: 'ucl' });
 run('Athletic vs Real Sociedad en liga', 'esp-ath', 'esp-rso', {});
 run('Atlético vs Real Madrid (rival superior)', 'esp-atm', 'esp-rma', { underdog: true });
 run('Sevilla en Europa League vs Roma', 'esp-sev', 'ita-rom', { comp: 'uel' });

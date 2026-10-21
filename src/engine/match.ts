@@ -23,7 +23,8 @@ const SHOT_ROLE: Record<'box' | 'head' | 'out', Record<Role, number>> = {
   head: { GK: 0, CB: 0.45, LB: 0.1, RB: 0.1, DM: 0.2, CM: 0.25, AM: 0.3, LW: 0.3, RW: 0.3, ST: 1 },
   out: { GK: 0, CB: 0.12, LB: 0.25, RB: 0.25, DM: 0.35, CM: 0.75, AM: 0.9, LW: 0.75, RW: 0.75, ST: 0.55 },
 };
-const ASSIST_ROLE: Record<Role, number> = { GK: 0.02, CB: 0.12, LB: 0.55, RB: 0.55, DM: 0.35, CM: 0.75, AM: 1, LW: 1, RW: 1, ST: 0.5 };
+/** Quién da el último pase: los defensas asisten poco (los laterales algo más, sobre todo en centros). */
+const ASSIST_ROLE: Record<Role, number> = { GK: 0.01, CB: 0.05, LB: 0.3, RB: 0.3, DM: 0.35, CM: 0.75, AM: 1, LW: 1, RW: 1, ST: 0.5 };
 const ASSIST_PROB: Record<ShotKind, number> = { pen: 0, big: 0.8, head: 0.9, box: 0.78, out: 0.45 };
 const CARD_ROLE: Record<Role, number> = { GK: 0.15, CB: 1.3, LB: 1.2, RB: 1.2, DM: 1.5, CM: 1.1, AM: 0.8, LW: 0.7, RW: 0.7, ST: 0.8 };
 const PASS_ROLE: Record<Role, number> = { GK: 0.05, CB: 0.13, LB: 0.1, RB: 0.1, DM: 0.13, CM: 0.12, AM: 0.09, LW: 0.07, RW: 0.07, ST: 0.05 };
@@ -49,13 +50,13 @@ const R = {
   defAction: 0.15,
   quality: 0.03,
   /** Por encima de esta nota cada punto «bruto» sube menos… */
-  softCap: 8.2,
-  softFactor: 0.55,
+  softCap: 7.8,
+  softFactor: 0.5,
   /** …y por encima de esta, mucho menos: el 10 queda para pókers o partidazos con gol, regates y pases. */
-  eliteCap: 9.3,
-  eliteFactor: 0.35,
+  eliteCap: 8.9,
+  eliteFactor: 0.3,
   /** Plus por el cuarto gol (y siguientes): un póker es casi siempre un 10. */
-  pokerBonus: 1.6,
+  pokerBonus: 3.6,
 };
 const ATTACKING: ReadonlySet<Role> = new Set(['ST', 'LW', 'RW', 'AM']);
 const DEFENSIVE: ReadonlySet<Role> = new Set(['CB', 'LB', 'RB']);
@@ -229,7 +230,7 @@ export function simulateMatch(home: SimTeam, away: SimTeam, settings: SimSetting
 
   const chooseAssist = (st: TeamState, kind: ShotKind, shooter: Appearance) =>
     pickWeighted(st.onPitch().filter((a) => a !== shooter), (a) => {
-      const wide = kind === 'head' && (a.role === 'LB' || a.role === 'RB' || a.role === 'LW' || a.role === 'RW') ? 2 : 1;
+      const wide = kind === 'head' ? (a.role === 'LW' || a.role === 'RW' ? 2 : a.role === 'LB' || a.role === 'RB' ? 1.5 : 1) : 1;
       return ASSIST_ROLE[a.role] * wide * (a.p.cre / 70) ** 2.5 * (1 + 0.2 * a.p.form);
     });
 
@@ -258,7 +259,7 @@ export function simulateMatch(home: SimTeam, away: SimTeam, settings: SimSetting
       const skill = kind === 'head' ? shooter.p.hea : kind === 'out' ? shooter.p.lng : shooter.p.fin;
       const mult = clamp(1 + (skill - ref) * 0.013, 0.55, 1.45) * (1 + 0.06 * shooter.p.form) * (kind === 'head' ? boosts[side].header : 1);
       const gkMult = clamp(1 - (gk - 78) * 0.008, 0.75, 1.3);
-      p = Math.min(0.96, xg * mult * gkMult);
+      p = Math.min(0.96, xg * mult * gkMult * (stoppageChase(side, tick) ? boosts[side].stoppageFinish : 1));
     }
     let outcome: ShotOutcome;
     if (rng.chance(p)) outcome = 'goal';
@@ -344,6 +345,9 @@ export function simulateMatch(home: SimTeam, away: SimTeam, settings: SimSetting
     }
   };
 
+  /** Añadido de la segunda parte (90+) yendo por detrás en el marcador. */
+  const stoppageChase = (side: Side, tick: Tick) => tick.min === 90 && !!tick.plus && score[side] < score[1 - side];
+
   /** Ritmo de ocasiones según el marcador, el minuto y las expulsiones. */
   const stateMult = (side: Side, tick: Tick) => {
     const diff = score[side] - score[1 - side];
@@ -357,6 +361,7 @@ export function simulateMatch(home: SimTeam, away: SimTeam, settings: SimSetting
     else if (diff <= -2) m = 1.08;
     m *= 0.75 ** states[side].reds * 1.12 ** states[1 - side].reds;
     if (tick.min >= 80 && diff <= 0) m *= boosts[side].lateRally;
+    if (stoppageChase(side, tick)) m *= boosts[side].stoppageRally;
     return m;
   };
 

@@ -39,11 +39,15 @@ export interface TeamBoost {
   header: number;
   /** Contraataque: cuando el equipo está siendo dominado, más ocasiones y más claras (1 = sin efecto). */
   counter: number;
+  /** Si va perdiendo en el añadido de la segunda parte: multiplicador de ocasiones… */
+  stoppageRally: number;
+  /** …y de acierto en esos tiros. */
+  stoppageFinish: number;
   /** Nombres de los rasgos activos (para mostrarlos). */
   labels: string[];
 }
 
-export const NO_BOOST: TeamBoost = { xg: 1, oppXg: 1, ctl: 0, def: 0, possession: 1, lateRally: 1, header: 1, counter: 1, labels: [] };
+export const NO_BOOST: TeamBoost = { xg: 1, oppXg: 1, ctl: 0, def: 0, possession: 1, lateRally: 1, header: 1, counter: 1, stoppageRally: 1, stoppageFinish: 1, labels: [] };
 
 export interface SimTeam {
   id: string;
