@@ -27,8 +27,11 @@ export interface Lineup {
   bench: SimPlayer[];
 }
 
-/** Valor con el que el "entrenador" elige: nivel, forma y algo de rotación. */
-const pickScore = (p: SimPlayer, rng: Rng) => p.ovr + p.form * 3 + rng.normal(0, 2.2);
+/** Puntos de nivel que suma o resta la racha al elegir el once (racha −1..1). */
+export const FORM_PICK = 4;
+
+/** Valor con el que el "entrenador" elige: nivel, racha y algo de rotación. */
+const pickScore = (p: SimPlayer, rng: Rng) => p.ovr + p.form * FORM_PICK + rng.normal(0, 2.2);
 
 export function chooseLineup(players: SimPlayer[], rng: Rng, unavailable: ReadonlySet<string> = new Set()): Lineup {
   const pool = players.filter((p) => !unavailable.has(p.id));

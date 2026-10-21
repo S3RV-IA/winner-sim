@@ -312,13 +312,14 @@ export function simulateMatch(home: SimTeam, away: SimTeam, settings: SimSetting
       const losing = score[side] < score[1 - side];
       const out = pickWeighted(
         st.onPitch().filter((a) => a.role !== 'GK' && !(a.on > 0 && a.on >= tick.idx - 25)),
-        (a) => 1 + (ATTACKING.has(a.role) ? 0.5 : 0) + (a.perf < 0 ? 0.8 : 0) + (a.yellow ? 0.6 : 0) + (a.perf > 1 ? -0.5 : 0),
+        // Más papeletas de ser cambiado: atacantes, quien está jugando mal, amonestados y quien llega en mala racha
+        (a) => 1 + (ATTACKING.has(a.role) ? 0.5 : 0) + (a.perf < 0 ? 0.8 : 0) + (a.yellow ? 0.6 : 0) + (a.perf > 1 ? -0.5 : 0) + Math.max(0, -a.p.form) * 1.2,
       );
       if (!out) continue;
       const options = st.bench.filter((p) => p.role !== 'GK');
       if (!options.length) continue;
       const pick = options
-        .map((p) => ({ p, v: fitFor(out.role, p) * (p.ovr + p.form * 3) + (losing && ATTACKING.has(p.role) ? 3 : 0) + rng.normal(0, 2) }))
+        .map((p) => ({ p, v: fitFor(out.role, p) * (p.ovr + p.form * 6) + (losing && ATTACKING.has(p.role) ? 3 : 0) + rng.normal(0, 2) }))
         .sort((x, y) => y.v - x.v)[0].p;
       st.bench = st.bench.filter((p) => p !== pick);
       st.subsLeft--;
