@@ -138,7 +138,7 @@ export function ChanceOverlay({ event, team, shooter, keeper, speed, onDone }: P
         <div className="chance-head">
           <Crest team={team} size={26} />
           <div className="grow">
-            <div className="chance-kind">{INTRO[event.kind]}</div>
+            <div className="chance-kind">{event.counter ? '¡CONTRAATAQUE!' : INTRO[event.kind]}</div>
             <div className="small chance-sub">
               {event.min}
               {event.plus ? `+${event.plus}` : ''}' · {team.short}
@@ -187,7 +187,7 @@ export function ChanceOverlay({ event, team, shooter, keeper, speed, onDone }: P
               </div>
             </>
           ) : (
-            <div className="chance-build">{BUILDUP[event.kind](shooter)}</div>
+            <div className="chance-build">{event.counter ? `${team.short} sale a la contra… ¡${shooter} se queda solo!` : BUILDUP[event.kind](shooter)}</div>
           )}
         </div>
         {phase === 'verdict' && plan.tone === 'goal' && (

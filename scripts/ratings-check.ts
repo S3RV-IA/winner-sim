@@ -8,7 +8,8 @@ const byTeam = new Map<string, typeof seed.players>();
 for (const p of seed.players) byTeam.set(p.teamId, [...(byTeam.get(p.teamId) ?? []), p]);
 const sim = (id: string): SimTeam => {
   const t = seed.teams.find((x) => x.id === id)!;
-  return { ...t, form: 0, penaltyTaker: t.penaltyTaker ?? undefined, players: byTeam.get(id)!.map((p) => ({ ...p, role: p.role as Role, form: 0 })) };
+  const m = t.momentum ?? 0;
+  return { ...t, att: t.att + m, ctl: t.ctl + m, def: t.def + m, form: 0, penaltyTaker: t.penaltyTaker ?? undefined, players: byTeam.get(id)!.map((p) => ({ ...p, role: p.role as Role, form: 0 })) };
 };
 const teams = seed.teams.map((t) => sim(t.id));
 const lines: { l: PlayerLine; lost: boolean; won: boolean }[] = [];

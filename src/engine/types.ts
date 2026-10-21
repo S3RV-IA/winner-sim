@@ -37,11 +37,13 @@ export interface TeamBoost {
   lateRally: number;
   /** Multiplicador de acierto en remates de cabeza. */
   header: number;
+  /** Contraataque: cuando el equipo está siendo dominado, más ocasiones y más claras (1 = sin efecto). */
+  counter: number;
   /** Nombres de los rasgos activos (para mostrarlos). */
   labels: string[];
 }
 
-export const NO_BOOST: TeamBoost = { xg: 1, oppXg: 1, ctl: 0, def: 0, possession: 1, lateRally: 1, header: 1, labels: [] };
+export const NO_BOOST: TeamBoost = { xg: 1, oppXg: 1, ctl: 0, def: 0, possession: 1, lateRally: 1, header: 1, counter: 1, labels: [] };
 
 export interface SimTeam {
   id: string;
@@ -91,8 +93,8 @@ interface At {
 }
 
 export type MatchEvent =
-  | (At & { t: 'goal'; side: Side; player: string; assist?: string; kind: ShotKind; score: [number, number]; xg?: number; keeper?: string })
-  | (At & { t: 'miss'; side: Side; player: string; kind: ShotKind; outcome: Exclude<ShotOutcome, 'goal'>; keeper?: string; xg?: number; blocker?: string })
+  | (At & { t: 'goal'; side: Side; player: string; assist?: string; kind: ShotKind; score: [number, number]; xg?: number; keeper?: string; counter?: boolean })
+  | (At & { t: 'miss'; side: Side; player: string; kind: ShotKind; outcome: Exclude<ShotOutcome, 'goal'>; keeper?: string; xg?: number; blocker?: string; counter?: boolean })
   | (At & { t: 'card'; side: Side; player: string; color: 'Y' | 'R' })
   | (At & { t: 'sub'; side: Side; out: string; in: string })
   | (At & { t: 'phase'; label: 'HT' | 'FT' | 'ET' | 'AET' | 'PENS' });

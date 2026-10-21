@@ -1,6 +1,18 @@
 {
   "_info": "Ajustes manuales sobre las valoraciones generadas. Clave: '<idEquipo>|<nombre exacto>'.",
   "players": {
-    "esp-rma|Yan Diomande": { "ovr": 84, "fin": 75, "lng": 71, "dri": 88, "pas": 75, "cre": 80 }
+    "esp-rma|Yan Diomande": {
+      "ovr": 84,
+      "fin": 75,
+      "lng": 71,
+      "dri": 88,
+      "pas": 75,
+      "cre": 80
+    },
+    "esp-bar|Lamine Yamal": {
+      "fin": 84,
+      "lng": 82,
+      "dri": 97
+    }
   }
 }

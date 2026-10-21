@@ -1,6 +1,7 @@
 import { db, getConfig } from '../db/db';
 import { seasonStartPlayerForm, seasonStartTeamForm } from '../engine/form';
 import type { MatchEvent } from '../engine/types';
+import { currentOvr } from './level';
 import { createSeason } from './season';
 import { computeStandings } from './standings';
 import { avgRating } from './stats';
@@ -116,7 +117,19 @@ export async function closeSeason(): Promise<number> {
   }));
   await db.awards.bulkAdd(awards);
 
-  // 4) Forma de salida para la próxima temporada
+  // 4) Momento del club (largo plazo): vuelve poco a poco hacia su nivel histórico (−15 % por temporada)
+  //    y se mueve según haya quedado por encima o por debajo de lo esperado por su nivel.
+  for (const lg of leagues) {
+    const table = tables[lg.id];
+    const expected = [...lg.teams].sort((a, b) => currentOvr(teams.get(b)!) - currentOvr(teams.get(a)!));
+    table.forEach((row, i) => {
+      const t = teams.get(row.teamId)!;
+      const perf = (expected.indexOf(row.teamId) - i) / Math.max(1, table.length - 1);
+      t.momentum = Math.round(Math.min(7, Math.max(-10, (t.momentum ?? 0) * 0.85 + perf * 3)) * 10) / 10;
+    });
+  }
+
+  // 5) Racha de salida para la próxima temporada
   const europeWinners = new Set(trophies.filter((t) => t.compType === 'ucl' || t.compType === 'uel').map((t) => t.teamId));
   for (const lg of leagues) {
     const table = tables[lg.id];
@@ -134,7 +147,7 @@ export async function closeSeason(): Promise<number> {
     p.form = ps ? seasonStartPlayerForm(ps.avgRating, ps.apps, p.ovr) : 0;
   }
 
-  // 5) Compactar los partidos de la temporada (solo marcador, goles y expulsiones)
+  // 6) Compactar los partidos de la temporada (solo marcador, goles y expulsiones)
   const results = await db.results.where('seasonId').equals(seasonId).toArray();
   const keep = (e: MatchEvent) => e.t === 'goal' || (e.t === 'card' && e.color === 'R') || e.t === 'phase';
   for (const r of results) {
@@ -142,7 +155,7 @@ export async function closeSeason(): Promise<number> {
     r.players = r.players.filter((l) => l.goals || l.assists || l.id === r.mvp);
   }
 
-  // 6) Nueva temporada
+  // 7) Nueva temporada
   const ranked = Object.fromEntries(leagues.map((lg) => [lg.id, tables[lg.id].map((r) => r.teamId)])) as Record<LeagueId, string[]>;
   const cupWinners = Object.fromEntries(comps.filter((c) => c.type === 'cup' && c.championId).map((c) => [c.leagueId, c.championId])) as Partial<Record<LeagueId, string>>;
   const next = createSeason({ seasonId: seasonId + 1, year: season.year + 1, leagues, teams, config, ranked, cupWinners });

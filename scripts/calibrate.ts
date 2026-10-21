@@ -11,7 +11,7 @@ for (const p of seed.players) byTeam.set(p.teamId, [...(byTeam.get(p.teamId) ?? 
 const sim = (id: string): SimTeam => {
   const t = seed.teams.find((x) => x.id === id)!;
   return {
-    id: t.id, name: t.name, short: t.short, att: t.att, ctl: t.ctl, def: t.def, form: 0, penaltyTaker: t.penaltyTaker ?? undefined,
+    id: t.id, name: t.name, short: t.short, att: t.att + (t.momentum ?? 0), ctl: t.ctl + (t.momentum ?? 0), def: t.def + (t.momentum ?? 0), form: 0, penaltyTaker: t.penaltyTaker ?? undefined,
     players: byTeam.get(t.id)!.map((p) => ({ ...p, role: p.role as Role, form: 0 })),
   };
 };

@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { db } from '../../db/db';
 import { monthOf, weekOf } from '../../game/calendar';
 import { canCloseSeason, closeSeason } from '../../game/endSeason';
+import { currentOvr } from '../../game/level';
 import { avgRating } from '../../game/stats';
 import type { Competition, CompType, LeagueId, Match, PlayerCompStats } from '../../game/types';
 import { playNextDate, playSeason } from '../actions';
@@ -222,7 +223,7 @@ function describeWeek(matches: Match[], comps: Competition[]) {
 function TeamsTab() {
   const { leagues, teams } = useWorld();
   const [league, setLeague] = useState<LeagueId>('esp');
-  const list = leagues.find((l) => l.id === league)!.teams.map((id) => teams.get(id)!).sort((a, b) => b.ovr - a.ovr);
+  const list = leagues.find((l) => l.id === league)!.teams.map((id) => teams.get(id)!).sort((a, b) => b.ovr - a.ovr || currentOvr(b) - currentOvr(a));
   return (
     <div className="content">
       <div className="chips">
@@ -239,7 +240,12 @@ function TeamsTab() {
             <div className="small bold ellipsis" style={{ width: '100%' }}>
               {t.short}
             </div>
-            <div className="small muted tnum">{t.ovr}</div>
+            <div className="small muted tnum">
+              {t.ovr}
+              {currentOvr(t) !== t.ovr && (
+                <span style={{ color: currentOvr(t) > t.ovr ? 'var(--win)' : 'var(--loss)' }}> → {currentOvr(t)}</span>
+              )}
+            </div>
           </Link>
         ))}
       </div>

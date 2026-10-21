@@ -5,6 +5,7 @@ import type { MatchOptions, MatchResult, SimTeam } from '../engine/types';
 import { applyLine, emptyStats } from './stats';
 import { bracketPairs, nextKnockoutMatches, roundWinners } from './season';
 import { computeStandings } from './standings';
+import { currentOvr, currentRatings } from './level';
 import { boostFor, type TraitContext } from './traits';
 import { summarize, type Competition, type Match, type Player, type PlayerCompStats, type StoredResult, type Team } from './types';
 
@@ -34,7 +35,7 @@ class World {
     const away = this.sim(m.awayId);
     if (!useTraits) return [home, away];
     const kind = comp.rounds.find((r) => r.round === m.round)?.kind;
-    const ovr = (id: string) => this.teams.get(id)!.ovr;
+    const ovr = (id: string) => currentOvr(this.teams.get(id)!);
     const ctx = (teamId: string, oppId: string, isHome: boolean): TraitContext => ({
       comp: comp.type,
       leagueId: comp.leagueId,
@@ -54,8 +55,9 @@ class World {
 
   sim(teamId: string): SimTeam {
     const t = this.teams.get(teamId)!;
+    const now = currentRatings(t);
     return {
-      id: t.id, name: t.name, short: t.short, att: t.att, ctl: t.ctl, def: t.def, form: t.form, penaltyTaker: t.penaltyTaker ?? undefined,
+      id: t.id, name: t.name, short: t.short, att: now.att, ctl: now.ctl, def: now.def, form: t.form, penaltyTaker: t.penaltyTaker ?? undefined,
       players: (this.byTeam.get(teamId) ?? []).map((p) => ({ ...p })),
     };
   }

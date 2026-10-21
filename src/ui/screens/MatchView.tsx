@@ -204,7 +204,7 @@ export function EventLine({ e, homeFirst = true }: { e: MatchEvent; homeFirst?: 
           <b>{name(e.player)}</b>
           <span className="small muted">
             {' '}
-            {e.kind !== 'box' && e.kind !== 'big' ? KIND_LABEL[e.kind] : ''}
+            {e.counter ? 'al contraataque' : e.kind !== 'box' && e.kind !== 'big' ? KIND_LABEL[e.kind] : ''}
             {e.assist ? ` · asist. ${name(e.assist)}` : ''}
           </span>
           <span className="small bold tnum"> ({e.score[0]}-{e.score[1]})</span>
@@ -230,7 +230,13 @@ export function EventLine({ e, homeFirst = true }: { e: MatchEvent; homeFirst?: 
   else if (e.t === 'miss')
     content = (
       <span className="small muted">
-        {e.kind === 'pen' ? `Penalti fallado por ${name(e.player)}` : e.kind === 'big' ? `Ocasión clara de ${name(e.player)}` : `Tiro de ${name(e.player)}`}
+        {e.kind === 'pen'
+          ? `Penalti fallado por ${name(e.player)}`
+          : e.counter
+            ? `Contraataque de ${name(e.player)}`
+            : e.kind === 'big'
+              ? `Ocasión clara de ${name(e.player)}`
+              : `Tiro de ${name(e.player)}`}
         {' · '}
         {e.outcome === 'saved' ? `parada de ${name(e.keeper)}` : e.outcome === 'post' ? 'al palo' : e.outcome === 'blocked' ? 'bloqueado' : 'fuera'}
       </span>

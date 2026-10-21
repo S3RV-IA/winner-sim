@@ -17,7 +17,7 @@ export function ensureGame(): Promise<void> {
 async function createIfMissing(): Promise<void> {
   const stored = (await db.meta.get('seedVersion'))?.value as number | undefined;
   if (stored !== undefined) {
-    if (stored < SEED_VERSION) await migratePlayers();
+    if (stored < SEED_VERSION) await migrateFromSeed();
     return;
   }
   const leagues = seed.leagues as League[];
@@ -50,18 +50,23 @@ async function createIfMissing(): Promise<void> {
 }
 
 /**
- * Partida ya empezada con datos antiguos: actualiza los atributos de los jugadores (p. ej. la velocidad
- * o un ajuste de media) sin tocar su forma, temporadas, estadísticas ni palmarés.
+ * Partida ya empezada con datos antiguos: actualiza atributos de jugadores y niveles de equipos
+ * (nivel histórico, identidad y momento) sin tocar la racha, temporadas, estadísticas ni palmarés.
  */
-async function migratePlayers(): Promise<void> {
-  const byId = new Map(seed.players.map((p) => [p.id, p]));
-  const current = await db.players.toArray();
-  const updated = current.map((p) => {
-    const s = byId.get(p.id);
+async function migrateFromSeed(): Promise<void> {
+  const seedPlayers = new Map(seed.players.map((p) => [p.id, p]));
+  const seedTeams = new Map(seed.teams.map((t) => [t.id, t]));
+  const players = (await db.players.toArray()).map((p) => {
+    const s = seedPlayers.get(p.id);
     return s ? { ...p, ...s, form: p.form } : p;
   }) as Player[];
-  await db.transaction('rw', db.players, db.meta, async () => {
-    await db.players.bulkPut(updated);
+  const teams = (await db.teams.toArray()).map((t) => {
+    const s = seedTeams.get(t.id);
+    return s ? { ...t, att: s.att, ctl: s.ctl, def: s.def, ovr: s.ovr, momentum: s.momentum } : t;
+  }) as Team[];
+  await db.transaction('rw', db.players, db.teams, db.meta, async () => {
+    await db.players.bulkPut(players);
+    await db.teams.bulkPut(teams);
     await db.meta.put({ key: 'seedVersion', value: SEED_VERSION });
   });
 }

@@ -1,6 +1,7 @@
 import { Rng, randomSeed } from '../engine/rng';
 import { CUP_WEEKS, DAY, EURO_WEEKS, leagueWeeks, slot } from './calendar';
 import { CUP_NAMES, EURO_SIZES, LEAGUE_ORDER } from './defaults';
+import { currentOvr } from './level';
 import { doubleRoundRobin, swissLeaguePhase } from './schedule';
 import type { Competition, CompType, Config, League, LeagueId, Match, RoundInfo, Season, Team } from './types';
 
@@ -69,7 +70,7 @@ export function createSeason(input: SeasonInput): SeasonBundle {
   const { ucl, uel } = qualifyEurope(input);
   for (const [type, teams, name, day] of [['ucl', ucl, 'Champions League', DAY.ucl], ['uel', uel, 'Europa League', DAY.uel]] as const) {
     const id = compId(seasonId, type);
-    const seeded = [...teams].sort((a, b) => input.teams.get(b)!.ovr - input.teams.get(a)!.ovr);
+    const seeded = [...teams].sort((a, b) => currentOvr(input.teams.get(b)!) - currentOvr(input.teams.get(a)!));
     const rounds = euroRounds(day);
     competitions.push({ id, seasonId, type, name, teams: seeded, rounds, status: 'active', seeding: seeded });
     const phase = swissLeaguePhase(seeded, (t) => input.teams.get(t)!.leagueId, rng);
@@ -154,7 +155,7 @@ export function initialRanking(leagues: League[], teams: Map<string, Team>): Rec
     out[lg.id] = [...lg.teams].sort((a, b) => {
       const ta = teams.get(a)!;
       const tb = teams.get(b)!;
-      return (ta.previousPosition ?? 100 - ta.ovr / 10) - (tb.previousPosition ?? 100 - tb.ovr / 10);
+      return (ta.previousPosition ?? 100 - currentOvr(ta) / 10) - (tb.previousPosition ?? 100 - currentOvr(tb) / 10);
     });
   return out;
 }

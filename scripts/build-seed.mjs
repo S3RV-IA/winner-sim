@@ -60,6 +60,45 @@ const ascii = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 const slug = (s) => ascii(s).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
 const overrides = JSON.parse(await readFile(path.join(ROOT, 'data', 'overrides.json'), 'utf8'));
+const identity = JSON.parse(await readFile(path.join(ROOT, 'data', 'identity.json'), 'utf8'));
+
+// ---------------------------------------------------------------------------
+// Nivel de los equipos: histórico (base) + momento actual
+// ---------------------------------------------------------------------------
+/** Todas las valoraciones bajan este número de puntos (las diferencias, y por tanto las probabilidades, no cambian). */
+const SHIFT = 5;
+/** Peso del control frente a ataque y defensa en el motor (0,07 frente a 0,25, contando que afecta a ambos lados). */
+export const CTL_W = 0.56;
+const HIST_WEIGHT = 0.6;
+const weighted = (v) => (v.att + v.def + CTL_W * v.ctl) / (2 + CTL_W);
+
+/**
+ * A partir del nivel actual (las valoraciones de data/ratings) calcula:
+ *  - el reparto ataque/control/defensa según la identidad del club, sin cambiar su fuerza total;
+ *  - el nivel histórico (60 % historia + 40 % nivel actual), que es lo que se guarda como base;
+ *  - el momento del club = nivel actual − nivel histórico, para que hoy rinda exactamente como ahora.
+ */
+function teamLevels(id, r) {
+  const c = { att: r.att - SHIFT, ctl: r.ctl - SHIFT, def: r.def - SHIFT };
+  const level = weighted(c);
+  const info = identity.teams[id] ?? {};
+  let style;
+  if (info.style) {
+    const [att, ctl, def] = identity.styles[info.style];
+    style = { att, ctl, def };
+  } else {
+    const mean = (c.att + c.ctl + c.def) / 3;
+    style = { att: (c.att - mean) * 1.3, ctl: (c.ctl - mean) * 1.3, def: (c.def - mean) * 1.3 };
+  }
+  // Desplazamiento común para que el reparto mantenga el nivel ponderado
+  const k = -(style.att + style.def + CTL_W * style.ctl) / (2 + CTL_W);
+  const current = { att: level + style.att + k, ctl: level + style.ctl + k, def: level + style.def + k };
+  const hist = info.hist ?? level;
+  const historic = HIST_WEIGHT * hist + (1 - HIST_WEIGHT) * level;
+  const momentum = Math.round((level - historic) * 10) / 10;
+  const base = { att: Math.round(current.att - momentum), ctl: Math.round(current.ctl - momentum), def: Math.round(current.def - momentum) };
+  return { ...base, ovr: Math.round(weighted(base)), momentum };
+}
 const leagues = [];
 const teams = [];
 const players = [];
@@ -89,7 +128,7 @@ for (const lg of LEAGUES) {
     }
     teams.push({
       id, leagueId: lg.id, code: t.code, name, short, crest: t.crest,
-      ovr: r.ovr, att: r.att, ctl: r.ctl, def: r.def, penaltyTaker,
+      ...teamLevels(id, r), penaltyTaker,
       previousPosition: t.previousSeason?.pos ?? null,
     });
     teamIds.push(id);
@@ -97,5 +136,5 @@ for (const lg of LEAGUES) {
   leagues.push({ id: lg.id, name: lg.name, country: lg.country, teams: teamIds });
 }
 
-await writeFile(path.join(ROOT, 'src', 'data', 'seed.json'), JSON.stringify({ version: 2, season: '2026/27', leagues, teams, players }));
+await writeFile(path.join(ROOT, 'src', 'data', 'seed.json'), JSON.stringify({ version: 3, season: '2026/27', leagues, teams, players }));
 console.log(`seed.json: ${leagues.length} ligas, ${teams.length} equipos, ${players.length} jugadores`);

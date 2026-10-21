@@ -25,6 +25,7 @@ interface TraitEffect {
   possession?: number;
   lateRally?: number;
   header?: number;
+  counter?: number;
 }
 
 export interface Trait {
@@ -48,6 +49,12 @@ export const TRAITS: Record<string, Trait[]> = {
       description: 'Vuelta de Champions en casa tras perder la ida: +20 % de probabilidad de ganar.',
       when: (c) => c.comp === 'ucl' && c.secondLeg && c.home && c.lostFirstLeg,
       effect: { win: 0.2 },
+    },
+    {
+      name: 'Letales a la contra',
+      description: 'Cuando juega con poca posesión o le están dominando: más ocasiones y más claras al contraataque.',
+      when: () => true,
+      effect: { counter: 1.1 },
     },
     {
       name: 'ADN de finales',
@@ -226,6 +233,7 @@ export function boostFor(teamId: string, ctx: TraitContext): TeamBoost | undefin
     b.possession *= e.possession ?? 1;
     b.lateRally *= e.lateRally ?? 1;
     b.header *= e.header ?? 1;
+    b.counter *= e.counter ?? 1;
     b.labels.push(t.name);
   }
   return b;

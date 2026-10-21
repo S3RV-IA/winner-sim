@@ -65,6 +65,8 @@ interface Appearance {
 }
 
 interface Shot {
+  /** Ocasión nacida de un contraataque. */
+  counter?: boolean;
   tick: Tick;
   side: Side;
   shooter: Appearance;
@@ -181,6 +183,14 @@ export function simulateMatch(home: SimTeam, away: SimTeam, settings: SimSetting
   }
 
   const shots: Shot[] = [];
+  const recentShots: [number[], number[]] = [[], []];
+  // Posesión prevista según el control y los rasgos de dominio del balón
+  const basePossession = (() => {
+    const p = possessionShare(eff[0], eff[1], neutral);
+    const pm = [boosts[0].possession, boosts[1].possession];
+    const home = (100 * p * pm[0]) / (p * pm[0] + (100 - p) * pm[1]);
+    return [home, 100 - home] as const;
+  })();
   const others: OtherEvent[] = [];
   const score: [number, number] = [0, 0];
 
@@ -208,11 +218,16 @@ export function simulateMatch(home: SimTeam, away: SimTeam, settings: SimSetting
       return ASSIST_ROLE[a.role] * wide * (a.p.cre / 70) ** 2.5 * (1 + 0.2 * a.p.form);
     });
 
-  const takeShot = (side: Side, tick: Tick, forceKind?: ShotKind) => {
+  const takeShot = (side: Side, tick: Tick, counter = false) => {
     const st = states[side];
     const opp = states[1 - side];
+    recentShots[side].push(tick.idx);
+    // Al contraataque las ocasiones salen más claras (mano a mano, superioridad) y nunca son de cabeza ni penalti
+    const bigW = bigShare[side] * (counter ? 2.5 : 1);
     const kind: ShotKind =
-      forceKind ?? (rng.chance(PENALTY_PER_SHOT) ? 'pen' : KIND_SHARE[rng.weighted(KIND_SHARE.map(([k, w]) => (k === 'big' ? w * bigShare[side] : w)))][0]);
+      !counter && rng.chance(PENALTY_PER_SHOT)
+        ? 'pen'
+        : KIND_SHARE[rng.weighted(KIND_SHARE.map(([k, w]) => (k === 'big' ? w * bigW : counter && k === 'head' ? 0 : w)))][0];
     const shooter = chooseShooter(st, kind);
     if (!shooter) return;
     const keeper = opp.keeper();
@@ -239,7 +254,7 @@ export function simulateMatch(home: SimTeam, away: SimTeam, settings: SimSetting
       const blocked = kind === 'out' ? 0.3 : kind === 'head' ? 0.05 : 0.22;
       outcome = r < saved ? 'saved' : r < saved + 0.03 ? 'post' : r < saved + 0.03 + blocked ? 'blocked' : 'off';
     }
-    const shot: Shot = { tick, side, shooter, kind, xg, outcome, keeper };
+    const shot: Shot = { tick, side, shooter, kind, xg, outcome, keeper, counter };
     if (outcome === 'goal') {
       if (kind !== 'pen' && rng.chance(ASSIST_PROB[kind])) shot.assist = chooseAssist(st, kind, shooter);
       score[side]++;
@@ -329,13 +344,25 @@ export function simulateMatch(home: SimTeam, away: SimTeam, settings: SimSetting
     return m;
   };
 
+  /**
+   * Contraataque: el equipo con este rasgo que juega con poca posesión o está encajando más tiros
+   * en los últimos 15 minutos puede generar ocasiones extra al contragolpe, más claras de lo normal.
+   */
+  const countering = (side: Side, tick: Tick) => {
+    if (boosts[side].counter <= 1) return false;
+    const recent = (s: Side) => recentShots[s].filter((i) => i > tick.idx - 15).length;
+    return basePossession[side] < 46 || recent((1 - side) as Side) - recent(side) >= 2;
+  };
+
   const playPeriod = (ticks: Tick[], rateMult: number) => {
     const perTick = shotRate.map((r) => (r / 96) * rateMult);
     for (const tick of ticks) {
       for (const side of [0, 1] as Side[]) {
         substitutions(side, tick);
         bookings(side, tick);
-        if (rng.chance(perTick[side] * stateMult(side, tick))) takeShot(side, tick);
+        const rate = perTick[side] * stateMult(side, tick);
+        if (rng.chance(rate)) takeShot(side, tick);
+        else if (countering(side, tick) && rng.chance(rate * (boosts[side].counter - 1))) takeShot(side, tick, true);
       }
     }
   };
@@ -453,11 +480,7 @@ export function simulateMatch(home: SimTeam, away: SimTeam, settings: SimSetting
   if (penalties) winner = penalties.score[0] > penalties.score[1] ? 0 : 1;
   else if (agg[0] !== agg[1]) winner = agg[0] > agg[1] ? 0 : 1;
 
-  let possession = possessionShare(eff[0], eff[1], neutral);
-  // Rasgos de dominio del balón: reparten la posesión a favor de quien los tiene
-  const pm = [boosts[0].possession, boosts[1].possession];
-  possession = (100 * possession * pm[0]) / (possession * pm[0] + (100 - possession) * pm[1]);
-  possession = clamp(possession + rng.normal(0, 3) - 4 * Math.sign(final[0] - final[1]) * Math.min(2, Math.abs(final[0] - final[1])) / 2, 22, 80);
+  const possession = clamp(basePossession[0] + rng.normal(0, 3) - 4 * Math.sign(final[0] - final[1]) * Math.min(2, Math.abs(final[0] - final[1])) / 2, 22, 80);
   const poss: [number, number] = [Math.round(possession), 100 - Math.round(possession)];
 
   const lines = new Map<Appearance, PlayerLine>();
@@ -521,12 +544,12 @@ export function simulateMatch(home: SimTeam, away: SimTeam, settings: SimSetting
         al.keyPasses++;
       }
       for (const a of states[1 - s.side].at(s.tick.idx)) lines.get(a)!.conceded++;
-      events.push({ idx: s.tick.idx, ev: { t: 'goal', min: s.tick.min, plus: s.tick.plus, side: s.side, player: s.shooter.p.id, assist: s.assist?.p.id, kind: s.kind, score: [running[0], running[1]], xg, keeper: s.keeper?.p.id } });
+      events.push({ idx: s.tick.idx, ev: { t: 'goal', min: s.tick.min, plus: s.tick.plus, side: s.side, player: s.shooter.p.id, assist: s.assist?.p.id, kind: s.kind, score: [running[0], running[1]], xg, keeper: s.keeper?.p.id, counter: s.counter || undefined } });
     } else {
       if (s.kind === 'big') l.bigMissed++;
       if (s.kind === 'pen') l.penMissed++;
       if (s.keyPasser) lines.get(s.keyPasser)!.keyPasses++;
-      events.push({ idx: s.tick.idx, ev: { t: 'miss', min: s.tick.min, plus: s.tick.plus, side: s.side, player: s.shooter.p.id, kind: s.kind, outcome: s.outcome as Exclude<ShotOutcome, 'goal'>, keeper: s.keeper?.p.id, xg, blocker: blocker?.p.id } });
+      events.push({ idx: s.tick.idx, ev: { t: 'miss', min: s.tick.min, plus: s.tick.plus, side: s.side, player: s.shooter.p.id, kind: s.kind, outcome: s.outcome as Exclude<ShotOutcome, 'goal'>, keeper: s.keeper?.p.id, xg, blocker: blocker?.p.id, counter: s.counter || undefined } });
     }
   }
   for (const o of others) {
@@ -551,11 +574,11 @@ export function simulateMatch(home: SimTeam, away: SimTeam, settings: SimSetting
     apps.forEach((a, i) => {
       const l = lines.get(a)!;
       const n = Math.max(0, Math.round(rng.normal((teamPasses * w[i]) / tot, 3)));
-      const acc = clamp(PASS_ACC[a.role] + (a.p.pas - 70) * 0.0035 + (poss[side] - 50) * 0.002 - (oppDef - 78) * 0.0015, 0.45, 0.97);
+      const acc = clamp(PASS_ACC[a.role] + (a.p.pas - 70) * 0.0035 + (poss[side] - 50) * 0.002 - (oppDef - 73) * 0.0015, 0.45, 0.97);
       l.passes = n;
       l.passesOk = clamp(Math.round(rng.normal(n * acc, Math.sqrt(n * acc * (1 - acc)))), 0, n);
       const attempts = rng.poisson((l.minutes / 90) * DRIBBLE_ROLE[a.role] * (a.p.dri / 70) ** 2);
-      const ok = clamp(0.25 + (a.p.dri - 50) * 0.009 + ((a.p.pac ?? 70) - 70) * 0.003 - (oppDef - 75) * 0.004, 0.2, 0.88);
+      const ok = clamp(0.25 + (a.p.dri - 50) * 0.009 + ((a.p.pac ?? 70) - 70) * 0.003 - (oppDef - 70) * 0.004, 0.2, 0.88);
       let won = 0;
       for (let d = 0; d < attempts; d++) if (rng.chance(ok)) won++;
       l.dribbles = won;

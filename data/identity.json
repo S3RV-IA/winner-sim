@@ -1,0 +1,481 @@
+{
+  "_info": [
+    "Peso histórico (hist) e identidad de juego (style) de cada club. Escala: el Real Madrid ronda 92-93.",
+    "hist: prestigio/peso histórico del club. Nivel histórico = 60 % historia + 40 % nivel actual.",
+    "style: [ataque, control, defensa] relativos al propio nivel. Se reajustan para no cambiar la fuerza total del equipo.",
+    "Sin style se usa el reparto actual del equipo, algo más marcado."
+  ],
+  "styles": {
+    "galactico": [
+      4,
+      -7,
+      0
+    ],
+    "tikitaka": [
+      1,
+      6,
+      -4
+    ],
+    "posesion": [
+      1,
+      5,
+      -2
+    ],
+    "cholismo": [
+      -2,
+      -4,
+      5
+    ],
+    "muralla": [
+      -1,
+      -2,
+      4
+    ],
+    "intensidad": [
+      1,
+      -3,
+      2
+    ],
+    "ofensivo": [
+      4,
+      -1,
+      -3
+    ],
+    "dominio": [
+      4,
+      3,
+      -4
+    ],
+    "contragolpe": [
+      3,
+      -4,
+      0
+    ],
+    "solido": [
+      0,
+      -1,
+      2
+    ],
+    "equilibrado": [
+      0,
+      0,
+      0
+    ]
+  },
+  "teams": {
+    "esp-rma": {
+      "hist": 93,
+      "style": "galactico"
+    },
+    "esp-bar": {
+      "hist": 90,
+      "style": "tikitaka"
+    },
+    "esp-atm": {
+      "hist": 84,
+      "style": "cholismo"
+    },
+    "esp-ath": {
+      "hist": 83,
+      "style": "intensidad"
+    },
+    "esp-val": {
+      "hist": 80,
+      "style": "contragolpe"
+    },
+    "esp-sev": {
+      "hist": 80,
+      "style": "intensidad"
+    },
+    "esp-vil": {
+      "hist": 77,
+      "style": "posesion"
+    },
+    "esp-rso": {
+      "hist": 77,
+      "style": "posesion"
+    },
+    "esp-bet": {
+      "hist": 76,
+      "style": "posesion"
+    },
+    "esp-dep": {
+      "hist": 76,
+      "style": "equilibrado"
+    },
+    "esp-cel": {
+      "hist": 74,
+      "style": "posesion"
+    },
+    "esp-esp": {
+      "hist": 74,
+      "style": "solido"
+    },
+    "esp-mal": {
+      "hist": 72
+    },
+    "esp-osa": {
+      "hist": 72,
+      "style": "intensidad"
+    },
+    "esp-rac": {
+      "hist": 71
+    },
+    "esp-get": {
+      "hist": 71,
+      "style": "muralla"
+    },
+    "esp-ray": {
+      "hist": 71,
+      "style": "intensidad"
+    },
+    "esp-ala": {
+      "hist": 70,
+      "style": "solido"
+    },
+    "esp-elc": {
+      "hist": 69
+    },
+    "esp-lev": {
+      "hist": 69
+    },
+    "eng-mun": {
+      "hist": 90,
+      "style": "contragolpe"
+    },
+    "eng-liv": {
+      "hist": 90,
+      "style": "ofensivo"
+    },
+    "eng-ars": {
+      "hist": 85,
+      "style": "posesion"
+    },
+    "eng-che": {
+      "hist": 83,
+      "style": "equilibrado"
+    },
+    "eng-mci": {
+      "hist": 82,
+      "style": "tikitaka"
+    },
+    "eng-tot": {
+      "hist": 80,
+      "style": "ofensivo"
+    },
+    "eng-new": {
+      "hist": 78,
+      "style": "intensidad"
+    },
+    "eng-avl": {
+      "hist": 78,
+      "style": "equilibrado"
+    },
+    "eng-eve": {
+      "hist": 78,
+      "style": "solido"
+    },
+    "eng-lee": {
+      "hist": 76,
+      "style": "intensidad"
+    },
+    "eng-nfo": {
+      "hist": 76,
+      "style": "contragolpe"
+    },
+    "eng-sun": {
+      "hist": 74,
+      "style": "solido"
+    },
+    "eng-ips": {
+      "hist": 73
+    },
+    "eng-bha": {
+      "hist": 72,
+      "style": "posesion"
+    },
+    "eng-cry": {
+      "hist": 72,
+      "style": "contragolpe"
+    },
+    "eng-ful": {
+      "hist": 72,
+      "style": "posesion"
+    },
+    "eng-bou": {
+      "hist": 71,
+      "style": "intensidad"
+    },
+    "eng-bre": {
+      "hist": 71,
+      "style": "intensidad"
+    },
+    "eng-cov": {
+      "hist": 71
+    },
+    "eng-hul": {
+      "hist": 70
+    },
+    "ger-mun": {
+      "hist": 92,
+      "style": "dominio"
+    },
+    "ger-dor": {
+      "hist": 84,
+      "style": "ofensivo"
+    },
+    "ger-ham": {
+      "hist": 80,
+      "style": "equilibrado"
+    },
+    "ger-sch": {
+      "hist": 79,
+      "style": "solido"
+    },
+    "ger-mon": {
+      "hist": 79,
+      "style": "contragolpe"
+    },
+    "ger-bre": {
+      "hist": 78,
+      "style": "ofensivo"
+    },
+    "ger-stu": {
+      "hist": 78,
+      "style": "ofensivo"
+    },
+    "ger-lev": {
+      "hist": 78,
+      "style": "posesion"
+    },
+    "ger-kol": {
+      "hist": 77
+    },
+    "ger-fra": {
+      "hist": 77,
+      "style": "ofensivo"
+    },
+    "ger-lei": {
+      "hist": 75,
+      "style": "intensidad"
+    },
+    "ger-hof": {
+      "hist": 73,
+      "style": "ofensivo"
+    },
+    "ger-fre": {
+      "hist": 73,
+      "style": "solido"
+    },
+    "ger-mai": {
+      "hist": 72,
+      "style": "intensidad"
+    },
+    "ger-unb": {
+      "hist": 72,
+      "style": "muralla"
+    },
+    "ger-aug": {
+      "hist": 71
+    },
+    "ger-pad": {
+      "hist": 68
+    },
+    "ger-elv": {
+      "hist": 67
+    },
+    "ita-juv": {
+      "hist": 90,
+      "style": "muralla"
+    },
+    "ita-mil": {
+      "hist": 89,
+      "style": "solido"
+    },
+    "ita-int": {
+      "hist": 88,
+      "style": "solido"
+    },
+    "ita-rom": {
+      "hist": 82,
+      "style": "solido"
+    },
+    "ita-nap": {
+      "hist": 82,
+      "style": "posesion"
+    },
+    "ita-laz": {
+      "hist": 80,
+      "style": "equilibrado"
+    },
+    "ita-fio": {
+      "hist": 79,
+      "style": "equilibrado"
+    },
+    "ita-tor": {
+      "hist": 77,
+      "style": "intensidad"
+    },
+    "ita-ata": {
+      "hist": 77,
+      "style": "ofensivo"
+    },
+    "ita-bol": {
+      "hist": 76,
+      "style": "intensidad"
+    },
+    "ita-par": {
+      "hist": 76,
+      "style": "solido"
+    },
+    "ita-gen": {
+      "hist": 75
+    },
+    "ita-udi": {
+      "hist": 74,
+      "style": "solido"
+    },
+    "ita-cag": {
+      "hist": 73
+    },
+    "ita-sas": {
+      "hist": 72
+    },
+    "ita-com": {
+      "hist": 71,
+      "style": "posesion"
+    },
+    "ita-lec": {
+      "hist": 70,
+      "style": "muralla"
+    },
+    "ita-ven": {
+      "hist": 70
+    },
+    "ita-mon": {
+      "hist": 70
+    },
+    "ita-fro": {
+      "hist": 69
+    },
+    "fra-psg": {
+      "hist": 88,
+      "style": "dominio"
+    },
+    "fra-om": {
+      "hist": 83,
+      "style": "ofensivo"
+    },
+    "fra-ol": {
+      "hist": 81,
+      "style": "equilibrado"
+    },
+    "fra-asm": {
+      "hist": 80,
+      "style": "ofensivo"
+    },
+    "fra-lil": {
+      "hist": 77,
+      "style": "solido"
+    },
+    "fra-nic": {
+      "hist": 75
+    },
+    "fra-len": {
+      "hist": 75,
+      "style": "intensidad"
+    },
+    "fra-ren": {
+      "hist": 75
+    },
+    "fra-str": {
+      "hist": 74
+    },
+    "fra-tfc": {
+      "hist": 72
+    },
+    "fra-aux": {
+      "hist": 72
+    },
+    "fra-bre": {
+      "hist": 71,
+      "style": "intensidad"
+    },
+    "fra-leh": {
+      "hist": 71
+    },
+    "fra-lor": {
+      "hist": 70
+    },
+    "fra-ang": {
+      "hist": 70
+    },
+    "fra-pfc": {
+      "hist": 69
+    },
+    "fra-tro": {
+      "hist": 69
+    },
+    "fra-lma": {
+      "hist": 68
+    },
+    "por-ben": {
+      "hist": 85,
+      "style": "ofensivo"
+    },
+    "por-por": {
+      "hist": 85,
+      "style": "muralla"
+    },
+    "por-scp": {
+      "hist": 83,
+      "style": "posesion"
+    },
+    "por-bra": {
+      "hist": 76,
+      "style": "equilibrado"
+    },
+    "por-vsc": {
+      "hist": 73
+    },
+    "por-mar": {
+      "hist": 69
+    },
+    "por-rav": {
+      "hist": 68
+    },
+    "por-fam": {
+      "hist": 68
+    },
+    "por-nac": {
+      "hist": 67
+    },
+    "por-gil": {
+      "hist": 67
+    },
+    "por-mor": {
+      "hist": 67
+    },
+    "por-est": {
+      "hist": 67
+    },
+    "por-ama": {
+      "hist": 66
+    },
+    "por-aro": {
+      "hist": 66
+    },
+    "por-stc": {
+      "hist": 66
+    },
+    "por-cpi": {
+      "hist": 65
+    },
+    "por-alv": {
+      "hist": 64
+    },
+    "por-avf": {
+      "hist": 64
+    }
+  }
+}

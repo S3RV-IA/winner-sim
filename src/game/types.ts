@@ -23,7 +23,10 @@ export interface Team {
   def: number;
   penaltyTaker: string | null;
   previousPosition: number | null;
+  /** Racha (corto plazo, −1..1). */
   form: number;
+  /** Momento del club (largo plazo, en puntos): cuánto rinde hoy por encima o por debajo de su nivel histórico. */
+  momentum?: number;
 }
 
 export interface Player extends PlayerAttrs {

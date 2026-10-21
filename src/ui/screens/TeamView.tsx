@@ -9,6 +9,7 @@ import { AppBar, Crest, FormArrow, FormDots, MatchCard, Rating, Sheet, Stepper, 
 import { Icon } from '../Icon';
 import { useWorld } from '../world';
 import { TRAITS } from '../../game/traits';
+import { currentOvr, currentRatings, weightedOvr } from '../../game/level';
 
 type TeamTab = 'squad' | 'matches' | 'trophies';
 const ROLE_ORDER = ['GK', 'RB', 'CB', 'LB', 'DM', 'CM', 'AM', 'RW', 'LW', 'ST'];
@@ -31,7 +32,7 @@ export function Bar({ label, value, color = 'var(--accent)' }: { label: string; 
 
 export function TeamView() {
   const { id } = useParams();
-  const { teams, leagues, season } = useWorld();
+  const { teams, leagues, season, config } = useWorld();
   const team = teams.get(id!);
   const [tab, setTab] = useTab<TeamTab>('squad');
   const [edit, setEdit] = useState(false);
@@ -39,6 +40,8 @@ export function TeamView() {
   const leagueMatches = useLiveQuery(() => db.matches.where('compId').equals(leagueComp).toArray(), [leagueComp]);
   if (!team) return null;
   const league = leagues.find((l) => l.id === team.leagueId)!;
+  const now = currentRatings(team);
+  const momentum = team.momentum ?? 0;
   const table = leagueMatches ? computeStandings(league.teams, leagueMatches) : [];
   const pos = table.findIndex((r) => r.teamId === team.id);
   const row = table[pos];
@@ -74,7 +77,7 @@ export function TeamView() {
                 {team.name}
               </div>
               <div className="small muted">
-                {row && row.played ? `${pos + 1}.º · ${row.points} pts en ${row.played} partidos` : `Nivel general ${team.ovr}`}
+                {row && row.played ? `${pos + 1}.º · ${row.points} pts en ${row.played} partidos` : `Nivel histórico ${team.ovr}`}
               </div>
               {row && row.last.length > 0 && (
                 <div style={{ marginTop: 6 }}>
@@ -84,17 +87,39 @@ export function TeamView() {
             </div>
             <div style={{ textAlign: 'center' }}>
               <div style={{ fontSize: 26, fontWeight: 800 }} className="tnum">
-                {team.ovr}
+                {currentOvr(team)}
               </div>
-              <div className="small muted" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                forma <FormArrow form={team.form} />
-              </div>
+              <div className="small muted">nivel actual</div>
             </div>
           </div>
           <div style={{ marginTop: 10 }}>
-            <Bar label="Ataque" value={team.att} color="#ef4444" />
-            <Bar label="Control" value={team.ctl} color="#3b82f6" />
-            <Bar label="Defensa" value={team.def} color="#16a34a" />
+            <Bar label="Ataque" value={now.att} color="#ef4444" />
+            <Bar label="Control" value={now.ctl} color="#3b82f6" />
+            <Bar label="Defensa" value={now.def} color="#16a34a" />
+          </div>
+          <div className="grid3" style={{ gridTemplateColumns: 'repeat(3, 1fr)', marginTop: 8, textAlign: 'center' }}>
+            <div style={{ background: 'var(--surface-2)', borderRadius: 10, padding: '8px 4px' }}>
+              <div className="bold tnum">{team.ovr}</div>
+              <div className="small muted">Nivel histórico</div>
+            </div>
+            <div style={{ background: 'var(--surface-2)', borderRadius: 10, padding: '8px 4px' }}>
+              <div className="bold tnum" style={{ color: momentum > 0.4 ? 'var(--win)' : momentum < -0.4 ? 'var(--loss)' : undefined }}>
+                {momentum > 0 ? '+' : ''}
+                {momentum.toFixed(1)}
+              </div>
+              <div className="small muted">Momento del club</div>
+            </div>
+            <div style={{ background: 'var(--surface-2)', borderRadius: 10, padding: '8px 4px' }}>
+              <div className="bold tnum" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', color: team.form > 0.15 ? 'var(--win)' : team.form < -0.15 ? 'var(--loss)' : undefined }}>
+                {team.form * config.sim.formImpact > 0 ? '+' : ''}
+                {(team.form * config.sim.formImpact).toFixed(1)}
+              </div>
+              <div className="small muted">Racha</div>
+            </div>
+          </div>
+          <div className="small muted" style={{ padding: '8px 4px 0' }}>
+            El nivel histórico refleja el peso y la identidad del club. El momento (largo plazo) y la racha (últimos partidos) suben o bajan el nivel con el que
+            juega hoy.
           </div>
           {(TRAITS[team.id] ?? []).length > 0 && (
             <div style={{ marginTop: 10, display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -107,12 +132,6 @@ export function TeamView() {
                   </div>
                 </div>
               ))}
-            </div>
-          )}
-          {Math.abs(team.form) >= 0.15 && (
-            <div className="small muted" style={{ padding: '4px 12px 0' }}>
-              Por su estado de forma juega ahora como un {Math.round(team.ovr + team.form * 3)} ({team.form > 0 ? '+' : ''}
-              {(team.form * 3).toFixed(1)})
             </div>
           )}
         </div>
@@ -245,8 +264,8 @@ function TeamTrophies({ team }: { team: Team }) {
 
 function EditTeam({ team, open, onClose }: { team: Team; open: boolean; onClose: () => void }) {
   const ui = useUi();
-  const [v, setV] = useState({ att: team.att, ctl: team.ctl, def: team.def });
-  const ovr = Math.round((v.att + v.ctl + v.def) / 3);
+  const [v, setV] = useState({ att: team.att, ctl: team.ctl, def: team.def, momentum: Math.round(team.momentum ?? 0) });
+  const ovr = Math.round(weightedOvr(v));
   return (
     <Sheet open={open} onClose={onClose} title={`Niveles de ${team.short}`}>
       {(
@@ -262,8 +281,15 @@ function EditTeam({ team, open, onClose }: { team: Team; open: boolean; onClose:
         </div>
       ))}
       <div className="row" style={{ padding: '6px 4px' }}>
-        <div className="grow bold">Nivel general</div>
+        <div className="grow bold">Nivel histórico</div>
         <b className="tnum">{ovr}</b>
+      </div>
+      <div className="row" style={{ padding: '6px 4px' }}>
+        <div className="grow">
+          Momento del club
+          <div className="small muted">Puntos que suma o resta hoy a su nivel histórico</div>
+        </div>
+        <Stepper value={v.momentum} min={-15} max={15} onChange={(n) => setV({ ...v, momentum: n })} />
       </div>
       <button
         className="btn primary block"
