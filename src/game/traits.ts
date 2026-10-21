@@ -18,7 +18,7 @@ export interface TraitContext {
 }
 
 interface TraitEffect {
-  /** Aumento relativo de la probabilidad de ganar (0.2 = +20 %). */
+  /** Cambio relativo de la probabilidad de ganar (0.2 = +20 %, −0.05 = rinde un 5 % peor). */
   win?: number;
   ctl?: number;
   def?: number;
@@ -185,10 +185,17 @@ export const TRAITS: Record<string, Trait[]> = {
   ],
   'fra-psg': [
     {
-      name: 'Dominio en Francia',
-      description: 'En la Ligue 1 y la Coupe de France: +6 % de probabilidad de ganar.',
+      name: 'Relajación en casa',
+      description: 'En la Ligue 1 y la Coupe de France rinde un 5 % peor.',
       when: domestic,
-      effect: { win: 0.06 },
+      // −0,075 en el modelo ≈ −5 % real: el PSG gana tanto en Francia que su probabilidad apenas tiene margen
+      effect: { win: -0.075 },
+    },
+    {
+      name: 'Noches europeas en el Parque',
+      description: 'En casa en competición europea: +10 % de probabilidad de ganar.',
+      when: (c) => europe(c) && c.home && !c.neutral,
+      effect: { win: 0.1 },
     },
   ],
   'fra-om': [

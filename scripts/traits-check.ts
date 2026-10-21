@@ -40,6 +40,9 @@ function run(label: string, homeId: string, awayId: string, ctxHome: Partial<Tra
   const on = res(true);
   console.log(`${label}: victoria ${(off.w * 100).toFixed(1)}% → ${(on.w * 100).toFixed(1)}% (×${(on.w / off.w).toFixed(2)}) · posesión ${off.poss.toFixed(0)}% → ${on.poss.toFixed(0)}% · goles ${off.goals.toFixed(2)} → ${on.goals.toFixed(2)}${on.counter ? ` (a la contra ${on.counter.toFixed(2)}/partido)` : ''}`);
 }
+run('PSG vs Marsella en Ligue 1', 'fra-psg', 'fra-om', {});
+run('PSG vs Lens en Ligue 1', 'fra-psg', 'fra-len', {});
+run('PSG vs Arsenal en casa, Champions', 'fra-psg', 'eng-ars', { comp: 'ucl' });
 run('Madrid contra el Barça (contraataque)', 'esp-rma', 'esp-bar', {});
 run('Madrid visitando al Bayern (contraataque)', 'esp-rma', 'ger-mun', { comp: 'ucl', home: false });
 run('Madrid vuelta Champions en casa tras perder la ida vs Man City', 'esp-rma', 'eng-mci', { comp: 'ucl', secondLeg: true, lostFirstLeg: true, knockout: true });
