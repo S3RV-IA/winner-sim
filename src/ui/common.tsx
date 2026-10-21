@@ -122,7 +122,44 @@ export function FormArrow({ form }: { form: number }) {
 // Tarjeta de partido
 // ---------------------------------------------------------------------------
 
-export function MatchCard({ match, onSimulate, showDate }: { match: Match; onSimulate?: () => void; showDate?: string }) {
+/**
+ * Ida y global de una vuelta, desde el punto de vista del local de la vuelta
+ * (en la ida jugaban al revés, así que se invierte el marcador).
+ */
+export function aggregateOf(match: Match, firstLeg?: Match, live?: [number, number]) {
+  if (!firstLeg?.score) return null;
+  const ida: [number, number] = [firstLeg.score[1], firstLeg.score[0]];
+  const now = live ?? (match.status === 'played' ? match.score : undefined);
+  return { ida, total: now ? ([ida[0] + now[0], ida[1] + now[1]] as [number, number]) : null };
+}
+
+/** Franja bajo una vuelta: «Ida 1-2 · Global 3-3 · Pasa X (pen.)». */
+export function TieStrip({ match, firstLeg }: { match: Match; firstLeg?: Match }) {
+  const { teams } = useWorld();
+  const agg = aggregateOf(match, firstLeg);
+  if (!agg) return null;
+  const through = match.status === 'played' && match.winner !== undefined && match.winner !== null ? teams.get(match.winner === 0 ? match.homeId : match.awayId) : undefined;
+  return (
+    <div className="tie-strip">
+      <span>
+        Ida <b className="tnum">{agg.ida[0]}-{agg.ida[1]}</b>
+      </span>
+      {agg.total && (
+        <span>
+          Global <b className="tnum">{agg.total[0]}-{agg.total[1]}</b>
+        </span>
+      )}
+      {through && (
+        <span className="tie-through">
+          Pasa {through.short}
+          {match.penalties ? ' (pen.)' : match.extraTime ? ' (prór.)' : ''}
+        </span>
+      )}
+    </div>
+  );
+}
+
+export function MatchCard({ match, onSimulate, showDate, firstLeg }: { match: Match; onSimulate?: () => void; showDate?: string; firstLeg?: Match }) {
   const { teams } = useWorld();
   const nav = useNavigate();
   const home = teams.get(match.homeId);
@@ -130,7 +167,8 @@ export function MatchCard({ match, onSimulate, showDate }: { match: Match; onSim
   const score = match.status === 'played' ? match.score : undefined;
   const winner = score ? match.winner ?? (score[0] > score[1] ? 0 : score[0] < score[1] ? 1 : null) : null;
   return (
-    <div className="match-card" onClick={() => nav(`/m/${match.id}`)} role="button">
+    <div onClick={() => nav(`/m/${match.id}`)} role="button">
+    <div className="match-card">
       <div className="match-teams">
         {[home, away].map((t, side) => (
           <div key={side} className={`match-team ${winner !== null && winner !== side ? 'loser' : ''}`}>
@@ -152,6 +190,8 @@ export function MatchCard({ match, onSimulate, showDate }: { match: Match; onSim
           <span className="small muted">{showDate ?? '—'}</span>
         )}
       </div>
+    </div>
+    {firstLeg && <TieStrip match={match} firstLeg={firstLeg} />}
     </div>
   );
 }

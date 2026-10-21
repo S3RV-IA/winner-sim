@@ -112,6 +112,7 @@ function MatchesTab({ comp }: { comp: Comp }) {
             <MatchCard
               key={m.id}
               match={m}
+              firstLeg={m.firstLegId ? all.find((x) => x.id === m.firstLegId) : undefined}
               onSimulate={async () => {
                 await ui.run('Simulando partido…', () => playOne(m.id));
               }}

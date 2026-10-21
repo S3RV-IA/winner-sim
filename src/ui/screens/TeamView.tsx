@@ -218,7 +218,7 @@ function TeamMatches({ team }: { team: Team }) {
               <div className="small muted" style={{ padding: '8px 12px 0' }}>
                 {name(m.compId)} · {r?.label}
               </div>
-              <MatchCard match={m} />
+              <MatchCard match={m} firstLeg={m.firstLegId ? matches.find((x) => x.id === m.firstLegId) : undefined} />
             </div>
           );
         })}

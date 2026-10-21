@@ -6,7 +6,7 @@ import { resetMatch, setManualResult } from '../../game/simulate';
 import type { MatchEvent, PlayerLine, ShotKind, TeamLine } from '../../engine/types';
 import type { Match, StoredResult } from '../../game/types';
 import { playOne } from '../actions';
-import { AppBar, Crest, Rating, Sheet, Stepper, Tabs, useUi } from '../common';
+import { AppBar, Crest, Rating, Sheet, Stepper, Tabs, TieStrip, useUi } from '../common';
 import { Icon } from '../Icon';
 import { LineupPanel, useWide } from './Live';
 import { useWorld } from '../world';
@@ -53,12 +53,7 @@ export function MatchView() {
             <div className="small muted" style={{ textAlign: 'center' }}>
               {played ? (match.penalties ? `Penaltis ${match.penalties[0]}-${match.penalties[1]}` : match.extraTime ? 'Tras prórroga' : 'Final') : 'Pendiente'}
             </div>
-            {firstLeg?.score && (
-              <div className="small muted" style={{ textAlign: 'center' }}>
-                Ida {firstLeg.score[1]}-{firstLeg.score[0]}
-                {played && match.score && ` · Global ${match.score[0] + firstLeg.score[1]}-${match.score[1] + firstLeg.score[0]}`}
-              </div>
-            )}
+
             {match.neutral && <div className="small muted" style={{ textAlign: 'center' }}>Campo neutral</div>}
           </div>
           <Link to={`/t/${away.id}`} className="team">
@@ -66,6 +61,11 @@ export function MatchView() {
             {away.short}
           </Link>
         </div>
+        {firstLeg?.score && (
+          <div style={{ padding: '0 16px 12px' }}>
+            <TieStrip match={match} firstLeg={firstLeg} />
+          </div>
+        )}
         {played && result && <TraitBadges result={result} match={match} />}
         <div style={{ display: 'flex', gap: 8, padding: '0 12px 14px', justifyContent: 'center', flexWrap: 'wrap' }}>
           {!played ? (

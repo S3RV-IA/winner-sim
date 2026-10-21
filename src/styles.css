@@ -933,3 +933,27 @@ input[type='number'] {
 .lineup-row.off {
   opacity: 0.45;
 }
+
+/* ---------- Eliminatorias a doble partido ---------- */
+.tie-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 14px;
+  margin: 0 12px 10px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: var(--surface-2);
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.tie-strip b {
+  color: var(--text);
+}
+
+.tie-through {
+  margin-left: auto;
+  font-weight: 700;
+  color: var(--accent-strong);
+}

@@ -5,7 +5,7 @@ import { db } from '../../db/db';
 import type { MatchEvent, PenaltyKick, PlayerLine, Role, ShotKind, TeamLine } from '../../engine/types';
 import type { Match, StoredResult } from '../../game/types';
 import { ChanceOverlay, isDramatic } from '../ChanceOverlay';
-import { AppBar, Crest, Rating } from '../common';
+import { AppBar, Crest, Rating, aggregateOf } from '../common';
 import { Icon } from '../Icon';
 import { useWorld } from '../world';
 import { EventLine, TeamStats, TraitBadges } from './MatchView';
@@ -147,6 +147,7 @@ export function LiveView() {
   const wide = useWide();
   const match = useLiveQuery(() => db.matches.get(id!), [id]);
   const result = useLiveQuery(() => db.results.get(id!), [id]);
+  const firstLeg = useLiveQuery(() => (match?.firstLegId ? db.matches.get(match.firstLegId) : undefined), [match?.firstLegId]);
   const [clock, setClock] = useState(0);
   const [speed, setSpeed] = useState(1);
   const [paused, setPaused] = useState(false);
@@ -290,6 +291,19 @@ export function LiveView() {
                   {away.short}
                 </Link>
               </div>
+              {(() => {
+                const agg = aggregateOf(match, firstLeg, score);
+                return agg?.total ? (
+                  <div className="tie-strip" style={{ margin: '0 16px 12px', justifyContent: 'center' }}>
+                    <span>
+                      Ida <b className="tnum">{agg.ida[0]}-{agg.ida[1]}</b>
+                    </span>
+                    <span className="tie-through">
+                      Global <b className="tnum">{agg.total[0]}-{agg.total[1]}</b>
+                    </span>
+                  </div>
+                ) : null;
+              })()}
               <TraitBadges result={result} match={match} />
               {kicks.length > 0 && clockDone && <ShootoutBoard kicks={kicks} shown={kicksShown} homeName={home.short} awayName={away.short} />}
               {!finished && (
