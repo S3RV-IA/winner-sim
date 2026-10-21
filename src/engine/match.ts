@@ -33,30 +33,30 @@ const DRIBBLE_ROLE: Record<Role, number> = { GK: 0.02, CB: 0.3, LB: 0.9, RB: 0.9
 const BLOCK_ROLE: Record<Role, number> = { GK: 0, CB: 1, LB: 0.6, RB: 0.6, DM: 0.6, CM: 0.3, AM: 0.1, LW: 0.1, RW: 0.1, ST: 0.05 };
 const DEF_ROLE: Record<Role, number> = { GK: 0.3, CB: 4.5, LB: 3.8, RB: 3.8, DM: 4.5, CM: 3, AM: 1.4, LW: 1.2, RW: 1.2, ST: 0.8 };
 /** Nota de partida antes de sumar y restar acciones (calibrada con scripts/rating-season.ts). */
-const RATING_BASE = 5.95;
+const RATING_BASE = 5.75;
 /** Peso de cada acción en la nota del partido. */
 const R = {
-  firstGoal: 1.55,
-  nextGoal: 1.15,
+  firstGoal: 2.0,
+  nextGoal: 1.4,
   /** Un gol de penalti vale algo menos que uno en juego. */
   penFactor: 0.75,
-  assist: 0.85,
-  keyPass: 0.18,
-  shot: 0.04,
-  shotOn: 0.13,
-  dribble: 0.09,
-  passOk: 0.004,
-  passAcc: 1.5,
-  defAction: 0.12,
-  quality: 0.025,
+  assist: 1.1,
+  keyPass: 0.28,
+  shot: 0.06,
+  shotOn: 0.2,
+  dribble: 0.14,
+  passOk: 0.006,
+  passAcc: 2,
+  defAction: 0.15,
+  quality: 0.03,
   /** Por encima de esta nota cada punto «bruto» sube menos… */
-  softCap: 7.5,
+  softCap: 7.8,
   softFactor: 0.5,
   /** …y por encima de esta, mucho menos: el 10 queda para pókers o partidazos con gol, regates y pases. */
-  eliteCap: 8.5,
-  eliteFactor: 0.35,
+  eliteCap: 8.9,
+  eliteFactor: 0.3,
   /** Plus por el cuarto gol (y siguientes): un póker es casi siempre un 10. */
-  pokerBonus: 6,
+  pokerBonus: 3.6,
 };
 const ATTACKING: ReadonlySet<Role> = new Set(['ST', 'LW', 'RW', 'AM']);
 const DEFENSIVE: ReadonlySet<Role> = new Set(['CB', 'LB', 'RB']);
@@ -639,8 +639,8 @@ export function simulateMatch(home: SimTeam, away: SimTeam, settings: SimSetting
     // Defender bien (cortes, bloqueos, ocasiones claras evitadas) puede salvar la nota aunque se encajen goles
     r += l.defActions * (defender || a.role === 'DM' ? R.defAction : R.defAction * 0.7) + l.blocks * 0.3 + (bigStops.get(a) ?? 0);
     // Porteros y defensas apenas tienen goles, regates o pases clave: parten algo más arriba
-    if (a.role === 'GK') r += 0.35 + l.saves * 0.35 - l.conceded * 0.45 + (cleanSheet ? 0.8 : 0);
-    else if (defender) r += 0.45 - l.conceded * 0.5 + (cleanSheet ? 0.5 : 0);
+    if (a.role === 'GK') r += 0.6 + l.saves * 0.35 - l.conceded * 0.45 + (cleanSheet ? 0.8 : 0);
+    else if (defender) r += 0.35 - l.conceded * 0.5 + (cleanSheet ? 0.5 : 0);
     else if (a.role === 'DM') r += -l.conceded * 0.15 + (cleanSheet ? 0.2 : 0);
     r -= l.yellow * 0.15 + l.red * 1.0;
     r += res === 1 ? 0.3 : res === -1 ? -0.3 : 0;
