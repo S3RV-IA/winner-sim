@@ -12,6 +12,7 @@ import { Records } from './ui/screens/Records';
 import { SeasonView } from './ui/screens/SeasonView';
 import { Settings } from './ui/screens/Settings';
 import { TeamView } from './ui/screens/TeamView';
+import { UpdateBanner } from './ui/UpdateBanner';
 import { WorldProvider } from './ui/world';
 
 function Loading({ text }: { text: string }) {
@@ -46,6 +47,7 @@ export function App() {
   if (!ready) return <Loading text="Preparando ligas y plantillas…" />;
   return (
     <UiProvider>
+      <UpdateBanner />
       <WorldProvider fallback={<Loading text="Cargando…" />}>
         <HashRouter>
           <ScrollToTop />

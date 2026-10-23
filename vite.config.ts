@@ -7,7 +7,8 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      registerType: 'autoUpdate',
+      registerType: 'prompt',
+      injectRegister: false,
       includeAssets: ['icons/apple-touch-icon.png', 'crests/*.png'],
       manifest: {
         name: 'Winner Sim',
