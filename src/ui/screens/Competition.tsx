@@ -211,6 +211,8 @@ export function Standings({ rows, zoneColor, teams }: { rows: StandingRow[]; zon
           {!narrow && <th>G</th>}
           {!narrow && <th>E</th>}
           {!narrow && <th>P</th>}
+          <th>GF</th>
+          <th>GC</th>
           <th>DG</th>
           <th>Pts</th>
           {!narrow && <th>Forma</th>}
@@ -229,7 +231,7 @@ export function Standings({ rows, zoneColor, teams }: { rows: StandingRow[]; zon
               <td className="team">
                 <Link to={`/t/${t.id}`} style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: 0 }}>
                   <Crest team={t} size={20} />
-                  <span className="ellipsis" style={{ maxWidth: narrow ? 120 : 170 }}>
+                  <span className="ellipsis" style={{ maxWidth: narrow ? 96 : 170 }}>
                     {t.short}
                   </span>
                 </Link>
@@ -238,6 +240,8 @@ export function Standings({ rows, zoneColor, teams }: { rows: StandingRow[]; zon
               {!narrow && <td className="tnum">{r.won}</td>}
               {!narrow && <td className="tnum">{r.drawn}</td>}
               {!narrow && <td className="tnum">{r.lost}</td>}
+              <td className="tnum">{r.gf}</td>
+              <td className="tnum">{r.ga}</td>
               <td className="tnum">{r.gf - r.ga > 0 ? `+${r.gf - r.ga}` : r.gf - r.ga}</td>
               <td className="tnum bold">{r.points}</td>
               {!narrow && (
