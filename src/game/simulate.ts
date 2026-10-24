@@ -232,7 +232,9 @@ export async function setManualResult(matchId: string, score: [number, number]) 
   const config = await getConfig();
   const m = (await db.matches.get(matchId))!;
   const comp = (await db.competitions.get(m.compId))!;
+  await assertSeasonOpen(m);
   if (m.status === 'played' && (await hasLaterRound(comp, m))) throw new Error('Esta eliminatoria ya tiene rondas posteriores');
+  await reopen(comp);
   const world = await World.load();
   const old = m.status === 'played' ? await db.results.get(m.id) : undefined;
   if (old) await applyStats(m, comp, old, world, -1);
@@ -257,6 +259,7 @@ export async function resetMatch(matchId: string) {
   const comp = (await db.competitions.get(m.compId))!;
   const old = await db.results.get(m.id);
   if (m.status !== 'played' || !old) return;
+  await assertSeasonOpen(m);
   if (await hasLaterRound(comp, m)) throw new Error('Esta eliminatoria ya tiene rondas posteriores');
   const world = await World.load();
   await applyStats(m, comp, old, world, -1);
@@ -264,10 +267,47 @@ export async function resetMatch(matchId: string) {
   m.score = m.penalties = m.extraTime = m.winner = m.manual = undefined;
   await db.matches.put(m);
   await db.results.delete(m.id);
-  if (comp.status === 'finished' && comp.type === 'league') {
-    await db.competitions.update(comp.id, { status: 'active', championId: undefined, runnerUpId: undefined });
-    await db.trophies.where('seasonId').equals(comp.seasonId).filter((t) => t.compId === comp.id).delete();
+  await reopen(comp);
+}
+
+/** Una temporada cerrada ya repartió premios, plazas europeas y estadísticas: sus partidos no se pueden cambiar. */
+async function assertSeasonOpen(m: Match) {
+  if ((await db.seasons.get(m.seasonId))?.status === 'finished') throw new Error('La temporada ya está cerrada: sus resultados no se pueden cambiar');
+}
+
+/** Si la competición ya había terminado, la reabre sin campeón ni trofeo para que el partido cambiado vuelva a decidir quién gana. */
+async function reopen(comp: Competition) {
+  if (comp.status !== 'finished') return;
+  comp.status = 'active';
+  comp.championId = comp.runnerUpId = undefined;
+  await db.competitions.put(comp);
+  await db.trophies.where('seasonId').equals(comp.seasonId).filter((t) => t.compId === comp.id).delete();
+}
+
+/**
+ * Corrige campeones que no cuadran con sus partidos (partidas en las que se editó una final o la última
+ * jornada antes de que el cambio de resultado recalculara el campeón).
+ */
+export async function repairChampions(): Promise<number> {
+  const comps = await db.competitions.filter((c) => c.status === 'finished').toArray();
+  let fixed = 0;
+  for (const comp of comps) {
+    const matches = await db.matches.where('compId').equals(comp.id).toArray();
+    let champion: string | undefined;
+    let runnerUp: string | undefined;
+    if (comp.type === 'league') {
+      const table = computeStandings(comp.teams, matches);
+      [champion, runnerUp] = [table[0]?.teamId, table[1]?.teamId];
+    } else {
+      const res = roundWinners(comp, comp.rounds[comp.rounds.length - 1].round, matches);
+      [champion, runnerUp] = [res?.[0]?.winner, res?.[0]?.loser];
+    }
+    if (!champion || (champion === comp.championId && runnerUp === comp.runnerUpId)) continue;
+    await db.competitions.update(comp.id, { championId: champion, runnerUpId: runnerUp });
+    await db.trophies.where('seasonId').equals(comp.seasonId).filter((t) => t.compId === comp.id).modify({ teamId: champion });
+    fixed++;
   }
+  return fixed;
 }
 
 /** En eliminatorias no se puede cambiar un partido si ya existe (o se ha jugado) lo que depende de él. */

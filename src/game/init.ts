@@ -2,6 +2,7 @@ import { db } from '../db/db';
 import seed from '../data/seed.json';
 import { DEFAULT_CONFIG } from './defaults';
 import { createSeason, initialRanking } from './season';
+import { repairChampions } from './simulate';
 import type { League, Player, Team } from './types';
 
 export const SEED_VERSION = seed.version;
@@ -18,6 +19,11 @@ async function createIfMissing(): Promise<void> {
   const stored = (await db.meta.get('seedVersion'))?.value as number | undefined;
   if (stored !== undefined) {
     if (stored < SEED_VERSION) await migrateFromSeed(stored);
+    // Una sola vez: corregir campeones de finales editadas antes de que se recalcularan
+    if (!(await db.meta.get('championsChecked'))) {
+      await repairChampions();
+      await db.meta.put({ key: 'championsChecked', value: true });
+    }
     return;
   }
   const leagues = seed.leagues as League[];

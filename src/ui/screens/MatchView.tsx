@@ -27,6 +27,7 @@ export function MatchView() {
   const [tab, setTab] = useState<MatchTab>('summary');
   const wide = useWide();
   const [manual, setManual] = useState(false);
+  const season = useLiveQuery(() => (match ? db.seasons.get(match.seasonId) : undefined), [match?.seasonId]);
   const h2h = useLiveQuery(() => (match ? headToHead(match.homeId, match.awayId) : undefined), [match?.homeId, match?.awayId, match?.status]);
   const snaps = useLiveQuery(
     () => (match && match.status !== 'played' ? Promise.all([teamSnapshot(teams.get(match.homeId)!, match.seasonId), teamSnapshot(teams.get(match.awayId)!, match.seasonId)]) : undefined),
@@ -89,18 +90,23 @@ export function MatchView() {
               <button className="btn" onClick={() => nav(`/m/${match.id}/live`)} disabled={!result || result.events.every((e) => e.t !== 'miss')}>
                 <Icon name="play" size={18} /> Ver directo
               </button>
-              <button className="btn" onClick={() => setManual(true)}>
-                <Icon name="edit" size={18} /> Editar
-              </button>
-              <button
-                className="btn"
-                onClick={async () => {
-                  if (!confirm('¿Deshacer este partido? Volverá a estar pendiente y se restarán sus estadísticas.')) return;
-                  await ui.run('Deshaciendo…', () => resetMatch(match.id));
-                }}
-              >
-                <Icon name="undo" size={18} /> Deshacer
-              </button>
+              {/* Una temporada cerrada ya repartió premios y plazas europeas: sus resultados quedan fijos */}
+              {season?.status !== 'finished' && (
+                <>
+                  <button className="btn" onClick={() => setManual(true)}>
+                    <Icon name="edit" size={18} /> Editar
+                  </button>
+                  <button
+                    className="btn"
+                    onClick={async () => {
+                      if (!confirm('¿Deshacer este partido? Volverá a estar pendiente y se restarán sus estadísticas.')) return;
+                      await ui.run('Deshaciendo…', () => resetMatch(match.id));
+                    }}
+                  >
+                    <Icon name="undo" size={18} /> Deshacer
+                  </button>
+                </>
+              )}
             </>
           )}
         </div>
