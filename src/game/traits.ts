@@ -200,10 +200,10 @@ export const TRAITS: Record<string, Trait[]> = {
   'fra-psg': [
     {
       name: 'Relajación en casa',
-      description: 'En la Ligue 1 y la Coupe de France rinde un 5 % peor.',
+      description: 'En la Ligue 1, la Coupe de France y el Trophée des Champions rinde un 8 % peor.',
       when: domestic,
-      // −0,075 en el modelo ≈ −5 % real: el PSG gana tanto en Francia que su probabilidad apenas tiene margen
-      effect: { win: -0.075 },
+      // −0,097 en el modelo ≈ −8 % real: el PSG gana tanto en Francia que su probabilidad apenas tiene margen
+      effect: { win: -0.097 },
     },
     {
       name: 'Noches europeas en el Parque',

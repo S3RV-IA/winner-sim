@@ -372,7 +372,9 @@
     },
     "fra-psg": {
       "hist": 88,
-      "style": "dominio"
+      "style": "dominio",
+      "level": 88,
+      "current": 88
     },
     "fra-om": {
       "hist": 83,
