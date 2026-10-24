@@ -12,6 +12,7 @@ import { Records } from './ui/screens/Records';
 import { SeasonView } from './ui/screens/SeasonView';
 import { Settings } from './ui/screens/Settings';
 import { TeamView } from './ui/screens/TeamView';
+import { TitleWall } from './ui/screens/TitleWall';
 import { UpdateBanner } from './ui/UpdateBanner';
 import { WorldProvider } from './ui/world';
 
@@ -60,6 +61,7 @@ export function App() {
             <Route path="/p/:id" element={<PlayerView />} />
             <Route path="/season/:id" element={<SeasonView />} />
             <Route path="/records" element={<Records />} />
+            <Route path="/titles/:key" element={<TitleWall />} />
             <Route path="/settings" element={<Settings />} />
           </Routes>
         </HashRouter>

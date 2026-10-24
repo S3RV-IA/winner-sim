@@ -1,4 +1,5 @@
 import type { ShotKind } from '../engine/types';
+import { CUP_NAMES, SUPERCUP_NAMES } from '../game/defaults';
 import type { AwardType, CompType, LeagueId } from '../game/types';
 
 // Textos y colores compartidos por varias pantallas (aquí, y no en las pantallas,
@@ -36,6 +37,22 @@ export const COMP_TROPHY_LABEL: Record<CompType, string> = {
   supercup: 'Supercopas',
   uefasuper: 'Supercopas de Europa',
 };
+
+/** Títulos europeos con muro de campeones propio (los nacionales van por liga: `league-esp`, `cup-esp`, `supercup-esp`). */
+export const EURO_TITLES: Record<'ucl' | 'uel' | 'uecl' | 'uefasuper', string> = {
+  ucl: 'Champions League',
+  uel: 'Europa League',
+  uecl: 'Conference League',
+  uefasuper: 'Supercopa de Europa',
+};
+
+/** Qué título es una clave de muro de campeones (`ucl`, `league-esp`, `cup-ita`…). */
+export function titleInfo(key: string, leagueName: (id: LeagueId) => string): { type: CompType; leagueId?: LeagueId; name: string } {
+  if (key in EURO_TITLES) return { type: key as CompType, name: EURO_TITLES[key as keyof typeof EURO_TITLES] };
+  const [type, leagueId] = key.split('-') as ['league' | 'cup' | 'supercup', LeagueId];
+  const name = type === 'cup' ? CUP_NAMES[leagueId] : type === 'supercup' ? SUPERCUP_NAMES[leagueId] : leagueName(leagueId);
+  return { type, leagueId, name };
+}
 
 export const KIND_LABEL: Record<ShotKind, string> = { pen: 'de penalti', big: '', head: 'de cabeza', box: '', out: 'desde fuera del área' };
 

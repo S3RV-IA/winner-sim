@@ -11,7 +11,7 @@ import type { Competition, CompType, LeagueId, Match, PlayerCompStats } from '..
 import { playNextDate, playSeason } from '../actions';
 import { AppBar, Crest, Rating, Tabs, useTab, useUi, useUrlParam } from '../common';
 import { Icon } from '../Icon';
-import { COMP_COLORS, FLAGS } from '../labels';
+import { COMP_COLORS, EURO_TITLES, FLAGS } from '../labels';
 import { useWorld } from '../world';
 
 type HomeTab = 'comps' | 'teams' | 'players' | 'history';
@@ -518,7 +518,7 @@ function PlayersTab() {
 // ---------------------------------------------------------------------------
 
 function HistoryTab() {
-  const { teams, players } = useWorld();
+  const { teams, players, leagues } = useWorld();
   const trophies = useLiveQuery(() => db.trophies.toArray());
   const seasons = useLiveQuery(() => db.seasons.toArray());
   const awards = useLiveQuery(() => db.awards.where('type').anyOf('ballonDor').toArray());
@@ -590,6 +590,38 @@ function HistoryTab() {
           {all ? 'Ver menos' : `Ver los ${table.length} clubes`}
         </button>
       )}
+
+      <div className="section-title">Campeones por título</div>
+      <div className="card list">
+        {(Object.keys(EURO_TITLES) as (keyof typeof EURO_TITLES)[]).map((k) => {
+          const last = trophies.filter((t) => t.compType === k).sort((a, b) => b.seasonId - a.seasonId)[0];
+          return (
+            <Link key={k} to={`/titles/${k}`} className="row">
+              <Icon name="trophy" color={COMP_COLORS[k]} />
+              <div className="grow bold">{EURO_TITLES[k]}</div>
+              {last && <Crest team={teams.get(last.teamId)} size={22} />}
+              <Icon name="chevronRight" color="var(--muted)" />
+            </Link>
+          );
+        })}
+      </div>
+      <div className="card list" style={{ marginTop: 8 }}>
+        {leagues.map((l) => (
+          <div key={l.id} style={{ padding: '10px 12px' }}>
+            <div className="bold" style={{ marginBottom: 8 }}>
+              {FLAGS[l.id]} {l.name}
+            </div>
+            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+              {(['league', 'cup', 'supercup'] as const).map((type) => (
+                <Link key={type} to={`/titles/${type}-${l.id}`} className="chip">
+                  <Icon name="trophy" size={16} color={COMP_COLORS[type]} />
+                  {type === 'league' ? 'Liga' : type === 'cup' ? 'Copa' : 'Supercopa'}
+                </Link>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
 
       <div className="section-title">Temporadas</div>
       <div className="card list">
