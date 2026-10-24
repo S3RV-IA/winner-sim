@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import type { Match, StandingRow, Team } from '../game/types';
 import { Icon, type IconName } from './Icon';
 import { useWorld } from './world';
@@ -15,7 +15,12 @@ export function AppBar(props: { title: string; subtitle?: string; back?: boolean
       <div className="appbar-row">
         <div>
           {props.back ? (
-            <button className="icon-btn" onClick={() => nav(-1)} aria-label="Atrás">
+            <button
+              className="icon-btn"
+              // Sin pantalla anterior dentro de la app (p. ej. abierta desde un enlace) se va al inicio
+              onClick={() => ((window.history.state as { idx?: number } | null)?.idx ? nav(-1) : nav('/'))}
+              aria-label="Atrás"
+            >
               <Icon name="back" />
             </button>
           ) : (
@@ -53,17 +58,22 @@ export function Tabs<T extends string>({ tabs, value, onChange }: { tabs: TabDef
 }
 
 /** Valor recordado en la URL (?clave=) para que "atrás" y las recargas vuelvan al mismo sitio. */
+/**
+ * Parámetro de la URL (pestaña, filtro…) que se recuerda al volver atrás. Se cambia a través del router
+ * para no pisar su registro del historial: así la flecha de volver regresa justo a esta pantalla y pestaña.
+ */
 export function useUrlParam(key: string): [string | null, (v: string) => void] {
-  const read = () => new URLSearchParams(location.hash.split('?')[1] ?? '').get(key);
-  const [value, setValue] = useState<string | null>(read);
-  const change = (v: string) => {
-    setValue(v);
-    const [path, query] = location.hash.split('?');
-    const params = new URLSearchParams(query ?? '');
-    params.set(key, v);
-    history.replaceState(null, '', `${path}?${params}`);
-  };
-  return [value, change];
+  const [params, setParams] = useSearchParams();
+  const change = (v: string) =>
+    setParams(
+      (prev) => {
+        const next = new URLSearchParams(prev);
+        next.set(key, v);
+        return next;
+      },
+      { replace: true },
+    );
+  return [params.get(key), change];
 }
 
 export function useTab<T extends string>(defaultTab: T): [T, (t: T) => void] {

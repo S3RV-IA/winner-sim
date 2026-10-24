@@ -7,7 +7,7 @@ import { AppBar, Crest } from '../common';
 import { Icon } from '../Icon';
 import { useWorld } from '../world';
 import { Standings } from './Competition';
-import { FLAGS } from '../labels';
+import { COMP_COLORS, FLAGS } from '../labels';
 import { AWARD_NAMES } from '../labels';
 
 /** Resumen de una temporada cerrada: campeones, premios y clasificaciones finales. */
@@ -32,22 +32,30 @@ export function SeasonView() {
       <div className="content">
         {ballon && <Ranking award={ballon} title="Balón de Oro" big />}
 
-        <div className="section-title">Campeones</div>
-        <div className="card list">
-          {comps
-            .filter((c) => c.championId)
-            .sort((a, b) => order.indexOf(a.type) - order.indexOf(b.type))
-            .map((c) => (
-              <Link key={c.id} to={`/c/${c.id}`} className="row">
-                <Icon name="trophy" color={c.type === 'ucl' ? '#1d4ed8' : 'var(--accent)'} />
-                <div className="grow">
-                  <div className="small muted">{c.name}</div>
-                  <div className="bold ellipsis">{teams.get(c.championId!)?.name}</div>
+        {/* Campeones: primero Europa y luego cada país con su liga, copa y supercopa */}
+        {[{ key: 'europe', title: 'Campeones europeos', list: comps.filter((c) => !c.leagueId) }, ...leagues.map((l) => ({ key: l.id, title: `${FLAGS[l.id]} ${l.name}`, list: comps.filter((c) => c.leagueId === l.id) }))].map(
+          (block) => {
+            const won = block.list.filter((c) => c.championId).sort((a, b) => order.indexOf(a.type) - order.indexOf(b.type));
+            if (!won.length) return null;
+            return (
+              <div key={block.key}>
+                <div className="section-title">{block.title}</div>
+                <div className="card list">
+                  {won.map((c) => (
+                    <Link key={c.id} to={`/c/${c.id}`} className="row">
+                      <Icon name="trophy" color={COMP_COLORS[c.type]} />
+                      <div className="grow">
+                        <div className="small muted">{c.name}</div>
+                        <div className="bold ellipsis">{teams.get(c.championId!)?.name}</div>
+                      </div>
+                      <Crest team={teams.get(c.championId!)} size={28} />
+                    </Link>
+                  ))}
                 </div>
-                <Crest team={teams.get(c.championId!)} size={28} />
-              </Link>
-            ))}
-        </div>
+              </div>
+            );
+          },
+        )}
 
         <div className="section-title">Premios</div>
         <div className="card list">
