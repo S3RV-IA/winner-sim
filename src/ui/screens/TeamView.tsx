@@ -11,7 +11,7 @@ import { COMP_TROPHY_LABEL } from '../labels';
 import { useWorld } from '../world';
 import { TRAITS } from '../../game/traits';
 import { RIVALS, headToHead } from '../../game/preview';
-import { HeadToHeadCard } from '../MatchParts';
+import { HeadToHeadCard, MomentRow } from '../MatchParts';
 import { currentOvr, currentRatings, weightedOvr } from '../../game/level';
 
 type TeamTab = 'squad' | 'matches' | 'rivals' | 'trophies';
@@ -237,6 +237,10 @@ const FINAL_TYPES: CompType[] = ['ucl', 'uel', 'uecl', 'cup', 'supercup', 'uefas
 function TeamTrophies({ team }: { team: Team }) {
   const trophies = useLiveQuery(() => db.trophies.where('teamId').equals(team.id).toArray(), [team.id]);
   const seasons = useLiveQuery(() => db.seasons.toArray());
+  const moments = useLiveQuery(
+    async () => (await db.moments.where('homeId').equals(team.id).or('awayId').equals(team.id).toArray()).sort((a, b) => b.seasonId - a.seasonId || b.savedAt - a.savedAt),
+    [team.id],
+  );
   const finals = useLiveQuery(
     () => db.competitions.filter((c) => c.status === 'finished' && FINAL_TYPES.includes(c.type) && (c.championId === team.id || c.runnerUpId === team.id)).toArray(),
     [team.id],
@@ -294,6 +298,11 @@ function TeamTrophies({ team }: { team: Team }) {
             </div>
           ))}
         {!trophies.length && <div className="empty">Todavía sin títulos en esta partida</div>}
+      </div>
+      <div className="section-title">Partidos históricos</div>
+      <div className="card list">
+        {moments?.map((m) => <MomentRow key={m.id} m={m} />)}
+        {!moments?.length && <div className="empty">Guarda un partido con «Guardar como histórico» y aparecerá aquí</div>}
       </div>
     </>
   );

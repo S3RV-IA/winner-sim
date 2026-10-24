@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import type { MatchEvent, PlayerLine, TeamLine } from '../engine/types';
 import { currentOvr } from '../game/level';
 import type { HeadToHead, MatchPreview, TeamSnapshot } from '../game/preview';
-import type { Match, StoredResult, Team } from '../game/types';
+import type { Match, Moment, StoredResult, Team } from '../game/types';
 import { Crest, FormDots, Rating } from './common';
 import { Icon } from './Icon';
 import { FLAGS, KIND_LABEL, minuteLabel } from './labels';
@@ -20,7 +20,7 @@ function useNames() {
 export function EventLine({ e, homeFirst = true }: { e: MatchEvent; homeFirst?: boolean }) {
   const name = useNames();
   if (e.t === 'phase') {
-    const label = { HT: 'Descanso', FT: 'Final del partido', ET: 'Prórroga', AET: 'Final de la prórroga', PENS: 'Tanda de penaltis' }[e.label];
+    const label = { HT: 'Descanso', FT: 'Final del partido', ET: 'Final de los 90 minutos · Prórroga', AET: 'Final de la prórroga', PENS: 'Tanda de penaltis' }[e.label];
     return <div className="phase">{label}</div>;
   }
   let content: React.ReactNode = null;
@@ -252,6 +252,34 @@ export function Prediction({ preview, home, away }: { preview: MatchPreview; hom
 }
 
 /** Resumen del cara a cara entre dos equipos (todas las temporadas y competiciones). */
+/** Un partido guardado como histórico: marcador, por qué es histórico y dónde se jugó. */
+export function MomentRow({ m }: { m: Moment }) {
+  const { teams } = useWorld();
+  const home = teams.get(m.homeId);
+  const away = teams.get(m.awayId);
+  return (
+    <Link to={`/m/${m.matchId}`} className="row" style={{ alignItems: 'flex-start' }}>
+      <Icon name="star" color="var(--accent)" />
+      <div className="grow" style={{ minWidth: 0 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          <Crest team={home} size={18} />
+          <span className="ellipsis">{home?.short}</span>
+          <b className="tnum">
+            {m.score[0]}-{m.score[1]}
+          </b>
+          <span className="ellipsis">{away?.short}</span>
+          <Crest team={away} size={18} />
+        </div>
+        {m.note && <div className="bold" style={{ marginTop: 4 }}>{m.note}</div>}
+        <div className="small muted">
+          {m.compName} · {m.roundLabel} · {m.seasonLabel}
+          {m.penalties ? ` · pen. ${m.penalties[0]}-${m.penalties[1]}` : m.extraTime ? ' · prórroga' : ''}
+        </div>
+      </div>
+    </Link>
+  );
+}
+
 /** Cómo llega cada equipo al partido: puesto en su liga, goles, últimos resultados y racha. Se resalta en negrita quién está mejor. */
 export function TeamStatusCard({ home, away, snaps }: { home: Team; away: Team; snaps: [TeamSnapshot, TeamSnapshot] }) {
   const [h, a] = snaps;

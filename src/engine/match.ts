@@ -579,7 +579,8 @@ export function simulateMatch(home: SimTeam, away: SimTeam, settings: SimSetting
   }
   events.push({ idx: ht.idx + 0.5, ev: { t: 'phase', min: 45, plus: ht.plus, label: 'HT' } });
   const ftTick = regular[regular.length - 1];
-  events.push({ idx: ftTick.idx + 0.5, ev: { t: 'phase', min: 90, plus: ftTick.plus, label: 'FT' } });
+  // Con prórroga, el final de los 90 se marca como «ET» (fin del tiempo reglamentario) en lugar de «FT»
+  events.push({ idx: ftTick.idx + 0.5, ev: { t: 'phase', min: 90, plus: ftTick.plus, label: extraTime ? 'ET' : 'FT' } });
   if (extraTime) events.push({ idx: lastTick.idx + 0.5, ev: { t: 'phase', min: 120, plus: lastTick.plus, label: 'AET' } });
   if (penalties) events.push({ idx: lastTick.idx + 0.6, ev: { t: 'phase', min: 120, plus: lastTick.plus, label: 'PENS' } });
   events.sort((a, b) => a.idx - b.idx);

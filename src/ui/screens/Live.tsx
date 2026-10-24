@@ -7,7 +7,7 @@ import { ChanceOverlay, isDramatic } from '../ChanceOverlay';
 import { AppBar, Crest, aggregateOf } from '../common';
 import { Icon } from '../Icon';
 import { useWorld } from '../world';
-import { liveTeamLines, useWide } from '../liveStats';
+import { liveClock, liveTeamLines, useWide } from '../liveStats';
 import { EventLine, LineupPanel, TeamStats, TraitBadges } from '../MatchParts';
 
 type NarrowTab = 'feed' | 'stats' | 'lineups';
@@ -49,9 +49,10 @@ export function LiveView() {
   const [kicksShown, setKicksShown] = useState(0);
   const [kickAnim, setKickAnim] = useState<number | null>(null);
 
-  // Cada evento con su instante: el añadido se comprime dentro del minuto (45+7 sigue antes del 46)
-  const timeline = useMemo(() => (result ? result.events.map((e, i) => ({ e, i, t: e.min + (e.plus ?? 0) * 0.09 + i * 0.0001 })) : []), [result]);
-  const end = timeline.length ? timeline[timeline.length - 1].t + 0.5 : 90;
+  // Cada evento con su instante en el reloj del directo (el añadido dura lo que dura, con pausas entre partes)
+  const clockMap = useMemo(() => (result ? liveClock(result.events) : null), [result]);
+  const timeline = useMemo(() => (result && clockMap ? result.events.map((e, i) => ({ e, i, t: clockMap.pos(e) + i * 0.0001 })) : []), [result, clockMap]);
+  const end = timeline.length ? Math.max(...timeline.map((x) => x.t)) + 0.5 : 90;
   const kicks = result?.penalties?.kicks ?? [];
   const clockDone = clock >= end;
   const inShootout = clockDone && kicksShown < kicks.length;
@@ -89,10 +90,8 @@ export function LiveView() {
   const score: [number, number] = [0, 0];
   for (const e of shown) if (e.t === 'goal') score[e.side]++;
   const regularEnd = result.extraTime ? 120 : 90;
-  const fraction = Math.min(1, clock / regularEnd);
-  const live = liveTeamLines(result, shown, fraction);
-  const halfTime = clock > 45.7 && clock < 46 && shown.some((e) => e.t === 'phase' && e.label === 'HT');
-  const displayMin = Math.min(Math.floor(clock), regularEnd);
+  const now = clockMap!.at(clock);
+  const live = liveTeamLines(result, shown, Math.min(1, now.minute / regularEnd));
   const chanceEvent = chance !== null ? result.events[chance] : null;
   const shownKicks = kicks.slice(0, kicksShown);
   const pens: [number, number] = [0, 0];
@@ -171,9 +170,7 @@ export function LiveView() {
                       ? `${finished ? 'Final · ' : ''}Penaltis ${pens[0]}-${pens[1]}`
                       : finished
                         ? 'Final'
-                        : halfTime
-                          ? 'Descanso'
-                          : `${displayMin}'`}
+                        : now.label}
                   </div>
                 </div>
                 <Link to={`/t/${away.id}`} className="team">

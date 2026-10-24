@@ -1,6 +1,6 @@
 import Dexie, { type Table } from 'dexie';
 import type {
-  Award, Competition, Config, League, Match, Player, PlayerCompStats, PlayerSeason, Season, SeasonArchive, StoredResult, Team, Trophy,
+  Award, Competition, Config, League, Match, Moment, Player, PlayerCompStats, PlayerSeason, Season, SeasonArchive, StoredResult, Team, Trophy,
 } from '../game/types';
 
 export interface Meta {
@@ -22,6 +22,7 @@ export class WinnerDB extends Dexie {
   awards!: Table<Award, number>;
   archives!: Table<SeasonArchive, number>;
   playerSeasons!: Table<PlayerSeason, string>;
+  moments!: Table<Moment, number>;
 
   constructor(name = 'winner-sim') {
     super(name);
@@ -40,6 +41,8 @@ export class WinnerDB extends Dexie {
       archives: 'seasonId',
       playerSeasons: 'key, seasonId, playerId, goals, assists',
     });
+    // v2: partidos históricos guardados por el usuario
+    this.version(2).stores({ moments: '++id, matchId, seasonId, homeId, awayId' });
   }
 }
 

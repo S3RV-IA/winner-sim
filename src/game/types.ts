@@ -190,6 +190,28 @@ export interface Award {
 }
 
 /** Resumen permanente de una temporada (clasificaciones finales y temporada de cada jugador). */
+/**
+ * Partido que el usuario guarda como histórico. Copia lo necesario para mostrarlo siempre,
+ * aunque al cerrar la temporada se compacten los detalles del partido.
+ */
+export interface Moment {
+  id?: number;
+  matchId: string;
+  seasonId: number;
+  seasonLabel: string;
+  compName: string;
+  compType: CompType;
+  roundLabel: string;
+  homeId: string;
+  awayId: string;
+  score: [number, number];
+  penalties?: [number, number];
+  extraTime?: boolean;
+  /** Por qué es histórico, con las palabras del usuario. */
+  note: string;
+  savedAt: number;
+}
+
 export interface SeasonArchive {
   seasonId: number;
   tables: Record<string, StandingRow[]>;

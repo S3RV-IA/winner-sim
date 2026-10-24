@@ -3,11 +3,12 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { db } from '../../db/db';
 import { resetMatch, setManualResult } from '../../game/simulate';
-import type { PlayerLine } from '../../engine/types';
-import type { Match, StoredResult } from '../../game/types';
+import type { MatchEvent, PlayerLine } from '../../engine/types';
+import type { Match, Moment, StoredResult } from '../../game/types';
 import { playOne } from '../actions';
 import { AppBar, Crest, Rating, Sheet, Stepper, Tabs, TieStrip, useUi } from '../common';
 import { Icon } from '../Icon';
+import { minuteLabel } from '../labels';
 import { useWide } from '../liveStats';
 import { EventLine, HeadToHeadCard, LineupPanel, Prediction, TeamStats, TeamStatusCard, TraitBadges } from '../MatchParts';
 import { headToHead, previewMatch, teamSnapshot } from '../../game/preview';
@@ -27,6 +28,8 @@ export function MatchView() {
   const [tab, setTab] = useState<MatchTab>('summary');
   const wide = useWide();
   const [manual, setManual] = useState(false);
+  const [momentOpen, setMomentOpen] = useState(false);
+  const moment = useLiveQuery(() => db.moments.where('matchId').equals(id!).first(), [id]);
   const season = useLiveQuery(() => (match ? db.seasons.get(match.seasonId) : undefined), [match?.seasonId]);
   const h2h = useLiveQuery(() => (match ? headToHead(match.homeId, match.awayId) : undefined), [match?.homeId, match?.awayId, match?.status]);
   const snaps = useLiveQuery(
@@ -89,6 +92,9 @@ export function MatchView() {
             <>
               <button className="btn" onClick={() => nav(`/m/${match.id}/live`)} disabled={!result || result.events.every((e) => e.t !== 'miss')}>
                 <Icon name="play" size={18} /> Ver directo
+              </button>
+              <button className={`btn ${moment ? 'primary' : ''}`} onClick={() => setMomentOpen(true)}>
+                <Icon name="star" size={18} /> {moment ? 'Histórico' : 'Guardar como histórico'}
               </button>
               {/* Una temporada cerrada ya repartió premios y plazas europeas: sus resultados quedan fijos */}
               {season?.status !== 'finished' && (
@@ -164,8 +170,105 @@ export function MatchView() {
       )}
 
       <ManualSheet open={manual} onClose={() => setManual(false)} match={match} />
+      {played && (
+        <MomentSheet
+          open={momentOpen}
+          onClose={() => setMomentOpen(false)}
+          match={match}
+          compName={comp.name}
+          roundLabel={round.label}
+          result={result}
+          moment={moment}
+        />
+      )}
     </div>
   );
+}
+
+/** Guarda (o quita) el partido en los partidos históricos, con una frase de por qué lo es. */
+function MomentSheet(props: { open: boolean; onClose: () => void; match: Match; compName: string; roundLabel: string; result?: StoredResult; moment?: Moment }) {
+  const { open, onClose, match, compName, roundLabel, result, moment } = props;
+  const ui = useUi();
+  const { players } = useWorld();
+  const [note, setNote] = useState('');
+  useEffect(() => {
+    if (open) setNote(moment?.note ?? (result ? suggestNote(result, (id) => players.get(id)?.name ?? '') : ''));
+  }, [open, moment, result, players]);
+  const save = async () => {
+    const season = await db.seasons.get(match.seasonId);
+    const comp = await db.competitions.get(match.compId);
+    await db.moments.put({
+      ...(moment?.id !== undefined ? { id: moment.id } : {}),
+      matchId: match.id,
+      seasonId: match.seasonId,
+      seasonLabel: season?.label ?? '',
+      compName,
+      compType: comp!.type,
+      roundLabel,
+      homeId: match.homeId,
+      awayId: match.awayId,
+      score: match.score!,
+      penalties: match.penalties,
+      extraTime: match.extraTime,
+      note: note.trim(),
+      savedAt: moment?.savedAt ?? Date.now(),
+    });
+    onClose();
+    ui.toast('Guardado en los partidos históricos');
+  };
+  return (
+    <Sheet open={open} onClose={onClose} title={moment ? 'Partido histórico' : 'Guardar como histórico'}>
+      <p className="small muted" style={{ margin: '0 4px 8px' }}>
+        Quedará en el palmarés de los dos equipos y en el Historial. ¿Por qué es histórico?
+      </p>
+      <textarea
+        value={note}
+        onChange={(e) => setNote(e.target.value)}
+        rows={3}
+        maxLength={140}
+        placeholder="Ej.: remontada de 5 goles en la vuelta de semifinales"
+        style={{ width: '100%', boxSizing: 'border-box', padding: 10, borderRadius: 10, border: '1px solid var(--line)', background: 'var(--surface-2)', color: 'var(--text)', font: 'inherit', resize: 'none' }}
+      />
+      <button className="btn primary block" style={{ marginTop: 12 }} onClick={() => void save()}>
+        <Icon name="star" size={18} /> Guardar
+      </button>
+      {moment && (
+        <button
+          className="btn block"
+          style={{ marginTop: 8 }}
+          onClick={async () => {
+            if (!confirm('¿Quitar este partido de los históricos?')) return;
+            await db.moments.delete(moment.id!);
+            onClose();
+          }}
+        >
+          Quitar de los históricos
+        </button>
+      )}
+    </Sheet>
+  );
+}
+
+/** Frase de partida para un partido histórico: remontadas, goleadas, hat-tricks y goles de la victoria en el descuento. */
+function suggestNote(result: StoredResult, name: (id: string) => string): string {
+  const goals = result.events.filter((e): e is Extract<MatchEvent, { t: 'goal' }> => e.t === 'goal');
+  const [h, a] = result.score;
+  const winner = h > a ? 0 : a > h ? 1 : null;
+  const parts: string[] = [];
+  if (winner !== null) {
+    // Mayor desventaja que llegó a tener el ganador
+    const deficit = Math.max(0, ...goals.map((g) => g.score[1 - winner] - g.score[winner]));
+    if (deficit >= 2) parts.push(`Remontada de ${deficit} goles`);
+  }
+  if (Math.abs(h - a) >= 4) parts.push(`Goleada ${h}-${a}`);
+  const byPlayer = new Map<string, number>();
+  for (const g of goals) byPlayer.set(g.player, (byPlayer.get(g.player) ?? 0) + 1);
+  const [top, n] = [...byPlayer.entries()].sort((x, y) => y[1] - x[1])[0] ?? ['', 0];
+  if (n >= 3) parts.push(`${n >= 5 ? 'Repóker' : n === 4 ? 'Póker' : 'Hat-trick'} de ${name(top)}`);
+  const last = goals[goals.length - 1];
+  if (winner !== null && last && last.side === winner && Math.abs(h - a) === 1 && last.min >= 90 && last.plus)
+    parts.push(`Gol de la victoria en el ${minuteLabel(last)}`);
+  return parts.join(' · ');
 }
 
 function ManualSheet({ open, onClose, match }: { open: boolean; onClose: () => void; match: Match }) {

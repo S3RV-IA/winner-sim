@@ -12,6 +12,7 @@ import { playNextDate, playSeason } from '../actions';
 import { AppBar, Crest, Rating, Tabs, useTab, useUi, useUrlParam } from '../common';
 import { Icon } from '../Icon';
 import { COMP_COLORS, EURO_TITLES, FLAGS } from '../labels';
+import { MomentRow } from '../MatchParts';
 import { useWorld } from '../world';
 
 type HomeTab = 'comps' | 'teams' | 'players' | 'history';
@@ -523,6 +524,7 @@ function HistoryTab() {
   const seasons = useLiveQuery(() => db.seasons.toArray());
   const awards = useLiveQuery(() => db.awards.where('type').anyOf('ballonDor').toArray());
   const comps = useLiveQuery(() => db.competitions.filter((c) => c.status === 'finished' && (c.type === 'ucl' || c.type === 'league')).toArray());
+  const moments = useLiveQuery(async () => (await db.moments.toArray()).sort((a, b) => b.seasonId - a.seasonId || b.savedAt - a.savedAt));
   const [all, setAll] = useState(false);
   if (!trophies || !seasons || !awards || !comps) return null;
 
@@ -622,6 +624,17 @@ function HistoryTab() {
           </div>
         ))}
       </div>
+
+      {moments && moments.length > 0 && (
+        <>
+          <div className="section-title">Partidos históricos</div>
+          <div className="card list">
+            {moments.map((m) => (
+              <MomentRow key={m.id} m={m} />
+            ))}
+          </div>
+        </>
+      )}
 
       <div className="section-title">Temporadas</div>
       <div className="card list">
