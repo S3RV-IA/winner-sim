@@ -140,5 +140,5 @@ for (const lg of LEAGUES) {
   leagues.push({ id: lg.id, name: lg.name, country: lg.country, teams: teamIds });
 }
 
-await writeFile(path.join(ROOT, 'src', 'data', 'seed.json'), JSON.stringify({ version: 13, season: '2026/27', leagues, teams, players }));
+await writeFile(path.join(ROOT, 'src', 'data', 'seed.json'), JSON.stringify({ version: 14, season: '2026/27', leagues, teams, players }));
 console.log(`seed.json: ${leagues.length} ligas, ${teams.length} equipos, ${players.length} jugadores`);

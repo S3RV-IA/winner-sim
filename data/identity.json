@@ -66,7 +66,8 @@
   "teams": {
     "esp-rma": {
       "hist": 93,
-      "style": "galactico"
+      "style": "galactico",
+      "level": 92
     },
     "esp-bar": {
       "hist": 90,

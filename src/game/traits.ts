@@ -54,9 +54,9 @@ export const TRAITS: Record<string, Trait[]> = {
     },
     {
       name: 'Remontadas en el descuento',
-      description: 'En casa, si va perdiendo en el añadido de la segunda parte (90+): un 50 % más de ocasiones y un 20 % más de acierto.',
+      description: 'En casa, si va perdiendo en el añadido de la segunda parte (90+): un 40 % más de ocasiones y un 20 % más de acierto.',
       when: (c) => c.home && !c.neutral,
-      effect: { stoppageRally: 1.5, stoppageFinish: 1.2 },
+      effect: { stoppageRally: 1.4, stoppageFinish: 1.2 },
     },
     {
       name: 'ADN de finales',
