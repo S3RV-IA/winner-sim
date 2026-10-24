@@ -235,6 +235,13 @@ export const TRAITS: Record<string, Trait[]> = {
       when: (c) => c.comp === 'league' && c.home,
       effect: { win: 0.05 },
     },
+    {
+      name: 'Noches de Champions en la Luz',
+      description: 'En casa en la Champions League: +5 % de probabilidad de ganar.',
+      when: (c) => c.comp === 'ucl' && c.home && !c.neutral,
+      // 0,04 en el modelo ≈ +5 % real de media contra rivales de Champions
+      effect: { win: 0.04 },
+    },
   ],
 };
 
