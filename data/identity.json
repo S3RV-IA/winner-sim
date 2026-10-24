@@ -143,8 +143,8 @@
     "eng-mun": {
       "hist": 90,
       "style": "contragolpe",
-      "level": 90,
-      "current": 87
+      "level": 89,
+      "current": 88
     },
     "eng-liv": {
       "hist": 90,
@@ -165,7 +165,8 @@
     "eng-mci": {
       "hist": 82,
       "style": "tikitaka",
-      "current": 87
+      "current": 86,
+      "level": 86
     },
     "eng-tot": {
       "hist": 80,
