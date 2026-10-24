@@ -17,7 +17,7 @@ export function ensureGame(): Promise<void> {
 async function createIfMissing(): Promise<void> {
   const stored = (await db.meta.get('seedVersion'))?.value as number | undefined;
   if (stored !== undefined) {
-    if (stored < SEED_VERSION) await migrateFromSeed();
+    if (stored < SEED_VERSION) await migrateFromSeed(stored);
     return;
   }
   const leagues = seed.leagues as League[];
@@ -45,29 +45,48 @@ async function createIfMissing(): Promise<void> {
       { key: 'currentSeason', value: 1 },
       { key: 'playOrder', value: 0 },
       { key: 'seedVersion', value: SEED_VERSION },
+      { key: 'seedMomentum', value: seedMomentum() },
     ]);
   });
 }
 
+/** Foto del momento de cada club en la semilla, para que una actualización solo mueva lo que cambia. */
+const seedMomentum = () => Object.fromEntries(seed.teams.map((t) => [t.id, t.momentum ?? 0]));
+
+/** Momento en la semilla 6, que no guardaba la foto. En la 7 solo cambió el de estos clubes. */
+const V6_MOMENTUM: Record<string, number> = {
+  'eng-ars': 5.1, 'eng-che': -0.6, 'eng-liv': -1.6, 'eng-mci': 4.9, 'eng-mun': -6.3, 'ita-juv': -5.3, 'ita-mil': -4.6,
+};
+
 /**
  * Partida ya empezada con datos antiguos: actualiza atributos de jugadores y niveles de equipos
  * (nivel histórico, identidad y momento) sin tocar la racha, temporadas, estadísticas ni palmarés.
+ * El momento se mueve solo lo que cambia en la semilla, para conservar lo que cada club ha ganado o perdido temporada a temporada.
  */
-async function migrateFromSeed(): Promise<void> {
+async function migrateFromSeed(stored: number): Promise<void> {
   const seedPlayers = new Map(seed.players.map((p) => [p.id, p]));
   const seedTeams = new Map(seed.teams.map((t) => [t.id, t]));
+  const snapshot = (await db.meta.get('seedMomentum'))?.value as Record<string, number> | undefined;
+  const before = (id: string, now: number) => snapshot?.[id] ?? (stored === 6 ? (V6_MOMENTUM[id] ?? now) : undefined);
   const players = (await db.players.toArray()).map((p) => {
     const s = seedPlayers.get(p.id);
     return s ? { ...p, ...s, form: p.form } : p;
   }) as Player[];
   const teams = (await db.teams.toArray()).map((t) => {
     const s = seedTeams.get(t.id);
-    return s ? { ...t, att: s.att, ctl: s.ctl, def: s.def, ovr: s.ovr, momentum: s.momentum } : t;
+    if (!s) return t;
+    const prev = before(t.id, s.momentum ?? 0);
+    // Sin foto de la semilla anterior (partidas muy antiguas) se toma el momento de la semilla tal cual
+    const momentum = prev === undefined ? s.momentum : Math.round(((t.momentum ?? 0) + (s.momentum ?? 0) - prev) * 10) / 10;
+    return { ...t, att: s.att, ctl: s.ctl, def: s.def, ovr: s.ovr, momentum };
   }) as Team[];
   await db.transaction('rw', db.players, db.teams, db.meta, async () => {
     await db.players.bulkPut(players);
     await db.teams.bulkPut(teams);
-    await db.meta.put({ key: 'seedVersion', value: SEED_VERSION });
+    await db.meta.bulkPut([
+      { key: 'seedVersion', value: SEED_VERSION },
+      { key: 'seedMomentum', value: seedMomentum() },
+    ]);
   });
 }
 

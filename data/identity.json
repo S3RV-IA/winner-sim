@@ -143,24 +143,29 @@
     "eng-mun": {
       "hist": 90,
       "style": "contragolpe",
-      "level": 90
+      "level": 90,
+      "current": 88
     },
     "eng-liv": {
       "hist": 90,
-      "style": "ofensivo"
+      "style": "ofensivo",
+      "current": 89
     },
     "eng-ars": {
       "hist": 85,
       "style": "posesion",
-      "level": 86
+      "level": 86,
+      "current": 86
     },
     "eng-che": {
       "hist": 83,
-      "style": "equilibrado"
+      "style": "equilibrado",
+      "current": 86
     },
     "eng-mci": {
       "hist": 82,
-      "style": "tikitaka"
+      "style": "tikitaka",
+      "current": 86
     },
     "eng-tot": {
       "hist": 80,
@@ -289,11 +294,15 @@
     },
     "ita-juv": {
       "hist": 90,
-      "style": "muralla"
+      "style": "muralla",
+      "level": 89,
+      "current": 86
     },
     "ita-mil": {
       "hist": 89,
-      "style": "solido"
+      "style": "solido",
+      "level": 88,
+      "current": 86
     },
     "ita-int": {
       "hist": 88,

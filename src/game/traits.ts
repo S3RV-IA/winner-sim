@@ -78,6 +78,12 @@ export const TRAITS: Record<string, Trait[]> = {
       when: () => true,
       effect: { possession: 1.2, ctl: 4 },
     },
+    {
+      name: 'Pesadilla europea',
+      description: 'En las eliminatorias de la Champions League: −10 % de probabilidad de ganar.',
+      when: (c) => c.comp === 'ucl' && c.knockout,
+      effect: { win: -0.1 },
+    },
   ],
   'esp-atm': [
     {

@@ -92,13 +92,15 @@ function teamLevels(id, r) {
   }
   // Desplazamiento común para que el reparto mantenga el nivel ponderado
   const k = -(style.att + style.def + CTL_W * style.ctl) / (2 + CTL_W);
-  const current = { att: level + style.att + k, ctl: level + style.ctl + k, def: level + style.def + k };
   const hist = info.hist ?? level;
   const historic = info.level ?? HIST_WEIGHT * hist + (1 - HIST_WEIGHT) * level;
-  const gap = level - historic;
+  // `current` en identity.json fija a mano el nivel con el que juega hoy (sin tocar el histórico)
+  const now = info.current ?? level;
+  const current = { att: now + style.att + k, ctl: now + style.ctl + k, def: now + style.def + k };
+  const gap = now - historic;
   const base = { att: Math.round(current.att - gap), ctl: Math.round(current.ctl - gap), def: Math.round(current.def - gap) };
   // El momento se calcula después de redondear para que el nivel con el que juega hoy no cambie
-  const momentum = Math.round((level - weighted(base)) * 10) / 10;
+  const momentum = Math.round((now - weighted(base)) * 10) / 10;
   return { ...base, ovr: Math.round(weighted(base)), momentum };
 }
 const leagues = [];
@@ -138,5 +140,5 @@ for (const lg of LEAGUES) {
   leagues.push({ id: lg.id, name: lg.name, country: lg.country, teams: teamIds });
 }
 
-await writeFile(path.join(ROOT, 'src', 'data', 'seed.json'), JSON.stringify({ version: 6, season: '2026/27', leagues, teams, players }));
+await writeFile(path.join(ROOT, 'src', 'data', 'seed.json'), JSON.stringify({ version: 7, season: '2026/27', leagues, teams, players }));
 console.log(`seed.json: ${leagues.length} ligas, ${teams.length} equipos, ${players.length} jugadores`);
