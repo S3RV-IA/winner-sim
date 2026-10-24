@@ -1,8 +1,9 @@
 import { db } from '../db/db';
 import { prematch } from '../engine/strength';
 import { currentOvr, currentRatings } from './level';
+import { computeStandings } from './standings';
 import { matchBoosts } from './traits';
-import type { Competition, Config, Match, Team } from './types';
+import type { Competition, Config, Match, StandingRow, Team } from './types';
 
 export interface MatchPreview {
   /** Probabilidades [local, empate, visitante] a 90 minutos. */
@@ -64,6 +65,71 @@ export async function headToHead(teamId: string, rivalId: string): Promise<HeadT
     else h.drawn++;
   }
   return h;
+}
+
+type Outcome = 'W' | 'D' | 'L';
+
+export interface TeamSnapshot {
+  /** Clasificación en su liga esta temporada (null si aún no ha jugado ninguna jornada). */
+  league: { position: number; teams: number; row: StandingRow } | null;
+  /** Todos sus partidos de la temporada, en cualquier competición. */
+  played: number;
+  gf: number;
+  ga: number;
+  /** Últimos 5 resultados en cualquier competición, del más antiguo al más reciente. */
+  last: Outcome[];
+  /** Racha actual en palabras («3 victorias seguidas», «4 sin ganar»…) y si es buena o mala. */
+  streak: { text: string; tone: 'good' | 'bad' } | null;
+}
+
+/** Cómo llega un equipo a un partido: puesto en su liga, goles de la temporada y racha. */
+export async function teamSnapshot(team: Team, seasonId: number): Promise<TeamSnapshot> {
+  const [asHome, asAway, league] = await Promise.all([
+    db.matches.where('homeId').equals(team.id).filter((m) => m.seasonId === seasonId && m.status === 'played').toArray(),
+    db.matches.where('awayId').equals(team.id).filter((m) => m.seasonId === seasonId && m.status === 'played').toArray(),
+    db.competitions.where('seasonId').equals(seasonId).filter((c) => c.type === 'league' && c.leagueId === team.leagueId).first(),
+  ]);
+  const matches = [...asHome, ...asAway].sort((a, b) => a.slot - b.slot || (a.playedOrder ?? 0) - (b.playedOrder ?? 0));
+  let gf = 0;
+  let ga = 0;
+  const results: Outcome[] = [];
+  for (const m of matches) {
+    const [mine, theirs] = m.homeId === team.id ? m.score! : [m.score![1], m.score![0]];
+    gf += mine;
+    ga += theirs;
+    results.push(mine > theirs ? 'W' : mine < theirs ? 'L' : 'D');
+  }
+
+  let snapshotLeague: TeamSnapshot['league'] = null;
+  if (league) {
+    const leagueMatches = matches.filter((m) => m.compId === league.id);
+    if (leagueMatches.length) {
+      const all = await db.matches.where('compId').equals(league.id).filter((m) => m.status === 'played').toArray();
+      const table = computeStandings(league.teams, all);
+      const position = table.findIndex((r) => r.teamId === team.id);
+      snapshotLeague = { position: position + 1, teams: table.length, row: table[position] };
+    }
+  }
+
+  return { league: snapshotLeague, played: matches.length, gf, ga, last: results.slice(-5), streak: streakOf(results) };
+}
+
+/** Racha a partir de los resultados (del más antiguo al más reciente). */
+function streakOf(results: Outcome[]): TeamSnapshot['streak'] {
+  const recent = [...results].reverse();
+  const run = (ok: (r: Outcome) => boolean) => {
+    const i = recent.findIndex((r) => !ok(r));
+    return i === -1 ? recent.length : i;
+  };
+  const wins = run((r) => r === 'W');
+  if (wins >= 2) return { text: `${wins} victorias seguidas`, tone: 'good' };
+  const losses = run((r) => r === 'L');
+  if (losses >= 2) return { text: `${losses} derrotas seguidas`, tone: 'bad' };
+  const unbeaten = run((r) => r !== 'L');
+  if (unbeaten >= 3) return { text: `${unbeaten} partidos sin perder`, tone: 'good' };
+  const winless = run((r) => r !== 'W');
+  if (winless >= 3) return { text: `${winless} partidos sin ganar`, tone: 'bad' };
+  return null;
 }
 
 /** Derbis y grandes rivalidades (se muestran como accesos directos en la ficha del equipo). */

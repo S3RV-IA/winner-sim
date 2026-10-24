@@ -1,10 +1,12 @@
+import type { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import type { MatchEvent, PlayerLine, TeamLine } from '../engine/types';
-import type { HeadToHead, MatchPreview } from '../game/preview';
+import { currentOvr } from '../game/level';
+import type { HeadToHead, MatchPreview, TeamSnapshot } from '../game/preview';
 import type { Match, StoredResult, Team } from '../game/types';
-import { Crest, Rating } from './common';
+import { Crest, FormDots, Rating } from './common';
 import { Icon } from './Icon';
-import { KIND_LABEL, minuteLabel } from './labels';
+import { FLAGS, KIND_LABEL, minuteLabel } from './labels';
 import { ROLE_ORDER } from './liveStats';
 import { useWorld } from './world';
 
@@ -250,6 +252,71 @@ export function Prediction({ preview, home, away }: { preview: MatchPreview; hom
 }
 
 /** Resumen del cara a cara entre dos equipos (todas las temporadas y competiciones). */
+/** Cómo llega cada equipo al partido: puesto en su liga, goles, últimos resultados y racha. Se resalta en negrita quién está mejor. */
+export function TeamStatusCard({ home, away, snaps }: { home: Team; away: Team; snaps: [TeamSnapshot, TeamSnapshot] }) {
+  const [h, a] = snaps;
+  const perGame = (n: number, s: TeamSnapshot) => (s.played ? (n / s.played).toFixed(1).replace('.', ',') : '0');
+  // Qué lado gana la comparación: −1 local, 1 visitante, 0 igual o no comparable
+  const better = (x: number | null, y: number | null, lowerIsBetter = false) => (x === null || y === null || x === y ? 0 : (x < y) === lowerIsBetter ? -1 : 1);
+  const row = (label: string, left: ReactNode, right: ReactNode, side = 0) => (
+    <div className="status-row">
+      <div className={side === -1 ? 'bold' : ''}>{left}</div>
+      <div className="small muted">{label}</div>
+      <div className={side === 1 ? 'bold' : ''}>{right}</div>
+    </div>
+  );
+  const position = (s: TeamSnapshot, t: Team) =>
+    s.league ? (
+      <>
+        {FLAGS[t.leagueId]} {s.league.position}.º <span className="small muted">de {s.league.teams}</span>
+      </>
+    ) : (
+      <span className="muted">—</span>
+    );
+  const streak = (s: TeamSnapshot) =>
+    s.streak ? <span style={{ color: s.streak.tone === 'good' ? 'var(--win)' : 'var(--loss)' }}>{s.streak.text}</span> : <span className="muted">Sin racha</span>;
+  return (
+    <div className="card" style={{ padding: 12, marginBottom: 12 }}>
+      <div className="small bold muted" style={{ marginBottom: 8 }}>
+        ESTADO ACTUAL
+      </div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
+        <Crest team={home} size={22} />
+        <b className="grow ellipsis">{home.short}</b>
+        <b className="grow ellipsis" style={{ textAlign: 'right' }}>
+          {away.short}
+        </b>
+        <Crest team={away} size={22} />
+      </div>
+      {row('Posición en liga', position(h, home), position(a, away), better(h.league?.position ?? null, a.league?.position ?? null, true))}
+      {(h.league || a.league) &&
+        row(
+          'Liga: PJ · G-E-P · Pts',
+          h.league ? `${h.league.row.played} · ${h.league.row.won}-${h.league.row.drawn}-${h.league.row.lost} · ${h.league.row.points}` : '—',
+          a.league ? `${a.league.row.played} · ${a.league.row.won}-${a.league.row.drawn}-${a.league.row.lost} · ${a.league.row.points}` : '—',
+        )}
+      {row(
+        'Goles marcados',
+        <>{h.gf} <span className="small muted">({perGame(h.gf, h)}/p)</span></>,
+        <>{a.gf} <span className="small muted">({perGame(a.gf, a)}/p)</span></>,
+        better(h.played ? h.gf / h.played : null, a.played ? a.gf / a.played : null),
+      )}
+      {row(
+        'Goles encajados',
+        <>{h.ga} <span className="small muted">({perGame(h.ga, h)}/p)</span></>,
+        <>{a.ga} <span className="small muted">({perGame(a.ga, a)}/p)</span></>,
+        better(h.played ? h.ga / h.played : null, a.played ? a.ga / a.played : null, true),
+      )}
+      {row('Últimos 5', h.last.length ? <FormDots last={h.last} /> : '—', a.last.length ? <FormDots last={a.last} /> : '—')}
+      {row('Racha', streak(h), streak(a))}
+      {row('Nivel actual', currentOvr(home), currentOvr(away), better(currentOvr(home), currentOvr(away)))}
+      <div className="small muted" style={{ textAlign: 'center', marginTop: 6 }}>
+        Goles y últimos resultados de la temporada en todas las competiciones
+      </div>
+    </div>
+  );
+}
+
 export function HeadToHeadCard({ team, rival, h2h, title = 'CARA A CARA' }: { team: Team; rival: Team; h2h: HeadToHead; title?: string }) {
   const box = (n: number, label: string, color: string) => (
     <div style={{ flex: 1, textAlign: 'center' }}>

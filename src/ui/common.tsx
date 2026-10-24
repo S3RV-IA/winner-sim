@@ -133,17 +133,22 @@ export function aggregateOf(match: Match, firstLeg?: Match, live?: [number, numb
   return { ida, total: now ? ([ida[0] + now[0], ida[1] + now[1]] as [number, number]) : null };
 }
 
-/** Franja bajo una vuelta: «Ida 1-2 · Global 3-3 · Pasa X (pen.)». */
-export function TieStrip({ match, firstLeg }: { match: Match; firstLeg?: Match }) {
+/** Franja bajo una vuelta: «Ida 1-2 · Global 3-3 · Pasa X (pen.)». Sin `showFirstLeg` solo el global y quién pasa. */
+export function TieStrip({ match, firstLeg, showFirstLeg = true }: { match: Match; firstLeg?: Match; showFirstLeg?: boolean }) {
   const { teams } = useWorld();
   const agg = aggregateOf(match, firstLeg);
-  if (!agg) return null;
+  if (!agg || (!showFirstLeg && !agg.total)) return null;
   const through = match.status === 'played' && match.winner !== undefined && match.winner !== null ? teams.get(match.winner === 0 ? match.homeId : match.awayId) : undefined;
   return (
     <div className="tie-strip">
-      <span>
-        Ida <b className="tnum">{agg.ida[0]}-{agg.ida[1]}</b>
-      </span>
+      {showFirstLeg && (
+        <span>
+          Ida{' '}
+          <b className="tnum">
+            {teams.get(match.homeId)?.short} {agg.ida[0]}-{agg.ida[1]} {teams.get(match.awayId)?.short}
+          </b>
+        </span>
+      )}
       {agg.total && (
         <span>
           Global <b className="tnum">{agg.total[0]}-{agg.total[1]}</b>
@@ -166,15 +171,25 @@ export function MatchCard({ match, onSimulate, showDate, firstLeg }: { match: Ma
   const away = teams.get(match.awayId);
   const score = match.status === 'played' ? match.score : undefined;
   const winner = score ? match.winner ?? (score[0] > score[1] ? 0 : score[0] < score[1] ? 1 : null) : null;
+  // Vuelta: el resultado de la ida va en su propia columna (en gris) a la izquierda del de la vuelta
+  const agg = aggregateOf(match, firstLeg);
   return (
     <div onClick={() => nav(`/m/${match.id}`)} role="button">
     <div className="match-card">
-      <div className="match-teams">
+      <div className={`match-teams ${agg ? 'two-legs' : ''}`}>
+        {agg && (
+          <div className="match-team legs-head">
+            <span className="name" />
+            <span className="leg">Ida</span>
+            <span className="score">Vuelta</span>
+          </div>
+        )}
         {[home, away].map((t, side) => (
           <div key={side} className={`match-team ${winner !== null && winner !== side ? 'loser' : ''}`}>
             <Crest team={t} size={22} />
             <span className="name ellipsis">{t?.short}</span>
             {match.penalties && <span className="pens tnum">({match.penalties[side]})</span>}
+            {agg && <span className="leg tnum">{agg.ida[side]}</span>}
             <span className="score tnum">{score ? score[side] : ''}</span>
           </div>
         ))}
@@ -191,7 +206,7 @@ export function MatchCard({ match, onSimulate, showDate, firstLeg }: { match: Ma
         )}
       </div>
     </div>
-    {firstLeg && <TieStrip match={match} firstLeg={firstLeg} />}
+    {firstLeg && <TieStrip match={match} firstLeg={firstLeg} showFirstLeg={false} />}
     </div>
   );
 }

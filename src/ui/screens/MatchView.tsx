@@ -9,8 +9,8 @@ import { playOne } from '../actions';
 import { AppBar, Crest, Rating, Sheet, Stepper, Tabs, TieStrip, useUi } from '../common';
 import { Icon } from '../Icon';
 import { useWide } from '../liveStats';
-import { EventLine, HeadToHeadCard, LineupPanel, Prediction, TeamStats, TraitBadges } from '../MatchParts';
-import { headToHead, previewMatch } from '../../game/preview';
+import { EventLine, HeadToHeadCard, LineupPanel, Prediction, TeamStats, TeamStatusCard, TraitBadges } from '../MatchParts';
+import { headToHead, previewMatch, teamSnapshot } from '../../game/preview';
 import { useWorld } from '../world';
 
 type MatchTab = 'summary' | 'stats' | 'players';
@@ -28,6 +28,10 @@ export function MatchView() {
   const wide = useWide();
   const [manual, setManual] = useState(false);
   const h2h = useLiveQuery(() => (match ? headToHead(match.homeId, match.awayId) : undefined), [match?.homeId, match?.awayId, match?.status]);
+  const snaps = useLiveQuery(
+    () => (match && match.status !== 'played' ? Promise.all([teamSnapshot(teams.get(match.homeId)!, match.seasonId), teamSnapshot(teams.get(match.awayId)!, match.seasonId)]) : undefined),
+    [match?.id, match?.status],
+  );
   if (!match || !comp) return null;
   const home = teams.get(match.homeId)!;
   const away = teams.get(match.awayId)!;
@@ -105,7 +109,8 @@ export function MatchView() {
       {!played && (
         <div style={{ maxWidth: 720, margin: '0 auto', padding: '0 12px' }}>
           <Prediction preview={previewMatch(match, comp, home, away, firstLeg, config)} home={home} away={away} />
-          {h2h && <HeadToHeadCard team={home} rival={away} h2h={h2h} />}
+          {snaps && <TeamStatusCard home={home} away={away} snaps={snaps} />}
+          {h2h &&<HeadToHeadCard team={home} rival={away} h2h={h2h} />}
         </div>
       )}
       {played && result && wide && (

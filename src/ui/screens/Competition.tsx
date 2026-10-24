@@ -317,15 +317,23 @@ function Tie({ first, second }: { first: Match; second?: Match }) {
   const winner = done ? (decisive.winner === 0 ? decisive.homeId : decisive.winner === 1 ? decisive.awayId : null) : null;
   return (
     <Link to={`/m/${decisive.id}`} className="row" style={{ alignItems: 'stretch' }}>
-      <div className="grow" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+      <div className={`grow match-teams ${second ? 'two-legs' : ''}`}>
+        {second && first.score && (
+          <div className="match-team legs-head">
+            <span className="name" />
+            <span className="leg">Ida</span>
+            <span className="leg">Vuelta</span>
+            <span className="score">Global</span>
+          </div>
+        )}
         {[a, b].map((t) => (
           <div key={t} className={`match-team ${winner && winner !== t ? 'loser' : ''}`}>
             <Crest team={teams.get(t)} size={22} />
             <span className="name ellipsis">{teams.get(t)?.short}</span>
-            {second && first.score && <span className="small muted tnum">{first.homeId === t ? first.score[0] : first.score[1]}</span>}
-            {second?.score && <span className="small muted tnum" style={{ marginLeft: 8 }}>{second.homeId === t ? second.score[0] : second.score[1]}</span>}
             {decisive.penalties && <span className="pens tnum">({decisive.homeId === t ? decisive.penalties[0] : decisive.penalties[1]})</span>}
-            <span className="score tnum" style={{ marginLeft: 10 }}>{first.score ? goals(t) : ''}</span>
+            {second && first.score && <span className="leg tnum">{first.homeId === t ? first.score[0] : first.score[1]}</span>}
+            {second && first.score && <span className="leg tnum">{second.score ? (second.homeId === t ? second.score[0] : second.score[1]) : ''}</span>}
+            <span className="score tnum">{first.score ? goals(t) : ''}</span>
           </div>
         ))}
       </div>

@@ -953,6 +953,53 @@ input[type='number'] {
   color: var(--text);
 }
 
+/* Ida y vuelta: columnas «Ida» (en gris) y «Vuelta» a la derecha de cada equipo */
+.two-legs .leg,
+.two-legs .score {
+  min-width: 42px;
+  text-align: center;
+}
+
+.two-legs .leg {
+  color: var(--muted);
+}
+
+.match-team.legs-head {
+  min-height: 0;
+  margin-bottom: -4px;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.match-team.legs-head .score {
+  font-weight: 600;
+}
+
+/* Estado actual: valor del local · dato · valor del visitante */
+.status-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 8px;
+  min-height: 34px;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+}
+
+.status-row > :first-child {
+  text-align: left;
+}
+
+.status-row > :nth-child(2) {
+  text-align: center;
+}
+
+.status-row > :last-child {
+  text-align: right;
+}
+
 .tie-through {
   margin-left: auto;
   font-weight: 700;
