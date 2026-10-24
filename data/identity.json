@@ -296,13 +296,13 @@
     "ita-juv": {
       "hist": 90,
       "style": "muralla",
-      "level": 89,
+      "level": 87,
       "current": 86
     },
     "ita-mil": {
       "hist": 89,
       "style": "solido",
-      "level": 87,
+      "level": 86,
       "current": 86
     },
     "ita-int": {
