@@ -202,15 +202,15 @@ function TableTab({ comp }: { comp: Comp }) {
 export function Standings({ rows, zoneColor, teams }: { rows: StandingRow[]; zoneColor: (pos: number) => string | undefined; teams: Map<string, import('../../game/types').Team> }) {
   const narrow = typeof window !== 'undefined' && window.innerWidth < 400;
   return (
-    <table className="table">
+    <table className={narrow ? 'table compact' : 'table'}>
       <thead>
         <tr>
           <th>#</th>
           <th style={{ textAlign: 'left' }}>Equipo</th>
           <th>PJ</th>
-          {!narrow && <th>G</th>}
-          {!narrow && <th>E</th>}
-          {!narrow && <th>P</th>}
+          <th>G</th>
+          <th>E</th>
+          <th>P</th>
           <th>GF</th>
           <th>GC</th>
           <th>DG</th>
@@ -237,9 +237,9 @@ export function Standings({ rows, zoneColor, teams }: { rows: StandingRow[]; zon
                 </Link>
               </td>
               <td className="tnum">{r.played}</td>
-              {!narrow && <td className="tnum">{r.won}</td>}
-              {!narrow && <td className="tnum">{r.drawn}</td>}
-              {!narrow && <td className="tnum">{r.lost}</td>}
+              <td className="tnum">{r.won}</td>
+              <td className="tnum">{r.drawn}</td>
+              <td className="tnum">{r.lost}</td>
               <td className="tnum">{r.gf}</td>
               <td className="tnum">{r.ga}</td>
               <td className="tnum">{r.gf - r.ga > 0 ? `+${r.gf - r.ga}` : r.gf - r.ga}</td>
