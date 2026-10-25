@@ -44,7 +44,25 @@ describe('Balón de Oro', () => {
     });
     expect(suplente.titles).toBeLessThan(15);
   });
+  // Temporada desorbitada: 74 goles en Portugal ganando solo la Europa League…
+  const samu = ballonDorScore({
+    role: 'ST', leagueId: 'por', honors: { uel: 'win', league: 'second' },
+    rows: [row('l', 'league', 33, 52, 1, 8.9, 14), row('e', 'uel', 15, 16, 0, 8.7, 5), row('c', 'cup', 4, 6, 0, 8.6, 2)],
+    teamGames: games([['l', 34], ['e', 15], ['c', 4]]),
+  });
+  // …contra el mejor del campeón de Champions, Premier y Community Shield con 29 goles y 14 asistencias
+  const barcola = ballonDorScore({
+    role: 'LW', leagueId: 'eng', honors: { ucl: 'win', league: 'win', supercups: 1 },
+    rows: [row('l', 'league', 35, 20, 10, 7.8, 6), row('u', 'ucl', 15, 8, 4, 7.9, 3), row('c', 'cup', 3, 1, 0, 7.2, 0)],
+    teamGames: games([['l', 38], ['u', 15], ['c', 4]]),
+  });
+  it('unas cifras desorbitadas (más del doble de goles) pesan más que los títulos', () => {
+    expect(samu.total).toBeGreaterThan(barcola.total);
+  });
+
   it('resumen', () => {
+    console.log(`Samu ${samu.total.toFixed(1)} (${samu.individual.toFixed(1)} + ${samu.titles.toFixed(1)}) · ` +
+      `Barcola ${barcola.total.toFixed(1)} (${barcola.individual.toFixed(1)} + ${barcola.titles.toFixed(1)})`);
     console.log(`Mbappé ${mbappe.total.toFixed(1)} (${mbappe.individual.toFixed(1)} + títulos ${mbappe.titles.toFixed(1)}) · ` +
       `Guirassy ${guirassy.total.toFixed(1)} (${guirassy.individual.toFixed(1)} + ${guirassy.titles.toFixed(1)}) · ` +
       `Kane ${kane.total.toFixed(1)} (${kane.individual.toFixed(1)} + ${kane.titles.toFixed(1)})`);

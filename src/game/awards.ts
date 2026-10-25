@@ -25,6 +25,9 @@ const SUPERCUP_POINTS = 2;
 const LEAGUE_WEIGHT: Record<LeagueId, number> = { eng: 1, esp: 1, ger: 1, ita: 1, fra: 1, por: 0.6 };
 const GOAL_WEIGHT: Record<CompType, number> = { league: 1, ucl: 1.5, uel: 0.8, uecl: 0.6, cup: 0.6, supercup: 0.5, uefasuper: 0.8 };
 const DEFENSIVE = new Set(['GK', 'CB', 'LB', 'RB']);
+/** Plus de temporada histórica: desde cuántos goles (+ media asistencia) empieza y cuánto crece. */
+const RECORD_FROM = 35;
+const RECORD_FACTOR = 0.03;
 
 export interface ScoreInput {
   rows: PlayerCompStats[];
@@ -71,6 +74,10 @@ export function ballonDorScore({ rows, role, leagueId, honors, teamGames }: Scor
   // (la nota ya incluye los goles, por eso pesa moderadamente: así no se cuentan dos veces)
   const avg = rated ? ratingSum / rated : 0;
   individual += Math.max(0, avg - 6.8) * 12 * Math.min(1, apps / 45);
+  // Temporada histórica: por encima de ~35 goles (+ media asistencia cada una) el premio crece cada vez más deprisa,
+  // en cualquier liga, para que unas cifras desorbitadas puedan imponerse a los títulos (50 → +7, 60 → +19, 75 → +48)
+  const assistsTotal = rows.reduce((a, r) => a + r.assists, 0);
+  individual += RECORD_FACTOR * Math.max(0, goals + 0.5 * assistsTotal - RECORD_FROM) ** 2;
 
   let titles = 0;
   const won: string[] = [];
