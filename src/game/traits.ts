@@ -81,8 +81,8 @@ export const TRAITS: Record<string, Trait[]> = {
     },
     {
       name: 'Pesadilla europea',
-      description: 'En las eliminatorias de la Champions League: −10 % de probabilidad de ganar.',
-      when: (c) => c.comp === 'ucl' && c.knockout,
+      description: 'En todos los partidos de la Champions League: −10 % de probabilidad de ganar.',
+      when: (c) => c.comp === 'ucl',
       effect: { win: -0.1 },
     },
   ],
