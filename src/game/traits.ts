@@ -96,9 +96,10 @@ export const TRAITS: Record<string, Trait[]> = {
   'esp-ath': [
     {
       name: 'Orgullo de Lezama',
-      description: 'En LaLiga y Copa del Rey: +5 % de probabilidad de ganar.',
+      description: 'En LaLiga, la Copa del Rey y la Supercopa de España: +10 % de probabilidad de ganar.',
       when: domestic,
-      effect: { win: 0.05 },
+      // 0,081 en el modelo ≈ +10 % real de media contra los equipos de LaLiga
+      effect: { win: 0.081 },
     },
   ],
   'esp-sev': [
