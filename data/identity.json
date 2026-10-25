@@ -231,7 +231,9 @@
     },
     "ger-mun": {
       "hist": 92,
-      "style": "dominio"
+      "style": "dominio",
+      "level": 89,
+      "current": 89
     },
     "ger-dor": {
       "hist": 84,
