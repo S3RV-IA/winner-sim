@@ -84,11 +84,13 @@
     },
     "esp-val": {
       "hist": 80,
-      "style": "contragolpe"
+      "style": "contragolpe",
+      "level": 79
     },
     "esp-sev": {
       "hist": 80,
-      "style": "intensidad"
+      "style": "intensidad",
+      "level": 79
     },
     "esp-vil": {
       "hist": 77,

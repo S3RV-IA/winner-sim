@@ -61,7 +61,7 @@ const seedMomentum = () => Object.fromEntries(seed.teams.map((t) => [t.id, t.mom
 
 /** Momento en la semilla 6, que no guardaba la foto. Desde entonces solo ha cambiado el de estos clubes. */
 const V6_MOMENTUM: Record<string, number> = {
-  'eng-ars': 5.1, 'eng-che': -0.6, 'eng-liv': -1.6, 'eng-mci': 4.9, 'eng-mun': -6.3, 'ita-juv': -5.3, 'ita-mil': -4.6, 'fra-psg': 1.2, 'esp-rma': -0.6, 'esp-ath': -5.3,
+  'eng-ars': 5.1, 'eng-che': -0.6, 'eng-liv': -1.6, 'eng-mci': 4.9, 'eng-mun': -6.3, 'ita-juv': -5.3, 'ita-mil': -4.6, 'fra-psg': 1.2, 'esp-rma': -0.6, 'esp-ath': -5.3, 'esp-sev': -4.9, 'esp-val': -4.3,
 };
 
 /**

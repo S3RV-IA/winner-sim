@@ -110,6 +110,15 @@ export const TRAITS: Record<string, Trait[]> = {
       effect: { win: 0.15 },
     },
   ],
+  'esp-val': [
+    {
+      name: 'Noches europeas de Mestalla',
+      description: 'En competiciones europeas: +10 % de probabilidad de ganar.',
+      when: europe,
+      // 0,07 en el modelo ≈ +10 % real de media contra sus rivales europeos habituales
+      effect: { win: 0.07 },
+    },
+  ],
   'ger-mun': [
     {
       name: 'Mia san mia',
