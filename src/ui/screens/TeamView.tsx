@@ -4,7 +4,8 @@ import { Link, useParams } from 'react-router-dom';
 import { db } from '../../db/db';
 import { computeStandings } from '../../game/standings';
 import { avgRating } from '../../game/stats';
-import type { CompType, Team } from '../../game/types';
+import { restoreTitle, stripTitles } from '../../game/sanctions';
+import type { CompType, Team, Trophy } from '../../game/types';
 import { AppBar, Crest, FormArrow, FormDots, MatchCard, Rating, Sheet, Stepper, Tabs, useTab, useUi } from '../common';
 import { Icon } from '../Icon';
 import { COMP_TROPHY_LABEL } from '../labels';
@@ -245,10 +246,14 @@ function TeamTrophies({ team }: { team: Team }) {
     () => db.competitions.filter((c) => c.status === 'finished' && FINAL_TYPES.includes(c.type) && (c.championId === team.id || c.runnerUpId === team.id)).toArray(),
     [team.id],
   );
+  const stripped = useLiveQuery(() => db.trophies.filter((t) => t.bySanction?.teamId === team.id).toArray(), [team.id]);
+  const { teams } = useWorld();
+  const [sanction, setSanction] = useState(false);
   if (!trophies || !seasons || !finals) return null;
-  // Finales por competición: jugadas, ganadas y perdidas
+  // Finales por competición: jugadas, ganadas y perdidas (un título retirado no cuenta como final perdida)
   const byComp = new Map<string, { type: CompType; played: number; won: number }>();
   for (const c of finals) {
+    if (c.sanction?.teamId === team.id) continue;
     const name = c.name;
     const row = byComp.get(name) ?? { type: c.type, played: 0, won: 0 };
     row.played++;
@@ -293,12 +298,52 @@ function TeamTrophies({ team }: { team: Team }) {
           .map((t) => (
             <div key={t.id} className="row">
               <Icon name="trophy" color="var(--accent)" />
-              <div className="grow">{t.compName}</div>
+              <div className="grow">
+                {t.compName}
+                {t.bySanction && <div className="small muted">En los despachos: sanción al {teams.get(t.bySanction.teamId)?.short}</div>}
+              </div>
               <span className="muted small">{label(t.seasonId)}</span>
             </div>
           ))}
         {!trophies.length && <div className="empty">Todavía sin títulos en esta partida</div>}
       </div>
+      {stripped && stripped.length > 0 && (
+        <>
+          <div className="section-title">Títulos retirados por sanción</div>
+          <div className="card list">
+            {stripped
+              .sort((a, b) => b.seasonId - a.seasonId)
+              .map((t) => (
+                <div key={t.id} className="row">
+                  <Icon name="trophy" color="var(--muted)" />
+                  <div className="grow" style={{ minWidth: 0 }}>
+                    <div style={{ textDecoration: 'line-through' }}>
+                      {t.compName} · {label(t.seasonId)}
+                    </div>
+                    <div className="small muted">
+                      {t.bySanction!.reason} · pasó al {teams.get(t.teamId)?.short}
+                    </div>
+                  </div>
+                  <button
+                    className="btn"
+                    style={{ height: 32, padding: '0 10px', fontSize: 12 }}
+                    onClick={async () => {
+                      if (confirm(`¿Devolver al ${team.short} el título de ${t.compName} ${label(t.seasonId)}?`)) await restoreTitle(t.id!);
+                    }}
+                  >
+                    Devolver
+                  </button>
+                </div>
+              ))}
+          </div>
+        </>
+      )}
+      {trophies.some((t) => !t.bySanction) && (
+        <button className="btn block" style={{ marginTop: 10 }} onClick={() => setSanction(true)}>
+          Sancionar al club…
+        </button>
+      )}
+      <SanctionSheet team={team} open={sanction} onClose={() => setSanction(false)} trophies={trophies.filter((t) => !t.bySanction)} label={label} />
       <div className="section-title">Partidos históricos</div>
       <div className="card list">
         {moments?.map((m) => <MomentRow key={m.id} m={m} />)}
@@ -307,6 +352,85 @@ function TeamTrophies({ team }: { team: Team }) {
     </>
   );
 }
+
+/** Retira títulos a un club por sanción: se eligen cuáles y el motivo, y cada uno pasa al subcampeón. */
+function SanctionSheet({ team, open, onClose, trophies, label }: { team: Team; open: boolean; onClose: () => void; trophies: Trophy[]; label: (sid: number) => string }) {
+  const ui = useUi();
+  const { teams } = useWorld();
+  const [reason, setReason] = useState('Infracción de las normas financieras de la FIFA');
+  const [picked, setPicked] = useState<Set<number>>(new Set());
+  const comps = useLiveQuery(async () => (open ? await db.competitions.bulkGet(trophies.map((t) => t.compId)) : []), [open, trophies.length]);
+  const runnerUp = (t: Trophy) => comps?.find((c) => c?.id === t.compId)?.runnerUpId;
+  const sorted = [...trophies].sort((a, b) => TROPHY_ORDER.indexOf(a.compType) - TROPHY_ORDER.indexOf(b.compType) || b.seasonId - a.seasonId);
+  const types = TROPHY_ORDER.filter((ty) => trophies.some((t) => t.compType === ty));
+  const toggle = (ids: number[], on: boolean) =>
+    setPicked((p) => {
+      const n = new Set(p);
+      for (const id of ids) (on ? n.add(id) : n.delete(id));
+      return n;
+    });
+  const close = () => {
+    setPicked(new Set());
+    onClose();
+  };
+  return (
+    <Sheet open={open} onClose={close} title={`Sancionar al ${team.short}`}>
+      <p className="small muted" style={{ margin: '0 4px 8px' }}>
+        Cada título que marques se le retira y pasa al subcampeón de esa temporada (segundo de la liga o finalista).
+      </p>
+      <textarea
+        value={reason}
+        onChange={(e) => setReason(e.target.value)}
+        rows={2}
+        maxLength={120}
+        style={{ width: '100%', boxSizing: 'border-box', padding: 10, borderRadius: 10, border: '1px solid var(--line)', background: 'var(--surface-2)', color: 'var(--text)', font: 'inherit', resize: 'none' }}
+      />
+      <div className="chips" style={{ margin: '8px 0', flexWrap: 'wrap' }}>
+        {types.map((ty) => {
+          const ids = trophies.filter((t) => t.compType === ty).map((t) => t.id!);
+          const all = ids.every((id) => picked.has(id));
+          return (
+            <button key={ty} className={`chip ${all ? 'active' : ''}`} style={all ? undefined : { background: 'var(--surface-2)' }} onClick={() => toggle(ids, !all)}>
+              {all ? 'Quitar' : 'Todas'}: {COMP_TROPHY_LABEL[ty]}
+            </button>
+          );
+        })}
+      </div>
+      <div className="card list" style={{ maxHeight: '40vh', overflowY: 'auto' }}>
+        {sorted.map((t) => {
+          const to = runnerUp(t);
+          return (
+            <label key={t.id} className="row" style={{ cursor: 'pointer', opacity: to ? 1 : 0.5 }}>
+              <input type="checkbox" disabled={!to} checked={picked.has(t.id!)} onChange={(e) => toggle([t.id!], e.target.checked)} />
+              <div className="grow" style={{ minWidth: 0 }}>
+                <div className="ellipsis">
+                  {t.compName} · {label(t.seasonId)}
+                </div>
+                <div className="small muted">{to ? `Pasaría al ${teams.get(to)?.short}` : 'Sin subcampeón registrado'}</div>
+              </div>
+              {to && <Crest team={teams.get(to)} size={20} />}
+            </label>
+          );
+        })}
+      </div>
+      <button
+        className="btn primary block"
+        style={{ marginTop: 12 }}
+        disabled={!picked.size || !reason.trim()}
+        onClick={async () => {
+          if (!confirm(`¿Retirar ${picked.size} ${picked.size === 1 ? 'título' : 'títulos'} al ${team.short}? Podrás devolverlos uno a uno.`)) return;
+          const n = await stripTitles([...picked], reason.trim());
+          close();
+          ui.toast(`${n} ${n === 1 ? 'título retirado' : 'títulos retirados'} al ${team.short}`);
+        }}
+      >
+        Retirar {picked.size || ''} {picked.size === 1 ? 'título' : 'títulos'}
+      </button>
+    </Sheet>
+  );
+}
+
+const TROPHY_ORDER: CompType[] = ['league', 'cup', 'supercup', 'ucl', 'uel', 'uecl', 'uefasuper'];
 
 function EditTeam({ team, open, onClose }: { team: Team; open: boolean; onClose: () => void }) {
   const ui = useUi();

@@ -47,6 +47,7 @@ export function SeasonView() {
                       <div className="grow">
                         <div className="small muted">{c.name}</div>
                         <div className="bold ellipsis">{teams.get(c.championId!)?.name}</div>
+                        {c.sanction && <div className="small muted ellipsis">Retirado al {teams.get(c.sanction.teamId)?.short}: {c.sanction.reason}</div>}
                       </div>
                       <Crest team={teams.get(c.championId!)} size={28} />
                     </Link>

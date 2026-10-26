@@ -279,7 +279,7 @@ async function assertSeasonOpen(m: Match) {
 async function reopen(comp: Competition) {
   if (comp.status !== 'finished') return;
   comp.status = 'active';
-  comp.championId = comp.runnerUpId = undefined;
+  comp.championId = comp.runnerUpId = comp.sanction = undefined;
   await db.competitions.put(comp);
   await db.trophies.where('seasonId').equals(comp.seasonId).filter((t) => t.compId === comp.id).delete();
 }
@@ -289,7 +289,8 @@ async function reopen(comp: Competition) {
  * jornada antes de que el cambio de resultado recalculara el campeón).
  */
 export async function repairChampions(): Promise<number> {
-  const comps = await db.competitions.filter((c) => c.status === 'finished').toArray();
+  // Las competiciones con un título retirado por sanción tienen a propósito un campeón distinto al del campo
+  const comps = await db.competitions.filter((c) => c.status === 'finished' && !c.sanction).toArray();
   let fixed = 0;
   for (const comp of comps) {
     const matches = await db.matches.where('compId').equals(comp.id).toArray();

@@ -85,6 +85,8 @@ export interface Competition {
   runnerUpId?: string;
   /** Orden de cabezas de serie (copa: puesto de la temporada anterior). */
   seeding?: string[];
+  /** Campeón en el campo al que se le retiró el título por sanción (el título pasó al subcampeón). */
+  sanction?: { teamId: string; reason: string };
 }
 
 export interface Match {
@@ -173,6 +175,8 @@ export interface Trophy {
   compType: CompType;
   compId: string;
   compName: string;
+  /** Título ganado en los despachos: equipo al que se le retiró por sanción y motivo. */
+  bySanction?: { teamId: string; reason: string };
 }
 
 export type AwardType = 'ballonDor' | 'goldenBoot' | 'leagueMvp' | 'leagueTopScorer' | 'leagueTopAssists' | 'uclMvp' | 'uclTopScorer' | 'bestGoalkeeper';

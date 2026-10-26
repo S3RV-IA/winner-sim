@@ -42,7 +42,8 @@ export function TitleWall() {
             {won.map((t) => (
               <Link key={t.id ?? t.seasonId} to={`/t/${t.teamId}?tab=trophies`} className="wall-cell">
                 <Crest team={teams.get(t.teamId)} size={40} />
-                <span className="tnum">{seasonLabel(t.seasonId)}</span>
+                {/* Asterisco: título ganado en los despachos por una sanción al campeón */}
+                <span className="tnum">{seasonLabel(t.seasonId)}{t.bySanction ? '*' : ''}</span>
               </Link>
             ))}
             {pending && (
@@ -52,6 +53,7 @@ export function TitleWall() {
               </div>
             )}
           </div>
+          {won.some((t) => t.bySanction) && <div className="wall-empty">* Título concedido en los despachos por sanción al campeón</div>}
           {!won.length && <div className="wall-empty">Todavía no hay campeones: el primero aparecerá al cerrar la temporada.</div>}
         </div>
 
