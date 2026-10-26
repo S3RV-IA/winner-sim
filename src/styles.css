@@ -1020,6 +1020,70 @@ input[type='number'] {
   color: rgba(255, 255, 255, 0.85);
 }
 
+/* Títulos de la temporada bajo cada escudo */
+.title-dots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1px;
+  max-width: 56px;
+}
+
+.wall-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin-top: 16px;
+  padding: 0 6px;
+  font-size: 11px;
+  opacity: 0.85;
+}
+
+.wall-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Podio: temporada · 1.º · 2.º · 3.º */
+.podium-row {
+  display: grid;
+  grid-template-columns: 40px repeat(3, minmax(0, 1fr));
+  align-items: start;
+  gap: 6px;
+  padding: 8px 4px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.podium-season {
+  font-size: 12px;
+  font-weight: 700;
+  padding-top: 4px;
+}
+
+.podium-spot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  font-size: 12px;
+}
+
+.podium-place {
+  font-size: 10px;
+  opacity: 0.6;
+  width: 100%;
+}
+
+.podium-team {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  max-width: 100%;
+}
+
 .wall-unknown {
   width: 40px;
   height: 40px;
