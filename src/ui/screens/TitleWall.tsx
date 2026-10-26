@@ -84,19 +84,19 @@ export function TitleWall() {
           {view === 'podium' ? (
             <div className="podium-list">
               {[...podiums].reverse().map((p) => (
-                <div key={p.seasonId} className="podium-row">
-                  <span className="podium-season tnum">{seasonLabel(p.seasonId)}</span>
-                  {[[p.first!], p.second ? [p.second] : [], p.third].map((ids, place) => (
-                    <div key={place} className="podium-spot">
-                      <span className="podium-place">{place + 1}.º</span>
-                      {ids.map((id) => (
-                        <Link key={id} to={`/t/${id}?tab=trophies`} className="podium-team">
-                          <Crest team={teams.get(id)} size={ids.length > 1 ? 18 : 22} />
-                          {ids.length === 1 && <span className="ellipsis">{teams.get(id)?.short}</span>}
-                        </Link>
-                      ))}
-                      {place === 0 && dots(p.seasonId, p.first)}
-                    </div>
+                <div key={p.seasonId} className="podium-season-block">
+                  <div className="podium-season tnum">
+                    {seasonLabel(p.seasonId)}
+                    {bySanction(p) ? '*' : ''}
+                  </div>
+                  {/* Una fila por club: puesto, escudo, nombre y, a su lado, todos los títulos que ganó esa temporada */}
+                  {([[1, p.first!], ...(p.second ? [[2, p.second]] : []), ...p.third.map((id) => [3, id])] as [number, string][]).map(([place, id]) => (
+                    <Link key={`${place}-${id}`} to={`/t/${id}?tab=trophies`} className="podium-line">
+                      <span className={`podium-medal place-${place}`}>{place}</span>
+                      <Crest team={teams.get(id)} size={22} />
+                      <span className="podium-name ellipsis">{teams.get(id)?.short}</span>
+                      {dots(p.seasonId, id)}
+                    </Link>
                   ))}
                 </div>
               ))}

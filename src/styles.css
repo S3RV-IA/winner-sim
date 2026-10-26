@@ -1045,45 +1045,62 @@ input[type='number'] {
   gap: 4px;
 }
 
-/* Podio: temporada · 1.º · 2.º · 3.º */
-.podium-row {
-  display: grid;
-  grid-template-columns: 40px repeat(3, minmax(0, 1fr));
-  align-items: start;
-  gap: 6px;
-  padding: 8px 4px;
+/* Podio: un bloque por temporada con una fila por puesto (medalla, escudo, nombre y títulos de ese año) */
+.podium-season-block {
+  padding: 10px 4px 8px;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .podium-season {
   font-size: 12px;
-  font-weight: 700;
-  padding-top: 4px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  opacity: 0.8;
+  margin-bottom: 4px;
 }
 
-.podium-spot {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 4px;
-  min-width: 0;
-  font-size: 12px;
-}
-
-.podium-place {
-  font-size: 10px;
-  opacity: 0.6;
-  width: 100%;
-}
-
-.podium-team {
+.podium-line {
   display: flex;
   align-items: center;
-  gap: 4px;
-  min-width: 0;
-  max-width: 100%;
+  gap: 8px;
+  min-height: 32px;
+  font-size: 14px;
 }
 
+.podium-name {
+  min-width: 0;
+  font-weight: 600;
+}
+
+.podium-line .title-dots {
+  max-width: none;
+  flex-wrap: nowrap;
+  margin-left: auto;
+}
+
+.podium-medal {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 800;
+  color: #1f1f1f;
+}
+
+.podium-medal.place-1 {
+  background: #f5c542;
+}
+
+.podium-medal.place-2 {
+  background: #cfd5dc;
+}
+
+.podium-medal.place-3 {
+  background: #cd8b52;
+}
 .wall-unknown {
   width: 40px;
   height: 40px;
