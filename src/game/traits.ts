@@ -68,13 +68,6 @@ export const TRAITS: Record<string, Trait[]> = {
   ],
   'esp-bar': [
     {
-      name: 'Hegemonía en España',
-      description: 'En LaLiga, la Copa del Rey y la Supercopa de España: +7 % de probabilidad de ganar.',
-      when: domestic,
-      // 0,094 en el modelo ≈ +7 % real de media contra los equipos de LaLiga (gana tanto que apenas tiene margen)
-      effect: { win: 0.094 },
-    },
-    {
       name: 'Dueños del balón',
       description: 'En todos los partidos: +20 % de dominio del balón (posesión) y algo más de control.',
       when: () => true,
