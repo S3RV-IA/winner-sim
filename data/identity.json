@@ -80,17 +80,17 @@
     "esp-ath": {
       "hist": 83,
       "style": "intensidad",
-      "level": 81
+      "level": 80
     },
     "esp-val": {
       "hist": 80,
       "style": "contragolpe",
-      "level": 79
+      "level": 77
     },
     "esp-sev": {
       "hist": 80,
       "style": "intensidad",
-      "level": 79
+      "level": 77
     },
     "esp-vil": {
       "hist": 77,
