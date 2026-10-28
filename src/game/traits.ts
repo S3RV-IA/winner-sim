@@ -60,10 +60,10 @@ export const TRAITS: Record<string, Trait[]> = {
     },
     {
       name: 'ADN de finales',
-      description: 'En cualquier final: +15 % de probabilidad de ganar.',
+      description: 'En cualquier final: +20 % de probabilidad de ganar.',
       when: (c) => c.final,
-      // 0,143 en el modelo ≈ +15 % real de media en finales contra grandes rivales
-      effect: { win: 0.143 },
+      // 0,198 en el modelo ≈ +20 % real de media en finales contra grandes rivales
+      effect: { win: 0.198 },
     },
   ],
   'esp-bar': [
