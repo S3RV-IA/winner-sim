@@ -19,15 +19,18 @@ export function doubleRoundRobin(teamIds: string[], rng: Rng): Pairing[][] {
       const a = circle[i];
       const b = circle[n - 1 - i];
       if (a === 'BYE' || b === 'BYE') continue;
-      // Alternar local/visitante para que nadie encadene demasiados partidos en casa
-      round.push((r + i) % 2 === 0 ? [a, b] : [b, a]);
+      // Local y visitante (como en las tablas de Berger): el equipo fijo alterna cada jornada y en el resto
+      // manda la posición en el círculo; como cada equipo avanza un puesto por jornada, va alternando casa y fuera
+      const aHome = i === 0 ? r % 2 === 0 : i % 2 === 1;
+      round.push(aHome ? [a, b] : [b, a]);
     }
     first.push(round);
     rot.unshift(rot.pop()!);
   }
   const second = first.map((round) => round.map(([h, a]) => [a, h] as Pairing));
-  // La segunda vuelta empieza por una jornada distinta para que no sea un espejo exacto
-  const offset = rng.int(1, Math.max(1, second.length - 2));
+  // La segunda vuelta empieza por otra jornada para que no sea un espejo exacto. Con un desplazamiento impar
+  // nadie juega más de dos partidos seguidos en casa o fuera en toda la temporada.
+  const offset = 1 + 2 * rng.int(0, Math.floor((second.length - 2) / 2));
   return [...first, ...second.slice(offset), ...second.slice(0, offset)];
 }
 
