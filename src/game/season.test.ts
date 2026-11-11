@@ -49,7 +49,7 @@ describe('temporada completa', () => {
     expect(trophies).toHaveLength(21);
 
     const esp = comps.find((c) => c.id === '1-league-esp')!;
-    const table = computeStandings(esp.teams, await db.matches.where('compId').equals(esp.id).toArray());
+    const table = computeStandings(esp.teams, await db.matches.where('compId').equals(esp.id).toArray(), 'esp');
     expect(table[0].played).toBe(38);
     expect(esp.championId).toBe(table[0].teamId);
 
