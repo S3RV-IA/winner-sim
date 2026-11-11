@@ -155,7 +155,7 @@ function useStandings(comp: Comp) {
   return useMemo(() => {
     if (!matches) return null;
     const pool = comp.type === 'league' ? matches : matches.filter((m) => m.round <= 8);
-    return computeStandings(comp.teams, pool);
+    return computeStandings(comp.teams, pool, comp.leagueId);
   }, [matches, comp]);
 }
 

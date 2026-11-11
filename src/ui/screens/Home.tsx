@@ -222,7 +222,7 @@ function CompSummary({ comp, matches, stats }: { comp: Competition; matches: Mat
   if (phaseOpen && comp.status !== 'finished') {
     if (played.length) {
       const pool = comp.type === 'league' ? matches : matches.filter((m) => m.round <= 8);
-      const table = computeStandings(comp.teams, pool);
+      const table = computeStandings(comp.teams, pool, comp.leagueId);
       teamLine('p1', '1', table[0].teamId, `${table[0].points}`);
       if (comp.type === 'league') teamLine('p2', '2', table[1].teamId, `${table[1].points}`);
     } else {

@@ -105,7 +105,7 @@ export async function teamSnapshot(team: Team, seasonId: number): Promise<TeamSn
     const leagueMatches = matches.filter((m) => m.compId === league.id);
     if (leagueMatches.length) {
       const all = await db.matches.where('compId').equals(league.id).filter((m) => m.status === 'played').toArray();
-      const table = computeStandings(league.teams, all);
+      const table = computeStandings(league.teams, all, league.leagueId);
       const position = table.findIndex((r) => r.teamId === team.id);
       snapshotLeague = { position: position + 1, teams: table.length, row: table[position] };
     }

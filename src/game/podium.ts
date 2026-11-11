@@ -18,7 +18,7 @@ export async function podiumOf(comp: Competition): Promise<Podium> {
   let third: string[] = [];
   if (comp.type === 'league') {
     // Tercero: el mejor clasificado que no es ni campeón ni subcampeón (cuenta también si hubo sanción)
-    const next = computeStandings(comp.teams, matches).find((r) => r.teamId !== first && r.teamId !== second);
+    const next = computeStandings(comp.teams, matches, comp.leagueId).find((r) => r.teamId !== first && r.teamId !== second);
     if (next) third = [next.teamId];
   } else if (comp.rounds.length >= 2) {
     // Perdedores de semifinales: la ronda anterior a la final (la vuelta en las eliminatorias a doble partido)

@@ -75,7 +75,7 @@ export async function closeSeason(): Promise<number> {
   const tables: Record<string, StandingRow[]> = {};
   for (const c of comps.filter((x) => x.type === 'league')) {
     const ms = await db.matches.where('compId').equals(c.id).toArray();
-    tables[c.leagueId!] = computeStandings(c.teams, ms);
+    tables[c.leagueId!] = computeStandings(c.teams, ms, c.leagueId);
   }
   await db.archives.put({ seasonId, tables });
 

@@ -45,7 +45,7 @@ export function TeamView() {
   const league = leagues.find((l) => l.id === team.leagueId)!;
   const now = currentRatings(team);
   const momentum = team.momentum ?? 0;
-  const table = leagueMatches ? computeStandings(league.teams, leagueMatches) : [];
+  const table = leagueMatches ? computeStandings(league.teams, leagueMatches, league.id) : [];
   const pos = table.findIndex((r) => r.teamId === team.id);
   const row = table[pos];
 

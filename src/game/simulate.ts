@@ -297,7 +297,7 @@ export async function repairChampions(): Promise<number> {
     let champion: string | undefined;
     let runnerUp: string | undefined;
     if (comp.type === 'league') {
-      const table = computeStandings(comp.teams, matches);
+      const table = computeStandings(comp.teams, matches, comp.leagueId);
       [champion, runnerUp] = [table[0]?.teamId, table[1]?.teamId];
     } else {
       const res = roundWinners(comp, comp.rounds[comp.rounds.length - 1].round, matches);
@@ -344,7 +344,7 @@ export async function advanceCompetition(comp: Competition): Promise<{ finished:
 
   if (comp.type === 'league') {
     if (matches.some((m) => m.status !== 'played')) return none;
-    const table = computeStandings(comp.teams, matches);
+    const table = computeStandings(comp.teams, matches, comp.leagueId);
     await finish(comp, table[0].teamId, table[1].teamId);
     return { finished: comp, created: [] };
   }
