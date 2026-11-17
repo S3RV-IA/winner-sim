@@ -62,10 +62,10 @@ const ATTACKING: ReadonlySet<Role> = new Set(['ST', 'LW', 'RW', 'AM']);
 
 /** Estrella: desde esta media (y de las mejores de su equipo) casi no se le cambia. */
 const STAR_OVR = 86;
-/** Lesiones que obligan a parar por equipo y partido (unas 6-8 por equipo y temporada). */
-const INJURY_PER_TEAM_MATCH = 0.15;
+/** Lesiones que obligan a parar por equipo y partido: pocas, una cada ~14 partidos (1-2 por equipo y temporada). */
+const INJURY_PER_TEAM_MATCH = 0.036;
 /** Semanas de baja y su peso: la mayoría son cortas y la más grave ronda los dos meses. */
-const INJURY_WEEKS: [number, number][] = [[1, 35], [2, 25], [3, 15], [4, 10], [5, 6], [6, 5], [7, 2], [8, 2]];
+const INJURY_WEEKS: [number, number][] = [[1, 48], [2, 22], [3, 12], [4, 7], [5, 4], [6, 3], [7, 2], [8, 2]];
 const DEFENSIVE: ReadonlySet<Role> = new Set(['CB', 'LB', 'RB']);
 
 const clamp = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v));
