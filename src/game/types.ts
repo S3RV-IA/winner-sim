@@ -37,6 +37,8 @@ export interface Player extends PlayerAttrs {
   number: number | null;
   nat: string;
   role: Role;
+  /** Lesión: no puede jugar en esa temporada hasta la semana `untilWeek` del calendario (sin incluirla). */
+  injury?: { seasonId: number; untilWeek: number; weeks: number };
   form: number;
 }
 

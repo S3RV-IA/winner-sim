@@ -5,10 +5,11 @@ import { db } from '../../db/db';
 import { computeStandings } from '../../game/standings';
 import { avgRating } from '../../game/stats';
 import { restoreTitle, stripTitles } from '../../game/sanctions';
-import type { CompType, Team, Trophy } from '../../game/types';
+import type { CompType, Player, Team, Trophy } from '../../game/types';
 import { AppBar, Crest, FormArrow, FormDots, MatchCard, Rating, Sheet, Stepper, Tabs, useTab, useUi } from '../common';
 import { Icon } from '../Icon';
 import { COMP_TROPHY_LABEL } from '../labels';
+import { injuryWeeksLeft, useCurrentWeek } from '../injury';
 import { useWorld } from '../world';
 import { TRAITS } from '../../game/traits';
 import { RIVALS, headToHead } from '../../game/preview';
@@ -153,6 +154,7 @@ export function TeamView() {
 function Squad({ team }: { team: Team }) {
   const { players, season } = useWorld();
   const stats = useLiveQuery(() => db.stats.where('teamId').equals(team.id).filter((s) => s.seasonId === season.id).toArray(), [team.id, season.id]);
+  const week = useCurrentWeek(season.id);
   const squad = [...players.values()].filter((p) => p.teamId === team.id).sort((a, b) => ROLE_ORDER.indexOf(a.role) - ROLE_ORDER.indexOf(b.role) || b.ovr - a.ovr);
   const totals = new Map<string, { apps: number; goals: number; assists: number; ratingSum: number; rated: number }>();
   for (const s of stats ?? []) {
@@ -165,6 +167,7 @@ function Squad({ team }: { team: Team }) {
     totals.set(s.playerId, t);
   }
   const groups = ['Porteros', 'Defensas', 'Centrocampistas', 'Delanteros'];
+  const injuredWeeks = (p: Player) => injuryWeeksLeft(p, season.id, week);
   return (
     <>
       {groups.map((g) => (
@@ -186,6 +189,11 @@ function Squad({ team }: { team: Team }) {
                         {p.role} · {p.ovr}
                         {t ? ` · ${t.apps} PJ · ${t.goals} G · ${t.assists} A` : ''}
                       </div>
+                      {injuredWeeks(p) > 0 && (
+                        <div className="small" style={{ color: 'var(--loss)' }}>
+                          🚑 Lesionado · {injuredWeeks(p) === 1 ? 'vuelve la semana que viene' : `${injuredWeeks(p)} semanas de baja`}
+                        </div>
+                      )}
                     </div>
                     <FormArrow form={p.form} />
                     {t && t.rated > 0 && <Rating value={avgRating(t)} />}

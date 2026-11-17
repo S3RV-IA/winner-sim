@@ -2,6 +2,7 @@ import { db, getConfig } from '../db/db';
 import { nextPlayerForm, nextTeamForm } from '../engine/form';
 import { simulateMatch } from '../engine/match';
 import type { MatchOptions, MatchResult, SimTeam } from '../engine/types';
+import { weekOf } from './calendar';
 import { applyLine, emptyStats } from './stats';
 import { bracketPairs, nextKnockoutMatches, roundWinners } from './season';
 import { computeStandings } from './standings';
@@ -31,19 +32,22 @@ class World {
 
   /** Equipos listos para el motor, con sus rasgos históricos evaluados para este partido. */
   pair(m: Match, comp: Competition, leg1: Match | undefined, useTraits: boolean): [SimTeam, SimTeam] {
-    const home = this.sim(m.homeId);
-    const away = this.sim(m.awayId);
+    const home = this.sim(m.homeId, m);
+    const away = this.sim(m.awayId, m);
     if (!useTraits) return [home, away];
     [home.boost, away.boost] = matchBoosts(m, comp, leg1, (id) => currentOvr(this.teams.get(id)!));
     return [home, away];
   }
 
-  sim(teamId: string): SimTeam {
+  /** Equipo para el motor. Con un partido, sin los lesionados en esa fecha. */
+  sim(teamId: string, m?: Match): SimTeam {
     const t = this.teams.get(teamId)!;
+    const week = m ? weekOf(m.slot) : 0;
+    const fit = (p: Player) => !m || !p.injury || p.injury.seasonId !== m.seasonId || week >= p.injury.untilWeek;
     const now = currentRatings(t);
     return {
       id: t.id, name: t.name, short: t.short, att: now.att, ctl: now.ctl, def: now.def, form: t.form, penaltyTaker: t.penaltyTaker ?? undefined,
-      players: (this.byTeam.get(teamId) ?? []).map((p) => ({ ...p })),
+      players: (this.byTeam.get(teamId) ?? []).filter(fit).map((p) => ({ ...p })),
     };
   }
 
@@ -62,8 +66,11 @@ async function nextOrder(): Promise<number> {
   return n + 1;
 }
 
-async function matchOptions(m: Match, forcedScore?: [number, number]): Promise<MatchOptions> {
-  const opts: MatchOptions = { neutral: m.neutral, knockout: m.knockout, forcedScore };
+/** Competiciones europeas y eliminatorias: las estrellas no se cambian con el marcador igualado. */
+const isBigMatch = (m: Match, comp: Competition) => ['ucl', 'uel', 'uecl', 'uefasuper'].includes(comp.type) || !!m.knockout;
+
+async function matchOptions(m: Match, comp: Competition, forcedScore?: [number, number]): Promise<MatchOptions> {
+  const opts: MatchOptions = { neutral: m.neutral, knockout: m.knockout, bigMatch: isBigMatch(m, comp), forcedScore };
   if (m.firstLegId) {
     const leg1 = await db.matches.get(m.firstLegId);
     if (leg1?.score) opts.firstLeg = [leg1.score[1], leg1.score[0]];
@@ -85,6 +92,14 @@ function applyForm(world: World, m: Match, r: MatchResult) {
     const p = world.players.get(line.id);
     if (!p) continue;
     p.form = nextPlayerForm(p.form, line.rating, p.ovr);
+    world.dirtyPlayers.add(p.id);
+  }
+  // Lesiones: baja desde la semana siguiente durante las semanas indicadas
+  for (const e of r.events) {
+    if (e.t !== 'injury') continue;
+    const p = world.players.get(e.player);
+    if (!p) continue;
+    p.injury = { seasonId: m.seasonId, untilWeek: weekOf(m.slot) + e.weeks + 1, weeks: e.weeks };
     world.dirtyPlayers.add(p.id);
   }
 }
@@ -171,7 +186,7 @@ export async function play(opts: { maxSlot?: number; matchIds?: string[]; focusC
     const results: StoredResult[] = [];
     for (const m of group) {
       const comp = comps.get(m.compId)!;
-      const matchOpts: MatchOptions = { neutral: m.neutral, knockout: m.knockout };
+      const matchOpts: MatchOptions = { neutral: m.neutral, knockout: m.knockout, bigMatch: isBigMatch(m, comp) };
       const leg1 = m.firstLegId ? playedNow.get(m.firstLegId) ?? (await db.matches.get(m.firstLegId)) : undefined;
       if (leg1?.score) matchOpts.firstLeg = [leg1.score[1], leg1.score[0]];
       const [home, away] = world.pair(m, comp, leg1, config.traits !== false);
@@ -240,7 +255,7 @@ export async function setManualResult(matchId: string, score: [number, number]) 
   if (old) await applyStats(m, comp, old, world, -1);
   const leg1 = m.firstLegId ? await db.matches.get(m.firstLegId) : undefined;
   const [home, away] = world.pair(m, comp, leg1, config.traits !== false);
-  const r = simulateMatch(home, away, config.sim, await matchOptions(m, score), m.seed + 1);
+  const r = simulateMatch(home, away, config.sim, await matchOptions(m, comp, score), m.seed + 1);
   m.status = 'played';
   summarize(m, r);
   m.manual = true;

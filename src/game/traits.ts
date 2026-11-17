@@ -121,6 +121,13 @@ export const TRAITS: Record<string, Trait[]> = {
       when: domestic,
       effect: { win: 0.08 },
     },
+    {
+      name: 'Desgaste en la Bundesliga',
+      description: 'En la Bundesliga: un 15 % más de probabilidad de no ganar (empatar o perder).',
+      when: (c) => c.comp === 'league',
+      // −0,1 en el modelo ≈ +15 % de probabilidad de no ganar de media contra los equipos de la Bundesliga
+      effect: { win: -0.1 },
+    },
   ],
   'ger-dor': [
     {

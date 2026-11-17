@@ -56,4 +56,7 @@ export function titleInfo(key: string, leagueName: (id: LeagueId) => string): { 
 
 export const KIND_LABEL: Record<ShotKind, string> = { pen: 'de penalti', big: '', head: 'de cabeza', box: '', out: 'desde fuera del área' };
 
-export const minuteLabel = (e: { min: number; plus?: number }) => `${e.min}${e.plus ? `+${e.plus}` : ''}'`;
+/** Duración de una baja por lesión en palabras. */
+export const injuryLabel = (weeks: number) => (weeks === 1 ? '1 semana de baja' : weeks >= 8 ? '2 meses de baja' : `${weeks} semanas de baja`);
+
+export const minuteLabel =(e: { min: number; plus?: number }) => `${e.min}${e.plus ? `+${e.plus}` : ''}'`;

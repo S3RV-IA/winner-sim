@@ -59,6 +59,13 @@ const R = {
   pokerBonus: 3.6,
 };
 const ATTACKING: ReadonlySet<Role> = new Set(['ST', 'LW', 'RW', 'AM']);
+
+/** Estrella: desde esta media (y de las mejores de su equipo) casi no se le cambia. */
+const STAR_OVR = 86;
+/** Lesiones que obligan a parar por equipo y partido (unas 6-8 por equipo y temporada). */
+const INJURY_PER_TEAM_MATCH = 0.15;
+/** Semanas de baja y su peso: la mayoría son cortas y la más grave ronda los dos meses. */
+const INJURY_WEEKS: [number, number][] = [[1, 35], [2, 25], [3, 15], [4, 10], [5, 6], [6, 5], [7, 2], [8, 2]];
 const DEFENSIVE: ReadonlySet<Role> = new Set(['CB', 'LB', 'RB']);
 
 const clamp = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v));
@@ -86,6 +93,8 @@ interface Appearance {
   red: boolean;
   /** Rendimiento aproximado durante el partido (para decidir cambios). */
   perf: number;
+  /** Se ha lesionado en este partido. */
+  injured?: boolean;
 }
 
 interface Shot {
@@ -321,6 +330,39 @@ export function simulateMatch(home: SimTeam, away: SimTeam, settings: SimSetting
     }
   };
 
+  /**
+   * Las estrellas del equipo (de lo mejor de la plantilla y de 86 o más) casi nunca se cambian antes del 70′,
+   * poco hasta el 80′, y en partidos grandes con el marcador igualado (ganando por uno, empate o perdiendo) prácticamente nunca.
+   */
+  const bestOvr = states.map((st) => Math.max(...st.apps.map((a) => a.p.ovr)));
+  const starKeep = (side: Side, a: Appearance, tick: Tick) => {
+    if (a.p.ovr < STAR_OVR || a.p.ovr < bestOvr[side] - 3) return 1;
+    if (opts.bigMatch && score[side] - score[1 - side] <= 1) return 0.02;
+    return tick.min < 70 ? 0.05 : tick.min < 80 ? 0.35 : 0.8;
+  };
+
+  /** Lesiones: el jugador sale (si quedan cambios) y se pierde unas semanas. Aleatoriedad aparte para no alterar el resto del partido. */
+  const injuryRng = new Rng(seed ^ 0x5bd1e995);
+  const injuries = (side: Side, tick: Tick) => {
+    const st = states[side];
+    for (const a of st.onPitch()) {
+      if (a.injured || !injuryRng.chance(INJURY_PER_TEAM_MATCH / (11 * 96))) continue;
+      a.injured = true;
+      const weeks = INJURY_WEEKS[injuryRng.weighted(INJURY_WEEKS.map(([, w]) => w))][0];
+      others.push({ tick, ev: { t: 'injury', min: tick.min, plus: tick.plus, side, player: a.p.id, weeks } });
+      const options = st.bench.filter((p) => (a.role === 'GK') === (p.role === 'GK'));
+      if (st.subsLeft <= 0 || !options.length) continue;
+      // Entra el que mejor encaja en su puesto; el cambio forzado gasta uno de los previstos
+      const pick = options.sort((x, y) => fitFor(a.role, y) * y.ovr - fitFor(a.role, x) * x.ovr)[0];
+      st.bench = st.bench.filter((p) => p !== pick);
+      st.subsLeft--;
+      st.subPlan.pop();
+      a.off = tick.idx;
+      st.apps.push({ p: pick, side, role: a.role, starter: false, on: tick.idx, off: null, yellow: 0, red: false, perf: 0 });
+      others.push({ tick, ev: { t: 'sub', min: tick.min, plus: tick.plus, side, out: a.p.id, in: pick.id } });
+    }
+  };
+
   const substitutions = (side: Side, tick: Tick) => {
     const st = states[side];
     while (st.subPlan.length && st.subPlan[0] === tick.min && !tick.plus && st.subsLeft > 0) {
@@ -329,7 +371,9 @@ export function simulateMatch(home: SimTeam, away: SimTeam, settings: SimSetting
       const out = pickWeighted(
         st.onPitch().filter((a) => a.role !== 'GK' && !(a.on > 0 && a.on >= tick.idx - 25)),
         // Más papeletas de ser cambiado: atacantes, quien está jugando mal, amonestados y quien llega en mala racha
-        (a) => 1 + (ATTACKING.has(a.role) ? 0.5 : 0) + (a.perf < 0 ? 0.8 : 0) + (a.yellow ? 0.6 : 0) + (a.perf > 1 ? -0.5 : 0) + Math.max(0, -a.p.form) * 1.2,
+        (a) =>
+          (1 + (ATTACKING.has(a.role) ? 0.5 : 0) + (a.perf < 0 ? 0.8 : 0) + (a.yellow ? 0.6 : 0) + (a.perf > 1 ? -0.5 : 0) + Math.max(0, -a.p.form) * 1.2) *
+          starKeep(side, a, tick),
       );
       if (!out) continue;
       const options = st.bench.filter((p) => p.role !== 'GK');
@@ -379,6 +423,7 @@ export function simulateMatch(home: SimTeam, away: SimTeam, settings: SimSetting
     const perTick = shotRate.map((r) => (r / 96) * rateMult);
     for (const tick of ticks) {
       for (const side of [0, 1] as Side[]) {
+        injuries(side, tick);
         substitutions(side, tick);
         bookings(side, tick);
         const rate = perTick[side] * stateMult(side, tick);

@@ -81,6 +81,8 @@ export interface MatchOptions {
   knockout?: boolean;
   /** Para la vuelta de una eliminatoria: goles de la ida [local de este partido, visitante de este partido]. */
   firstLeg?: [number, number];
+  /** Partido grande (competición europea o eliminatoria): las estrellas casi nunca se cambian si el marcador está igualado. */
+  bigMatch?: boolean;
   /** Resultado forzado (introducido a mano): el motor solo rellena los detalles. */
   forcedScore?: [number, number];
 }
@@ -101,6 +103,8 @@ export type MatchEvent =
   | (At & { t: 'miss'; side: Side; player: string; kind: ShotKind; outcome: Exclude<ShotOutcome, 'goal'>; keeper?: string; xg?: number; blocker?: string; counter?: boolean })
   | (At & { t: 'card'; side: Side; player: string; color: 'Y' | 'R' })
   | (At & { t: 'sub'; side: Side; out: string; in: string })
+  /** Lesión: el jugador se pierde las próximas weeks semanas. */
+  | (At & { t: 'injury'; side: Side; player: string; weeks: number })
   | (At & { t: 'phase'; label: 'HT' | 'FT' | 'ET' | 'AET' | 'PENS' });
 
 export interface PenaltyKick {

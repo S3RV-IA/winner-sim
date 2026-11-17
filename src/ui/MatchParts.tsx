@@ -6,7 +6,7 @@ import type { HeadToHead, MatchPreview, TeamSnapshot } from '../game/preview';
 import type { Match, Moment, StoredResult, Team } from '../game/types';
 import { Crest, FormDots, Rating } from './common';
 import { Icon } from './Icon';
-import { FLAGS, KIND_LABEL, minuteLabel } from './labels';
+import { FLAGS, KIND_LABEL, injuryLabel, minuteLabel } from './labels';
 import { ROLE_ORDER } from './liveStats';
 import { useWorld } from './world';
 
@@ -54,6 +54,12 @@ export function EventLine({ e, homeFirst = true }: { e: MatchEvent; homeFirst?: 
           <span style={{ color: 'var(--win)' }}>{name(e.in)}</span> <span className="muted">por {name(e.out)}</span>
         </span>
       </>
+    );
+  else if (e.t === 'injury')
+    content = (
+      <span className="small">
+        🚑 <b>{name(e.player)}</b> <span style={{ color: 'var(--loss)' }}>se lesiona · {injuryLabel(e.weeks)}</span>
+      </span>
     );
   else if (e.t === 'miss')
     content = (

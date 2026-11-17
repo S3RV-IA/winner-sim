@@ -20,6 +20,17 @@
     "esp-bar|Gabriel Jesus": {
       "ovr": 73,
       "fin": 80
+    },
+    "esp-rma|Arda Güler": {
+      "role": "RW",
+      "ovr": 87,
+      "fin": 80,
+      "dri": 88
+    },
+    "esp-rma|Rodrygo": {
+      "ovr": 80,
+      "fin": 75,
+      "dri": 85
     }
   }
 }
